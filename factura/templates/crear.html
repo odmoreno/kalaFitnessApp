@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block form %}
+        <div class="page-header">
+            <h1>Nueva Factura</h1>
+            <form class="form-group col-sm-4" action="/" method="POST">
+                {% crispy form form.helper %}
+            </form>
+    </div>
+{% endblock %}

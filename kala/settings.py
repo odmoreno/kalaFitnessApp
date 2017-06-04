@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
+    'crispy_forms',
 
 ]
 
@@ -62,7 +63,10 @@ ROOT_URLCONF = 'kala.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')] +
+                [os.path.join(BASE_DIR, 'factura/templates')]
+                # + [os.path.join(BASE_DIR, 'paciente/templates')]
+                # + [os.path.join(BASE_DIR, 'personal/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,6 +132,13 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'factura/static'),
+    # os.path.join(BASE_DIR, 'paciente/static'),
+    # os.path.join(BASE_DIR, 'personal/static'),
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -149,6 +160,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CORS_ORIGIN_ALLOW_ALL = True
 

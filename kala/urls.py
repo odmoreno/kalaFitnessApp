@@ -16,11 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+#from factura.urls import urlpatterns as urlfactura
+from factura.views import crearFactura, eliminarFactura
 
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', crearFactura.as_view(), name='crear_factura'),
+    #url(r'^factura/', include('factura.urls')),
+    #url(r'^paciente/', include(factura.urls)),
+    #url(r'^personal/', include(factura.urls)),
 ]
 
 if settings.DEBUG:
