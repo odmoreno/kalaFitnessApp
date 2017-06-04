@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Paciente',
+            name='paciente',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('creado', models.DateTimeField(auto_now_add=True, verbose_name='creado')),
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('actualizado', models.DateTimeField(auto_now=True, verbose_name='actualizado')),
                 ('estado', models.CharField(default='A', max_length=1)),
                 ('personal', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='personal.Personal')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paciente.Paciente')),
+                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paciente.paciente')),
             ],
             options={
                 'db_table': 'paciente_personal',
