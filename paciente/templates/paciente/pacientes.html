@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Listado de Pacientes</h1>
+		
+		<table border="1">
+			{% for p in paciente %}
+				<tr>
+					<td>{{ p.id }}</td>
+					<td>{{ p.usuario.nombre}}</td>
+					<td>{{ p.usuario.apellido }}</td>
+					<td>{{  p.usuario.cedula }}</td>
+					<td>{{ empleado.observaciones }}</td>
+					<td><a href="{% url 'mod' p.usuario.cedula %}">Modificar</a></td>
+					<td><a href="{% url 'eliminarPaciente' p.usuario.cedula %}">Eliminar</a></td>
+				</tr>
+			{% endfor %}	
+		</table>
+
+</body>
+</html>
