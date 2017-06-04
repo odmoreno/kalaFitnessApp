@@ -5,6 +5,8 @@ from django.shortcuts import render
 from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User 
+from django.http.response import HttpResponseRedirect
+from django.urls.base import reverse
 
 # Create your views here.
 def pacientes(request):
@@ -18,7 +20,45 @@ def pacientes(request):
 
 @transaction.atomic
 def nuevoPaciente(request):
-    pass
+    rol = Rol()
+    rol.save()
+    template = 'paciente/crearPaciente.html'
+    if request.method == 'POST':
+        #Crea un USER
+        user = User()
+        user.username = request.POST['cedula']
+        user.set_password("p.123456")
+        user.save()
+        
+        usuario= Usuario()
+        usuario.usuario= user
+        usuario.rol=rol
+        usuario.nombre = request.POST['nombre']
+        usuario.apellido = request.POST['apellido']
+        usuario.cedula = request.POST['cedula']
+        usuario.direccion = request.POST['direccion']
+        usuario.telefono = request.POST['telefono']
+        usuario.ocupacion = request.POST['ocupacion']
+        usuario.genero = request.POST['genero']
+        usuario.edad = request.POST['edad']
+        usuario.fecha_nacimiento = request.POST['fecha']
+        #usuario.foto = request.POST['foto']
+        usuario.save()
+        
+        paciente=Paciente()
+        paciente.usuario=usuario
+        paciente.save()
+        return HttpResponseRedirect(reverse('pacientes'))
+    return render(request, template)
+        
+        
+        
+        
+        
+    
+    
+
+
 @transaction.atomic
 def modificarPaciente(request,paciente_id):
     pass
