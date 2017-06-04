@@ -51,17 +51,22 @@ def nuevoPaciente(request):
         return HttpResponseRedirect(reverse('pacientes'))
     return render(request, template)
         
-        
-        
-        
-        
-    
-    
 
 
 @transaction.atomic
 def modificarPaciente(request,paciente_id):
+#     pacientes = Paciente.objects.all()
+#     for p in pacientes:
+#         if p.usuario.cedula==paciente_id:
+#             usuario=p.usuario
     pass
 @transaction.atomic
 def eliminarPaciente(request, paciente_id):
-    pass
+    pacientes = Paciente.objects.all()
+    for p in pacientes:
+        if p.usuario.cedula==paciente_id:
+            p.delete()
+            break
+    return HttpResponseRedirect(reverse('pacientes'))
+
+

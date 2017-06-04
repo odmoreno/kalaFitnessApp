@@ -15,8 +15,8 @@
 					<td>{{ p.usuario.apellido }}</td>
 					<td>{{  p.usuario.cedula }}</td>
 					<!-- Aqui iria lo de foto -->
-					<td><a href="{% url 'mod' p.usuario.cedula %}">Modificar</a></td>
-					<td><a href="{% url 'eliminarPaciente' p.usuario.cedula %}">Eliminar</a></td>
+					<td><a href = "{% url 'mod' p.usuario.cedula %}" >Modificar</a></td>
+					<td><a href = "{% url 'eliminarPaciente' p.usuario.cedula %}" >Eliminar</a></td>
 				</tr>
 			{% endfor %}	
 		</table>
