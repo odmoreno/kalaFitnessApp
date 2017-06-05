@@ -1,0 +1,14 @@
+{%  extends 'personal/base.html' %}
+{% block title %}Personal{% endblock %}
+
+{% block body %}
+        <ul>
+            {% for personal in all_personal %}
+                {% if personal.rol.es_personal %}
+                    <li><a href=""> {{ personal.id}} </a></li>
+                    <li> {{ personal.nombre }} {{ personal.apellido }} </li>
+                    <li> {{ personal.rol.tipo}} </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+{% endblock %}

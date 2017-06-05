@@ -22,6 +22,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^paciente/', include('paciente.urls')),
+    url(r'^personal/', include('personal.urls')),
 ]
 
 if settings.DEBUG:
