@@ -7,7 +7,7 @@ from kala import settings
 
 
 class CrearFacturaForm(forms.ModelForm):
-    fecha_vencimiento = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    fecha_vencimiento = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'), input_formats=settings.DATE_INPUT_FORMATS)
     class Meta:
         model = Facturas
         fields = ('empresa', 'paciente','serie', 'fecha_vencimiento', 'subtotal', 'total')

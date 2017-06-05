@@ -25,7 +25,8 @@ def crearFactura(request):
         form = CrearFacturaForm(request.POST)
 
         if form.is_valid():
-            return HttpResponse('OK SAVED')
+            #form.save()
+            return HttpResponse(request.POST)
     else:
         form = CrearFacturaForm()
 

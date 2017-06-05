@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
-    #'crispy_forms',
+    'crispy_forms',
 
 ]
 
