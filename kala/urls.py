@@ -23,7 +23,7 @@ from factura.views import crearFactura, eliminarFactura
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', crearFactura.as_view(), name='crear_factura'),
+    url(r'^$', crearFactura, name='crear_factura'),
     #url(r'^factura/', include('factura.urls')),
     #url(r'^paciente/', include(factura.urls)),
     #url(r'^personal/', include(factura.urls)),
