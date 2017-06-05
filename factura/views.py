@@ -5,20 +5,23 @@ from django.shortcuts import render
 from django.http import *
 from .forms import CrearFacturaForm
 from factura.models import Facturas
-
 from kalaapp.models import Empresa, Usuario
 from paciente.models import Paciente
+from django.db.models.functions import Concat
 
 # Create your views here.
 
 def crearFactura(request):
     template_name = 'crear.html'
     empresa_nombre = None
+    paciente_nombre = None
 
     if request.method == 'POST':
         empresa_nombre = request.POST['empresa']
+        paciente_nombre = request.POST['paciente']
         request.POST = request.POST.copy()
         request.POST['empresa'] = int(Empresa.objects.get(nombre=request.POST['empresa']).pk);
+        request.POST['paciente'] = int(Usuario.objects.get(nombre=request.POST['paciente']).pk);
         form = CrearFacturaForm(request.POST)
 
         if form.is_valid():
@@ -29,10 +32,11 @@ def crearFactura(request):
     form.fields['empresa'].queryset = Empresa.objects.filter(estado='A')\
                                         .order_by('nombre')\
                                         .values_list('nombre', flat=True)
-    form.fields['paciente'].queryset = Usuario.objects.filter(estado='A', paciente__estado='A', rol__tipo='paciente')\
+    form.fields['paciente'].queryset = Usuario.objects.filter(estado='A', rol__tipo='paciente', paciente__estado='A') \
                                         .values_list('nombre', flat=True)
+                                        #.annotate(search_name=Concat('nombre', ' ', 'apellido'))
 
-    form.initial = {'empresa':empresa_nombre}
+    form.initial = {'empresa':empresa_nombre, 'paciente':paciente_nombre}
     context = {'form': form}
     return render(request, template_name, context=context)
 
