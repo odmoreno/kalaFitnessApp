@@ -20,8 +20,8 @@ def nuevoPersonal(request):
 
     rol = Rol()
     rol.es_personal=True
-    rol.tipo = 'fisioterapista'
-    rol.save()
+    #rol.tipo = 'fisioterapista'
+    #rol.save()
     if request.method == 'POST':
         user = User()
         user.username = request.POST['cedula']
@@ -29,6 +29,9 @@ def nuevoPersonal(request):
         print ("cedula11:"+user.username)
         user.set_password("p.123456")
         user.save()
+
+        rol.tipo = request.POST['ocupacion']
+        rol.save()
 
         usuario = Usuario()
         usuario.usuario = user
@@ -45,7 +48,14 @@ def nuevoPersonal(request):
         #usuario.fecha_nacimiento = request.POST['fecha']
         usuario.save()
 
-        return HttpResponseRedirect(reverse('index'))
+        #return HttpResponseRedirect(reverse('index.html'))
+        all_personal = Usuario.objects.all()
+        return render(request, 'personal/index.html', {'all_personal': all_personal})
     return  render(request, 'personal/create_personal.html')
     #fields = ['nombre', 'apellido', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'fecha_nacimento']
 
+def eliminarPersonal(request, personal_id):
+    personal = Usuario.objects.get(pk=personal_id)
+    personal.delete()
+    all_personal = Usuario.objects.all()
+    return render(request, 'personal/index.html', {'all_personal': all_personal})

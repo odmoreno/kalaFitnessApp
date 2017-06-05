@@ -2,7 +2,36 @@
 {% block title %}Personal{% endblock %}
 
 {% block body %}
-        <ul>
+    {% for personal in all_personal %}
+        <div class="col-sm-4 col-lg-2">
+            <div class="thumbnail">
+                <div class="caption">
+                    {% if personal.rol.es_personal %}
+                        <h2>{{ personal.nombre }} {{ personal.apellido }}</h2>
+                        <h4>{{ personal.rol.tipo}}</h4>
+                        <h4>Direccion: {{ personal.direccion}}</h4>
+                        <h4>Numero: {{ personal.telefono}}</h4>
+                        <h4>Edad: {{ personal.edad}}</h4>
+
+
+                        <!-- Delete personal -->
+                        <form action="{% url 'personal:eliminarPersonal' personal.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="personal_id" value="{{ personal.id }}" />
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+<!--
+<ul>
             {% for personal in all_personal %}
                 {% if personal.rol.es_personal %}
                     <li><a href=""> {{ personal.id}} </a></li>
@@ -10,5 +39,4 @@
                     <li> {{ personal.rol.tipo}} </li>
                 {% endif %}
             {% endfor %}
-        </ul>
-{% endblock %}
+        </ul>-->
