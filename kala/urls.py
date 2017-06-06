@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-#from factura.urls import urlpatterns as urlfactura
 from factura.views import crearFactura, eliminarFactura
 
 

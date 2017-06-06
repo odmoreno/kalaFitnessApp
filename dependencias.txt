@@ -3,4 +3,3 @@ django>1.11
 django-debug-toolbar
 django-cors-headers
 MySQL-python
-#django-crispy-forms

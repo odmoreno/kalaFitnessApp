@@ -3,7 +3,7 @@ from django.conf.urls import url
 from .views import *
 
 urlpatterns = [
-    url(r'^crear$', crearFactura.as_view(), name='crear_factura'),
-    url(r'^eliminar/(?P<pk>\d+)$', eliminarFactura.as_view(), name='eliminar_factura'),
+    url(r'^crear$', crearFactura, name='crear_factura'),
+    url(r'^eliminar/(?P<pk>\d+)$', eliminarFactura, name='eliminar_factura'),
 
 ]

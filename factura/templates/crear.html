@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% block titulo %}Nueva Factura{% endblock %}
 {% block form %}
         <div class="page-header">
             <h1>Nueva Factura</h1>
@@ -19,7 +19,8 @@
                 {% endfor %}
             {% endif %}
             <form class="form-group col-sm-2" action="/" method="POST">
-                {% crispy form form.helper%}
+                {{ form.as_p }}
+                <input type="submit" value="Crear" class="btn btn-primary">
             </form>
     </div>
 {% endblock %}

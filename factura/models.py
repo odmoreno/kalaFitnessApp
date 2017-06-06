@@ -15,8 +15,8 @@ class Facturas(TimeModel):
     #factura_estado = models.ForeignKey('FacturasEstados', models.DO_NOTHING)
     serie = models.CharField(max_length=200, blank=False, null=False)
     fecha_vencimiento = models.DateField(default=timezone.now, blank=False, null=False)
-    subtotal = models.FloatField(blank=False, null=False, default=0.0)
-    total = models.FloatField(blank=False, null=False, default=0.0)
+    subtotal = models.FloatField(blank=False, null=False, default=0)
+    total = models.FloatField(blank=False, null=False, default=0)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:

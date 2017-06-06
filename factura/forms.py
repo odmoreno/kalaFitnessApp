@@ -12,7 +12,7 @@ class CrearFacturaForm(forms.ModelForm):
         model = Facturas
         fields = ('empresa', 'paciente','serie', 'fecha_vencimiento', 'subtotal', 'total')
 
-    helper = FormHelper()
-    helper.add_input(Submit('submit', 'Crear', css_class='btn btn-primary'))
-    helper.form_method = 'POST'
+    # helper = FormHelper()
+    # helper.add_input(Submit('submit', 'Crear', css_class='btn btn-primary'))
+    # helper.form_method = 'POST'
 

@@ -1,48 +1,61 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.views.generic import CreateView, DeleteView
 from django.shortcuts import render
 from django.http import *
 from .forms import CrearFacturaForm
 from factura.models import Facturas
 from kalaapp.models import Empresa, Usuario
 from paciente.models import Paciente
-from django.db.models.functions import Concat
 
 # Create your views here.
 
 def crearFactura(request):
-    template_name = 'crear.html'
-    empresa_nombre = None
-    paciente_nombre = None
+    template = 'crear.html'
+    empresaNombre = None
+    pacienteNombre = None
 
     if request.method == 'POST':
-        empresa_nombre = request.POST['empresa']
-        paciente_nombre = request.POST['paciente']
+        empresaNombre = request.POST['empresa']
+        pacienteNombre = request.POST['paciente']
         request.POST = request.POST.copy()
         request.POST['empresa'] = int(Empresa.objects.get(nombre=request.POST['empresa']).pk);
         request.POST['paciente'] = int(Usuario.objects.get(nombre=request.POST['paciente']).pk);
         form = CrearFacturaForm(request.POST)
 
         if form.is_valid():
-            #form.save()
-            return HttpResponse(request.POST)
+            form.save()
+            #return HttpResponse(request.POST)
     else:
         form = CrearFacturaForm()
 
     form.fields['empresa'].queryset = Empresa.objects.filter(estado='A')\
-                                        .order_by('nombre')\
-                                        .values_list('nombre', flat=True)
-    form.fields['paciente'].queryset = Usuario.objects.filter(estado='A', rol__tipo='paciente', paciente__estado='A') \
-                                        .values_list('nombre', flat=True)
-                                        #.annotate(search_name=Concat('nombre', ' ', 'apellido'))
+                                      .order_by('nombre')\
+                                      .values_list('nombre', flat=True)
+    form.fields['paciente'].queryset = Paciente.objects.filter(estado='A')\
+                                       .values('id', 'usuario__nombre', 'usuario__apellido')
 
-    form.initial = {'empresa':empresa_nombre, 'paciente':paciente_nombre}
-    context = {'form': form}
-    return render(request, template_name, context=context)
+    form.initial = {'empresa':empresaNombre, 'paciente':pacienteNombre}
+    contexto = {'form': form}
+    return render(request, template_name=template, context=contexto)
 
-def eliminarFactura(request, facturaId):
-    pass
+def eliminarFactura(request, facturaId=0):
+    template='eliminar.html'
+    contexto = {'mensake':'ok'}
+
+    if request.method == 'POST':
+        facturaEliminada = Facturas.objects.get(id=facturaId)
+
+        if factura:
+            facturaEliminada.estado = 'I'
+            facturaEliminada.save()
+        else:
+            context['mensaje'] = 'Factura no encontrada!'
+
+    facturas = Facturas.objects.filter(estado='A')
+    contexto['facturas'] = facturas
+    return render(request, template_name=template, context=contexto)
+
+
 
 
 

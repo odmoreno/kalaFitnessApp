@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
-    'crispy_forms',
 
 ]
 
@@ -159,7 +158,6 @@ DATE_INPUT_FORMATS = ('%d/%m/%Y')
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
