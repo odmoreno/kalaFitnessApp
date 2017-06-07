@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crear un nuevo paciente</title>
+</head>
+<body>
+	<form action="" method="post">
+		{% csrf_token %}
+		Cedula:<input type="text" name="cedula" />
+		<br/>
+		nombre:<input type="text" name="nombre" />
+		<br/>
+		apellido:<input type="text" name="apellido" />
+		<br/>
+		Direccion:<input type="text" name="direccion" />
+		</select>
+		<br/>
+		telefono:<input type="text" name="telefono" />
+		<br/>
+		Ocupacion:<input type="text" name="ocupacion" />
+		<br/>
+		Genero:<input type="text" name="genero" />
+		<br/>
+		Edad:<input type="text" name="edad" />
+		<br/>
+		Fecha:<input type="text" name="fecha" />
+		<br/>
+		<input type="submit" value="Grabar Paciente" />
+	</form>
+
+
+</body>
+</html>
