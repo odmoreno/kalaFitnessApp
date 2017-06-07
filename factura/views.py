@@ -15,26 +15,32 @@ def crearFactura(request):
     pacienteNombre = None
 
     if request.method == 'POST':
-        empresaNombre = request.POST['empresa']
-        pacienteNombre = request.POST['paciente']
-        request.POST = request.POST.copy()
-        request.POST['empresa'] = int(Empresa.objects.get(nombre=request.POST['empresa']).pk);
-        request.POST['paciente'] = int(Usuario.objects.get(nombre=request.POST['paciente']).pk);
+        # empresaNombre = request.POST['empresa']
+        # pacienteNombre = request.POST['paciente']
+        # request.POST = request.POST.copy()
+        # request.POST['empresa'] = Empresa.objects.get(pk=request.POST['empresa']);
+        # request.POST['paciente'] = Paciente.objects.get(pk=request.POST['paciente']);
         form = CrearFacturaForm(request.POST)
 
         if form.is_valid():
             form.save()
-            #return HttpResponse(request.POST)
+
     else:
         form = CrearFacturaForm()
 
-    form.fields['empresa'].queryset = Empresa.objects.filter(estado='A')\
-                                      .order_by('nombre')\
-                                      .values_list('nombre', flat=True)
-    form.fields['paciente'].queryset = Paciente.objects.filter(estado='A')\
-                                       .values('id', 'usuario__nombre', 'usuario__apellido')
+    # form.fields['empresa'].queryset = Empresa.objects.filter(pk=empresaIds)\
+    #                                     .values_list('nombre', flat=True)\
+    #                                     .order_by('nombre')
 
-    form.initial = {'empresa':empresaNombre, 'paciente':pacienteNombre}
+
+    # form.fields['empresa'].queryset = Empresa.objects.filter(estado='A')\
+    #                                   .order_by('nombre')\
+    #                                   .values_list('nombre', flat=True)
+    # form.fields['paciente'].queryset = Paciente.objects.filter(estado='A') \
+    #                                     .order_by('usuario__nombre') \
+    #                                     .values_list('usuario__nombre', flat=True)
+    #
+    # form.initial = {'empresa':empresaNombre, 'paciente':pacienteNombre}
     contexto = {'form': form}
     return render(request, template_name=template, context=contexto)
 
@@ -45,17 +51,15 @@ def eliminarFactura(request, facturaId=0):
     if request.method == 'POST':
         facturaEliminada = Facturas.objects.get(id=facturaId)
 
-        if factura:
+        if facturaEliminada and facturaEliminada.estado == 'A':
             facturaEliminada.estado = 'I'
             facturaEliminada.save()
         else:
-            context['mensaje'] = 'Factura no encontrada!'
+            contexto['mensaje'] = 'Factura no encontrada'
 
     facturas = Facturas.objects.filter(estado='A')
     contexto['facturas'] = facturas
     return render(request, template_name=template, context=contexto)
-
-
 
 
 

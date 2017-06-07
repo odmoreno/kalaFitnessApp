@@ -61,9 +61,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')] +
-                [os.path.join(BASE_DIR, 'factura/templates')]
-                # + [os.path.join(BASE_DIR, 'paciente/templates')]
-                # + [os.path.join(BASE_DIR, 'personal/templates')]
+                [os.path.join(BASE_DIR, 'factura/templates')] +
+                [os.path.join(BASE_DIR, 'paciente/templates')] +
+                [os.path.join(BASE_DIR, 'personal/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -152,7 +152,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ('%d/%m/%Y')
+DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
