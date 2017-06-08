@@ -1,0 +1,94 @@
+<h4 class="text-center teal-text">Facturas</h4>
+
+<ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div id="nuevPac" class="collapsible-header"><i class="material-icons">add</i>Nueva Factura</div>
+      <div class="collapsible-body" style="padding-left:20px;padding-right:20px">
+        <form ng-submit="agregar()">
+              <div class="modal-body">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="empresa" ng-model="nueva_factura.empresa" placeholder="empresa" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="paciente" ng-model="nueva_factura.paciente" placeholder="paciente" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="serie" ng-model="nueva_factura.serie" placeholder="serie" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="fecha_vencimiento" ng-model="nueva_factura.fecha_vencimiento" placeholder="fecha_vencimiento" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="subtotal" ng-model="nueva_factura.subtotal" placeholder="subtotal" required=>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="total" ng-model="nueva_factura.total" placeholder="total" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="estado" ng-model="nueva_factura.estado" placeholder="estado" required>
+                  </div>
+              </div>
+              <div class="row modal-footer">
+                <button type="reset" class="btn btn-default col s4 right" ng-click="cancelar()">Cancelar</button>
+                <button type="submit" class="btn btn-primary col s4">Crear</button>
+              </div>
+            </form>
+      </div>
+    </li>
+
+    <li>
+        <div id="listPac" class="collapsible-header large active"><i class="material-icons">label</i>Lista de usuarios</div>
+        <div class="collapsible-body" style="padding-left:20px;padding-right:20px">
+        <div ><input type="search" name="busqueda" ng-model="busqueda.$" placeholder="Buscar paciente"></div>
+          <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center">Empresa</th>
+              <th class="text-center">Paciente</th>
+              <th class="text-center">Serie</th>
+              <th class="text-center">fecha_vencimiento</th>
+              <th class="text-center">subtotal</th>
+              <th class="text-center">total</th>
+              <th class="text-center">estado</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for factura in facturas %}
+              <tr>
+                  <td class="text-center empresa"> {{ factura.empresa}}</td>
+                  <td class="text-center paciente"> {{ factura.paciente}}</td>
+                  <td class="text-center serie"> {{ factura.serie}}</td>
+                  <td class="text-center fecha_vencimiento"> {{ factura.fecha_vencimiento}}</td>
+                  <td class="text-center subtotal"> {{ factura.subtotal}}</td>
+                  <td class="text-center total"> {{ factura.total}}</td>
+                  <td class="text-center estado"> {{ factura.estado}}</td>
+                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarPaciente(paciente)">mode_edit</button></td>
+                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons">delete</button></td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+        </div>
+    </li>
+</ul>
+
+<!-- Modal Structure -->
+
+<div id="modal1" class="modal" style="padding-left:25px;padding-right:25px;padding-top:30px;margin-top:-10px">
+  <h5 class="text-center teal-text">Datos de Factura</h5>
+  <form ng-submit="putPaciente()">
+    <div class="container-fluid center">
+        <div class="form-group">
+          <input type="text" class="form-control" name="nombre" required ng-model="editar_paciente.nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="correo" required ng-model="editar_paciente.correo" placeholder="Correo">
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-primary col s4" >Editar</button>
+          <button class="btn btn-primary col s4 right">Cerrar</button>
+        </div>
+    </div>
+  </form>
+</div>
