@@ -6,7 +6,11 @@ from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
+from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
+from django.core import serializers
+#import json
+#from django.http import JsonResponse
 
 # Create your views here.
 def pacientes(request):
@@ -23,6 +27,14 @@ def apiPacientes(request):
     p = Paciente.objects.all()
     data = {"pacientes": p}
     return render(request, template, data)
+
+def apiRestPacientes(request):
+    p = Paciente.objects.all()
+    #data = {"pacientes": p}
+    data = serializers.serialize('json', p)
+    return HttpResponse(data, content_type="application/json")
+    #return JsonResponse(data)
+    #return render(request, template, data)
 
 @transaction.atomic
 def nuevoPaciente(request):
