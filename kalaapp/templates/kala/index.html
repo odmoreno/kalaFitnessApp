@@ -27,17 +27,22 @@
         $stateProvider
           .state('paciente',{
             //url: '/usuarios',
-            templateUrl: 'http://localhost:8000/paciente',
+            templateUrl: 'http://localhost:8000/paciente/api',
             controller:'controllerPaciente'
           }).state('facturas',{
             //url: '/facturas',
-            templateUrl: 'http://localhost:8000/facturas',
-            controller:'controllerFacturas'
+            templateUrl: 'http://localhost:8000/factura/api',
+            controller:'controllerFactura'
+          })
+          .state('personal',{
+            //url: '/facturas',
+            templateUrl: 'http://localhost:8000/personal/api',
+            controller:'controllerPersonal'
           });
 
         $urlRouterProvider.otherwise(function($injector) {
             var $state = $injector.get('$state');
-            $state.go('usuarios');
+            $state.go('paciente');
         });
       });
 
@@ -62,10 +67,7 @@
 
       })
 
-      app.controller('controllerFacturas', function($scope, $state, $http){
-
-        $scope.pacientes = [{nombre: "Edgar" ,correo: "asdasdasd"},{nombre: "Fernando" ,correo: "asdasdasd"}];
-        $scope.editar_paciente = {};
+      app.controller('controllerFactura', function($scope, $state, $http){
 
         $scope.agregar = function(){
           console.log("en agregar");
@@ -87,9 +89,6 @@
       })
 
       app.controller('controllerPersonal', function($scope, $state, $http){
-
-        $scope.pacientes = [{nombre: "Edgar" ,correo: "asdasdasd"},{nombre: "Fernando" ,correo: "asdasdasd"}];
-        $scope.editar_paciente = {};
 
         $scope.agregar = function(){
           console.log("en agregar");
@@ -130,7 +129,9 @@
         </li>
         <li><a class="waves-effect teal-text" ui-sref="paciente"><i class="material-icons">assignment_ind</i>Pacientes</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="waves-effect teal-text" ui-sref="facturas"><i class="material-icons">supervisor_account</i>Facturas</a></li>
+        <li><a class="waves-effect teal-text" ui-sref="factura"><i class="material-icons">library_books</i>Facturas</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect teal-text" ui-sref="personal"><i class="material-icons">supervisor_account</i>Personal</a></li>
         <li><div class="divider"></div></li>
         <li><a class="waves-effect teal-text" href="#"><i class="material-icons">power_settings_new</i>Salir</a></li>
       </ul>

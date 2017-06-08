@@ -18,6 +18,12 @@ def pacientes(request):
         }
     return render(request, template, data)
 
+def apiPacientes(request):
+    template = "paciente/paciente.html"
+    p = Paciente.objects.all()
+    data = {"pacientes": p}
+    return render(request, template, data)
+
 @transaction.atomic
 def nuevoPaciente(request):
     rol = Rol()
