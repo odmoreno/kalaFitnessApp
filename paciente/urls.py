@@ -11,7 +11,7 @@ urlpatterns = [
     #url(r'^$', pacientes, name="pacientes"),
     url(r'^api/$', apiPacientes, name="paciente"),
     url(r'^apirest/$', apiRestPacientes),
-    #url(r'^crear/$', nuevoPaciente, name="crear"),
+    url(r'^crear/$', nuevoPaciente),
     #url(r'^modificar/(?P<paciente_id>\d+)/$', modificarPaciente, name="mod"),
     #url(r'^eliminar/(?P<paciente_id>\d+)/', eliminarPaciente, name="eliminarPaciente"),
 ]

@@ -48,8 +48,27 @@
 
       app.controller('controllerPaciente', function($scope, $state, $http){
 
-        $scope.agregar = function(){
-          console.log("en agregar");
+        $scope.crearPaciente = function(){
+          //$scope.nuevo_paciente = ;
+            $http.post("/paciente/crear", {
+                nombre: $scope.nuevo_paciente.nombre,
+                apellido: $scope.nuevo_paciente.apellido,
+                cedula: $scope.nuevo_paciente.cedula,
+                direccion: $scope.nuevo_paciente.direccion,
+                telefono: $scope.nuevo_paciente.telefono,
+                ocupacion: $scope.nuevo_paciente.ocupacion,
+                genero: $scope.nuevo_paciente.genero,
+                edad: $scope.nuevo_paciente.edad,
+                fecha: $scope.nuevo_paciente.fecha
+            }).success(function(response){
+
+                //$scope.pacientes.push(response);
+                Materialize.toast('Se Creó el paciente satisfactoriamente', 3000, 'rounded teal');
+                $scope.nuevo_paciente = {};
+                //$scope.$apply();
+                    
+            });
+
         }
 
         $scope.putPaciente = function(){

@@ -40,7 +40,7 @@ def apiRestPacientes(request):
 def nuevoPaciente(request):
     rol = Rol()
     rol.save()
-    template = 'paciente/crearPaciente.html'
+    #template = 'paciente/crearPaciente.html'
     if request.method == 'POST':
         #Crea un USER
         user = User()
@@ -48,9 +48,9 @@ def nuevoPaciente(request):
         user.set_password("p.123456")
         user.save()
 
-        usuario= Usuario()
-        usuario.usuario= user
-        usuario.rol=rol
+        usuario = Usuario()
+        usuario.usuario = user
+        usuario.rol = rol
         usuario.nombre = request.POST['nombre']
         usuario.apellido = request.POST['apellido']
         usuario.cedula = request.POST['cedula']
@@ -66,8 +66,9 @@ def nuevoPaciente(request):
         paciente=Paciente()
         paciente.usuario=usuario
         paciente.save()
-        return HttpResponseRedirect(reverse('pacientes'))
-    return render(request, template)
+        #return HttpResponseRedirect(reverse('pacientes'))
+    #return render(request, template)
+    return HttpResponse({"message": "Nuevo paciente creado"}, content_type="application/json")
 
 
 

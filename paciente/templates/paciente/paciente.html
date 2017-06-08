@@ -4,7 +4,7 @@
     <li>
       <div id="nuevPac" class="collapsible-header"><i class="material-icons">add</i>Nuevo Paciente</div>
       <div class="collapsible-body" style="padding-left:20px;padding-right:20px">
-        <form ng-submit="agregar()">
+        <form ng-submit="crearPaciente()">
               <div class="modal-body">
                   {% csrf_token %}
                   <div class="form-group">
@@ -26,10 +26,13 @@
                     <input type="text" class="form-control" name="ocupacion" ng-model="nuevo_paciente.ocupacion" placeholder="Ocupacion" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="genero" ng-model="nuevo_paciente.ocupacion" placeholder="Genero" required>
+                    <input type="text" class="form-control" name="genero" ng-model="nuevo_paciente.genero" placeholder="Genero" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="fecha" ng-model="nuevo_paciente.ocupacion" placeholder="Fecha" required>
+                    <input type="text" class="form-control" name="edad" ng-model="nuevo_paciente.edad" placeholder="Edad" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="fecha" ng-model="nuevo_paciente.fecha" placeholder="Fecha" required>
                   </div>
               </div>
               <div class="row modal-footer">
