@@ -87,4 +87,5 @@ def eliminarPaciente(request, paciente_id):
         if p.usuario.cedula==paciente_id:
             p.delete()
             break
-    return HttpResponseRedirect(reverse('pacientes'))
+    return HttpResponse({"message": "Paciente eliminado"}, content_type="application/json")
+    #return HttpResponseRedirect(reverse('pacientes'))

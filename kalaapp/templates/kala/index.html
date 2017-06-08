@@ -61,23 +61,28 @@
                 edad: $scope.nuevo_paciente.edad,
                 fecha: $scope.nuevo_paciente.fecha
             }).success(function(response){
-
                 //$scope.pacientes.push(response);
                 Materialize.toast('Se Creó el paciente satisfactoriamente', 3000, 'rounded teal');
                 $scope.nuevo_paciente = {};
                 //$scope.$apply();
-                    
             });
 
         }
 
-        $scope.putPaciente = function(){
-          console.log("en put paciente");
+        $scope.eliminarPaciente = function(paciente){
+          $http.get("/paciente/eliminar/" + paciente).success(function(response){
+
+                Materialize.toast('Se eliminó el paciente' + paciente, 3000, 'rounded teal');
+                   
+            });
         }
 
-        $scope.editarPaciente = function(paciente){
-          $scope.editar_paciente = paciente;
-          $("modalEditarPaciente").openModal();
+        $scope.modificarPaciente = function(paciente){
+          $http.get("/paciente/modificar/" + paciente).success(function(response){
+
+                Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
+                   
+            });
         }
 
         $('.collapsible').collapsible({

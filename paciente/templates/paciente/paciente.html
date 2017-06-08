@@ -62,9 +62,9 @@
               <tr>
                   <td class="text-center masDatos"><button type="button" style="border:none;background:none" class="small material-icons">settings_overscan</button></td>
                   <td class="text-center nombre"> {{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</td>
-                  <td class="text-center correo"> {{ paciente.usuario.cedula }} </td>
-                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarPaciente(paciente)">mode_edit</button></td>
-                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons">delete</button></td>
+                  <td class="text-center correo" ng-model="paciente"> {{ paciente.usuario.cedula }} </td>
+                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="modificarPaciente(paciente)">mode_edit</button></td>
+                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons" ng-click="eliminarPaciente(paciente)">delete</button></td>
               </tr>
               {% endfor %}
           </tbody>
