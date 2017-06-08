@@ -6,15 +6,17 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.views.generic.edit import  CreateView, UpdateView, DeleteView
 from kalaapp.models import Usuario, Rol
+from personal.models import Personal
 from paciente.views import Paciente
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 
 
-def index(request):
-
-    all_personal = Usuario.objects.all()
-    return render(request, 'personal/index.html', {'all_personal': all_personal})
+def apiPersonal(request):
+    template = "personal/personal.html"
+    obj = Personal.objects.all()
+    data = {"personal": obj}
+    return render(request, template, data)
 
 def nuevoPersonal(request):
 

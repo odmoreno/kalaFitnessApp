@@ -10,7 +10,17 @@ from django.db.models import Value
 from django.db import transaction
 from django.urls.base import reverse
 
+
+from django.db import transaction
+from factura.models import Facturas
+##from kalaapp.models import Usuario, Rol
+from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect
+from django.urls.base import reverse
+
+
 # Create your views here.
+
 def facturas(request):
     template = 'factura/crear.html'
     contexto={}
@@ -73,3 +83,10 @@ def eliminarFactura(request, facturaId=0):
     facturas = Facturas.objects.filter(estado='A')
     contexto['facturas'] = facturas
     return render(request, template_name=template, context=contexto)
+
+def apiFactura(request):
+    template = "factura/factura.html"
+    obj = Facturas.objects.all()
+    data = {"facturas": obj}
+    return render(request, template, data)
+

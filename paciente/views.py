@@ -4,19 +4,37 @@ from django.db import transaction
 from django.shortcuts import render
 from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
+from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
+from django.core import serializers
+#import json
+#from django.http import JsonResponse
 
 # Create your views here.
 def pacientes(request):
     template = 'paciente/pacientes.html'
-    p=Paciente.objects.all()
+    p = Paciente.objects.all()
     data = {
             'pacientes':p,
-            
+
         }
     return render(request, template, data)
+
+def apiPacientes(request):
+    template = "paciente/paciente.html"
+    p = Paciente.objects.all()
+    data = {"pacientes": p}
+    return render(request, template, data)
+
+def apiRestPacientes(request):
+    p = Paciente.objects.all()
+    #data = {"pacientes": p}
+    data = serializers.serialize('json', p)
+    return HttpResponse(data, content_type="application/json")
+    #return JsonResponse(data)
+    #return render(request, template, data)
 
 @transaction.atomic
 def nuevoPaciente(request):
@@ -29,7 +47,7 @@ def nuevoPaciente(request):
         user.username = request.POST['cedula']
         user.set_password("p.123456")
         user.save()
-        
+
         usuario= Usuario()
         usuario.usuario= user
         usuario.rol=rol
@@ -44,13 +62,13 @@ def nuevoPaciente(request):
         usuario.fecha_nacimiento = request.POST['fecha']
         #usuario.foto = request.POST['foto']
         usuario.save()
-        
+
         paciente=Paciente()
         paciente.usuario=usuario
         paciente.save()
         return HttpResponseRedirect(reverse('pacientes'))
     return render(request, template)
-        
+
 
 
 @transaction.atomic
@@ -59,6 +77,7 @@ def modificarPaciente(request,paciente_id):
 #     for p in pacientes:
 #         if p.usuario.cedula==paciente_id:
 #             usuario=p.usuario
+    
     pass
 @transaction.atomic
 def eliminarPaciente(request, paciente_id):
@@ -68,5 +87,3 @@ def eliminarPaciente(request, paciente_id):
             p.delete()
             break
     return HttpResponseRedirect(reverse('pacientes'))
-
-
