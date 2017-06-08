@@ -22,10 +22,7 @@ from factura.views import crearFactura, eliminarFactura
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', crearFactura, name='crear_factura'),
-    #url(r'^factura/', include('factura.urls')),
-    #url(r'^paciente/', include('paciente.urls')),
-    #url(r'^personal/', include('personal.urls')),
+    url(r'^factura/', include('factura.urls')),
 ]
 
 if settings.DEBUG:
