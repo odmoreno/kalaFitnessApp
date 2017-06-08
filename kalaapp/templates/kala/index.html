@@ -64,25 +64,29 @@
                 //$scope.pacientes.push(response);
                 Materialize.toast('Se Creó el paciente satisfactoriamente', 3000, 'rounded teal');
                 $scope.nuevo_paciente = {};
+                $state.reload();
                 //$scope.$apply();
             });
 
         }
 
         $scope.eliminarPaciente = function(paciente){
-          $http.get("/paciente/eliminar/" + paciente).success(function(response){
-
+          $http.get("/paciente/eliminar/" + paciente ).success(function(response){
                 Materialize.toast('Se eliminó el paciente' + paciente, 3000, 'rounded teal');
+                $state.reload();
                    
             });
         }
 
         $scope.modificarPaciente = function(paciente){
-          $http.get("/paciente/modificar/" + paciente).success(function(response){
+          Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
+          /*$http.get("/factura/modificar/" + paciente ).success(function(response){
 
                 Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
+                $state.reload();
                    
-            });
+          });
+          */
         }
 
         $('.collapsible').collapsible({
@@ -93,17 +97,43 @@
 
       app.controller('controllerFactura', function($scope, $state, $http){
 
-        $scope.agregar = function(){
-          console.log("en agregar");
+        $scope.crearFactura = function(){
+          //$scope.nuevo_paciente = ;
+            $http.post("/factura/crear", {
+                empresa: $scope.nueva_factura.empresa,
+                paciente: $scope.nueva_factura.paciente,
+                serie: $scope.nueva_factura.serie,
+                fecha_vencimiento: $scope.nueva_factura.fecha_vencimiento,
+                subtotal: $scope.nueva_factura.subtotal,
+                total: $scope.nueva_factura.total
+            }).success(function(response){
+                //$scope.pacientes.push(response);
+                Materialize.toast('Se la factura exitosamente', 3000, 'rounded teal');
+                $scope.nueva_factura = {};
+                $state.reload();
+                //$scope.$apply();
+            });
+
         }
 
-        $scope.putPaciente = function(){
-          console.log("en put paciente");
+        $scope.eliminarFactura = function(factura){
+          $http.post("/factura/eliminar/",{facturaId: factura}).success(function(response){
+                Materialize.toast('Se eliminó el paciente' + factura, 3000, 'rounded teal');
+                $state.reload();
+                   
+            });
         }
 
-        $scope.editarPaciente = function(paciente){
-          $scope.editar_paciente = paciente;
+        $scope.modificarFactura = function(factura){
+          Materialize.toast('Se modifico el paciente' + factura, 3000, 'rounded teal');
           $("modalEditarPaciente").openModal();
+          /*$http.get("/factura/modificar/" + paciente ).success(function(response){
+
+                Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
+                $state.reload();
+                   
+          });
+          */
         }
 
         $('.collapsible').collapsible({
@@ -114,17 +144,44 @@
 
       app.controller('controllerPersonal', function($scope, $state, $http){
 
-        $scope.agregar = function(){
-          console.log("en agregar");
+        $scope.crearPersonal = function(){
+          //$scope.nuevo_paciente = ;
+            $http.post("/personal/crear", {
+                nombre: $scope.nuevo_personal.nombre,
+                apellido: $scope.nuevo_personal.apellido,
+                cedula: $scope.nuevo_personal.cedula,
+                direccion: $scope.nuevo_personal.direccion,
+                telefono: $scope.nuevo_personal.telefono,
+                ocupacion: $scope.nuevo_personal.ocupacion,
+                genero: $scope.nuevo_personal.genero,
+                edad: $scope.nuevo_personal.edad
+            }).success(function(response){
+                //$scope.pacientes.push(response);
+                Materialize.toast('Se Creó el personal satisfactoriamente', 3000, 'rounded teal');
+                $scope.nuevo_personal = {};
+                $state.reload();
+                //$scope.$apply();
+            });
+
         }
 
-        $scope.putPaciente = function(){
-          console.log("en put paciente");
+        $scope.eliminarPersonal = function(personal){
+          $http.get("/personal/eliminar/" + personal ).success(function(response){
+                Materialize.toast('Se eliminó el personal' + personal, 3000, 'rounded teal');
+                $state.reload();
+                   
+            });
         }
 
-        $scope.editarPaciente = function(paciente){
-          $scope.editar_paciente = paciente;
-          $("modalEditarPaciente").openModal();
+        $scope.editarPersonal = function(personal){
+          Materialize.toast('Se modifico el personal' + personal, 3000, 'rounded teal');
+          /*$http.get("/factura/modificar/" + personal ).success(function(response){
+
+                Materialize.toast('Se modifico el personal' + personal, 3000, 'rounded teal');
+                $state.reload();
+                   
+          });
+          */
         }
 
         $('.collapsible').collapsible({

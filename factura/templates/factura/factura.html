@@ -4,7 +4,7 @@
     <li>
       <div id="nuevPac" class="collapsible-header"><i class="material-icons">add</i>Nueva Factura</div>
       <div class="collapsible-body" style="padding-left:20px;padding-right:20px">
-        <form ng-submit="agregar()">
+        <form ng-submit="crearFactura()">
               <div class="modal-body">
                   {% csrf_token %}
                   <div class="form-group">
@@ -24,9 +24,6 @@
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control" name="total" ng-model="nueva_factura.total" placeholder="total" required>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="estado" ng-model="nueva_factura.estado" placeholder="estado" required>
                   </div>
               </div>
               <div class="row modal-footer">
@@ -50,7 +47,6 @@
               <th class="text-center">fecha_vencimiento</th>
               <th class="text-center">subtotal</th>
               <th class="text-center">total</th>
-              <th class="text-center">estado</th>
             </tr>
           </thead>
           <tbody>
@@ -62,9 +58,8 @@
                   <td class="text-center fecha_vencimiento"> {{ factura.fecha_vencimiento}}</td>
                   <td class="text-center subtotal"> {{ factura.subtotal}}</td>
                   <td class="text-center total"> {{ factura.total}}</td>
-                  <td class="text-center estado"> {{ factura.estado}}</td>
-                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarPaciente(paciente)">mode_edit</button></td>
-                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons">delete</button></td>
+                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarFactura( {{factura.id}} )">mode_edit</button></td>
+                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons" ng-click="eliminarFactura( {{factura.id}} )">delete</button></td>
               </tr>
               {% endfor %}
           </tbody>

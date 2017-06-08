@@ -52,12 +52,14 @@ def nuevoPersonal(request):
 
         #return HttpResponseRedirect(reverse('index.html'))
         all_personal = Usuario.objects.all()
-        return render(request, 'personal/index.html', {'all_personal': all_personal})
-    return  render(request, 'personal/create_personal.html')
+        #return render(request, 'personal/index.html', {'all_personal': all_personal})
+    #return  render(request, 'personal/create_personal.html')
     #fields = ['nombre', 'apellido', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'fecha_nacimento']
+    return HttpResponse({"message": "Nuevo personal creado"}, content_type="application/json")
 
 def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
     personal.delete()
     all_personal = Usuario.objects.all()
-    return render(request, 'personal/index.html', {'all_personal': all_personal})
+    return HttpResponse({"message": "Se elimino el personal" personal_id}, content_type="application/json")
+    #return render(request, 'personal/index.html', {'all_personal': all_personal})
