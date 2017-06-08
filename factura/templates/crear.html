@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block titulo %}Nueva Factura{% endblock %}
+{% block form %}
+        <div class="page-header">
+            <h1>Nueva Factura</h1>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form class="form-group col-sm-2" action="/" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Crear" class="btn btn-primary">
+            </form>
+    </div>
+{% endblock %}

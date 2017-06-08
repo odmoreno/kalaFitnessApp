@@ -24,10 +24,11 @@ class TimeModel(models.Model):
 ROLES =(('administrador', 'administrador'),
         ('paciente', 'paciente'),
         ('fisioterapista', 'fisioterapista'),
-        ('nutricionista', 'nutricionista'))
+        ('nutricionista', 'nutricionista'),
+        ('invitado','invitado'))
 
 class Rol(TimeModel):
-    tipo = models.CharField(max_length=30, choices=ROLES, default='paciente')
+    tipo = models.CharField(max_length=30, choices=ROLES, default='invitado', unique=True)
     es_personal = models.BooleanField(_('es_personal'), default=False, blank=False)
     estado = models.CharField(max_length=1, default='A')
 
@@ -41,7 +42,7 @@ class Usuario(TimeModel):
         rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
         nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False )
         apellido = models.CharField(db_column='last_name', max_length=30, blank=False, null=False )
-        cedula = models.CharField(max_length=50, unique=True)
+        cedula = models.CharField(max_length=10, unique=True)
         direccion = models.CharField(max_length=200, blank=True, null=True)
         telefono = models.CharField(max_length=50, blank=True, null=True)
         ocupacion = models.CharField(max_length=200, blank=True, null=True)
@@ -61,18 +62,16 @@ class Usuario(TimeModel):
 
 
 class Empresa(TimeModel):
-    nombre = models.CharField(max_length=200)
-    razon_social = models.CharField(max_length=200)
-    propietario_nombre = models.CharField(max_length=200)
-    propietario_apellido = models.CharField(max_length=200)
-    ruc = models.CharField(max_length=50)
-    telefono = models.CharField(max_length=50)
-    direccion = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, blank=False, null=False)
+    razon_social = models.CharField(max_length=200, blank=True, null=True)
+    propietario_nombre = models.CharField(max_length=200,blank=True, null=True)
+    propietario_apellido = models.CharField(max_length=200,blank=True, null=True)
+    ruc = models.CharField(max_length=50,blank=False, null=False)
+    telefono = models.CharField(max_length=50,blank=True, null=True)
+    direccion = models.CharField(max_length=200,blank=True, null=True)
     iva = models.IntegerField()
     #planificacion = models.ForeignKey('Planificaciones', models.DO_NOTHING)
     estado = models.CharField(max_length=1, default='A')
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
 
     class Meta:
         #managed = False

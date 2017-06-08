@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block titulo %}Eliminar Factura{% endblock %}
+{% block form %}
+        <div class="page-header">
+            <h1>Eliminar Factura</h1>
+
+
+            <form class="form-group col-sm-2" action="/" method="POST">
+                {{ facturas.as_table }}
+            </form>
+    </div>
+{% endblock %}
