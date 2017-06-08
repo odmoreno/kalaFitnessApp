@@ -77,6 +77,7 @@ def modificarPaciente(request,paciente_id):
 #     for p in pacientes:
 #         if p.usuario.cedula==paciente_id:
 #             usuario=p.usuario
+    
     pass
 @transaction.atomic
 def eliminarPaciente(request, paciente_id):
