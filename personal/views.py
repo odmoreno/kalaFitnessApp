@@ -25,9 +25,9 @@ def nuevoPersonal(request):
     #rol.save()
     if request.method == 'POST':
         user = User()
-        user.username = request.POST['cedula']
-        print ("Cedula:"+request.POST['cedula'])
-        print ("cedula11:"+user.username)
+        user.username = request.POST.get('cedula', False)
+        #print ("Cedula:"+request.POST['cedula'])
+        #print ("cedula11:"+user.username)
         user.set_password("p.123456")
         user.save()
 
@@ -40,7 +40,7 @@ def nuevoPersonal(request):
         usuario.nombre = request.POST['nombre']
         print("nombre:" + usuario.nombre)
         usuario.apellido = request.POST['apellido']
-        usuario.cedula = request.POST['cedula']
+        usuario.cedula = request.POST.get('cedula', False)
         usuario.direccion = request.POST['direccion']
         usuario.telefono = request.POST['telefono']
         usuario.ocupacion = request.POST['ocupacion']
