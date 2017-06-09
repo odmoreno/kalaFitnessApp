@@ -2,41 +2,51 @@
 {% block title %}Personal{% endblock %}
 
 {% block body %}
-    {% for personal in all_personal %}
-        {% if personal.rol.es_personal %}
-        <div class="col-sm-4 col-lg-2">
-            <div class="thumbnail">
-                <div class="caption">
-                        <h2>{{ personal.nombre }} {{ personal.apellido }}</h2>
-                        <h4>{{ personal.rol.tipo}}</h4>
-                        <h4>Direccion: {{ personal.direccion}}</h4>
-                        <h4>Numero: {{ personal.telefono}}</h4>
-                        <h4>Edad: {{ personal.edad}}</h4>
 
+    <div class="container-fluid">
 
-                        <!-- Delete personal -->
-                        <form action="{% url 'personal:eliminarPersonal' personal.id %}" method="post" style="display: inline;">
-                            {% csrf_token %}
-                            <input type="hidden" name="personal_id" value="{{ personal.id }}" />
-                            <button type="submit" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </form>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-{% endblock %}
-
-
-<!--
-<ul>
+        <div class="row">
+        <div class="col-sm-12 col-md-7">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Rol</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for personal in all_personal %}
                 {% if personal.rol.es_personal %}
-                    <li><a href=""> {{ personal.id}} </a></li>
-                    <li> {{ personal.nombre }} {{ personal.apellido }} </li>
-                    <li> {{ personal.rol.tipo}} </li>
+                    <tr>
+                        <th scope="row"> {{  personal.id}}</th>
+                        <td>{{ personal.nombre }}</td>
+                        <td>{{ personal.apellido }}</td>
+                        <td>{{ personal.rol.tipo}}</td>
+                        <td>{{ personal.direccion }}</td>
+                        <td>{{ personal.telefono }}</td>
+                        <td>
+                            <!-- Delete personal -->
+                            <form action="{% url 'personal:eliminarPersonal' personal.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="personal_id" value="{{ personal.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
                 {% endif %}
             {% endfor %}
-        </ul>-->
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

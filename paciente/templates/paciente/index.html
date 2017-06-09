@@ -1,0 +1,62 @@
+{%  extends 'paciente/base.html' %}
+{% block title %}Personal{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+        <div class="col-sm-12 col-md-7">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Rol</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for paciente in pacientes %}
+                    <tr>
+                        <th scope="row"> {{  paciente.id}}</th>
+                        <td>{{ paciente.usuario.nombre }}</td>
+                        <td>{{ paciente.usuario.apellido }}</td>
+                        <td>{{ paciente.usuario.ocupacion}}</td>
+                        <td>{{ paciente.usuario.direccion }}</td>
+                        <td>{{ paciente.usuario.telefono }}</td>
+                        <td>
+                            <!-- Eliminar Personal-->
+                            <form action="{% url 'paciente:eliminar' paciente.id %} " method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="personal_id" value="{{ paciente.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <!-- Modificar Personal -->
+                            <form action="{% url 'paciente:modificar' paciente.id %} " method="get" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="personal_id" value="{{ paciente.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+<!-- {% url 'personal:eliminarPersonal' personal.id %} -->

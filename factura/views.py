@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from factura.models import Facturas
+from django.http import HttpRequest,HttpResponse
 from kalaapp.models import Empresa, Usuario
 from paciente.models import Paciente
 from django.db.models.functions import Concat
@@ -15,14 +15,13 @@ from django.db import transaction
 from factura.models import Facturas
 ##from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
-from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 
 
 # Create your views here.
 
 def facturas(request):
-    template = 'factura/crear.html'
+    template = 'crear.html'
     contexto={}
     contexto['facturas'] = Facturas.objects.filter(estado='A')
 
@@ -47,10 +46,12 @@ def crearFactura(request):
 
         if factura.id is not None:
             contexto['mensaje'] = 'Factura creada con exito!'
-            return HttpResponseRedirect(redirect_to=reverse('facturas'), content=contexto)
+            #return HttpResponseRedirect(redirect_to=reverse('facturas'), content=contexto)
+            return HttpResponse({"message": "Nuevo factura creada"}, content_type="application/json")
         else:
             factura = None
             contexto['mensaje'] = 'Error al grabar!'
+            return HttpResponse({"message": "Error al crear factura"}, content_type="application/json")
 
     empresas = Empresa.objects.filter(estado='A') \
         .values_list('pk', 'nombre') \
@@ -77,8 +78,10 @@ def eliminarFactura(request, facturaId=0):
             facturaEliminada.estado = 'I'
             facturaEliminada.save()
             contexto['mensaje'] = 'Factura elminada con exito!'
+            return HttpResponse({"message": 'Factura elminada con exito!'}, content_type="application/json")
         else:
             contexto['mensaje'] = 'Factura no encontrada'
+            return HttpResponse({"message": 'Factura no encontrada'}, content_type="application/json")
 
     facturas = Facturas.objects.filter(estado='A')
     contexto['facturas'] = facturas

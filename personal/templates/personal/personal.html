@@ -4,35 +4,35 @@
     <li>
       <div id="nuevPac" class="collapsible-header"><i class="material-icons">add</i>Nuevo Personal</div>
       <div class="collapsible-body" style="padding-left:20px;padding-right:20px">
-        <form ng-submit="agregar()">
+        <form ng-submit="crearPersonal()">
               <div class="modal-body">
                   {% csrf_token %}
                   <div class="form-group">
-                    <input type="text" class="form-control" name="nombre" ng-model="nuevo_paciente.nombre" placeholder="Nombre" required>
+                    <input type="text" class="form-control" name="nombre" ng-model="nuevo_personal.nombre" placeholder="Nombre" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="apellido" ng-model="nuevo_paciente.apellido" placeholder="Apellido" required>
+                    <input type="text" class="form-control" name="apellido" ng-model="nuevo_personal.apellido" placeholder="Apellido" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" pattern="^[0-9]{10}" title="Numero de cedula invalido" class="form-control" name="cedula" ng-model="nuevo_paciente.cedula" placeholder="C&eacute;dula" required>
+                    <input type="text" pattern="^[0-9]{10}" title="Numero de cedula invalido" class="form-control" name="cedula" ng-model="nuevo_personal.cedula" placeholder="C&eacute;dula" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="direccion" ng-model="nuevo_paciente.direccion" placeholder="Direcci&oacute;n" required>
+                    <input type="text" class="form-control" name="direccion" ng-model="nuevo_personal.direccion" placeholder="Direcci&oacute;n" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" pattern="^[0-9]{7,10}" title="Numero de telefono invalido" class="form-control" name="telefono" ng-model="nuevo_paciente.telefono" placeholder="Tel&eacute;fono" required=>
+                    <input type="text" pattern="^[0-9]{7,10}" title="Numero de telefono invalido" class="form-control" name="telefono" ng-model="nuevo_personal.telefono" placeholder="Tel&eacute;fono" required=>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="ocupacion" ng-model="nuevo_paciente.ocupacion" placeholder="Ocupacion" required>
+                    <input type="text" class="form-control" name="ocupacion" ng-model="nuevo_personal.ocupacion" placeholder="Ocupacion" required>
                   </div>
                   <div class="form-group">
-                    <input type="number" class="form-control" name="edad" ng-model="nuevo_paciente.edad" placeholder="Edad" required>
+                    <input type="number" class="form-control" name="edad" ng-model="nuevo_personal.edad" placeholder="Edad" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="genero" ng-model="nuevo_paciente.ocupacion" placeholder="Genero" required>
+                    <input type="text" class="form-control" name="genero" ng-model="nuevo_personal.ocupacion" placeholder="Genero" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="fecha" ng-model="nuevo_paciente.ocupacion" placeholder="Fecha" required>
+                    <input type="text" class="form-control" name="fecha" ng-model="nuevo_personal.ocupacion" placeholder="Fecha" required>
                   </div>
               </div>
               <div class="row modal-footer">
@@ -59,8 +59,8 @@
               <tr>
                   <td class="text-center nombre"> {{ p.usuario.nombre }} {{ p.usuario.apellido }}</td>
                   <td class="text-center correo"> {{ p.usuario.cedula }} </td>
-                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarPaciente(paciente)">mode_edit</button></td>
-                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons">delete</button></td>
+                  <td class="text-center editar"><button type="button" style="border:none;background:none" class="small material-icons" href="#modal1" ng-click="editarPersonal( {{p.usuario.cedula}} )>mode_edit</button></td>
+                  <td class="text-center eliminar"><button type="button" style="border:none;background:none" class="small material-icons" ng-click="eliminarPersonal( {{p.usuario.cedula}} )">delete</button></td>
               </tr>
               {% endfor %}
           </tbody>

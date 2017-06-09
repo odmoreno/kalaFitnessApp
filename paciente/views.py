@@ -9,10 +9,12 @@ from django.http.response import HttpResponseRedirect
 from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
 from django.core import serializers
+from personal.forms import  UsuarioForm
 #import json
 #from django.http import JsonResponse
 
-# Create your views here.
+
+
 def pacientes(request):
     template = 'paciente/pacientes.html'
     p = Paciente.objects.all()
@@ -38,19 +40,19 @@ def apiRestPacientes(request):
 
 @transaction.atomic
 def nuevoPaciente(request):
-    rol = Rol()
-    rol.save()
-    template = 'paciente/crearPaciente.html'
+    rol = Rol.objects.get(tipo='paciente')
+    #template = 'paciente/crearPaciente.html'
     if request.method == 'POST':
+        print(request.POST.get('cedula', False))
         #Crea un USER
         user = User()
-        user.username = request.POST['cedula']
+        user.username = request.POST.get('cedula', False)
         user.set_password("p.123456")
         user.save()
 
-        usuario= Usuario()
-        usuario.usuario= user
-        usuario.rol=rol
+        usuario = Usuario()
+        usuario.usuario = user
+        usuario.rol = rol
         usuario.nombre = request.POST['nombre']
         usuario.apellido = request.POST['apellido']
         usuario.cedula = request.POST['cedula']
@@ -66,19 +68,22 @@ def nuevoPaciente(request):
         paciente=Paciente()
         paciente.usuario=usuario
         paciente.save()
-        return HttpResponseRedirect(reverse('pacientes'))
-    return render(request, template)
+        #return HttpResponseRedirect(reverse('pacientes'))
+    #return render(request, template)
+    return HttpResponse({"message": "Nuevo paciente creado"}, content_type="application/json")
 
 
 
 @transaction.atomic
 def modificarPaciente(request,paciente_id):
-#     pacientes = Paciente.objects.all()
-#     for p in pacientes:
-#         if p.usuario.cedula==paciente_id:
-#             usuario=p.usuario
-    
-    pass
+    template = 'paciente/datosPacientes.html'
+    pacientes = Paciente.objects.all()
+    for p in pacientes:
+        if p.usuario.cedula==paciente_id:
+             usuario=p.usuario
+    data = {"paciente": p}
+    return render(request, template, data)
+
 @transaction.atomic
 def eliminarPaciente(request, paciente_id):
     pacientes = Paciente.objects.all()
@@ -86,4 +91,58 @@ def eliminarPaciente(request, paciente_id):
         if p.usuario.cedula==paciente_id:
             p.delete()
             break
-    return HttpResponseRedirect(reverse('pacientes'))
+    #return HttpResponse({"message": "Paciente eliminado"}, content_type="application/json")
+    #return HttpResponseRedirect(reverse('pacientes'))
+
+
+def index(request):
+    pacientes = Paciente.objects.all()
+    return render(request, 'paciente/index.html', {'pacientes': pacientes})
+
+@transaction.atomic
+def PacienteNuevo(request):
+    form = UsuarioForm(request.POST or None)
+    if form.is_valid():
+        usuario = form.save(commit=False)
+        user = User()
+        paciente = Paciente()
+
+        user.username = form.cleaned_data['cedula']
+        user.set_password('1234')
+        user.save()
+
+        rol = Rol.objects.get(tipo='paciente')
+        rol.save()
+
+        usuario.usuario = user
+        usuario.rol = rol
+        usuario.save()
+
+        paciente.usuario = usuario
+        paciente.save()
+
+        pacientes = Paciente.objects.all()
+        return render(request, 'paciente/index.html', {'pacientes': pacientes})
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'paciente/form_paciente.html', context)
+
+@transaction.atomic
+def PacienteEliminar(request, paciente_id):
+    paciente = Paciente.objects.get(pk=paciente_id)
+    paciente.delete()
+    pacientes = Paciente.objects.all()
+    return render(request, 'paciente/index.html', {'pacientes': pacientes})
+
+
+@transaction.atomic
+def PacienteModificar(request, paciente_id):
+    paciente = Paciente.objects.get(pk=paciente_id)
+    form = UsuarioForm(request.GET or None)
+    context = {
+        "form": form,
+        "paciente": paciente.usuario
+    }
+    #return render(request, 'paciente/form_paciente.html', context)
