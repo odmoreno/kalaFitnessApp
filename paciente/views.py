@@ -73,12 +73,14 @@ def nuevoPaciente(request):
 
 @transaction.atomic
 def modificarPaciente(request,paciente_id):
-#     pacientes = Paciente.objects.all()
-#     for p in pacientes:
-#         if p.usuario.cedula==paciente_id:
-#             usuario=p.usuario
-    
-    pass
+    template = 'paciente/pacientes.html'
+    pacientes = Paciente.objects.all()
+    for p in pacientes:
+        if p.usuario.cedula==paciente_id:
+             usuario=p.usuario
+    data = {"paciente": p}
+    return render(request, template, data)
+
 @transaction.atomic
 def eliminarPaciente(request, paciente_id):
     pacientes = Paciente.objects.all()
