@@ -48,9 +48,12 @@
 
       app.controller('controllerPaciente', function($scope, $state, $http){
 
-        $scope.crearPaciente = function(){
+        $scope.crearPaciente = function(token){
+          console.log(token);
+          console.log("hola mundo");
           //$scope.nuevo_paciente = ;
-            $http.post("/paciente/crear", {
+            $http.post("/paciente/crear/", {
+              csrfmiddlewaretoken: token,
                 nombre: $scope.nuevo_paciente.nombre,
                 apellido: $scope.nuevo_paciente.apellido,
                 cedula: $scope.nuevo_paciente.cedula,
@@ -60,7 +63,7 @@
                 genero: $scope.nuevo_paciente.genero,
                 edad: $scope.nuevo_paciente.edad,
                 fecha: $scope.nuevo_paciente.fecha
-            }).success(function(response){
+            }).then(function(response){
                 //$scope.pacientes.push(response);
                 Materialize.toast('Se Creó el paciente satisfactoriamente', 3000, 'rounded teal');
                 $scope.nuevo_paciente = {};
@@ -74,7 +77,7 @@
           $http.get("/paciente/eliminar/" + paciente ).success(function(response){
                 Materialize.toast('Se eliminó el paciente' + paciente, 3000, 'rounded teal');
                 $state.reload();
-                   
+
             });
         }
 
@@ -84,7 +87,7 @@
 
                 Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
                 $state.reload();
-                   
+
           });
           */
         }
@@ -97,9 +100,10 @@
 
       app.controller('controllerFactura', function($scope, $state, $http){
 
-        $scope.crearFactura = function(){
-          //$scope.nuevo_paciente = ;
-            $http.post("/factura/crear", {
+        $scope.crearFactura = function(token){
+          console.log(token);
+            $http.post("/factura/crear/", {
+                csrfmiddlewaretoken: token,
                 empresa: $scope.nueva_factura.empresa,
                 paciente: $scope.nueva_factura.paciente,
                 serie: $scope.nueva_factura.serie,
@@ -120,7 +124,7 @@
           $http.post("/factura/eliminar/",{facturaId: factura}).success(function(response){
                 Materialize.toast('Se eliminó el paciente' + factura, 3000, 'rounded teal');
                 $state.reload();
-                   
+
             });
         }
 
@@ -131,7 +135,7 @@
 
                 Materialize.toast('Se modifico el paciente' + paciente, 3000, 'rounded teal');
                 $state.reload();
-                   
+
           });
           */
         }
@@ -144,9 +148,11 @@
 
       app.controller('controllerPersonal', function($scope, $state, $http){
 
-        $scope.crearPersonal = function(){
+        $scope.crearPersonal = function(token){
+          console.log(token);
           //$scope.nuevo_paciente = ;
-            $http.post("/personal/crear", {
+            $http.post("/personal/crear/", {
+                csrfmiddlewaretoken: token,
                 nombre: $scope.nuevo_personal.nombre,
                 apellido: $scope.nuevo_personal.apellido,
                 cedula: $scope.nuevo_personal.cedula,
@@ -169,7 +175,7 @@
           $http.get("/personal/eliminar/" + personal ).success(function(response){
                 Materialize.toast('Se eliminó el personal' + personal, 3000, 'rounded teal');
                 $state.reload();
-                   
+
             });
         }
 
@@ -179,7 +185,7 @@
 
                 Materialize.toast('Se modifico el personal' + personal, 3000, 'rounded teal');
                 $state.reload();
-                   
+
           });
           */
         }

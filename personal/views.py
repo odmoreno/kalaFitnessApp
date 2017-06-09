@@ -61,5 +61,5 @@ def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
     personal.delete()
     all_personal = Usuario.objects.all()
-    return HttpResponse({"message": "Se elimino el personal" personal_id}, content_type="application/json")
+    return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
     #return render(request, 'personal/index.html', {'all_personal': all_personal})
