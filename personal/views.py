@@ -20,7 +20,7 @@ def apiPersonal(request):
 
 @transaction.atomic
 def nuevoPersonal(request):
-    rol = Rol.objects.name(tipo="personal")
+    rol = Rol.objects.name(tipo='fisioterapista')
     #rol.tipo = 'fisioterapista'
     #rol.save()
     if request.method == 'POST':
