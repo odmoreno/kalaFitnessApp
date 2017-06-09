@@ -1,11 +1,7 @@
 from django.conf import settings
 from .views import *
 
-'''
-Created on Jun 7, 2017
 
-@author: Edgar Carvajal
-'''
 from django.conf.urls import url
 from factura.views import apiFactura
 from django.contrib.auth.views import LoginView, LogoutView

@@ -3,10 +3,10 @@
 
 {% block body %}
     {% for personal in all_personal %}
+        {% if personal.rol.es_personal %}
         <div class="col-sm-4 col-lg-2">
             <div class="thumbnail">
                 <div class="caption">
-                    {% if personal.rol.es_personal %}
                         <h2>{{ personal.nombre }} {{ personal.apellido }}</h2>
                         <h4>{{ personal.rol.tipo}}</h4>
                         <h4>Direccion: {{ personal.direccion}}</h4>

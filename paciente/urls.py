@@ -1,8 +1,4 @@
-'''
-Created on Jun 7, 2017
 
-@author: Edgar Carvajal
-'''
 from django.conf.urls import url
 from paciente.views import apiRestPacientes, apiPacientes
 from django.contrib.auth.views import LoginView, LogoutView
