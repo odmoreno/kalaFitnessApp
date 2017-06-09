@@ -38,12 +38,13 @@ def apiRestPacientes(request):
 
 @transaction.atomic
 def nuevoPaciente(request):
-    rol = Rol.objects.name(tipo="paciente")
+    rol = Rol.objects.get(tipo='paciente')
     #template = 'paciente/crearPaciente.html'
     if request.method == 'POST':
+        print(request.POST.get('cedula', False))
         #Crea un USER
         user = User()
-        user.username = request.POST['cedula']
+        user.username = request.POST.get('cedula', False)
         user.set_password("p.123456")
         user.save()
 
@@ -73,7 +74,7 @@ def nuevoPaciente(request):
 
 @transaction.atomic
 def modificarPaciente(request,paciente_id):
-    template = 'paciente/pacientes.html'
+    template = 'paciente/datosPacientes.html'
     pacientes = Paciente.objects.all()
     for p in pacientes:
         if p.usuario.cedula==paciente_id:
