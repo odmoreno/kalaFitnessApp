@@ -17,7 +17,6 @@
                 <th>Direccion</th>
                 <th>Telefono</th>
                 <th>Eliminar</th>
-                <th>Modificar</th>
             </tr>
             </thead>
             <tbody>
@@ -36,16 +35,6 @@
                                 <input type="hidden" name="personal_id" value="{{ paciente.id }}" />
                                 <button type="submit" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                            <!-- Modificar Personal -->
-                            <form action="{% url 'paciente:modificar' paciente.id %} " method="get" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="personal_id" value="{{ paciente.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-user"></span>
                                 </button>
                             </form>
                         </td>
