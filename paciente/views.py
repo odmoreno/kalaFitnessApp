@@ -39,7 +39,6 @@ def apiRestPacientes(request):
 @transaction.atomic
 def nuevoPaciente(request):
     rol = Rol.objects.name(tipo="paciente")
-    rol.save()
     #template = 'paciente/crearPaciente.html'
     if request.method == 'POST':
         #Crea un USER
