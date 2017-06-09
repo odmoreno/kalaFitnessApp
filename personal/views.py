@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.views import generic
@@ -8,7 +8,7 @@ from django.views.generic.edit import  CreateView, UpdateView, DeleteView
 from kalaapp.models import Usuario, Rol
 from personal.models import Personal
 from paciente.views import Paciente
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.urls.base import reverse
 
 
@@ -18,10 +18,9 @@ def apiPersonal(request):
     data = {"personal": obj}
     return render(request, template, data)
 
+@transaction.atomic
 def nuevoPersonal(request):
-
-    rol = Rol()
-    rol.es_personal=True
+    rol = Rol.objects.name(tipo="personal")
     #rol.tipo = 'fisioterapista'
     #rol.save()
     if request.method == 'POST':
