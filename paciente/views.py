@@ -9,7 +9,11 @@ from django.http.response import HttpResponseRedirect
 from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
 from django.core import serializers
+
 from personal.forms import  UsuarioForm
+
+from django.http import JsonResponse
+
 #import json
 #from django.http import JsonResponse
 
@@ -43,34 +47,37 @@ def nuevoPaciente(request):
     rol = Rol.objects.get(tipo='paciente')
     #template = 'paciente/crearPaciente.html'
     if request.method == 'POST':
-        print(request.POST.get('cedula', False))
-        #Crea un USER
-        user = User()
-        user.username = request.POST.get('cedula', False)
-        user.set_password("p.123456")
-        user.save()
+        try:
+            #Crea un USER
+            user = User()
+            user.username = request.POST.get('cedula', False)
+            user.set_password("p.123456")
+            user.save()
 
-        usuario = Usuario()
-        usuario.usuario = user
-        usuario.rol = rol
-        usuario.nombre = request.POST['nombre']
-        usuario.apellido = request.POST['apellido']
-        usuario.cedula = request.POST['cedula']
-        usuario.direccion = request.POST['direccion']
-        usuario.telefono = request.POST['telefono']
-        usuario.ocupacion = request.POST['ocupacion']
-        usuario.genero = request.POST['genero']
-        usuario.edad = request.POST['edad']
-        usuario.fecha_nacimiento = request.POST['fecha']
-        #usuario.foto = request.POST['foto']
-        usuario.save()
+            usuario = Usuario()
+            usuario.usuario = user
+            usuario.rol = rol
+            usuario.nombre = request.POST['nombre']
+            usuario.apellido = request.POST['apellido']
+            usuario.cedula = request.POST['cedula']
+            usuario.direccion = request.POST['direccion']
+            usuario.telefono = request.POST['telefono']
+            usuario.ocupacion = request.POST['ocupacion']
+            usuario.genero = request.POST['genero']
+            usuario.edad = request.POST['edad']
+            usuario.fecha_nacimiento = request.POST['fecha']
+            #usuario.foto = request.POST['foto']
+            usuario.save()
 
-        paciente=Paciente()
-        paciente.usuario=usuario
-        paciente.save()
+            paciente=Paciente()
+            paciente.usuario=usuario
+            paciente.save()
+            return JsonResponse({"message": "Paciente creado"})
+        except Exception:
+            return JsonResponse({"message": "Error crear paciente"})
         #return HttpResponseRedirect(reverse('pacientes'))
     #return render(request, template)
-    return HttpResponse({"message": "Nuevo paciente creado"}, content_type="application/json")
+
 
 
 
@@ -89,8 +96,10 @@ def eliminarPaciente(request, paciente_id):
     pacientes = Paciente.objects.all()
     for p in pacientes:
         if p.usuario.cedula==paciente_id:
+            print p
             p.delete()
             break
+    return JsonResponse({"message": "Paciente eliminado"})
     #return HttpResponse({"message": "Paciente eliminado"}, content_type="application/json")
     #return HttpResponseRedirect(reverse('pacientes'))
 
