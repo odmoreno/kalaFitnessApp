@@ -13,7 +13,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
     actualizado = models.DateTimeField(_('actualizado'), auto_now=True)
@@ -49,7 +48,10 @@ class Usuario(TimeModel):
         genero = models.CharField(max_length=1, blank=True, null=True)
         edad = models.IntegerField(blank=True, null=True)
         fecha_nacimiento = models.DateField(blank=True, null=True)
-        foto = models.CharField(max_length=200, blank=True, null=True)
+        foto = models.ImageField(upload_to = 'usuario/',
+                                 default = 'usuario/noimagen.jpg', null=True,
+                                 blank=True, editable=True,
+                                 help_text="Foto de perfil", verbose_name="Foto de perfil")
         estado = models.CharField(max_length=1, default='A')
         is_anonymous = False
         is_authenticated = False

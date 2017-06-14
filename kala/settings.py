@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -147,6 +148,8 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = STATIC_URL + 'media/'
+MEDIA_URL  = MEDIA_ROOT
 
 CORS_ORIGIN_ALLOW_ALL = True
 

@@ -96,7 +96,7 @@ def eliminarPaciente(request, paciente_id):
     pacientes = Paciente.objects.all()
     for p in pacientes:
         if p.usuario.cedula==paciente_id:
-            print p
+            #print p
             p.delete()
             break
     return JsonResponse({"message": "Paciente eliminado"})
