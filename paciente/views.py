@@ -13,10 +13,10 @@ from django.core import serializers
 from personal.forms import  UsuarioForm
 
 from django.http import JsonResponse
+from PIL import Image, ImageOps
 
 #import json
 #from django.http import JsonResponse
-
 
 
 def pacientes(request):
@@ -131,6 +131,37 @@ def PacienteNuevo(request):
         paciente.save()
 
         pacientes = Paciente.objects.all()
+
+        '''
+        fotoNombre = requests.FILES['foto'].name
+        fotoExtension = fotoNombre.split('.')[len(fotoNombre.split('.')) - 1].lower()
+
+        errors = []
+        if fotoExtension not in settings.IMAGE_FILE_TYPES:
+            errors.append('Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
+                    settings.IMAGE_FILE_TYPES))
+        else:
+            foto = requests.FILES['foto']
+            fotoAnchura, fotoAltura = foto.size
+
+            with open(settings.MEDIA_URL + request.POST['cedula'] + '.jpeg', 'wb+') as destino:
+                for chunk in requests.FILES['foto'].chunks():
+                    destino.write(chunk)
+
+            fotoRuta = settings.MEDIA_ROOT + request.POST['cedula'] + ".jpeg"
+
+            try:
+                im = Image.open(fotoRuta)
+                
+                if fotoAnchura > 300 or fotoAltura > 200: 
+                    imaged = im.resize((300, 200), Image.ANTIALIAS)
+                    # imaged = ImageOps.fit(im, final_size, Image.ANTIALIAS, centering = (0.5,0.5))
+                imaged.save(fotoRuta, "JPEG", quality=90)
+
+            except IOError:
+                errors.append('Error al redimensionar imagen')
+        '''
+
         return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
     context = {

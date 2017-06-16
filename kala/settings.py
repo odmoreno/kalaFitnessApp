@@ -150,6 +150,7 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
 STATIC_URL = '/static/'
 MEDIA_ROOT = STATIC_URL + 'media/'
 MEDIA_URL  = MEDIA_ROOT
+IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 
 CORS_ORIGIN_ALLOW_ALL = True
 

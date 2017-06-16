@@ -51,7 +51,7 @@ class Usuario(TimeModel):
         foto = models.ImageField(upload_to = 'usuario/',
                                  default = 'usuario/noimagen.jpg', null=True,
                                  blank=True, editable=True,
-                                 help_text="Foto de perfil", verbose_name="Foto de perfil")
+                                 help_text="Foto")
         estado = models.CharField(max_length=1, default='A')
         is_anonymous = False
         is_authenticated = False
