@@ -9,6 +9,7 @@ from django.http.response import HttpResponseRedirect
 from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
 from personal.forms import  UsuarioForm
 
@@ -108,6 +109,7 @@ def index(request):
     pacientes = Paciente.objects.all()
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
+#@login_required
 @transaction.atomic
 def PacienteNuevo(request):
     form = UsuarioForm(request.POST or None)

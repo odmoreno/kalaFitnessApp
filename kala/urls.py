@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from kala.views import index
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 
@@ -25,6 +27,9 @@ urlpatterns = [
     url(r'^paciente/', include('paciente.urls')),
     url(r'^personal/', include('personal.urls')),
     url(r'^factura/', include('factura.urls')),
+    url(r'^accounts/login/', LoginView.as_view(template_name="kalaapp/login.html"), name="login"),
+    url(r'^accounts/logout/', LogoutView.as_view(next_page="/home"), name="logout"),
+    #url(r'^$', index, name='index'),
 ]
 
 if settings.DEBUG:

@@ -8,7 +8,7 @@ from .forms import  UsuarioForm
 from personal.models import Personal
 from paciente.views import Paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
-
+from django.contrib.auth.decorators import login_required
 
 '''
 def apiPersonal(request):
@@ -17,7 +17,7 @@ def apiPersonal(request):
     data = {"personal": obj}
     return render(request, template, data)
 '''
-
+#@login_required
 def index(request):
     all_personal = Usuario.objects.all()
     return render(request, 'personal/index.html', {'all_personal': all_personal})
@@ -80,7 +80,7 @@ def nuevoPersonal(request):
         user.set_password('1234')
         user.save()
 
-        rol = Rol.objects.get(tipo=request.POST['ocupacion'])
+        rol = Rol.objects.get(tipo='nutricionista')
         rol.save()
 
         personal.usuario = user
