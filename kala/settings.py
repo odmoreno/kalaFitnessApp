@@ -152,7 +152,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR + STATIC_URL + 'media/'
 MEDIA_URL  = STATIC_URL + 'media/'
 
-#STATICFILES_DIRS = [MEDIA_ROOT, ]
+STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL,]
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 
