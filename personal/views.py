@@ -94,3 +94,7 @@ def nuevoPersonal(request):
         "form": form,
     }
     return render(request, 'personal/form_personal.html', context)
+
+def detallePersonal(request, personal_id):
+    personal = get_object_or_404(Usuario, pk=personal_id)
+    return render(request, 'personal/detalles.html', {'personal': personal})

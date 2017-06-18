@@ -23,7 +23,7 @@
             {% for personal in all_personal %}
                 {% if personal.rol.es_personal %}
                     <tr>
-                        <th scope="row"> {{  personal.id}}</th>
+                        <th scope="row"> <a href="{% url 'personal:detail' personal.id %}">{{ personal.id}}</a></th>
                         <td>{{ personal.nombre }}</td>
                         <td>{{ personal.apellido }}</td>
                         <td>{{ personal.rol.tipo}}</td>
