@@ -19,7 +19,6 @@ from django.http import JsonResponse
 #from django.http import JsonResponse
 
 
-
 def pacientes(request):
     template = 'paciente/pacientes.html'
     p = Paciente.objects.all()
@@ -97,7 +96,7 @@ def eliminarPaciente(request, paciente_id):
     pacientes = Paciente.objects.all()
     for p in pacientes:
         if p.usuario.cedula==paciente_id:
-            print p
+            #print p
             p.delete()
             break
     return JsonResponse({"message": "Paciente eliminado"})

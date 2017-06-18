@@ -11,9 +11,10 @@
             <thead class="thead-inverse">
             <tr>
                 <th>#</th>
+                <th>Foto</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Rol</th>
+                <th>Ocupacion</th>
                 <th>Direccion</th>
                 <th>Telefono</th>
                 <th>Eliminar</th>
@@ -22,7 +23,12 @@
             <tbody>
             {% for paciente in pacientes %}
                     <tr>
-                        <th scope="row"> {{  paciente.id}}</th>
+                        <th scope="row"> {{paciente.id}}</th>
+                        {% if paciente.usuario.foto %}
+                            <td><img scr="{{ paciente.usuario.foto.url}}" width="50px" height="50px"/></td>
+                        {% else %}
+                            <td><img scr="{{ MEDIA_URL }}usuario/noimagen.jpg" width="50px" height="50px"/></td>
+                        {% endif %}
                         <td>{{ paciente.usuario.nombre }}</td>
                         <td>{{ paciente.usuario.apellido }}</td>
                         <td>{{ paciente.usuario.ocupacion}}</td>

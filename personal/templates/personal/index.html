@@ -24,6 +24,11 @@
                 {% if personal.rol.es_personal %}
                     <tr>
                         <th scope="row"> <a href="{% url 'personal:detail' personal.id %}">{{ personal.id}}</a></th>
+                        {% if personal.usuario.foto %}
+                            <td><img scr="{{ personal.usuario.foto.url}}" width="50px" height="50px"/></td>
+                        {% else %}
+                            <td><img scr="{{ MEDIA_URL }}usuario/noimagen.jpg" width="50px" height="50px"/></td>
+                        {% endif %}
                         <td>{{ personal.nombre }}</td>
                         <td>{{ personal.apellido }}</td>
                         <td>{{ personal.rol.tipo}}</td>

@@ -4,3 +4,5 @@ django-debug-toolbar
 django-cors-headers
 MySQL-python
 django-directmessages
+bcrypt
+Pillow
