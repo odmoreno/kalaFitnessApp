@@ -12,6 +12,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.utils.six import StringIO
+from PIL import Image
+from django.conf import settings
 
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
@@ -61,6 +65,44 @@ class Usuario(TimeModel):
 
         class Meta:
             db_table = 'usuario'
+
+        def save(self, *args, **kwargs):
+
+            # fotoNombre = request.FILES['foto'].name
+            # fotoExtension = fotoNombre.split('.')[len(fotoNombre.split('.')) - 1].lower()
+            #
+            # if fotoExtension not in settings.IMAGE_FILE_TYPES:
+            #     form.add_error('foto', 'Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
+            #             settings.IMAGE_FILE_TYPES))
+
+            if self.foto:
+                try:
+                    img = Image.open(self.foto)
+                    width, height = img.size
+
+                    if img.mode != 'RGB':
+                        img = img.convert('RGB')
+
+                    if width >= height:
+                        basewidth = 600
+                        height_size = int((float(height) * float(basewidth / float(width))))
+                        width = basewidth
+                        height = height_size
+                    else:
+                        baseheight = 600
+                        width_size = int((float(width) * float(baseheight / float(height))))
+                        width = width_size
+                        height = baseheight
+
+                    img = img.resize((width, height), Image.ANTIALIAS)
+                    output = StringIO()
+                    img.save(output, format='JPEG', quality=90)
+                    output.seek(0)
+                    self.foto = InMemoryUploadedFile(output, 'foto', "%s.jpg" % self.cedula, 'image/jpeg', output.len, None)
+                except IOError:
+                    pass
+
+            super(Usuario, self).save(*args, **kwargs)
 
 
 class Empresa(TimeModel):

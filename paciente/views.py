@@ -14,7 +14,9 @@ from django.contrib.auth.decorators import login_required
 from personal.forms import  UsuarioForm
 
 from django.http import JsonResponse
-from PIL import Image, ImageOps
+
+from django.conf import settings
+from django.core.files.images import get_image_dimensions
 
 #import json
 #from django.http import JsonResponse
@@ -112,59 +114,77 @@ def index(request):
 #@login_required
 @transaction.atomic
 def PacienteNuevo(request):
-    form = UsuarioForm(request.POST or None)
-    if form.is_valid():
-        usuario = form.save(commit=False)
-        user = User()
-        paciente = Paciente()
 
-        user.username = form.cleaned_data['cedula']
-        user.set_password('1234')
-        user.save()
+    #form = UsuarioForm(request.POST or None)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, request.FILES)
+        if form.is_valid():
+            usuario = form.save(commit=False)
+            user = User()
+            paciente = Paciente()
 
-        rol = Rol.objects.get(tipo='paciente')
-        rol.save()
 
-        usuario.usuario = user
-        usuario.rol = rol
-        usuario.save()
 
-        paciente.usuario = usuario
-        paciente.save()
+            user.username = form.cleaned_data['cedula']
+            user.set_password('1234')
+            user.save()
 
-        pacientes = Paciente.objects.all()
+            rol = Rol.objects.get(tipo='paciente')
+            #rol.save()
 
-        '''
-        fotoNombre = requests.FILES['foto'].name
-        fotoExtension = fotoNombre.split('.')[len(fotoNombre.split('.')) - 1].lower()
+            usuario.usuario = user
+            usuario.rol = rol
+            usuario.save()
 
-        errors = []
-        if fotoExtension not in settings.IMAGE_FILE_TYPES:
-            errors.append('Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
-                    settings.IMAGE_FILE_TYPES))
-        else:
-            foto = requests.FILES['foto']
-            fotoAnchura, fotoAltura = foto.size
+            paciente.usuario = usuario
 
-            with open(settings.MEDIA_URL + request.POST['cedula'] + '.jpeg', 'wb+') as destino:
-                for chunk in requests.FILES['foto'].chunks():
-                    destino.write(chunk)
+            pacientes = Paciente.objects.all()
+            paciente.save()
+            '''
+            fotoNombre = request.FILES['foto'].name
+            print (fotoNombre)
+            fotoExtension = fotoNombre.split('.')[len(fotoNombre.split('.')) - 1].lower()
+            print(fotoExtension)
+            errors = []
 
-            fotoRuta = settings.MEDIA_ROOT + request.POST['cedula'] + ".jpeg"
+            if fotoExtension not in settings.IMAGE_FILE_TYPES:
+                print('Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
+                        settings.IMAGE_FILE_TYPES))
+                errors.append('Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
+                        settings.IMAGE_FILE_TYPES))
+            else:
+                foto = request.FILES['foto']
+                fotoAnchura, fotoAltura = get_image_dimensions(foto)
+                print(str(fotoAltura) + ' ' + str(fotoAltura))
+                fotoRuta = settings.MEDIA_ROOT + 'usuario/' + request.POST['cedula'] + ".jpeg"
+                print(fotoRuta)
 
-            try:
-                im = Image.open(fotoRuta)
-                
-                if fotoAnchura > 300 or fotoAltura > 200: 
-                    imaged = im.resize((300, 200), Image.ANTIALIAS)
-                    # imaged = ImageOps.fit(im, final_size, Image.ANTIALIAS, centering = (0.5,0.5))
-                imaged.save(fotoRuta, "JPEG", quality=90)
+                with open(fotoRuta, 'wb+') as destino:
+                    for chunk in foto.chunks():
+                        destino.write(chunk)
+                    destino.close()
 
-            except IOError:
-                errors.append('Error al redimensionar imagen')
-        '''
+                try:
+                    imagen = Image.open(fotoRuta)
 
-        return render(request, 'paciente/index.html', {'pacientes': pacientes})
+                    if fotoAnchura > 500 or fotoAltura > 500:
+                        pass
+                    imagenRed = imagen.resize((500, 500), Image.ANTIALIAS)
+                    print (imagenRed)
+                    #imagenRed = ImageOps.fit(imagen, (400,500), Image.ANTIALIAS, centering = (0.5,0.5))
+                    imagenRed.save(fotoRuta, "JPEG", quality=90)
+
+                    import os
+                    os.remove(settings.MEDIA_ROOT + 'usuario/' + fotoNombre)
+
+                except IOError:
+                    print('Error al redimensionar imagen')
+                    errors.append('Error al redimensionar imagen')
+
+            '''
+            return render(request, 'paciente/index.html', {'pacientes': pacientes})
+
+    form = UsuarioForm()
 
     context = {
         "form": form,
