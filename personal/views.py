@@ -9,6 +9,7 @@ from personal.models import Personal
 from paciente.views import Paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from directmessages.apps import Inbox
 
 '''
 def apiPersonal(request):
@@ -98,3 +99,12 @@ def nuevoPersonal(request):
 def detallePersonal(request, personal_id):
     personal = get_object_or_404(Usuario, pk=personal_id)
     return render(request, 'personal/detalles.html', {'personal': personal})
+
+def verMensajes(request, personal_id=None):
+    template= 'personal/mensajes.html'
+    mensajes=Inbox.get_unread_messages(request.user)
+    data={
+        'mensajes': mensajes,
+    }
+    return render(request,template,data)
+
