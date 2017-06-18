@@ -7,6 +7,8 @@ from factura.views import apiFactura
 from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
+app_name = 'factura'
+
 urlpatterns = [
     #url(r'^$', views.index, name="index"),
     url(r'^api/$', views.apiFactura, name="factura"),

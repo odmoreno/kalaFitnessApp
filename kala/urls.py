@@ -22,6 +22,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
+    url(r'^', include('kalaapp.urls')),
     url(r'^kalaapp/', include("kalaapp.urls")),
     url(r'^admin/', admin.site.urls),
     url(r'^paciente/', include('paciente.urls')),

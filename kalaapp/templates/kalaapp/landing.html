@@ -7,8 +7,11 @@
     <!-- Loads the path to your static files -->
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'personal/style.css' %}" />
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{%  static 'css/bootstrap.min.css' %}"> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -22,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'kala:index' %}">kala App</a>
+            <a class="navbar-brand" href="">kala App</a>
         </div>
 
         <!-- Items -->
@@ -36,6 +39,11 @@
                 <li class="">
                     <a href="{% url 'paciente:index' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Paciente
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'factura:factura' %}">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Factura
                     </a>
                 </li>
             </ul>
@@ -57,8 +65,60 @@
 
     </div>
 </nav>
-    {% block body %}
 
-    {% endblock %}
+<section id="service" class="section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<h2 class="ser-title">Nuestros Servicios</h2>
+					<hr class="botm-line">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris cillum.</p>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="service-info">
+						<div class="icon">
+							<i class="fa fa-stethoscope"></i>
+						</div>
+						<div class="icon-info">
+							<h4>Pacientes</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</div>
+					</div>
+					<div class="service-info">
+						<div class="icon">
+							<i class="fa fa-ambulance"></i>
+						</div>
+						<div class="icon-info">
+							<h4>Personal</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="service-info">
+						<div class="icon">
+							<i class="fa fa-user-md"></i>
+						</div>
+						<div class="icon-info">
+							<h4>Facturas</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</div>
+					</div>
+					<div class="service-info">
+						<div class="icon">
+							<i class="fa fa-medkit"></i>
+						</div>
+						<div class="icon-info">
+							<h4>Premium</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--<script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>-->
 </body>
 </html>
