@@ -138,7 +138,7 @@ def nuevoMensaje(request):
     personal= Personal.objects.all()
     usuarios=[]
     for p in personal:
-        usuarios=p.usuario
+        usuarios.append(p.usuario)
     data={
         'personal':personal,
         'usuarios':usuarios,
