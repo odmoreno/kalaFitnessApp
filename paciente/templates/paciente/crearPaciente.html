@@ -7,22 +7,25 @@
 <body>
 	<form action="" method="post">
 		{% csrf_token %}
-		Cedula:<input type="text" name="cedula" />
+		Cedula:<input type="text" name="cedula" pattern="^[0-9]{10}" title="Numero de cedula invalido" required/>
 		<br/>
-		nombre:<input type="text" name="nombre" />
+		nombre:<input type="text" name="nombre" required/>
 		<br/>
-		apellido:<input type="text" name="apellido" />
+		apellido:<input type="text" name="apellido" required/>
 		<br/>
-		Direccion:<input type="text" name="direccion" />
+		Direccion:<input type="text" name="direccion" required/>
 		</select>
 		<br/>
-		telefono:<input type="text" name="telefono" />
+		telefono:<input type="text" name="telefono" pattern="^[0-9]{7,10}" title="Numero de telefono invalido" required/>
 		<br/>
-		Ocupacion:<input type="text" name="ocupacion" />
+		Ocupacion:<input type="text" name="ocupacion" required/>
 		<br/>
-		Genero:<input type="text" name="genero" />
+			Genero:<select name="genero" required="">
+				<option value="M">Masculino</option>
+ 				<option value="F">Femenino</option>
+			</select>
 		<br/>
-		Edad:<input type="text" name="edad" />
+		Edad:<input type="text" name="edad" pattern="^[0-9]{1,2}" title="Edad invalida" required/>
 		<br/>
 		Fecha:<input type="text" name="fecha" />
 		<br/>
