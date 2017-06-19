@@ -156,3 +156,18 @@ def PacienteModificar(request, paciente_id):
         "paciente": paciente.usuario
     }
     #return render(request, 'paciente/form_paciente.html', context)
+
+def reportePacientes(request):
+    pacientes = Paciente.objects.all()
+    p = []
+    p_dict = {}
+
+    for paciente in pacientes:
+        cedula = paciente.usuario.cedula
+        nombre = paciente.usuario.nombre
+        apellido = paciente.usuario.apellido
+        record = {"cedula": cedula, "nombre": nombre, "apellido": apellido}
+        p.append(record)
+
+    p_dict["pacientes"] = p
+    return JsonResponse(p_dict)
