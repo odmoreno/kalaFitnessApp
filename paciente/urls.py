@@ -1,6 +1,6 @@
 
 from django.conf.urls import url
-from paciente.views import apiRestPacientes, apiPacientes, nuevoPaciente, modificarPaciente, eliminarPaciente, reportePacientes
+from paciente.views import reportePDF, apiRestPacientes, apiPacientes, nuevoPaciente, modificarPaciente, eliminarPaciente, reportePacientes
 from . import views
 
 app_name = 'paciente'
@@ -12,4 +12,5 @@ urlpatterns = [
     #url(r'^modificar/(?P<paciente_id>\d+)/$', views.PacienteModificar, name="modificar"),
     url(r'^eliminar/(?P<paciente_id>\d+)/', views.PacienteEliminar, name="eliminar"),
     url(r'^reporte/$', reportePacientes),
+    url(r'^pdf/$', reportePDF, name="reportePDF"),
 ]

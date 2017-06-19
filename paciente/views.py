@@ -17,7 +17,7 @@ from django.http import JsonResponse
 
 #import json
 #from django.http import JsonResponse
-
+from io import BytesIO
 
 def pacientes(request):
     template = 'paciente/pacientes.html'
@@ -160,14 +160,30 @@ def PacienteModificar(request, paciente_id):
 def reportePacientes(request):
     pacientes = Paciente.objects.all()
     p = []
-    p_dict = {}
 
     for paciente in pacientes:
         cedula = paciente.usuario.cedula
         nombre = paciente.usuario.nombre
         apellido = paciente.usuario.apellido
-        record = {"cedula": cedula, "nombre": nombre, "apellido": apellido}
+        telefono = paciente.usuario.telefono
+        genero = paciente.usuario.genero
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
         p.append(record)
 
-    p_dict["pacientes"] = p
-    return JsonResponse(p_dict)
+    return JsonResponse({"pacientes": p})
+
+def reportePDF(request):
+    template = 'paciente/reportePDF.html'
+    return render(request, template)
+
+def pdf_pacientes(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="pacientes.pdf"'
+
+    buffer = BytesIO()
+
+    report = MyPrint(buffer, 'Letter')
+    pdf = report.print_users()
+
+    response.write(pdf)
+    return response
