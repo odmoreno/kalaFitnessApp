@@ -17,6 +17,7 @@
                 <th>Direccion</th>
                 <th>Telefono</th>
                 <th>Delete</th>
+                <th>Cedula</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ personal.rol.tipo}}</td>
                         <td>{{ personal.direccion }}</td>
                         <td>{{ personal.telefono }}</td>
+                        <td>{{ personal.cedula }}</td>
                         <td>
                             <!-- Delete personal -->
                             <form action="{% url 'personal:eliminarPersonal' personal.id %}" method="post" style="display: inline;">

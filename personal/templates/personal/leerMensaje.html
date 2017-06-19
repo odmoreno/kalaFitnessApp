@@ -10,6 +10,83 @@
     <link rel="stylesheet" type="text/css" href="{% static 'personal/style.css' %}" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+.alert-message
+{
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #eee;
+}
+.alert-message h4
+{
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.alert-message p:last-child
+{
+    margin-bottom: 0;
+}
+.alert-message code
+{
+    background-color: #fff;
+    border-radius: 3px;
+}
+.alert-message-success
+{
+    background-color: #F4FDF0;
+    border-color: #3C763D;
+}
+.alert-message-success h4
+{
+    color: #3C763D;
+}
+.alert-message-danger
+{
+    background-color: #fdf7f7;
+    border-color: #d9534f;
+}
+.alert-message-danger h4
+{
+    color: #d9534f;
+}
+.alert-message-warning
+{
+    background-color: #fcf8f2;
+    border-color: #f0ad4e;
+}
+.alert-message-warning h4
+{
+    color: #f0ad4e;
+}
+.alert-message-info
+{
+    background-color: #f4f8fa;
+    border-color: #5bc0de;
+}
+.alert-message-info h4
+{
+    color: #5bc0de;
+}
+.alert-message-default
+{
+    background-color: #EEE;
+    border-color: #B4B4B4;
+}
+.alert-message-default h4
+{
+    color: #000;
+}
+.alert-message-notice
+{
+    background-color: #FCFCDD;
+    border-color: #BDBD89;
+}
+.alert-message-notice h4
+{
+    color: #444;
+}
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -27,6 +104,11 @@
         <!-- Items -->
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'personal:mensajes' %}">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Inbox
+                    </a>
+                </li>
                 <li class="active">
                     <a href="{% url 'personal:nuevoMensaje' %}">
                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Nuevo Mensaje
@@ -50,22 +132,14 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            {% for m in mensajes %}
-             <div class="list-group">
-                 {% for u in usuarios %}
-                    {% if u.usuario == m.sender %}
-                 <a href="{% url 'personal:leerMensaje' m.pk %}" class="list-group-item"> <span class="glyphicon glyphicon-envelope"> Mensaje de {{ u.nombre }} {{ u.apellido }}</span></a>
-                    {% endif %}
-                 {% endfor %}
-             </div>
-            {% endfor %}
-
+        <div class="col-sm-4 col-md-4"></div>
+        <div class="col-sm-4 col-md-4">
+            <div class="alert-message alert-message-info">
+                <h4>
+                    Mensaje de {{sender}}</h4>
+                <p>{{mensaje}}</p>
+            </div>
         </div>
-        <div class="col-sm-4"></div>
     </div>
-
-
 </div>
 {% endblock %}

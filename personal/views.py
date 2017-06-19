@@ -11,7 +11,7 @@ from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
-
+from directmessages.models import Message
 '''
 def apiPersonal(request):
     template = "personal/personal.html"
@@ -103,22 +103,49 @@ def detallePersonal(request, personal_id):
 
 def verMensajes(request, personal_id=None):
     template= 'personal/mensajes.html'
-    mensajes=Inbox.get_unread_messages(request.user)
-    nombres=[]
-    for m in mensajes:
-        usuario=Usuario.objects.get(usuario=m.sender)
-        nombre=usuario.nombre +" "+ usuario.apellido
-        nombres.append(nombre)
 
-    data={
-        'mensajes': mensajes,
-        'nombres':nombres,
-    }
+    mensajes=Message.objects.all().filter(recipient=request.user)
+    if mensajes:
+        nombres=[]
+        usuarios=[]
+        for m in mensajes:
+            usuario=Usuario.objects.get(usuario=m.sender)
+            nombre=usuario.nombre +" "+ usuario.apellido
+            nombres.append(nombre)
+            usuarios.append(usuario)
+
+        data={
+            'mensajes': mensajes,
+            'nombres':nombres,
+            'usuarios':usuarios
+        }
     return render(request,template,data)
-def leerMensaje(request, mensaje):
-    pass
+
+def leerMensaje(request, mensaje_id):
+    message=Message.objects.get(id=mensaje_id)
+    user=User.objects.get(id=message.sender.id)
+    usuarioN=Usuario.objects.get(usuario=user)
+    nombre=usuarioN.nombre + " " + usuarioN.apellido
+    data={
+        'sender':nombre,
+        'mensaje':message.content,
+
+    }
+    return render(request, "personal/leerMensaje.html", data)
+
 def nuevoMensaje(request):
-    pass
+    template="personal/nuevoMensaje.html"
+    personal= Personal.objects.all()
+    usuarios=[]
+    for p in personal:
+        usuarios=p.usuario
+    data={
+        'personal':personal,
+        'usuarios':usuarios,
+    }
+    if request.POST:
+        pass
+    return(request, template, data)
 
 def reportePersonal(request):
     personal = Personal.objects.all()
