@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^mensajes/$', views.verMensajes, name='mensajes'),
     url(r'^mensajes/nuevo/$', views.nuevoMensaje, name='nuevoMensaje'),
     url(r'^mensajes/leer/(?P<mensaje_id>[0-9]+)/$', views.leerMensaje, name='leerMensaje'),
+    url(r'^reporte/$', views.reportePersonal),
+    url(r'^pdf/$', views.reportePDF, name="reportePDF"),
 ]
 
 '''

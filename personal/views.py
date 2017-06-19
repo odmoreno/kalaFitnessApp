@@ -8,6 +8,7 @@ from .forms import  UsuarioForm
 from personal.models import Personal
 from paciente.views import Paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 
@@ -118,3 +119,22 @@ def leerMensaje(request, mensaje):
     pass
 def nuevoMensaje(request):
     pass
+
+def reportePersonal(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        cedula = p.usuario.cedula
+        nombre = p.usuario.nombre
+        apellido = p.usuario.apellido
+        telefono = p.usuario.telefono
+        genero = p.usuario.genero
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+        per.append(record)
+
+    return JsonResponse({"data": per})
+
+def reportePDF(request):
+    template = 'personal/reportePDF.html'
+    return render(request, template)
