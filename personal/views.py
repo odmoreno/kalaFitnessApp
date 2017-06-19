@@ -103,8 +103,15 @@ def detallePersonal(request, personal_id):
 def verMensajes(request, personal_id=None):
     template= 'personal/mensajes.html'
     mensajes=Inbox.get_unread_messages(request.user)
+    nombres=[]
+    for m in mensajes:
+        usuario=Usuario.objects.get(usuario=m.sender)
+        nombre=usuario.nombre +" "+ usuario.apellido
+        nombres.append(nombre)
+
     data={
         'mensajes': mensajes,
+        'nombres':nombres,
     }
     return render(request,template,data)
 def leerMensaje(request, mensaje):

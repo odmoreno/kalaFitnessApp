@@ -129,7 +129,7 @@ PASSWORD_HASHERS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'auth.User'
 #AUTH_USER_MODEL = 'kalaapp.Usuario'
 
@@ -152,7 +152,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR + STATIC_URL + 'media/'
 MEDIA_URL  = STATIC_URL + 'media/'
 
-STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL,]
+
+#STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL,]
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 

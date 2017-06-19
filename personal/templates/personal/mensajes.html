@@ -53,10 +53,11 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             {% for m in mensajes %}
-            <div class="panel panel-default">
-                <div class="panel-body"><a> {{ m.sender }}</a></div>
-            </div>
+             <div class="list-group">
+                <a href="#" class="list-group-item">{{ m.sender }}</a>
+             </div>
             {% endfor %}
+
         </div>
         <div class="col-sm-4"></div>
     </div>
