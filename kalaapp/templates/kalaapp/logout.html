@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <meta charset="UTF-8">
+    <!-- Loads the path to your static files -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/style.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<section>
+	<div class="container">
+		<h1 class="text-center">Cierre de sesión</h1>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="alert alert-success text-center">
+					<h4 class="alert-heading">Ha cerrado sesión satisfactoriamente</h4>
+				</div>
+				<a href="{% url 'login' %}" class="btn btn-info" role="button">Iniciar sesion</a>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

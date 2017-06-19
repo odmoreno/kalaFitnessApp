@@ -107,4 +107,7 @@ def verMensajes(request, personal_id=None):
         'mensajes': mensajes,
     }
     return render(request,template,data)
-
+def leerMensaje(request, mensaje):
+    pass
+def nuevoMensaje(request):
+    pass
