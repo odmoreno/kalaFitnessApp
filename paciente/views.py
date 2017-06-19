@@ -147,6 +147,10 @@ def PacienteEliminar(request, paciente_id):
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
 
+def detallePaciente(request, paciente_id):
+    paciente = get_object_or_404(Usuario, pk=paciente_id)
+    return render(request, 'paciente/detalles.html', {'paciente': paciente})
+
 @transaction.atomic
 def PacienteModificar(request, paciente_id):
     paciente = Paciente.objects.get(pk=paciente_id)
