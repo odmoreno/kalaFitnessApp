@@ -29,22 +29,13 @@
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'personal:index' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Nuevo Mensaje
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Nuevo Mensaje
                     </a>
                 </li>
-                <li class="">
-                    <a href="{% url 'personal:nuevoPersonal' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Añadir Personal
-                    </a>
-                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                        <a href="{% url 'personal:mensajes' %}">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                        </a>
-                </li>
                 <li class="">
                     <a href="#">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout

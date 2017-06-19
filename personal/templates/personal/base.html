@@ -29,7 +29,12 @@
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'personal:index' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Nuevo Mensaje
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Personal
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'personal:nuevoPersonal' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Añadir Personal
                     </a>
                 </li>
             </ul>
@@ -41,12 +46,14 @@
                         </a>
                 </li>
                 <li class="">
-                    <a href="#">
+                    <a href="{%url 'logout' %}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
                     </a>
                 </li>
             </ul>
+
         </div>
+
     </div>
 </nav>
     {% block body %}

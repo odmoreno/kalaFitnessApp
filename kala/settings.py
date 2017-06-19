@@ -129,7 +129,7 @@ PASSWORD_HASHERS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index'
 AUTH_USER_MODEL = 'auth.User'
 #AUTH_USER_MODEL = 'kalaapp.Usuario'
 
