@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import transaction
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
