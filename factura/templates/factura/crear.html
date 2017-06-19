@@ -10,7 +10,7 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="control-label col-md-3" >Empresa:</label>
-                                <select id="empresa_id" name="empresa" class="col-sm-4">
+                                <select id="empresa_id" name="empresa" class="col-sm-4" required>
                                 {% if empresas %}
                                     {% for empresa in empresas %}
                                         <option value="{{ empresa.id }}">{{ empresa.nombre }}</option>
@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" >Paciente:</label>
-                                <select id="paciente_id" name="paciente" class="col-sm-4">
+                                <select id="paciente_id" name="paciente" class="col-sm-4" required>
                                 {% if pacientes %}
                                     {% for paciente in pacientes %}
                                         <option value="{{ paciente.id }}">{{ paciente.id }} - {{ paciente.nombre_completo }}</option>
@@ -29,16 +29,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" >Serie:</label><input class="col-sm-4" type="text" name="serie" />
+                                <label class="control-label col-md-3" >Serie:</label><input class="col-sm-4" type="text" name="serie" required/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" >Fecha de vencimiento:</label><input class="col-sm-4" type="date" name="fecha_vencimiento" />
+                                <label class="control-label col-md-3" >Fecha de vencimiento:</label><input class="col-sm-4" type="date" name="fecha_vencimiento" required/>
                             </div>
                             <div class="form-group">
-                                 <label class="control-label col-md-3" >Subtotal:</label><input class="col-sm-4" type="number" name="subtotal" />
+                                 <label class="control-label col-md-3" >Subtotal:</label><input class="col-sm-4" type="number" name="subtotal" step="0.1" required/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" >Total(+ 12% IVA):</label><input class="col-sm-4" type="number" name="total" />
+                                <label class="control-label col-md-3" >Total(+ 12% IVA):</label><input class="col-sm-4" type="number" name="total" step="0.1"  required/>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success" style="margin-left: 180px">Añadir Factura</button>
