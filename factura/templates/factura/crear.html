@@ -1,25 +1,52 @@
-{% block titulo %}Nueva Factura{% endblock %}
-{% block form %}
-        <div class="page-header">
-            <h1>Nueva Factura</h1>
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        <strong>{{ error|escape }}</strong>
+{% extends 'factura/base.html' %}
+{% block title %}Crear Factura{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-md-3" >Empresa:</label>
+                                <select id="empresa_id" name="empresa" class="col-sm-4">
+                                {% if empresas %}
+                                    {% for empresa in empresas %}
+                                        <option value="{{ empresa.id }}">{{ empresa.nombre }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" >Paciente:</label>
+                                <select id="paciente_id" name="paciente" class="col-sm-4">
+                                {% if pacientes %}
+                                    {% for paciente in pacientes %}
+                                        <option value="{{ paciente.id }}">{{ paciente.id }} - {{ paciente.nombre_completo }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" >Serie:</label><input class="col-sm-4" type="text" name="serie" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" >Fecha de vencimiento:</label><input class="col-sm-4" type="date" name="fecha_vencimiento" />
+                            </div>
+                            <div class="form-group">
+                                 <label class="control-label col-md-3" >Subtotal:</label><input class="col-sm-4" type="number" name="subtotal" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" >Total(+ 12% IVA):</label><input class="col-sm-4" type="number" name="total" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success" style="margin-left: 180px">Añadir Factura</button>
+                            </div>
+                        </form>
                     </div>
-                {% endfor %}
-            {% endif %}
-            <form class="form-group col-sm-2" action="/" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Crear" class="btn btn-primary">
-            </form>
-    </div>
+                </div>
+            </div>
+        </div>
+</div>
 {% endblock %}

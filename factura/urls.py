@@ -10,10 +10,9 @@ from . import views
 app_name = 'factura'
 
 urlpatterns = [
-    #url(r'^$', views.index, name="index"),
-    url(r'^api/$', views.apiFactura, name="factura"),
-	#url(r'^$', facturas, name='facturas'),
-    url(r'^crear$', crearFactura),
-    url(r'^eliminar/(?P<pk>\d+)$', eliminarFactura),
+    url(r'^$', listarFacturas, name='ListarFacturas'),
+    url(r'^crear$', crearFactura, name='CrearFactura'),
+    url(r'^eliminar/(?P<id>\d+)$', eliminarFactura, name='EliminarFactura'),
+    url(r'^api/$', views.apiFactura, name="ApiFactura"),
 ]
 

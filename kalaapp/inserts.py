@@ -4,7 +4,7 @@ roles = Rol.objects.bulk_create([Rol(tipo='administrador', es_personal=False),
                                  Rol(tipo='paciente', es_personal=False),
                                  Rol(tipo='fisioterapista', es_personal=True),
                                  Rol(tipo='nutricionista', es_personal=True),
-                                 Rol(tipo='invitado', es_personal=True)])
+                                 Rol(tipo='invitado', es_personal=False)])
 
 Empresa.objects.create(nombre="Kala Fitness",
                        razon_social="Kala Fitness",

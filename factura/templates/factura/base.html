@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,12 @@
     <title>{% block title %}Kala App{% endblock %}</title>
     <!-- Loads the path to your static files -->
     {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'personal/style.css' %}" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -21,19 +23,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">kala App</a>
+            <a class="navbar-brand" href="{% url 'kalaapp:index' %}">kala App</a>
         </div>
 
         <!-- Items -->
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Facturas
+                    <a href="{% url 'factura:ListarFacturas' %}">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Facturas
                     </a>
                 </li>
                 <li class="">
-                    <a href="{% url 'personal:nuevoPersonal' %}">
+                    <a href="{% url 'factura:CrearFactura' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Añadir Factura
                     </a>
                 </li>

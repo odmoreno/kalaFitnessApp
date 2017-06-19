@@ -75,7 +75,7 @@ class Usuario(TimeModel):
             #     form.add_error('foto', 'Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
             #             settings.IMAGE_FILE_TYPES))
 
-            if self.foto:
+            if self.foto and self.foto.name.find('noimagen.jpg') == -1:
                 try:
                     img = Image.open(self.foto)
                     width, height = img.size
