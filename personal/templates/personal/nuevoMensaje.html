@@ -58,9 +58,9 @@
         <div class="col-sm-4 col-md-4"></div>
         <div class="col-sm-4 col-md-4">
             <h4>Nuevo Mensaje</h4>
-           <form role="form" class="form-horizontal">
+           <form method="post" action="{% url 'personal:nuevoMensaje' %}">
                 {% csrf_token %}
-                <div class="form-group">
+
                   <label class="col-sm-2">Para</label>
                   <div class="col-sm-10">
                       <select class="form-control" id="recipiente" placeholder="comma separated list of recipients">
@@ -72,14 +72,15 @@
 
                       </select>
                   </div>
-                </div>
-                <div class="form-group">
+
+
                   <label class="col-sm-12" for="mensaje">Mensaje</label>
                   <div class="col-sm-12"><textarea class="form-control" id="mensaje" rows="18"></textarea></div>
-                </div>
+                    <div class="col-sm-12">
+                        <input type="submit" class="btn btn-primary "></input>
+                    </div>
             </form>
-            <button type="button" class="btn btn-default pull-left">Cancel</button>
-            <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+
         </div>
     </div>
 </div>
