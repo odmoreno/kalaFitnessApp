@@ -11,7 +11,7 @@ from django.urls.base import reverse
 
 # Create your views here.
 @login_required
-def index(request):
+def index2(request):
     template = 'kalaapp/landing.html'
     data = {}
     return render(request, template, data)

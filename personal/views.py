@@ -87,12 +87,12 @@ def leerMensaje(request, mensaje_id):
     return render(request, "personal/leerMensaje.html", data)
 
 def nuevoMensaje(request):
-    personal= Personal.objects.all()
-    print personal
-    data={
-        'personal':personal,
-    }
-    return(request, "personal/nuevoMensaje.html", data)
+    # personal= Personal.objects.all()
+    # print personal
+    # data={
+    #     'personal':personal,
+    # }
+    return(request, "personal/nuevoMensaje.html")
 
 def reportePersonal(request):
     personal = Personal.objects.all()
