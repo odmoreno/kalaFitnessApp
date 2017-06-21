@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+#import MyPrint as MyPrint
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from paciente.models import Paciente

@@ -36,12 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "directmessages",
+   # 'directmessages',
     'kalaapp.apps.KalaappConfig',
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
-
 ]
 
 MIDDLEWARE = [
