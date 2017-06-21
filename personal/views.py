@@ -20,6 +20,8 @@ def index(request):
 
 def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
+    # user=personal.usuario
+    # user.delete()
     personal.delete()
     all_personal = Usuario.objects.all()
     #return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
