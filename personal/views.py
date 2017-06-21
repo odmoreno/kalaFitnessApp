@@ -87,12 +87,26 @@ def leerMensaje(request, mensaje_id):
     return render(request, "personal/leerMensaje.html", data)
 
 def nuevoMensaje(request):
-    # personal= Personal.objects.all()
-    # print personal
-    # data={
-    #     'personal':personal,
-    # }
-    return(request, "personal/nuevoMensaje.html")
+    personal= Usuario.objects.all()
+    print personal
+    data={
+        'personal':personal,
+    }
+    if request.POST:
+        try:
+            mensaje=request.POST["mensaje"]
+            recipiente= request.POST["recipiente"]
+            rep=User.objects.get(username=recipiente)
+            print recipiente
+            print rep
+            print mensaje
+            #Inbox.send_message(request.user, rep, mensaje)
+            return render(request, "personal/mensajes.html")
+
+        except:
+            pass
+
+    return render(request, "personal/nuevoMensaje.html", data)
 
 def reportePersonal(request):
     personal = Personal.objects.all()
