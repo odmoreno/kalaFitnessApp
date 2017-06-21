@@ -10,8 +10,8 @@ from paciente.views import Paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-#from directmessages.apps import Inbox
-#from directmessages.models import Message
+from directmessages.apps import Inbox
+from directmessages.models import Message
 
 #@login_required
 def index(request):
@@ -38,7 +38,7 @@ def nuevoPersonal(request):
         user.save()
 
         rol = Rol.objects.get(tipo='nutricionista')
-        rol.save()
+        #rol.save()
 
         personal.usuario = user
         personal.rol = rol
