@@ -87,18 +87,12 @@ def leerMensaje(request, mensaje_id):
     return render(request, "personal/leerMensaje.html", data)
 
 def nuevoMensaje(request):
-    template="personal/nuevoMensaje.html"
     personal= Personal.objects.all()
-    usuarios=[]
-    for p in personal:
-        usuarios.append(p.usuario)
+    print personal
     data={
         'personal':personal,
-        'usuarios':usuarios,
     }
-    if request.POST:
-        pass
-    return(request, template, data)
+    return(request, "personal/nuevoMensaje.html", data)
 
 def reportePersonal(request):
     personal = Personal.objects.all()
