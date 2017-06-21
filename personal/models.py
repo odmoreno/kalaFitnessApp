@@ -8,7 +8,7 @@ from kalaapp.models import Usuario, TimeModel
 
 
 class Personal(models.Model):
-    usuario = models.OneToOneField(Usuario, unique=True)
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, unique=True)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:

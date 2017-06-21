@@ -7,7 +7,7 @@ from personal.models import Personal
 
 # Create your models here.
 class Paciente(TimeModel):
-    usuario = models.OneToOneField(Usuario, unique=True)
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, unique=True)
     estado = models.CharField(max_length=1, default='A')
 
 

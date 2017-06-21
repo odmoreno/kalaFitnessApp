@@ -1,4 +1,12 @@
-# -*- coding: utf-8 -*-
+'''
+MODULO Factura
+
+VERSION 1.0.0
+
+ACTUALIZADO EN 20/06/2017
+
+'''
+
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpRequest,HttpResponse
@@ -16,8 +24,13 @@ from django.contrib.auth.models import User
 from django.urls.base import reverse
 
 
-# Create your views here.
+'''
+Funcion: listarFacturas
+Entradas: request
+Salidas: HttpResponse con template factura.ntml y la lista de todas las facturas creadas
 
+Funcion que retorna todas las facturas leidas desde la base de datos
+'''
 def listarFacturas(request):
     template = 'factura/factura.html'
     contexto={}
@@ -27,6 +40,13 @@ def listarFacturas(request):
     return render(request, template_name=template, context=contexto)
 
 
+'''
+Funcion: crearFactura
+Entradas: request
+Salidas: - HttpResponse con template crear.ntml y la lista de todas las empresas y pacientes
+
+Funcion que permite crear una factura
+'''
 @transaction.atomic
 def crearFactura(request):
     template = 'factura/crear.html'
@@ -61,6 +81,14 @@ def crearFactura(request):
     contexto['pacientes'] = pacientes
     return render(request, template_name=template, context=contexto)
 
+'''
+Funcion: crearFactura
+Entradas: - request
+          - id: id de la factura a eliminar
+Salidas: ninguna
+
+Funcion que permiteeliminar una factura existente
+'''
 @transaction.atomic
 def eliminarFactura(request, id=0):
     template='factura/factura.html'
@@ -81,8 +109,15 @@ def eliminarFactura(request, id=0):
 
         return redirect('factura:ListarFacturas')
 
+'''
+Funcion: crearFactura
+Entradas: request
+Salidas: HttpResponse con template factura.ntml y la lista de todas las empresas y pacientes
+
+Funcion que permite obtener todas las facturas creadas
+'''
 def apiFactura(request):
     template = "factura/factura.html"
-    obj = Facturas.objects.all()
-    data = {"facturas": obj}
-    return render(request, template, data)
+    facturas = Facturas.objects.all()
+    contexto = {"facturas": facturas}
+    return render(request, template_name=template, context=contexto)
