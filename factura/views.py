@@ -60,13 +60,12 @@ def crearFactura(request):
         factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
         factura.subtotal = request.POST.get('subtotal')
         factura.total = request.POST.get('total')
-        factura.save()
-
-        if factura.id is not None:
+        try:
+            factura.save()
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        else:
-            factura = None
-            messages.add_message(request, messages.ERROR, 'Error al grabar!')
+        except Exception as e:
+            messages.add_message(request, messages.WARNING, 'Error interno. ' + e.__str__())
+
         return redirect('factura:ListarFacturas')
 
     empresas = Empresa.objects.filter(estado='A') \
@@ -100,8 +99,11 @@ def eliminarFactura(request, id=0):
 
             if facturaEliminada and facturaEliminada.estado == 'A':
                 facturaEliminada.estado = 'I'
-                facturaEliminada.save()
-                messages.add_message(request, messages.SUCCESS, 'Factura elminada con exito!')
+                try:
+                    facturaEliminada.delete() #facturaEliminada.save()
+                    messages.add_message(request, messages.SUCCESS, 'Factura elminada con exito!')
+                except Exception as e:
+                    messages.add_message(request, messages.WARNING, 'Error interno. ' + e.__str__())
             else:
                 messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
         except:

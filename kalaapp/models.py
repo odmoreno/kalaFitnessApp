@@ -16,6 +16,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.six import StringIO
 from PIL import Image
 from django.conf import settings
+from django.contrib import messages
 
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
@@ -42,7 +43,7 @@ class Rol(TimeModel):
 
 class Usuario(TimeModel):
         usuario = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-        rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+        rol = models.ForeignKey(Rol, on_delete=models.DO_NOTHING)
         nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False )
         apellido = models.CharField(db_column='last_name', max_length=30, blank=False, null=False )
         cedula = models.CharField(max_length=10, unique=True)
@@ -79,17 +80,17 @@ class Usuario(TimeModel):
                 try:
                     img = Image.open(self.foto)
                     width, height = img.size
+                    basewidth = 600
+                    baseheight = 600
 
                     if img.mode != 'RGB':
                         img = img.convert('RGB')
 
-                    if width >= height:
-                        basewidth = 600
+                    if width >= height and width > basewidth:
                         height_size = int((float(height) * float(basewidth / float(width))))
                         width = basewidth
                         height = height_size
-                    else:
-                        baseheight = 600
+                    elif width < height and height > baseheight:
                         width_size = int((float(width) * float(baseheight / float(height))))
                         width = width_size
                         height = baseheight
@@ -99,8 +100,8 @@ class Usuario(TimeModel):
                     img.save(output, format='JPEG', quality=90)
                     output.seek(0)
                     self.foto = InMemoryUploadedFile(output, 'foto', "%s.jpg" % self.cedula, 'image/jpeg', output.len, None)
-                except IOError:
-                    pass
+                except Exception as e:
+                    messages.add_message(request, messages.WARNING, 'No se puedo guardar la foto. ' + e.__str__())
 
             super(Usuario, self).save(*args, **kwargs)
 
