@@ -53,14 +53,7 @@ def crearFactura(request):
     contexto={}
 
     if request.method == 'POST':
-        factura = Facturas()
-        factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
-        factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
-        factura.serie = request.POST.get('serie')
-        factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
-        factura.subtotal = request.POST.get('subtotal')
-        factura.total = request.POST.get('total')
-        factura.save()
+        factura = getFactura(request)
 
         if factura.id is not None:
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
@@ -80,6 +73,24 @@ def crearFactura(request):
     contexto['empresas'] = empresas
     contexto['pacientes'] = pacientes
     return render(request, template_name=template, context=contexto)
+
+'''
+Funcion: getFactura
+Entradas: - request
+Salidas:  - nueva factura
+
+Funcion que retorna una nueva factura con los datos ingresados en formulario
+'''
+def getFactura(request):
+    factura = Facturas()
+    factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
+    factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
+    factura.serie = request.POST.get('serie')
+    factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
+    factura.subtotal = request.POST.get('subtotal')
+    factura.total = request.POST.get('total')
+    factura.save()
+    return factura
 
 '''
 Funcion: crearFactura
