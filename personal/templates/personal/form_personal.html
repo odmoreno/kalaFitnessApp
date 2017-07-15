@@ -21,5 +21,15 @@
     </div>
 
 </div>
+<script type="text/javascript">
+    $( "#id_nombre" ).prop('required', true);
+    $( "#id_apellido" ).prop('required', true);
+    $( "#id_cedula" ).attr("pattern", '^[0-9]{10}').attr('title','Numero de cedula invalido').prop('required', true);
+    $( "#id_direccion" ).prop('required', true);
+    $( "#id_telefono" ).attr("pattern", '^[0-9]{7,10}').attr('title','Numero de telefono invalido').prop('required', true);
+    $( "#id_ocupacion" ).prop('required', true);
+    $( "#id_genero" ).prop('required', true); 
+    $( "#id_edad" ).attr("pattern", '^[0-9]{1,2}').attr('title','Edad invalida').prop('required', true);   
+</script>>
 {% endblock %}
 

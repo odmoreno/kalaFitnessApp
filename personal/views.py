@@ -20,6 +20,8 @@ def index(request):
 
 def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
+    # user=personal.usuario
+    # user.delete()
     personal.delete()
     all_personal = Usuario.objects.all()
     #return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
@@ -92,19 +94,8 @@ def nuevoMensaje(request):
     data={
         'personal':personal,
     }
-    if request.POST:
-        try:
-            mensaje=request.POST["mensaje"]
-            recipiente= request.POST["recipiente"]
-            rep=User.objects.get(username=recipiente)
-            print recipiente
-            print rep
-            print mensaje
-            #Inbox.send_message(request.user, rep, mensaje)
-            return render(request, "personal/mensajes.html")
-
-        except:
-            pass
+    if request.method == 'POST':
+        return render(request, "personal/mensajes.html")
 
     return render(request, "personal/nuevoMensaje.html", data)
 
