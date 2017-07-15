@@ -52,18 +52,18 @@ class eliminarPersonalTest():
         f.save()
 
     def test_eliminar_personal(self):
-        cedula = "0931245228"
+        cedula = "0931245229"
         password = "12345"
         user = User()
         user.username = cedula
         user.set_password(password)
         user.save()
-        rol =  Rol.objects.get(tipo='nutricionista')
+        rol =  Rol.objects.get(tipo='fisioterapista')
 
         usuario = Usuario()
         usuario.usuario= user
         usuario.rol = rol
-        usuario.nombre = "Oscar"
+        usuario.nombre = "Daniel"
         usuario.apellido = "Moreno"
         usuario.cedula = cedula
         usuario.direccion = "albo"
@@ -93,3 +93,4 @@ class eliminarPersonalTest():
 
         self.assertEquals(x, None)
         self.assertEquals(y, None)
+

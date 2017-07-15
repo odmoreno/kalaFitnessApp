@@ -117,3 +117,11 @@ def reportePersonal(request):
 def reportePDF(request):
     template = 'personal/reportePDF.html'
     return render(request, template)
+
+def fichasMedicas(request):
+    '''
+    Aqui se van a generar las fichas indicadas para el fisioterapista y su respectiva configuracion, luego se redirecciona.
+    :param request:
+    :return:
+    '''
+    return
