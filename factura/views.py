@@ -49,6 +49,7 @@ Funcion que permite crear una factura
 '''
 @transaction.atomic
 def crearFactura(request):
+
     template = 'factura/crear.html'
     contexto={}
 
