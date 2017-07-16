@@ -8,6 +8,9 @@ from personal.models import Personal
 # Create your models here.
 class Paciente(TimeModel):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, unique=True)
+    n_hijos = models.PositiveSmallIntegerField(default=0, null=False)
+    observaciones = models.CharField(max_length=200, default='', null=False);
+    motivo_consulta = models.CharField(max_length=200, default='', null=False)
     estado = models.CharField(max_length=1, default='A')
 
 

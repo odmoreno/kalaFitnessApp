@@ -30,9 +30,13 @@ ROLES =(('administrador', 'administrador'),
         ('fisioterapista', 'fisioterapista'),
         ('nutricionista', 'nutricionista'),
         ('invitado','invitado'))
+ESTADO_CIVIL=(('Soltero','Soltero'),
+              ('Casado','Casado'),
+              ('Viudo','Viudo'),
+              ('Divorciado','Divorciado'))
 
 class Rol(TimeModel):
-    tipo = models.CharField(max_length=30, choices=ROLES, default='invitado', unique=True)
+    tipo = models.CharField(max_length=30, choices=ROLES, default='invitado')
     es_personal = models.BooleanField(_('es_personal'), default=False, blank=False)
     estado = models.CharField(max_length=1, default='A')
 
@@ -44,19 +48,20 @@ class Rol(TimeModel):
 class Usuario(TimeModel):
         usuario = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
         rol = models.ForeignKey(Rol, on_delete=models.DO_NOTHING)
-        nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False )
-        apellido = models.CharField(db_column='last_name', max_length=30, blank=False, null=False )
+        nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False)
+        apellido = models.CharField(db_column='last_name', max_length=30, blank=False, null=False)
         cedula = models.CharField(max_length=10, unique=True)
         direccion = models.CharField(max_length=200, blank=True, null=True)
         telefono = models.CharField(max_length=50, blank=True, null=True)
         ocupacion = models.CharField(max_length=200, blank=True, null=True)
         genero = models.CharField(max_length=1, blank=True, null=True)
-        edad = models.IntegerField(blank=True, null=True)
+        edad = models.PositiveSmallIntegerField(blank=True, null=True)
         fecha_nacimiento = models.DateField(blank=True, null=True)
         foto = models.ImageField(upload_to = 'usuario/',
                                  default = 'usuario/noimagen.jpg', null=True,
                                  blank=True, editable=True,
                                  help_text="Foto")
+        estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL, default='Soltero', null=False)
         estado = models.CharField(max_length=1, default='A')
         is_anonymous = False
         is_authenticated = False
@@ -121,6 +126,8 @@ class Empresa(TimeModel):
     class Meta:
         #managed = False
         db_table = 'empresa'
+
+
 '''
 class Citas(models.Model):
     detalle = models.CharField(max_length=200)
@@ -144,40 +151,6 @@ class Citas(models.Model):
 #     class Meta:
 #         #managed = False
 #         db_table = 'citas_estados'
-
-
-
-
-class FichasGenerales(models.Model):
-    personal = models.ForeignKey('Personal', models.DO_NOTHING)
-    usuario = models.ForeignKey('Pacientes', models.DO_NOTHING)
-    altura = models.FloatField(blank=True, null=True)
-    peso = models.FloatField(blank=True, null=True)
-    imc = models.FloatField(blank=True, null=True)
-    musculo = models.FloatField(blank=True, null=True)
-    grasa_visceral = models.FloatField(blank=True, null=True)
-    grasa = models.FloatField(blank=True, null=True)
-    cuello = models.FloatField(blank=True, null=True)
-    hombros = models.FloatField(blank=True, null=True)
-    pecho = models.FloatField(blank=True, null=True)
-    brazo_derecho = models.FloatField(blank=True, null=True)
-    brazo_izquierdo = models.FloatField(blank=True, null=True)
-    antebrazo_derecho = models.FloatField(blank=True, null=True)
-    antebrazo_izquierdo = models.FloatField(blank=True, null=True)
-    cintura = models.FloatField(blank=True, null=True)
-    cadera = models.FloatField(blank=True, null=True)
-    muslo_derecho = models.FloatField(blank=True, null=True)
-    muslo_izquierdo = models.FloatField(blank=True, null=True)
-    pantorrilla_derecha = models.FloatField(blank=True, null=True)
-    pantorrilla_izquierda = models.FloatField(blank=True, null=True)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'fichas_generales'
-
 
 class Horarios(models.Model):
     detalle = models.CharField(max_length=200, blank=True, null=True)
