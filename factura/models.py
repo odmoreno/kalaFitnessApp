@@ -15,7 +15,7 @@ class Facturas(TimeModel):
     #factura_estado = models.ForeignKey('FacturasEstados', models.DO_NOTHING)
     serie = models.CharField(max_length=10, unique=True, blank=False, null=False)
     fecha_vencimiento = models.DateField(default=timezone.now, blank=False, null=False)
-    subtotal = models.FloatField(blank=False, null=False)
+    #subtotal = models.FloatField(blank=False, null=False)
     total = models.FloatField(blank=False, null=False)
     estado = models.CharField(max_length=1, default='A')
 
