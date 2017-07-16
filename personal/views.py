@@ -38,7 +38,7 @@ def nuevoPersonal(request):
         user.save()
 
         rol = Rol.objects.get(tipo='nutricionista')
-        rol.save()
+        #rol.save()
 
         personal.usuario = user
         personal.rol = rol
