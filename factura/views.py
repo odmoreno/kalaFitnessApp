@@ -36,7 +36,7 @@ def listarFacturas(request):
     contexto={}
     contexto['facturas'] = Facturas.objects.filter(estado='A')\
         .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
-                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'subtotal', 'total')
+                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')
     return render(request, template_name=template, context=contexto)
 
 
@@ -88,7 +88,6 @@ def getFactura(request):
     factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
     factura.serie = request.POST.get('serie')
     factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
-    factura.subtotal = request.POST.get('subtotal')
     factura.total = request.POST.get('total')
     factura.save()
     return factura
@@ -113,7 +112,7 @@ def eliminarFactura(request, id=0):
             if facturaEliminada and facturaEliminada.estado == 'A':
                 facturaEliminada.estado = 'I'
                 facturaEliminada.save()
-                messages.add_message(request, messages.SUCCESS, 'Factura elminada con exito!')
+                messages.add_message(request, messages.SUCCESS, 'Factura eliminada con exito!')
             else:
                 messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
         except:

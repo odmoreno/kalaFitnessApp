@@ -2,13 +2,15 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from kalaapp.models import TimeModel
+from kalaapp.models import TimeModel, Usuario
+from personal.models import Personal
+from paciente.models import Paciente
 # Create your models here.
 
 
 class Diagnostico(TimeModel):
-    personal = models.ForeignKey('Personal')
-    usuario = models.ForeignKey('Pacientes')
+    personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
+    paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
     fecha = models.DateField(auto_now_add=True, null=False)
     altura = models.FloatField(default=0, null=False)
     peso = models.FloatField(default=0, null=False)
@@ -35,10 +37,10 @@ class Diagnostico(TimeModel):
     espinales = models.PositiveSmallIntegerField(default=0, null=False)
     lumbares = models.PositiveSmallIntegerField(default=0, null=False)
     sentadillas = models.PositiveSmallIntegerField(default=0, null=False)
-    condiciones_previas = models.CharField(max_length=200, default='', null=False);
-    oarea_afectada = models.CharField(max_length=200, default='', null=False);
-    receta = models.CharField(max_length=200, default='', null=False);
-    rutina = models.CharField(max_length=200, default='', null=False);
+    condiciones_previas = models.CharField(max_length=200, default='', null=False)
+    oarea_afectada = models.CharField(max_length=200, default='', null=False)
+    receta = models.CharField(max_length=200, default='', null=False)
+    rutina = models.CharField(max_length=200, default='', null=False)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:

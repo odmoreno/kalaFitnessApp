@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
+    'diagnostico.apps.DiagnosticoConfig',
+    'django_forms_bootstrap'
 
 ]
 
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'kala.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'static/sb-admin/pages')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -151,9 +153,10 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
 STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR + STATIC_URL + 'media/'
 MEDIA_URL  = STATIC_URL + 'media/'
+RES_URL = BASE_DIR + STATIC_URL + 'sb-admin/'
 
 
-#STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL,]
+STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL, RES_URL]
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 
