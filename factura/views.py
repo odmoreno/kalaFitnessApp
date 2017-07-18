@@ -56,11 +56,10 @@ def crearFactura(request):
     if request.method == 'POST':
         factura = getFactura(request)
 
-        if factura.id is not None:
+        if factura is not None:
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
         else:
-            factura = None
-            messages.add_message(request, messages.ERROR, 'Error al grabar!')
+            messages.add_message(request, messages.ERROR, 'Error inesperado!')
         return redirect('factura:ListarFacturas')
 
     empresas = Empresa.objects.filter(estado='A') \
@@ -83,13 +82,16 @@ Salidas:  - nueva factura
 Funcion que retorna una nueva factura con los datos ingresados en formulario
 '''
 def getFactura(request):
-    factura = Facturas()
-    factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
-    factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
-    factura.serie = request.POST.get('serie')
-    factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
-    factura.total = request.POST.get('total')
-    factura.save()
+    try:
+        factura = Facturas()
+        factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
+        factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
+        factura.serie = request.POST.get('serie')
+        factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
+        factura.total = request.POST.get('total')
+        factura.save()
+    except AttributeError:
+        return None
     return factura
 
 '''

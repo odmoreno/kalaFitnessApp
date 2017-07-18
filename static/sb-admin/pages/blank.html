@@ -320,22 +320,31 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{% url 'factura:ListarFacturas' %}"><i class="fa fa-th-list fa-lg"></i> Facturas<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-th-list fa-lg"></i> Facturas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{% url 'factura:ListarFacturas' %}">Listar</a>
+                                </li>
                                 <li>
                                     <a href="{% url 'factura:CrearFactura' %}">Crear</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li class="active">
-                            <a href="http://www.google.com"><i class="fa fa-pencil-square-o fa-lg"></i> Diagn&oacute;stico<span class="fa arrow"></span></a>
+                        <li>
+                            <a href="#"><i class="fa fa-pencil-square-o fa-lg"></i> Diagn&oacute;stico<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="blank.html">Nuevo</a>
+                                    <a href="{% url 'diagnostico:ListarDiagnosticos' %}">Listar</a>
                                 </li>
                                 <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="{% url 'diagnostico:CrearDiagnostico' %}">Crear</a>
+                                </li>
+                                <li>
+                                    <a href="#">Editar</a>
+                                </li>
+                                <li>
+                                    <a href="#">Eliminar</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

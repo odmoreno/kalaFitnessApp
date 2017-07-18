@@ -30,19 +30,19 @@ ALLOWED_HOSTS = ['127.0.0.1',]
 
 INSTALLED_APPS = [
     'corsheaders',
+    'directmessages',
+    'django_forms_bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "directmessages",
     'kalaapp.apps.KalaappConfig',
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
-    'django_forms_bootstrap'
 
 ]
 
@@ -155,8 +155,8 @@ MEDIA_ROOT = BASE_DIR + STATIC_URL + 'media/'
 MEDIA_URL  = STATIC_URL + 'media/'
 RES_URL = BASE_DIR + STATIC_URL + 'sb-admin/'
 
-
-STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL, RES_URL]
+#STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL]
+STATICFILES_DIRS = [RES_URL]
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 
