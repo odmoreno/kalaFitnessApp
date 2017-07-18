@@ -22,8 +22,7 @@ class Paciente(TimeModel):
 
 class PacientePersonal(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    #cita = models.ForeignKey(Citas, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:

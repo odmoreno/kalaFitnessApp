@@ -36,7 +36,7 @@ def listarFacturas(request):
     contexto={}
     contexto['facturas'] = Facturas.objects.filter(estado='A')\
         .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
-                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'subtotal', 'total')
+                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')
     return render(request, template_name=template, context=contexto)
 
 
@@ -49,17 +49,17 @@ Funcion que permite crear una factura
 '''
 @transaction.atomic
 def crearFactura(request):
+
     template = 'factura/crear.html'
     contexto={}
 
     if request.method == 'POST':
         factura = getFactura(request)
 
-        if factura.id is not None:
+        if factura is not None:
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
         else:
-            factura = None
-            messages.add_message(request, messages.ERROR, 'Error al grabar!')
+            messages.add_message(request, messages.ERROR, 'Error inesperado!')
         return redirect('factura:ListarFacturas')
 
     empresas = Empresa.objects.filter(estado='A') \
@@ -82,14 +82,16 @@ Salidas:  - nueva factura
 Funcion que retorna una nueva factura con los datos ingresados en formulario
 '''
 def getFactura(request):
-    factura = Facturas()
-    factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
-    factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
-    factura.serie = request.POST.get('serie')
-    factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
-    factura.subtotal = request.POST.get('subtotal')
-    factura.total = request.POST.get('total')
-    factura.save()
+    try:
+        factura = Facturas()
+        factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
+        factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
+        factura.serie = request.POST.get('serie')
+        factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
+        factura.total = request.POST.get('total')
+        factura.save()
+    except AttributeError:
+        return None
     return factura
 
 '''
@@ -112,7 +114,7 @@ def eliminarFactura(request, id=0):
             if facturaEliminada and facturaEliminada.estado == 'A':
                 facturaEliminada.estado = 'I'
                 facturaEliminada.save()
-                messages.add_message(request, messages.SUCCESS, 'Factura elminada con exito!')
+                messages.add_message(request, messages.SUCCESS, 'Factura eliminada con exito!')
             else:
                 messages.add_message(request, messages.WARNING, 'Factura no encontrada o ya eliminada')
         except:

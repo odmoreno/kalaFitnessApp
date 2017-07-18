@@ -30,17 +30,19 @@ ALLOWED_HOSTS = ['127.0.0.1',]
 
 INSTALLED_APPS = [
     'corsheaders',
+    'directmessages',
+    'django_forms_bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'directmessages',
     'kalaapp.apps.KalaappConfig',
     'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
+    'diagnostico.apps.DiagnosticoConfig',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'kala.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'static/sb-admin/pages')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,9 +155,10 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
 STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR + STATIC_URL + 'media/'
 MEDIA_URL  = STATIC_URL + 'media/'
+RES_URL = BASE_DIR + STATIC_URL + 'sb-admin/'
 
-
-#STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL,]
+#STATICFILES_DIRS = [STATIC_URL, MEDIA_ROOT, MEDIA_URL]
+STATICFILES_DIRS = [RES_URL]
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg', 'gif']
 

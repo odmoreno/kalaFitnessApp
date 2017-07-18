@@ -16,6 +16,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.six import StringIO
 from PIL import Image
 from django.conf import settings
+from django.contrib import messages
 
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
@@ -56,8 +57,8 @@ class Usuario(TimeModel):
     genero = models.CharField(max_length=1, blank=True, null=True)
     edad = models.PositiveSmallIntegerField(blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
-    foto = models.ImageField(upload_to='usuario/',
-                             default='usuario/noimagen.jpg', null=True,
+    foto = models.ImageField(upload_to = 'usuario/',
+                             default = 'usuario/noimagen.jpg', null=True,
                              blank=True, editable=True,
                              help_text="Foto")
     estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL, default='Soltero', null=False)
@@ -84,17 +85,17 @@ class Usuario(TimeModel):
             try:
                 img = Image.open(self.foto)
                 width, height = img.size
+                basewidth = 600
+                baseheight = 600
 
                 if img.mode != 'RGB':
                     img = img.convert('RGB')
 
-                if width >= height:
-                    basewidth = 600
+                if width >= height and width > basewidth:
                     height_size = int((float(height) * float(basewidth / float(width))))
                     width = basewidth
                     height = height_size
-                else:
-                    baseheight = 600
+                elif width < height and height > baseheight:
                     width_size = int((float(width) * float(baseheight / float(height))))
                     width = width_size
                     height = baseheight
@@ -104,11 +105,10 @@ class Usuario(TimeModel):
                 img.save(output, format='JPEG', quality=90)
                 output.seek(0)
                 self.foto = InMemoryUploadedFile(output, 'foto', "%s.jpg" % self.cedula, 'image/jpeg', output.len, None)
-            except IOError:
-                pass
+            except Exception as e:
+                messages.add_message(request, messages.WARNING, 'No se puedo guardar la foto. ' + e.__str__())
 
         super(Usuario, self).save(*args, **kwargs)
-
 
 class Empresa(TimeModel):
     nombre = models.CharField(max_length=200, blank=False, null=False)
@@ -125,6 +125,8 @@ class Empresa(TimeModel):
     class Meta:
         #managed = False
         db_table = 'empresa'
+
+
 '''
 class Citas(models.Model):
     detalle = models.CharField(max_length=200)
@@ -148,40 +150,6 @@ class Citas(models.Model):
 #     class Meta:
 #         #managed = False
 #         db_table = 'citas_estados'
-
-
-
-
-class FichasGenerales(models.Model):
-    personal = models.ForeignKey('Personal', models.DO_NOTHING)
-    usuario = models.ForeignKey('Pacientes', models.DO_NOTHING)
-    altura = models.FloatField(blank=True, null=True)
-    peso = models.FloatField(blank=True, null=True)
-    imc = models.FloatField(blank=True, null=True)
-    musculo = models.FloatField(blank=True, null=True)
-    grasa_visceral = models.FloatField(blank=True, null=True)
-    grasa = models.FloatField(blank=True, null=True)
-    cuello = models.FloatField(blank=True, null=True)
-    hombros = models.FloatField(blank=True, null=True)
-    pecho = models.FloatField(blank=True, null=True)
-    brazo_derecho = models.FloatField(blank=True, null=True)
-    brazo_izquierdo = models.FloatField(blank=True, null=True)
-    antebrazo_derecho = models.FloatField(blank=True, null=True)
-    antebrazo_izquierdo = models.FloatField(blank=True, null=True)
-    cintura = models.FloatField(blank=True, null=True)
-    cadera = models.FloatField(blank=True, null=True)
-    muslo_derecho = models.FloatField(blank=True, null=True)
-    muslo_izquierdo = models.FloatField(blank=True, null=True)
-    pantorrilla_derecha = models.FloatField(blank=True, null=True)
-    pantorrilla_izquierda = models.FloatField(blank=True, null=True)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'fichas_generales'
-
 
 class Horarios(models.Model):
     detalle = models.CharField(max_length=200, blank=True, null=True)

@@ -4,7 +4,6 @@ from .views import *
 
 from django.conf.urls import url
 from factura.views import apiFactura
-from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
 app_name = 'factura'

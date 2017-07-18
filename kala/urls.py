@@ -28,7 +28,9 @@ urlpatterns = [
     url(r'^personal/', include('personal.urls')),
     url(r'^factura/', include('factura.urls')),
     url(r'^fisioterapia/', include('fisioterapia.urls')),
-    url(r'^accounts/login/', LoginView.as_view(template_name="kalaapp/login.html"), name="login"),
+    url(r'^diagnostico/', include('diagnostico.urls')),
+    url(r'^accounts/login/', LoginView.as_view(template_name="login.html"), name="login"),
+    #url(r'^accounts/login/', LoginView.as_view(template_name="kalaapp/login.html"), name="login"),
     url(r'^accounts/logout/', LogoutView.as_view(template_name="kalaapp/logout.html"), name="logout"),
     #url(r'^$', index, name='index'),
 ]
