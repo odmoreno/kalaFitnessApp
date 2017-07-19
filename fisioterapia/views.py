@@ -14,6 +14,7 @@ from directmessages.models import Message
 
 
 from django.shortcuts import render
+from forms import ComentarioForm
 
 # Create your views here.
 def index(request):
@@ -65,8 +66,10 @@ def leerMensaje(request, mensaje_id):
 def nuevoMensaje(request):
     personal= Usuario.objects.all()
     print personal
+    form=ComentarioForm(request.POST or None)
     data={
         'personal':personal,
+        'form':form,
     }
     if request.method == 'POST':
         return render(request, "fisioterapia/mensajes.html")

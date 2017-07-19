@@ -60,25 +60,16 @@
             <h4>Nuevo Mensaje</h4>
            <form method="post" action="{% url 'personal:nuevoMensaje' %}">
                 {% csrf_token %}
-
-                  <label class="col-sm-2">Para</label>
-                  <div class="col-sm-10">
-                      <select class="form-control" id="recipiente" placeholder="comma separated list of recipients">
-                        {% for p in personal %}
-                          {% if p.rol.es_personal %}
-                            <option value="{{ p.usuario.cedula }}">{{ p.nombre }} {{ p.apellido }}</option>
-                            {% endif %}
-                          {% endfor %}
-
-                      </select>
-                  </div>
-
-
-                  <label class="col-sm-12" for="mensaje">Mensaje</label>
-                  <div class="col-sm-12"><textarea class="form-control" id="mensaje" rows="18"></textarea></div>
-                    <div class="col-sm-12">
-                        <input type="submit" class="btn btn-primary "></input>
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-danger small">{{ field.errors }}</span>
+                        </div>
+                        <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                        <div class="col-sm-10">{{ field }}</div>
                     </div>
+                {% endfor %}
+
             </form>
 
         </div>
