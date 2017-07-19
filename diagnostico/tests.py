@@ -60,7 +60,7 @@ class verificarCreacionDiagnosticoTestCase(TestCase):
         self.assertEqual(diagnostico_recuperado, diagnostico, 'Error diagnosticos no coinciden!')
         self.assertEqual(diagnostico_recuperado.personal, diagnostico.personal, 'Error personal asignado no coincide!')
         self.assertEqual(diagnostico_recuperado.paciente, diagnostico.paciente, 'Error paciente asignado no coincide!')
-        self.assertEqual(diagnostico_recuperado.condiciones_previas, "Ninguna2", 'Error mensaje no coincide!')
+        self.assertEqual(diagnostico_recuperado.condiciones_previas, "Ninguna", 'Error mensaje no coincide!')
 
 
 class verificarEdicionDiagnosticoTestCase(TestCase):
