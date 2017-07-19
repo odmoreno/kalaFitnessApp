@@ -50,48 +50,6 @@ class ingresarPacienteTestCase(TestCase):
         self.assertEquals(Paciente.objects.get(usuario=usuario).usuario, usuario)
         self.assertEquals(Usuario.objects.get(cedula=cedula).cedula, cedula)
 
-        class ingresarPacienteTestCase(TestCase):
-            def setUp(self):
-                s = Rol.objects.create(tipo='paciente')
-                s.save()
-                p = Rol.objects.create(tipo='fisioterapista')
-                p.save()
-
-            def testIngreso(self):
-                cedula = "0936934468"
-                nombre = "Carlos"
-                apellido = "Manosalvas"
-                direccion = "Calle 3"
-                telefono = "2365897"
-                ocupacion = "Student"
-                genero = "M"
-                edad = 25
-                fecha = 27 / 03 / 2005
-                user = User()
-                user.username = cedula
-                user.set_password("p.123456")
-                user.save()
-
-                usuario = Usuario()
-                usuario.usuario = user
-                rol = Rol.objects.get(tipo='paciente')
-                usuario.rol = rol
-                usuario.nombre = nombre
-                usuario.apellido = apellido
-                usuario.cedula = cedula
-                usuario.genero = genero
-                usuario.edad = edad
-                usuario.telefono = telefono
-                usuario.direccion = direccion
-                usuario.ocupacion = ocupacion
-                usuario.fecha = fecha
-                usuario.save()
-                paciente = Paciente()
-                paciente.usuario = usuario
-                paciente.save()
-
-                self.assertEquals(Paciente.objects.get(usuario=usuario).usuario, usuario)
-                self.assertEquals(Usuario.objects.get(cedula=cedula).cedula, cedula)
 
 class EliminarPacienteTestCase(TestCase):
     def setUp(self):
