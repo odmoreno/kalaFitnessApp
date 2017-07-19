@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
-    'fisioterapia.apps.FisioterapiaConfig'
+    'fisioterapia.apps.FisioterapiaConfig',
+    'nutricion.apps.NutricionConfig'
 ]
 
 MIDDLEWARE = [
