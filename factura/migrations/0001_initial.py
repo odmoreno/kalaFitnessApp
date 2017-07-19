@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('total', models.FloatField()),
                 ('estado', models.CharField(default='A', max_length=1)),
                 ('empresa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='kalaapp.Empresa')),
-                ('paciente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paciente.Paciente')),
+                ('paciente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='paciente.paciente')),
             ],
             options={
                 'db_table': 'facturas',

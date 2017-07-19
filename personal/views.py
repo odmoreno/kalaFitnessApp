@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
 from .forms import  UsuarioForm
 from personal.models import Personal
-from paciente.views import Paciente
+#from paciente.views import paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required

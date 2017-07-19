@@ -23,7 +23,7 @@ def index(request):
     Aqui van los datos que se quieran mostrar en el index de fisioterapia
     
     '''
-    return render(request,template)
+    return render(request, 'fisioterapia/index.html')
 
 
 def verMensajes(request, personal_id=None):
@@ -44,6 +44,8 @@ def verMensajes(request, personal_id=None):
             'nombres':nombres,
             'usuarios':usuarios
         }
+
+    data={}
     return render(request,template,data)
 
 def leerMensaje(request, mensaje_id):

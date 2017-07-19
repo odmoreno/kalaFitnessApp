@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kalaapp.apps.KalaappConfig',
-    'paciente.apps.PacienteConfig',
     'personal.apps.PersonalConfig',
+    'paciente.apps.PacienteConfig',
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
+    'fisioterapia.apps.FisioterapiaConfig'
 ]
 
 MIDDLEWARE = [

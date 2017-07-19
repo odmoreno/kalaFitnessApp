@@ -1,6 +1,6 @@
 
 from django.conf.urls import url
-from paciente.views import reportePDF, reportePacientes
+#from paciente.views import reportePDF, reportePacientes
 from . import views
 
 app_name = 'paciente'
@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^(?P<paciente_id>[0-9]+)/$', views.detallePaciente, name='detail'),
     #url(r'^modificar/(?P<paciente_id>\d+)/$', views.PacienteModificar, name="modificar"),
     url(r'^eliminar/(?P<paciente_id>\d+)/', views.PacienteEliminar, name="eliminar"),
-    url(r'^reporte/$', reportePacientes),
-    url(r'^pdf/$', reportePDF, name="reportePDF"),
+    url(r'^reporte/$', views.reportePacientes, name='reportePacientes'),
+    url(r'^pdf/$', views.reportePDF, name="reportePDF"),
 ]

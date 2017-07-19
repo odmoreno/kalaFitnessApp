@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from paciente.models import Paciente
+#from paciente.models import paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
