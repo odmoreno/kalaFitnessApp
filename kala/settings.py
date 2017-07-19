@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'personal.apps.PersonalConfig',
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -84,23 +83,26 @@ WSGI_APPLICATION = 'kala.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'gestionhc',
-         'USER': 'b39a26ea8a2c83',
-         'PASSWORD': '49e6b5e4',
-         'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
-         'PORT': '3306',
-     },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'kalaapp',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    #     'PORT': '3307',
-    # }
+     # 'default': {
+     #     'ENGINE': 'django.db.backends.mysql',
+     #     'NAME': 'gestionhc',
+     #     'USER': 'b39a26ea8a2c83',
+     #     'PASSWORD': '49e6b5e4',
+     #     'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
+     #     'PORT': '3306',
+     # },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gestionhc',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3307',
+    }
 }
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 # Password validation

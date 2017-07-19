@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Kala App{% endblock %}</title>
+    <title>{% block title %}Mensajes{% endblock %}</title>
     <!-- Loads the path to your static files -->
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,31 +28,17 @@
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{% url 'paciente:index' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Pacientes
+                    <a href="{% url 'personal:nuevoMensaje' %}">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Nuevo Mensaje
                     </a>
                 </li>
-                <li class="">
-                    <a href="{% url 'paciente:paciente' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Añadir Paciente
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{% url 'paciente:reportePDF' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Reporte Paciente
-                    </a>
-                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="#">
-                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp; About
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true" ></span>&nbsp; Logout
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
                     </a>
                 </li>
             </ul>
@@ -61,7 +47,25 @@
 
     </div>
 </nav>
-    {% block body %}
-    {% endblock %}
-</body>
-</html>
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {% for m in mensajes %}
+             <div class="list-group">
+                 {% for u in usuarios %}
+                    {% if u.usuario == m.sender %}
+                 <a href="{% url 'personal:leerMensaje' m.pk %}" class="list-group-item"> <span class="glyphicon glyphicon-envelope"> Mensaje de {{ u.nombre }} {{ u.apellido }}</span></a>
+                    {% endif %}
+                 {% endfor %}
+             </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+
+</div>
+{% endblock %}

@@ -9,6 +9,7 @@ class UsuarioForm(forms.ModelForm):
         model = Usuario
         fields = ['nombre', 'apellido', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'foto']
 
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
