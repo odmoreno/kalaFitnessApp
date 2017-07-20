@@ -41,21 +41,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="200" placeholder="Condiciones previas"></textarea>
+                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="200" placeholder="Condiciones previas">{ % if diagnostico %}{{diagnostico.condiciones_previas}}{ % endif %}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="200" placeholder="Area afectada"></textarea>
+                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="200" placeholder="Area afectada">{ % if diagnostico %}{{diagnostico.area_afectada}}{ % endif %}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea class="form-control" rows="4" name="receta" maxlength="200" placeholder="Receta"></textarea>
+                                                <textarea class="form-control" rows="4" name="receta" maxlength="200" placeholder="Receta">{ % if diagnostico %}{{diagnostico.receta}}{ % endif %}</textarea>
                                             </div>
                                         </div>
 

@@ -171,3 +171,4 @@ class verificarEliminacionDiagnosticoTestCase(TestCase):
         diagnostico_recuperado_f = Diagnostico.objects.get(id=diagnostico_recuperado.id)
 
         self.assertIsNone(diagnostico_recuperado_f, 'Error diagnostico existe!')
+
