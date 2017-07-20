@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
                 ('receta', models.CharField(default='', max_length=200)),
                 ('rutina', models.CharField(default='', max_length=200)),
                 ('estado', models.CharField(default='A', max_length=1)),
-                ('paciente', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='paciente.paciente')),
+                ('paciente', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='paciente.Paciente')),
                 ('personal', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='personal.Personal')),
             ],
             options={
