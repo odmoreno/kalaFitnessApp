@@ -9,57 +9,51 @@ from personal.models import Personal
 from paciente.models import Paciente
 #from django.utils.timezone import  now
 from django.utils import timezone
+import datetime
 # Create your models here.
 
-TIPO =(('alta', 'alta'),
-        ('media', 'media'),
-        ('baja', 'baja'))
-
-class EstadoFisico(TimeModel):
-    personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
-    paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
-    flexiones = models.PositiveSmallIntegerField(default=1, null=False)
-    sentadillas = models.PositiveSmallIntegerField(default=1, null=False)
-    saltoLargo = models.PositiveSmallIntegerField(default=1, null=False)
-    suspension = models.CharField(max_length=200, choices= TIPO, default='baja', null=False)
-    abdomen_bajo = models.PositiveSmallIntegerField(default=1, null=False)
-    abdomen_alto = models.PositiveSmallIntegerField(default=1, null=False)
-    espinales = models.PositiveSmallIntegerField(default=1, null=False)
-    lumbares = models.PositiveSmallIntegerField(default=1, null=False)
-    trenSuperior = models.TimeField(auto_now_add=True, blank=True)
-    trenInferior = models.TimeField(auto_now_add=True, blank=True)
-    #duration = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
-
-    class Meta:
-        #managed = False
-        db_table = 'estadofisico'
-        unique_together = (('id', 'personal'),)
+TIPO =(('alta', 'Alta'),
+        ('media', 'Media'),
+        ('baja', 'Baja'))
 
 class Ficha(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
+
+    #estado = models.OneToOneField('EstadoFisico', on_delete=models.CASCADE, unique=True)
     fecha = models.DateField(default=timezone.now, blank=False, null=False)
-    altura = models.FloatField(default=1.0, null=False)
-    peso = models.FloatField(default=1.0, null=False)
-    imc = models.FloatField(default=1.0, null=False)
-    musculo = models.FloatField(default=1.0, null=False)
-    grasa_visceral = models.FloatField(default=1.0, null=False)
-    grasa_porcentaje = models.FloatField(default=1.0, null=False)
-    cuello = models.FloatField(default=1.0, null=False)
-    hombros = models.FloatField(default=1.0, null=False)
-    pecho = models.FloatField(default=1.0, null=False)
-    brazo_derecho = models.FloatField(default=1.0, null=False)
-    brazo_izquierdo = models.FloatField(default=1.0, null=False)
-    antebrazo_derecho = models.FloatField(default=1.0, null=False)
-    antebrazo_izquierdo = models.FloatField(default=1.0, null=False)
-    cintura = models.FloatField(default=1.0, null=False)
-    cadera = models.FloatField(default=1.0, null=False)
-    muslo_derecho = models.FloatField(default=1.0, null=False)
-    muslo_izquierdo = models.FloatField(default=1.0, null=False)
-    pantorrilla_derecha = models.FloatField(default=1.0, null=False)
-    pantorrilla_izquierda = models.FloatField(default=1.0, null=False)
+    altura = models.FloatField(null=True)
+    peso = models.FloatField(null=True)
+    imc = models.FloatField(null=True)
+    musculo = models.FloatField(null=True)
+    grasa_visceral = models.FloatField(null=True)
+    grasa_porcentaje = models.FloatField(null=True)
+    cuello = models.FloatField(null=True)
+    hombros = models.FloatField(null=True)
+    pecho = models.FloatField(null=True)
+    brazo_derecho = models.FloatField(null=True)
+    brazo_izquierdo = models.FloatField(null=True)
+    antebrazo_derecho = models.FloatField(null=True)
+    antebrazo_izquierdo = models.FloatField(null=True)
+    cintura = models.FloatField(null=True)
+    cadera = models.FloatField(null=True)
+    muslo_derecho = models.FloatField(null=True)
+    muslo_izquierdo = models.FloatField(null=True)
+    pantorrilla_derecha = models.FloatField(null=True)
+    pantorrilla_izquierda = models.FloatField(null=True)
+
+    # duration = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
+    flexiones = models.PositiveSmallIntegerField(default=1, null=False)
+    sentadillas = models.PositiveSmallIntegerField(default=1, null=False)
+    saltoLargo = models.PositiveSmallIntegerField(default=1, null=False)
+    suspension = models.CharField(max_length=200, choices=TIPO, default='baja', null=False)
+    abdomen_bajo = models.PositiveSmallIntegerField(default=1, null=False)
+    abdomen_alto = models.PositiveSmallIntegerField(default=1, null=False)
+    espinales = models.PositiveSmallIntegerField(default=1, null=False)
+    lumbares = models.PositiveSmallIntegerField(default=1, null=False)
+    trenSuperior = models.TimeField(blank=True, default=datetime.time(00, 00))
+    trenInferior = models.TimeField( blank=True, default=datetime.time(00,00))
 
     class Meta:
         #managed = False
         db_table = 'ficha'
-        unique_together = (('id', 'personal'),)

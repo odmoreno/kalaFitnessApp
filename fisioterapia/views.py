@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
+from .forms import FichaForm
 
 
 from django.shortcuts import render
@@ -18,13 +19,23 @@ from forms import ComentarioForm
 
 # Create your views here.
 def index(request):
-    template="fisioterapia/index.html"
-    '''
-    
-    Aqui van los datos que se quieran mostrar en el index de fisioterapia
-    
-    '''
-    return render(request, 'fisioterapia/index.html')
+    template="fisioterapia/ficha-temp.html"
+    form = FichaForm(request.POST or None)
+    print ("No valido aun ...")
+    print form.is_valid()
+    print form.visible_fields()
+    print form.fields
+    print  form
+    if form.is_valid():
+        ficha = form.save(commit=False)
+        print ("print de fichas")
+        print ficha
+        print ficha.trenSuperior , ficha.trenInferior, ficha.peso, ficha.altura
+        return render(request, template)
+    context = {
+        "form": form,
+    }
+    return render(request, template, context)
 
 
 def verMensajes(request, personal_id=None):
