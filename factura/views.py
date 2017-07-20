@@ -9,20 +9,14 @@ ACTUALIZADO EN 20/06/2017
 
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpRequest,HttpResponse
-from kalaapp.models import Empresa, Usuario
+from kalaapp.models import Empresa
 from paciente.models import Paciente
 from django.db.models.functions import Concat
 from django.db.models import Value
-from django.db import transaction
-from django.urls.base import reverse
 from django.contrib import messages
-from django.contrib.messages import get_messages
 from django.db import transaction
 from factura.models import Facturas
-from django.contrib.auth.models import User
-from django.urls.base import reverse
-
+from datetime import date
 
 '''
 Funcion: listarFacturas
@@ -32,7 +26,7 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las facturas
 Funcion que retorna todas las facturas leidas desde la base de datos
 '''
 def listarFacturas(request):
-    template = 'factura/factura.html'
+    template = 'factura.html'
     contexto={}
     contexto['facturas'] = Facturas.objects.filter(estado='A')\
         .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
@@ -50,7 +44,7 @@ Funcion que permite crear una factura
 @transaction.atomic
 def crearFactura(request):
 
-    template = 'factura/crear.html'
+    template = 'crear.html'
     contexto={}
 
     if request.method == 'POST':
@@ -72,6 +66,7 @@ def crearFactura(request):
 
     contexto['empresas'] = empresas
     contexto['pacientes'] = pacientes
+    contexto['hoy'] = date.today()
     return render(request, template_name=template, context=contexto)
 
 '''
@@ -104,7 +99,7 @@ Funcion que permite eliminar una factura existente
 '''
 @transaction.atomic
 def eliminarFactura(request, id=0):
-    template='factura/factura.html'
+    template='factura.html'
     contexto = {}
 
     if request.method == 'POST':
@@ -130,7 +125,8 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las empresas
 Funcion que permite obtener todas las facturas creadas
 '''
 def apiFactura(request):
-    template = "factura/factura.html"
+    template = "factura.html"
     facturas = Facturas.objects.all()
     contexto = {"facturas": facturas}
     return render(request, template_name=template, context=contexto)
+

@@ -5,6 +5,8 @@ from django import template
 
 '''
 register = template.Library()
-@register.simple_tag(name=vencimiento)
+
+@register.filter(name='vencimiento')
 def validarFechadeVencimiento(fecha):
-    return fecha + timedelta(days = 365)
+    vencimiento = fecha + timedelta(days = 365)
+    return vencimiento.strftime('%d/%m/%Y')
