@@ -98,6 +98,7 @@ def getDiagnostico(request):
         diagnostico = Diagnostico()
         diagnostico.personal = Personal.objects.filter(estado='A', id=1).first()
         diagnostico.paciente = Paciente.objects.filter(estado='A', id=request.POST.get('paciente', 0)).first()
+        '''
         diagnostico.altura = request.POST.get('altura', 1.0)
         diagnostico.peso = request.POST.get('peso', 1.0)
         diagnostico.imc = request.POST.get('imc', 1.0)
@@ -123,10 +124,13 @@ def getDiagnostico(request):
         diagnostico.espinales = request.POST.get('espinales', 1)
         diagnostico.lumbares = request.POST.get('lumbares', 1)
         diagnostico.sentadillas = request.POST.get('sentadillas', 1)
+        '''
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
         diagnostico.area_afectada = request.POST.get('areaafectada', '')
-        diagnostico.rutina = request.POST.get('rutina', '')
+        #diagnostico.rutina = request.POST.get('rutina', '')
+        #diagnostico.rutina = ?
         diagnostico.receta = request.POST.get('receta', '')
+
         diagnostico.save()
     except :
         return None
@@ -205,6 +209,7 @@ def guardarDiagnostico(request):
         try:
             diagnostico = Diagnostico.objects.filter(estado='A', id=request.POST.get('diagnostico_id', 0)).first()
             #diagnostico.paciente = ?
+            '''
             diagnostico.altura = request.POST.get('altura', 1.0)
             diagnostico.peso = request.POST.get('peso', 1.0)
             diagnostico.imc = request.POST.get('imc', 1.0)
@@ -230,9 +235,11 @@ def guardarDiagnostico(request):
             diagnostico.espinales = request.POST.get('espinales', 1)
             diagnostico.lumbares = request.POST.get('lumbares', 1)
             diagnostico.sentadillas = request.POST.get('sentadillas', 1)
+            '''
             diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
             diagnostico.area_afectada = request.POST.get('areaafectada', '')
-            diagnostico.rutina = request.POST.get('rutina', '')
+
+            #diagnostico.rutina = ?
             diagnostico.receta = request.POST.get('receta', '')
             diagnostico.save()
         except:
