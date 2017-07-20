@@ -59,7 +59,7 @@ def crearFactura(request):
         if factura is not None:
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error inesperado!')
+            messages.add_message(request, messages.WARNING, 'Error inesperado!')
         return redirect('factura:ListarFacturas')
 
     empresas = Empresa.objects.filter(estado='A') \
@@ -100,7 +100,7 @@ Entradas: - request
           - id: id de la factura a eliminar
 Salidas: ninguna
 
-Funcion que permiteeliminar una factura existente
+Funcion que permite eliminar una factura existente
 '''
 @transaction.atomic
 def eliminarFactura(request, id=0):

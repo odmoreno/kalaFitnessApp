@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'paciente.apps.PacienteConfig',
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
-    'fisioterapia.apps.FisioterapiaConfig'
+    'fisioterapia.apps.FisioterapiaConfig',
+    'nutricion.apps.NutricionConfig'
 ]
 
 MIDDLEWARE = [
@@ -94,7 +95,7 @@ DATABASES = {
      },
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'kalaapp',
+    #     'NAME': 'gestionhc',
     #     'USER': 'root',
     #     'PASSWORD': '',
     #     'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
