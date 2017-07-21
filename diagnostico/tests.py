@@ -10,8 +10,6 @@ from paciente.models import Paciente
 # Create your tests here.
 
 class verificarCreacionDiagnosticoTestCase(TestCase):
-    personal_recuperado = None
-    paciente_recuperado = None
 
     def setUp(self):
         personal = Personal.objects.create(usuario__nombre='christian', usuario__apellido='jaramillo')
@@ -21,23 +19,23 @@ class verificarCreacionDiagnosticoTestCase(TestCase):
         paciente_recuperado = Paciente.objects.get(id=paciente.id)
 
 
-    def crearDiagnostico(self):
+    def testCrearDiagnostico(self):
         diagnostico = Diagnostico()
-        rutina = Rutina()
-        subRutina = Subrutina()
-        # diagnostico.personal = Personal.objects.filter(usuario__nombre='christian', usuario__apellido='jaramillo').first()
-        # diagnostico.paciente = Paciente.objects.filter(usuario__nombre='carola', usuario__apellido='toledo').first()
-        diagnostico.personal = personal_recuperado
-        diagnostico.paciente = paciente_recuperado
+        diagnostico.personal = Personal.objects.filter(usuario__nombre='christian', usuario__apellido='jaramillo').first()
+        diagnostico.paciente = Paciente.objects.filter(usuario__nombre='carola', usuario__apellido='toledo').first()
         diagnostico.condiciones_previas = "Ninguna"
         diagnostico.area_afectada = "Rodilla derecha"
-        diagnostico.rutina = "Realizar ejercicios para mejorar rodilla por 30 min"
+        diagnostico.receta = "Realizar ejercicios para mejorar rodilla por 30 min"
+
+        diagnostico.rutina = Rutina.objects.create()
+        subRutina = Subrutina()
         subRutina.nombre = "Ejercicios isométricos de los músculos cuádriceps"
         subRutina.detalle = "Con la pierna recta, apriete los músculos del muslo lo más que pueda y manténgalo durante 3-5 segundos. Después relájese y vuelva a repetirlo. Si tiene dificultad puede ponerse una toalla enrollada debajo de la rodilla para aumentar la sensación."
         subRutina.veces = 5
         subRutina.repeticiones = 4
         subRutina.link = "https://www.youtube.com/watch?v=mlucy2Pz1Fc"
-        diagnostico.receta = None
+        subRutina.save()
+        diagnostico.rutina.subrutina = subRutina
         diagnostico.save()
 
         diagnostico_recuperado = Diagnostico.objects.filter(id=diagnostico.id).first()
@@ -59,7 +57,7 @@ class verificarEdicionDiagnosticoTestCase(TestCase):
         personal_recuperado = Personal.objects.get(id=personal.id)
         paciente_recuperado = Paciente.objects.get(id=paciente.id)
 
-    def editarDiagnostico(self):
+    def testEditarDiagnostico(self):
         diagnostico = Diagnostico()
         diagnostico.personal = Personal.objects.filter(usuario__nombre='christian',
                                                        usuario__apellido='jaramillo').first()
@@ -88,7 +86,7 @@ class verificarEliminacionDiagnosticoTestCase(TestCase):
         personal_recuperado = Personal.objects.get(id=personal.id)
         paciente_recuperado = Paciente.objects.get(id=paciente.id)
 
-    def eliminarDiagnostico(self):
+    def testEliminarDiagnostico(self):
         diagnostico = Diagnostico()
         subRutina = Subrutina()
         diagnostico.personal = Personal.objects.filter(usuario__nombre='christian',
