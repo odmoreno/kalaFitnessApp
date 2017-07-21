@@ -102,19 +102,14 @@ def getDiagnostico(request):
         diagnostico.paciente = Paciente.objects.filter(estado='A', id=request.POST.get('paciente', 0)).first()
         print diagnostico.paciente.id
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
-        print diagnostico.condiciones_previas
         diagnostico.area_afectada = request.POST.get('areaafectada', '')
-        print diagnostico.area_afectada
         diagnostico.receta = request.POST.get('receta', '')
-        print diagnostico.receta
-        s = Subrutina(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
-        print s.link, s.detalle
-        s.save()
-        diagnostico.rutina = Rutina(s)
-        print diagnostico.rutina.subrutina.values('link')
+        s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
+        diagnostico.rutina = Rutina.objects.create()
+        diagnostico.rutina.subrutina.add(s)
         diagnostico.save()
-        print s.descanso
-    except :
+    except Exception, e:
+        print 'EXCEPTION: ' + str(e)
         return None
     return diagnostico
 
@@ -175,7 +170,7 @@ def editarDiagnostico(request, id=0):
         contexto['diagnostico'] = diagnostico
         contexto['pacientes'] = pacientes
 
-        return render(request, template_name=template, context=contexto)
+    return render(request, template_name=template, context=contexto)
 
 '''
 Funcion: guardarDiagnostico
@@ -190,40 +185,11 @@ def guardarDiagnostico(request):
     if request.method == 'POST':
         try:
             diagnostico = Diagnostico.objects.filter(estado='A', id=request.POST.get('diagnostico_id', 0)).first()
-            #diagnostico.paciente = ?
-            '''
-            diagnostico.altura = request.POST.get('altura', 1.0)
-            diagnostico.peso = request.POST.get('peso', 1.0)
-            diagnostico.imc = request.POST.get('imc', 1.0)
-            diagnostico.musculo = request.POST.get('musculo', 1.0)
-            diagnostico.grasa_visceral = request.POST.get('grasavisceral', 1.0)
-            diagnostico.grasa_porcentaje = request.POST.get('grasa', 1.0)
-            diagnostico.cuello = request.POST.get('cuello', 1.0)
-            diagnostico.hombros = request.POST.get('hombros', 1.0)
-            diagnostico.pecho = request.POST.get('pecho', 1.0)
-            diagnostico.brazo_derecho = request.POST.get('brazoderecho', 1.0)
-            diagnostico.brazo_izquierdo = request.POST.get('brazoizquierdo', 1.0)
-            diagnostico.antebrazo_derecho = request.POST.get('antebrazoderecho', 1.0)
-            diagnostico.antebrazo_izquierdo = request.POST.get('antebrazoizquierdo', 1.0)
-            diagnostico.cintura = request.POST.get('cintura', 1.0)
-            diagnostico.cadera = request.POST.get('cadera', 1.0)
-            diagnostico.musloderecho = request.POST.get('musloderecho', 1.0)
-            diagnostico.musloizquierdo = request.POST.get('musloizquierdo', 1.0)
-            diagnostico.pantorrilla_derecha = request.POST.get('pantorrilladerecha', 1.0)
-            diagnostico.pantorrilla_izquierda = request.POST.get('pantorrillaizquierda', 1.0)
-            diagnostico.flexiones = request.POST.get('flexiones', 1)
-            diagnostico.cadera_arriba = request.POST.get('caderaarriba', 1)
-            diagnostico.abdomen = request.POST.get('abdomen', 1)
-            diagnostico.espinales = request.POST.get('espinales', 1)
-            diagnostico.lumbares = request.POST.get('lumbares', 1)
-            diagnostico.sentadillas = request.POST.get('sentadillas', 1)
-            '''
             diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
             diagnostico.area_afectada = request.POST.get('areaafectada', '')
-
-            #diagnostico.rutina = ?
             diagnostico.receta = request.POST.get('receta', '')
             diagnostico.save()
+            messages.add_message(request, messages.SUCCESS, 'Diagnostico actualiado satisfactoriamente!')
         except:
             messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico!')
 
