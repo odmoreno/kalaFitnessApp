@@ -64,7 +64,7 @@
                                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label">Rutina:</label>
-                                                <button type="button" class="btn btn-default" style="float: right">Agregar rutina</button>
+                                                <!--<button type="button" class="btn btn-default" style="float: right">Agregar rutina</button>-->
 
                                                     <div  class="row">
                                                         <div class="panel-body">
@@ -72,75 +72,82 @@
                                                                     <div class="panel panel-default">
                                                                         <div class="panel-heading">
                                                                             <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Titulo y Descripcion</a>
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Descripcion rutina</a>
                                                                             </h4>
                                                                         </div>
                                                                         <div id="collapseOne" class="panel-collapse collapse in">
                                                                             <div class="panel-body">
-                                                                                <label class="control-label">Titulo:</label>
+                                                                                <label class="control-label">nombre:</label>
                                                                                 <textarea class="form-control" rows="1" name="tituloRutina" maxlength="100" placeholder="nombre de la rutina"></textarea>
-                                                                                <br/>
-                                                                                <label class="control-label">descripcion:</label>
-                                                                                <textarea class="form-control" rows="3" name="descripcionRutina" maxlength="1000" placeholder="descripcion de la rutina"></textarea>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="panel panel-default">
-                                                                        <div class="panel-heading">
-                                                                            <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Ejercicios</a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id="collapseTwo" class="panel-collapse collapse">
-                                                                            <div class="panel-body">
                                                                                 <table>
                                                                                         <tr>
                                                                                             <th class="titulo">Ejercicios</th>
+                                                                                            <th class="titulo">Detalle</th>
                                                                                             <th class="titulo">Series</th>
                                                                                             <th class="titulo">Repeticiones</th>
+                                                                                            <th class="titulo">Descanso(min)</th>
                                                                                             <th class="titulo">Enlace Video</th>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td><textarea class="form-control" rows="1" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="120" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></textarea></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td><textarea class="form-control" rows="1" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="120" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></textarea></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td><textarea class="form-control" rows="1" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="120" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td><textarea class="form-control" rows="1" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
                                                                                             <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="120" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
+                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
                                                                                         </tr>
                                                                                 </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--<div class="panel panel-default">
+                                                                        <div class="panel-heading">
+                                                                            <h4 class="panel-title">
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Descripcion rutina</a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id="collapseTwo" class="panel-collapse collapse">
+                                                                            <div class="panel-body">
+
                                                                                </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="panel panel-default">
                                                                         <div class="panel-heading">
                                                                             <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Recomendaciones</a>
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Descripcion rutina</a>
                                                                             </h4>
                                                                         </div>
                                                                         <div id="collapseThree" class="panel-collapse collapse">
                                                                             <div class="panel-body">
-                                                                                <textarea class="form-control" rows="4" cols="60" name="recomendacionEjercicio" maxlength="1000" placeholder="escriba aqui sus recomendaciones"></textarea>
+
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>-->
                                                                 </div>
                                                         </div>
                                                     </div>
