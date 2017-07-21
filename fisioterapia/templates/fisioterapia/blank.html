@@ -21,6 +21,12 @@
     <!-- Custom CSS -->
     <link href="{% static 'dist/css/sb-admin-2.css' %}" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="{% static 'vendor/datatables-plugins/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{% static 'vendor/datatables-responsive/dataTables.responsive.css' %}" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
@@ -41,6 +47,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'dist/js/sb-admin-2.js' %}"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-responsive/dataTables.responsive.js' %}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </head>
 
@@ -293,13 +312,10 @@
                             <a href="#"><i class="fa fa-user fa-lg"></i> Ficha<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Crear</a>
+                                    <a href="{% url 'fisioterapia:lista_fichas' %}">Listar</a>
                                 </li>
                                 <li>
-                                    <a href="">Editar</a>
-                                </li>
-                                <li>
-                                    <a href="">Eliminar</a>
+                                    <a href="{% url 'fisioterapia:crear_ficha' %}">Crear</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -331,6 +347,8 @@
                     <!-- /.col-lg-12 -->
     </div>
     <!-- /#wrapper -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
 
 </body>
 

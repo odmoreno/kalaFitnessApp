@@ -4,8 +4,9 @@ from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
+from paciente.models import Paciente
 from personal.models import Personal
-from paciente.views import Paciente
+from fisioterapia.models import Ficha
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -17,23 +18,47 @@ from .forms import FichaForm
 from django.shortcuts import render
 from forms import ComentarioForm
 
-# Create your views here.
 def index(request):
-    template="fisioterapia/ficha-temp.html"
+    #template = "fisioterapia/blank.html"
+    template = "fisioterapia/lista-fichas.html"
+    return render(request, template)
+
+@transaction.atomic
+def crear_ficha(request):
+    template = "fisioterapia/ficha-temp.html"
     form = FichaForm(request.POST or None)
-    print ("No valido aun ...")
-    print form.is_valid()
-    print form.visible_fields()
-    print form.fields
-    print  form
+    pacientes = Paciente.objects.all()
+    print form._errors
     if form.is_valid():
         ficha = form.save(commit=False)
-        print ("print de fichas")
-        print ficha
-        print ficha.trenSuperior , ficha.trenInferior, ficha.peso, ficha.altura
-        return render(request, template)
+
+        print request.POST.get('paciente')
+        paciente_id = request.POST.get('paciente')
+        paciente = get_object_or_404(Paciente, pk=paciente_id)
+        personal = get_object_or_404(Personal, pk=1)
+        ficha.paciente = paciente
+        ficha.personal = personal
+        ficha.save()
+        return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
-        "form": form,
+        "form": form, "pacientes": pacientes
+    }
+    return render(request, template, context)
+
+def listar_fichas(request):
+
+    template = "fisioterapia/lista-fichas.html"
+    fichas = Ficha.objects.all()
+    print fichas
+    for ficha in fichas:
+        print ficha
+        print ficha.paciente.usuario.nombre
+        print ficha.fecha, ficha.fecha.year, ficha.fecha.month, ficha.fecha.day
+        print ficha.paciente_id
+        print ficha.paciente
+
+    context = {
+        "fichas": fichas
     }
     return render(request, template, context)
 
@@ -86,3 +111,4 @@ def nuevoMensaje(request):
         return render(request, "fisioterapia/mensajes.html")
 
     return render(request, "fisioterapia/nuevoMensaje.html", data)
+

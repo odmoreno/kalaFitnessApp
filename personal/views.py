@@ -31,13 +31,18 @@ def eliminarPersonal(request, personal_id):
 def nuevoPersonal(request):
     form = UsuarioForm(request.POST or None)
     if form.is_valid():
+        print  "dentro"
         personal = form.save(commit=False)
+        print personal
         user = User()
         user.username = form.cleaned_data['cedula']
         user.set_password('1234')
         user.save()
 
-        rol = Rol.objects.get(tipo='nutricionista')
+        print Rol.objects.get()
+
+        rol = Rol.objects.get(tipo='fisioterapista')
+        print  rol.tipo
         #rol.save()
 
         personal.usuario = user

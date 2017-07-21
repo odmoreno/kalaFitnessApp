@@ -25,86 +25,24 @@
                                 <li><a href="#estado-pills" data-toggle="tab">Estado Fisico</a>
                                 </li>
                             </ul>
-
-                            <form class="form-vertical" method="post" action="">
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane fade in active" id="ficha-pills">
-                                        <h4>Home Tab</h4>
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Paciente:</label>
-                                                        <select class="form-control" id="paciente_id" name="paciente" autofocus>
-                                                            {% if pacientes %}
-                                                                {% for paciente in pacientes %}
-                                                                    <option value="{{ paciente.id }}">{{ paciente.nombre_completo }}</option>
-                                                                {% endfor %}
-                                                            {% endif %}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% include 'fisioterapia/form_template_ficha.html' %}
-                                    </div>
-                                    <div class="tab-pane fade" id="estado-pills">
-                                        <h4>Profile Tab</h4>
-                                        <div class="row" style="padding-top: 20px">
-                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.flexiones.label_tag }}</label>
-                                                    {{ form.flexiones }}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.espinales.label_tag }}</label>
-                                                    {{ form.espinales }}
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.abdomen_bajo.label_tag }}</label>
-                                                    {{ form.abdomen_bajo }}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.abdomen_alto.label_tag }}</label>
-                                                    {{ form.abdomen_alto }}
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.saltoLargo.label_tag }}</label>
-                                                    {{ form.saltoLargo }}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">{{ form.lumbares.label_tag }}</label>
-                                                    {{ form.lumbares }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="padding-top: 20px">
-                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                                <div class="form-group">
-                                                     <label class="control-label">{{ form.sentadillas.label_tag }}</label>
-                                                     {{ form.sentadillas }}
-                                                </div>
-                                                <div class="form-group">
-                                                     <label class="control-label">{{ form.suspension.label_tag }}</label>
-                                                     {{ form.suspension }}
-                                                </div>
-                                                <div class="form-group">
-                                                     <label class="control-label">{{ form.trenSuperior.label_tag }}</label>
-                                                     {{ form.trenSuperior }}
-                                                </div>
-                                                <div class="form-group">
-                                                     <label class="control-label">{{ form.trenInferior.label_tag }}</label>
-                                                     {{ form.trenInferior }}
-                                                </div>
-                                            </div>
+                            <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Paciente:</label>
+                                            <select class="form-control" id="paciente_id" name="paciente" autofocus>
+                                                {% if pacientes %}
+                                                    {% for paciente in pacientes %}
+                                                        <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                {% include 'fisioterapia/form_template_ficha.html' %}
+                                <!-- Tab panes -->
                                 <div class="row" style="padding-top: 20px">
                                     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                         <div class="form-group">
