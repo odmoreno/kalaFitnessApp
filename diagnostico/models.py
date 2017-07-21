@@ -18,7 +18,6 @@ class Diagnostico(TimeModel):
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:
-        #managed = False
         db_table = 'diagnostico'
 
 class Rutina(TimeModel):
@@ -26,7 +25,6 @@ class Rutina(TimeModel):
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:
-        #managed = False
         db_table = 'rutina'
 
 class Subrutina(TimeModel):
