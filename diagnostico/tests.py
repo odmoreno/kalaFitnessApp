@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from .models import Diagnostico
+from .models import Diagnostico,Rutina,Subrutina
 from personal.models import Personal
 from paciente.models import Paciente
 
@@ -23,13 +23,20 @@ class verificarCreacionDiagnosticoTestCase(TestCase):
 
     def crearDiagnostico(self):
         diagnostico = Diagnostico()
+        rutina = Rutina()
+        subRutina = Subrutina()
         # diagnostico.personal = Personal.objects.filter(usuario__nombre='christian', usuario__apellido='jaramillo').first()
         # diagnostico.paciente = Paciente.objects.filter(usuario__nombre='carola', usuario__apellido='toledo').first()
         diagnostico.personal = personal_recuperado
         diagnostico.paciente = paciente_recuperado
         diagnostico.condiciones_previas = "Ninguna"
         diagnostico.area_afectada = "Rodilla derecha"
-        diagnostico.rutina = "Caminata en piscina por 30 minutos diarios"
+        diagnostico.rutina = "Realizar ejercicios para mejorar rodilla por 30 min"
+        subRutina.nombre = "Ejercicios isométricos de los músculos cuádriceps"
+        subRutina.detalle = "Con la pierna recta, apriete los músculos del muslo lo más que pueda y manténgalo durante 3-5 segundos. Después relájese y vuelva a repetirlo. Si tiene dificultad puede ponerse una toalla enrollada debajo de la rodilla para aumentar la sensación."
+        subRutina.veces = 5
+        subRutina.repeticiones = 4
+        subRutina.link = "https://www.youtube.com/watch?v=mlucy2Pz1Fc"
         diagnostico.receta = None
         diagnostico.save()
 
@@ -83,12 +90,18 @@ class verificarEliminacionDiagnosticoTestCase(TestCase):
 
     def eliminarDiagnostico(self):
         diagnostico = Diagnostico()
+        subRutina = Subrutina()
         diagnostico.personal = Personal.objects.filter(usuario__nombre='christian',
                                                        usuario__apellido='jaramillo').first()
         diagnostico.paciente = Paciente.objects.filter(usuario__nombre='carola', usuario__apellido='toledo').first()
         diagnostico.condiciones_previas = "Ninguna"
         diagnostico.area_afectada = "Rodilla derecha"
-        diagnostico.rutina = "Caminata en piscina por 30 minutos diarios"
+        diagnostico.rutina = "Realizar ejercicios para mejorar rodilla por 30 min"
+        subRutina.nombre = "Ejercicios isométricos de los músculos cuádriceps"
+        subRutina.detalle = "Con la pierna recta, apriete los músculos del muslo lo más que pueda y manténgalo durante 3-5 segundos. Después relájese y vuelva a repetirlo. Si tiene dificultad puede ponerse una toalla enrollada debajo de la rodilla para aumentar la sensación."
+        subRutina.veces = 5
+        subRutina.repeticiones = 4
+        subRutina.link = "https://www.youtube.com/watch?v=mlucy2Pz1Fc"
         diagnostico.receta = "Paracetamol 1440 diarias cada minuto"
         diagnostico.save()
 
