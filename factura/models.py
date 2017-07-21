@@ -12,10 +12,9 @@ from django.utils import timezone
 class Facturas(TimeModel):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    serie = models.CharField(max_length=10, unique=True, blank=False, null=False)
-    fecha_vencimiento = models.DateField(default=timezone.now, blank=False, null=False)
-    #subtotal = models.FloatField(blank=False, null=False)
-    total = models.FloatField(blank=False, null=False)
+    serie = models.CharField(max_length=25, unique=True, default='', null=False)
+    fecha_vencimiento = models.DateField(default=timezone.now, null=False)
+    total = models.FloatField(default=0, null=False)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:

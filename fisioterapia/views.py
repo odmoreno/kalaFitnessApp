@@ -107,7 +107,11 @@ def nuevoMensaje(request):
         'personal':personal,
         'form':form,
     }
-    if request.method == 'POST':
+    if form.is_valid():
+        para=form.cleaned_data["Destino"]
+        to_user=para[0].usuario.usuario
+
+        Inbox.send_message(request.user, to_user, form.cleaned_data["comentario"])
         return render(request, "fisioterapia/mensajes.html")
 
     return render(request, "fisioterapia/nuevoMensaje.html", data)

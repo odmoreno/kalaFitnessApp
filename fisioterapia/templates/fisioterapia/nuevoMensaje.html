@@ -58,7 +58,7 @@
         <div class="col-sm-4 col-md-4"></div>
         <div class="col-sm-4 col-md-4">
             <h4>Nuevo Mensaje</h4>
-           <form method="post" action="{% url 'personal:nuevoMensaje' %}">
+           <form method="post" action="{% url 'fisioterapia:nuevoMensajeF' %}">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
@@ -67,8 +67,12 @@
                         </div>
                         <label class="control-label col-sm-2">{{ field.label_tag }}</label>
                         <div class="col-sm-10">{{ field }}</div>
+
                     </div>
                 {% endfor %}
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Enviar Mensaje</button>
+                </div>
 
             </form>
 
