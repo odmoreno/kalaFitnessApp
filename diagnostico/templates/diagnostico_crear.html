@@ -25,7 +25,7 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Paciente:</label>
-                                                <select class="form-control" id="paciente_id" name="paciente" autofocus>
+                                                <select class="form-control" id="paciente_id" name="paciente" autofocus required>
                                                 {% if pacientes %}
                                                     {% for paciente in pacientes %}
                                                         <option value="{{ paciente.id }}">{{ paciente.nombre_completo }}</option>
@@ -41,21 +41,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="200" placeholder="Condiciones previas">{ % if diagnostico %}{{diagnostico.condiciones_previas}}{ % endif %}</textarea>
+                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="200" placeholder="Area afectada">{ % if diagnostico %}{{diagnostico.area_afectada}}{ % endif %}</textarea>
+                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea class="form-control" rows="4" name="receta" maxlength="200" placeholder="Receta">{ % if diagnostico %}{{diagnostico.receta}}{ % endif %}</textarea>
+                                                <textarea class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta"></textarea>
                                             </div>
                                         </div>
 

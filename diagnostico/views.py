@@ -25,10 +25,11 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.urls.base import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Rutina, Subrutina
 # Create your views here.
 
 def listarDiagnosticos(request):
-    template = 'diagnostico.html'
+    template = 'diagnostico_listar.html'
     contexto={}
     diagnosticos_por_pagina = 10
     diagnosticos_paginator = None
@@ -63,7 +64,7 @@ Funcion que permite crear un nuevo diagnostico
 '''
 @transaction.atomic
 def crearDiagnostico(request):
-    template = 'crear.html'
+    template = 'diagnostico_crear.html'
     contexto={}
 
     if request.method == 'POST':
@@ -97,41 +98,22 @@ def getDiagnostico(request):
     try:
         diagnostico = Diagnostico()
         diagnostico.personal = Personal.objects.filter(estado='A', id=1).first()
+        print diagnostico.personal.id
         diagnostico.paciente = Paciente.objects.filter(estado='A', id=request.POST.get('paciente', 0)).first()
-        '''
-        diagnostico.altura = request.POST.get('altura', 1.0)
-        diagnostico.peso = request.POST.get('peso', 1.0)
-        diagnostico.imc = request.POST.get('imc', 1.0)
-        diagnostico.musculo = request.POST.get('musculo', 1.0)
-        diagnostico.grasa_visceral = request.POST.get('grasavisceral', 1.0)
-        diagnostico.grasa_porcentaje = request.POST.get('grasa', 1.0)
-        diagnostico.cuello = request.POST.get('cuello', 1.0)
-        diagnostico.hombros = request.POST.get('hombros', 1.0)
-        diagnostico.pecho = request.POST.get('pecho', 1.0)
-        diagnostico.brazo_derecho = request.POST.get('brazoderecho', 1.0)
-        diagnostico.brazo_izquierdo = request.POST.get('brazoizquierdo', 1.0)
-        diagnostico.antebrazo_derecho = request.POST.get('antebrazoderecho', 1.0)
-        diagnostico.antebrazo_izquierdo = request.POST.get('antebrazoizquierdo', 1.0)
-        diagnostico.cintura = request.POST.get('cintura', 1.0)
-        diagnostico.cadera = request.POST.get('cadera', 1.0)
-        diagnostico.musloderecho = request.POST.get('musloderecho', 1.0)
-        diagnostico.musloizquierdo = request.POST.get('musloizquierdo', 1.0)
-        diagnostico.pantorrilla_derecha = request.POST.get('pantorrilladerecha', 1.0)
-        diagnostico.pantorrilla_izquierda = request.POST.get('pantorrillaizquierda', 1.0)
-        diagnostico.flexiones = request.POST.get('flexiones', 1)
-        diagnostico.cadera_arriba = request.POST.get('caderaarriba', 1)
-        diagnostico.abdomen = request.POST.get('abdomen', 1)
-        diagnostico.espinales = request.POST.get('espinales', 1)
-        diagnostico.lumbares = request.POST.get('lumbares', 1)
-        diagnostico.sentadillas = request.POST.get('sentadillas', 1)
-        '''
+        print diagnostico.paciente.id
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
+        print diagnostico.condiciones_previas
         diagnostico.area_afectada = request.POST.get('areaafectada', '')
-        #diagnostico.rutina = request.POST.get('rutina', '')
-        #diagnostico.rutina = ?
+        print diagnostico.area_afectada
         diagnostico.receta = request.POST.get('receta', '')
-
+        print diagnostico.receta
+        s = Subrutina(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
+        print s.link, s.detalle
+        s.save()
+        diagnostico.rutina = Rutina(s)
+        print diagnostico.rutina.subrutina.values('link')
         diagnostico.save()
+        print s.descanso
     except :
         return None
     return diagnostico
@@ -173,7 +155,7 @@ Funcion que permite editar un diagnostico existente
 '''
 @transaction.atomic
 def editarDiagnostico(request, id=0):
-    template = 'editar.html'
+    template = 'diagnostico_editar.html'
     contexto = {}
 
     if request.method == 'POST':

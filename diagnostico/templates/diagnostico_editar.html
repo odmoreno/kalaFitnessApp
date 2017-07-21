@@ -1,5 +1,4 @@
 {% extends 'blank.html' %}
-{% load l10n %}
 {% block title %}Editar diagn&oacute;stico{% endblock %}
 {% block content %}
     <!-- Page Content -->
@@ -41,21 +40,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="200" placeholder="Condiciones previas"></textarea>
+                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="100" placeholder="Condiciones previas">{{diagnostico.condiciones_previas}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="200" placeholder="Area afectada"></textarea>
+                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Area afectada">{{diagnostico.area_afectada}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea class="form-control" rows="4" name="receta" maxlength="200" placeholder="Receta"></textarea>
+                                                <textarea class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Receta">{{diagnostico.area_afectada}}</textarea>
                                             </div>
                                         </div>
 

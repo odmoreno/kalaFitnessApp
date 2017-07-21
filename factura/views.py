@@ -26,7 +26,7 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las facturas
 Funcion que retorna todas las facturas leidas desde la base de datos
 '''
 def listarFacturas(request):
-    template = 'factura.html'
+    template = 'factura_listar.html'
     contexto={}
     contexto['facturas'] = Facturas.objects.filter(estado='A')\
         .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
@@ -43,8 +43,7 @@ Funcion que permite crear una factura
 '''
 @transaction.atomic
 def crearFactura(request):
-
-    template = 'crear.html'
+    template = 'factura_crear.html'
     contexto={}
 
     if request.method == 'POST':
@@ -85,7 +84,7 @@ def getFactura(request):
         factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
         factura.total = request.POST.get('total')
         factura.save()
-    except AttributeError:
+    except:
         return None
     return factura
 
@@ -99,7 +98,7 @@ Funcion que permite eliminar una factura existente
 '''
 @transaction.atomic
 def eliminarFactura(request, id=0):
-    template='factura.html'
+    template='factura_listar.html'
     contexto = {}
 
     if request.method == 'POST':
@@ -125,7 +124,7 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las empresas
 Funcion que permite obtener todas las facturas creadas
 '''
 def apiFactura(request):
-    template = "factura.html"
+    template = "factura_listar.html"
     facturas = Facturas.objects.all()
     contexto = {"facturas": facturas}
     return render(request, template_name=template, context=contexto)
