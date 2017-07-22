@@ -98,9 +98,7 @@ def getDiagnostico(request):
     try:
         diagnostico = Diagnostico()
         diagnostico.personal = Personal.objects.filter(estado='A', id=1).first()
-        print diagnostico.personal.id
         diagnostico.paciente = Paciente.objects.filter(estado='A', id=request.POST.get('paciente', 0)).first()
-        print diagnostico.paciente.id
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
         diagnostico.area_afectada = request.POST.get('areaafectada', '')
         diagnostico.receta = request.POST.get('receta', '')
@@ -108,8 +106,7 @@ def getDiagnostico(request):
         diagnostico.rutina = Rutina.objects.create()
         diagnostico.rutina.subrutina.add(s)
         diagnostico.save()
-    except Exception, e:
-        print 'EXCEPTION: ' + str(e)
+    except:
         return None
     return diagnostico
 
