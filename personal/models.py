@@ -16,6 +16,9 @@ class Personal(TimeModel):
         db_table = 'personal'
         unique_together = (('id', 'usuario'),)
 
+    def __unicode__(self):
+        return '{} {} {}'.format(self.id, self.usuario.nombre, self.usuario.apellido)
+
 
 # class PersonalPlanificaciones(models.Model):
 #     planificacion = models.ForeignKey('Planificaciones', models.DO_NOTHING)

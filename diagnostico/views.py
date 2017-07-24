@@ -66,6 +66,7 @@ Funcion que permite crear un nuevo diagnostico
 def crearDiagnostico(request):
     template = 'diagnostico_crear.html'
     contexto={}
+    pacientes = None
 
     if request.method == 'POST':
         diagnostico = getDiagnostico(request)
@@ -80,9 +81,11 @@ def crearDiagnostico(request):
         pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=1)\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
-            .order_by('nombre_completo')  #.values_list('id', 'usuario__nombre', 'usuario__apellido') \
-    except:
-        messages.add_message(request, messages.WARNING, 'Error inesperado consultando pacientes!')
+            .order_by('nombre_completo')
+        if pacientes is not None and pacientes.count() == 0:
+            raise Exception
+    except Exception, e:
+        messages.add_message(request, messages.WARNING, 'No tiene pacientes asignados, consulte con su administrador! ')
 
     contexto['pacientes'] = pacientes
     return render(request, template_name=template, context=contexto)
@@ -97,8 +100,8 @@ Funcion que retorna un nuevo diagnostico con los datos ingresados en formulario
 def getDiagnostico(request):
     try:
         diagnostico = Diagnostico()
-        diagnostico.personal = Personal.objects.filter(estado='A', id=1).first()
-        diagnostico.paciente = Paciente.objects.filter(estado='A', id=request.POST.get('paciente', 0)).first()
+        diagnostico.personal = Personal.objects.get(estado='A', id=1)
+        diagnostico.paciente = Paciente.objects.get(estado='A', id=request.POST.get('paciente', 0))
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
         diagnostico.area_afectada = request.POST.get('areaafectada', '')
         diagnostico.receta = request.POST.get('receta', '')
@@ -152,12 +155,12 @@ def editarDiagnostico(request, id=0):
 
     if request.method == 'POST':
         try:
-            diagnostico = Diagnostico.objects.filter(estado='A', id=id).first()
+            diagnostico = Diagnostico.objects.get(estado='A', id=id)
         except:
             messages.add_message(request, messages.WARNING, 'Error inesperado consultando diagnostico!')
 
         try:
-            pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=1) \
+            pacientes = Paciente.objects.get(estado='A', pacientepersonal__personal_id=1) \
                 .values('id', 'usuario__nombre', 'usuario__apellido') \
                 .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
                 .order_by('nombre_completo')  # .values_list('id', 'usuario__nombre', 'usuario__apellido') \

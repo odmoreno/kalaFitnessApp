@@ -19,6 +19,11 @@ class Paciente(TimeModel):
         db_table = 'paciente'
         unique_together = (('id', 'usuario'),)
 
+    def __unicode__(self):
+        return '{} {} {} {} {} {}'.format(self.id, self.usuario.nombre, self.usuario.apellido,
+                                          self.n_hijos, self.observaciones, self.motivo_consulta)
+
+
 
 class PacientePersonal(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.CASCADE)
@@ -28,3 +33,7 @@ class PacientePersonal(TimeModel):
     class Meta:
         #managed = False
         db_table = 'paciente_personal'
+
+    def __unicode__(self):
+        return 'PacientePersonalID: {} --> PersonalID: {}, PacienteID: {}'.format(self.id, self.personal_id,
+                                                                                 self.paciente_id)
