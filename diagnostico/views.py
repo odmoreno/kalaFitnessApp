@@ -28,32 +28,49 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Rutina, Subrutina
 # Create your views here.
 
+'''
+Funcion: listarDiagnosticos
+Entradas: request
+Salidas: - HttpResponse con template diagnostico_listar.ntml y la lista de todos los diagnosticos
+
+Funcion que permite listar los diagnosticos existentes
+'''
 def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
     contexto={}
-    diagnosticos_por_pagina = 10
-    diagnosticos_paginator = None
 
     diagnosticos = Diagnostico.objects.filter(estado='A').order_by('-creado') \
-        .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido',\
-                                            Value(' '), 'paciente__usuario__nombre'))\
+        .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
+                                                  Value(' '), 'paciente__usuario__nombre')) \
         .annotate(paciente_id=Concat('paciente_id', Value('')))
 
-    pag = request.GET.get('pag', 1)
-
-    paginator = Paginator(diagnosticos, diagnosticos_por_pagina)
-
-    try:
-        diagnosticos_paginator = paginator.page(pag)
-    except PageNotAnInteger:
-        diagnosticos_paginator = paginator.page(1)
-    except EmptyPage:
-        diagnosticos_paginator = paginator.page(paginator.num_pages)
-
-    contexto['diagnosticos_paginator'] = diagnosticos_paginator
-    contexto['diagnosticos'] = diagnosticos
+    contexto['diagnosticos_paginator'] = paginar(request, diagnosticos)
 
     return render(request, template_name=template, context=contexto)
+
+'''
+Funcion: paginarDiagnosticos
+Entradas: request, lista de diagnosticos
+Salidas: - diagnosticos paginados
+
+Funcion que permite listar los diagnosticos existentes
+'''
+def paginar(request, diagnosticos):
+    if diagnosticos is not None:
+        diagnosticos_por_pagina = 10
+        diagnosticos_paginator = None
+
+        pag = request.GET.get('pag', 1)
+        paginator = Paginator(diagnosticos, diagnosticos_por_pagina)
+
+        try:
+            diagnosticos_paginator = paginator.page(pag)
+        except PageNotAnInteger:
+            diagnosticos_paginator = paginator.page(1)
+        except EmptyPage:
+            diagnosticos_paginator = paginator.page(paginator.num_pages)
+
+        return diagnosticos_paginator
 
 '''
 Funcion: crearDiagnostico
@@ -152,20 +169,23 @@ Funcion que permite editar un diagnostico existente
 def editarDiagnostico(request, id=0):
     template = 'diagnostico_editar.html'
     contexto = {}
+    diagnostico = None
+    pacientes = None
 
     if request.method == 'POST':
+        print id, request.POST
         try:
             diagnostico = Diagnostico.objects.get(estado='A', id=id)
         except:
             messages.add_message(request, messages.WARNING, 'Error inesperado consultando diagnostico!')
 
         try:
-            pacientes = Paciente.objects.get(estado='A', pacientepersonal__personal_id=1) \
+            pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=1) \
                 .values('id', 'usuario__nombre', 'usuario__apellido') \
                 .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
-                .order_by('nombre_completo')  # .values_list('id', 'usuario__nombre', 'usuario__apellido') \
-        except:
-            messages.add_message(request, messages.WARNING, 'Error inesperado consultando pacientes!')
+                .order_by('nombre_completo')
+        except Exception, e:
+            messages.add_message(request, messages.WARNING, 'Error inesperado consultando pacientes! ' + str(e))
 
         contexto['diagnostico'] = diagnostico
         contexto['pacientes'] = pacientes
@@ -189,7 +209,7 @@ def guardarDiagnostico(request):
             diagnostico.area_afectada = request.POST.get('areaafectada', '')
             diagnostico.receta = request.POST.get('receta', '')
             diagnostico.save()
-            messages.add_message(request, messages.SUCCESS, 'Diagnostico actualiado satisfactoriamente!')
+            messages.add_message(request, messages.SUCCESS, 'Diagnostico actualizado satisfactoriamente!')
         except:
             messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico!')
 
