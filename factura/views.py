@@ -28,9 +28,13 @@ Funcion que retorna todas las facturas leidas desde la base de datos
 def listarFacturas(request):
     template = 'factura_listar.html'
     contexto={}
-    contexto['facturas'] = Facturas.objects.filter(estado='A')\
-        .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
+
+    facturas = Facturas.objects.filter(estado='A')\
+                .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
                 'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')
+
+    from diagnostico.views import paginar
+    contexto['facturas'] =  paginar(request, facturas)
     return render(request, template_name=template, context=contexto)
 
 
@@ -51,8 +55,6 @@ def crearFactura(request):
 
         if factura is not None:
             messages.add_message(request, messages.SUCCESS, 'Factura creada con exito!')
-        else:
-            messages.add_message(request, messages.WARNING, 'Error inesperado!')
         return redirect('factura:ListarFacturas')
 
     empresas = Empresa.objects.filter(estado='A') \
@@ -84,7 +86,8 @@ def getFactura(request):
         factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
         factura.total = request.POST.get('total')
         factura.save()
-    except:
+    except Exception, e:
+        messages.add_message(request, messages.WARNING, 'Error inesperado! ' + str(e))
         return None
     return factura
 

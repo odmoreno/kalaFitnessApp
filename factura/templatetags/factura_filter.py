@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
 from datetime import date, timedelta
 from django import template
 
 '''
+Funcion: getFechadeVencimiento
+Entradas: - fecha actual
+Salidas:  - fecha de vencimiento
 
+Funcion que retorna la fecha de vencimiento, un año después
 '''
 register = template.Library()
 

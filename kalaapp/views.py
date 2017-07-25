@@ -16,7 +16,7 @@ from django.contrib import messages
 # Create your views here.
 @login_required
 def index2(request):
-    template = 'kalaapp/landing.html'
+    template = 'landing.html'
     data = {}
     return render(request, template, data)
 

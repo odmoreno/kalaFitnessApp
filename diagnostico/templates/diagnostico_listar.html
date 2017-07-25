@@ -34,10 +34,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% if diagnosticos %}
-                                        {% for diagnostico in diagnosticos %}
+                                    {% if diagnosticos_paginator %}
+                                        {% for diagnostico in diagnosticos_paginator %}
                                                 <tr>
-                                                    <td>{{diagnostico.id}}</td>
+                                                    <td style="text-align: center;">{{diagnostico.id}}</td>
                                                     <td>{{ diagnostico.paciente_nombre_completo}}</td>
                                                     <td>{{ diagnostico.creado}}</td>
                                                     <td>{{ diagnostico.actualizado}}</td>
@@ -72,24 +72,24 @@
                                     </tbody>
                                 </table>
                                 {% if diagnosticos_paginator and diagnosticos_paginator.has_other_pages %}
-                                      <ul class="pagination">
-                                        {% if diagnosticos_paginator.has_previous %}
-                                          <li><a href="?pag={{ diagnosticos_paginator.previous_page_number }}">&laquo;</a></li>
-                                        {% else %}
-                                          <li class="disabled"><span>&laquo;</span></li>
-                                        {% endif %}
-                                        {% for i in diagnosticos_paginator.paginator.page_range %}
-                                          {% if diagnosticos_paginator.number == i %}
-                                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                                          {% else %}
-                                            <li><a href="?pag={{ i }}">{{ i }}</a></li>
-                                          {% endif %}
-                                        {% endfor %}
-                                        {% if diagnosticos_paginator.has_next %}
-                                          <li><a href="?pag={{ diagnosticos_paginator.next_page_number }}">&raquo;</a></li>
-                                        {% else %}
-                                          <li class="disabled"><span>&raquo;</span></li>
-                                        {% endif %}
+                                      <ul class="pagination center-block">
+                                            {% if diagnosticos_paginator.has_previous %}
+                                                <li><a href="?pag={{ diagnosticos_paginator.previous_page_number }}">&laquo;</a></li>
+                                            {% else %}
+                                                <li class="disabled"><span>&laquo;</span></li>
+                                            {% endif %}
+                                            {% for i in diagnosticos_paginator.paginator.page_range %}
+                                              {% if diagnosticos_paginator.number == i %}
+                                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                              {% else %}
+                                                <li><a href="?pag={{ i }}">{{ i }}</a></li>
+                                              {% endif %}
+                                            {% endfor %}
+                                            {% if diagnosticos_paginator.has_next %}
+                                              <li><a href="?pag={{ diagnosticos_paginator.next_page_number }}">&raquo;</a></li>
+                                            {% else %}
+                                              <li class="disabled"><span>&raquo;</span></li>
+                                            {% endif %}
                                       </ul>
                                 {% endif %}
                         </div>

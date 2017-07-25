@@ -36,7 +36,7 @@
                                     <label class="control-label">Serie:</label><input class="form-control" type="text" name="serie" pattern="[0-9]{1,25}" placeholder="Serie de la factura (Máx. 25 dígitos)" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Fecha de vencimiento:</label><input class="form-control" type="date" name="fecha_vencimiento" min="{% now 'Y-m-d' %}" max="{{ hoy|vencimiento }}" placeholder="Formato dd/mm/aaaa (Máx. 12 meses desde hoy)" required/>
+                                    <label class="control-label">Fecha de vencimiento: (1 año máximo)</label><input class="form-control" type="date" name="fecha_vencimiento" min="{% now 'Y-m-d' %}" max="{{ hoy|vencimiento }}" placeholder="Formato dd/mm/aaaa (Máx. 12 meses desde hoy)" required/>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Total:</label><input class="form-control" type="number" name="total" step="0.01" min="1.0" max="100000.0" placeholder="Total de la factura" required/>
