@@ -10,22 +10,18 @@ ACTUALIZADO EN 15/07/2017
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
-from diagnostico.models import Diagnostico
-from django.http import HttpResponseRedirect, HttpRequest,HttpResponse
-from personal.models import Personal
-from paciente.models import Paciente, PacientePersonal
-from django.db.models.functions import Concat
-from django.db.models import Value
-from django.db import transaction
-from django.urls.base import reverse
 from django.contrib import messages
-from django.contrib.messages import get_messages
 from django.db import transaction
-from django.contrib.auth.models import User
-from django.urls.base import reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Value
+from django.db.models.functions import Concat
+from django.shortcuts import render, redirect
+
+from diagnostico.models import Diagnostico
+from kalaapp.views import paginar
+from paciente.models import Paciente
+from personal.models import Personal
 from .models import Rutina, Subrutina
+
 # Create your views here.
 
 '''
@@ -47,30 +43,6 @@ def listarDiagnosticos(request):
     contexto['diagnosticos_paginator'] = paginar(request, diagnosticos)
 
     return render(request, template_name=template, context=contexto)
-
-'''
-Funcion: paginarDiagnosticos
-Entradas: request, lista de diagnosticos
-Salidas: - diagnosticos paginados
-
-Funcion que permite listar los diagnosticos existentes
-'''
-def paginar(request, diagnosticos):
-    if diagnosticos is not None:
-        diagnosticos_por_pagina = 10
-        diagnosticos_paginator = None
-
-        pag = request.GET.get('pag', 1)
-        paginator = Paginator(diagnosticos, diagnosticos_por_pagina)
-
-        try:
-            diagnosticos_paginator = paginator.page(pag)
-        except PageNotAnInteger:
-            diagnosticos_paginator = paginator.page(1)
-        except EmptyPage:
-            diagnosticos_paginator = paginator.page(paginator.num_pages)
-
-        return diagnosticos_paginator
 
 '''
 Funcion: crearDiagnostico

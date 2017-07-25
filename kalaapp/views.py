@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponseRedirect, HttpResponse
-from django.db.models.functions import Concat
-from django.db.models import Value
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
-from django.urls.base import reverse
+from django.db.models import Value
+from django.db.models.functions import Concat
+from django.shortcuts import render
+
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
-from django.contrib import messages
 
 
 # Create your views here.
@@ -108,3 +108,28 @@ def eliminarAsignaciones(asignaciones):
                 pp.delete()
             except Exception, e:
                 messages.add_message(request, messages.WARNING, 'Error inesperado al eliminar asignaciones!, ' + str(e))
+
+
+'''
+Funcion: paginar
+Entradas: request, lista de objectos
+Salidas: - lista de objetos paginados
+
+Funcion que permite listar los diagnosticos existentes
+'''
+def paginar(request, objetos):
+    if objetos is not None and objetos.count() > 0:
+        objetos_por_pagina = 10
+        objetos_paginator = None
+
+        pag = request.GET.get('pag', 1)
+        paginator = Paginator(objetos, objetos_por_pagina)
+
+        try:
+            objetos_paginator = paginator.page(pag)
+        except PageNotAnInteger:
+            objetos_paginator = paginator.page(1)
+        except EmptyPage:
+            objetos_paginator = paginator.page(paginator.num_pages)
+
+        return objetos_paginator

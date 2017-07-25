@@ -8,15 +8,19 @@ ACTUALIZADO EN 20/06/2017
 '''
 
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect
-from kalaapp.models import Empresa
-from paciente.models import Paciente
-from django.db.models.functions import Concat
-from django.db.models import Value
+
+from datetime import date
+
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Value
+from django.db.models.functions import Concat
+from django.shortcuts import render, redirect
+
 from factura.models import Facturas
-from datetime import date
+from kalaapp.models import Empresa
+from kalaapp.views import paginar
+from paciente.models import Paciente
 
 '''
 Funcion: listarFacturas
@@ -31,9 +35,9 @@ def listarFacturas(request):
 
     facturas = Facturas.objects.filter(estado='A')\
                 .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
-                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')
+                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')\
+                .order_by('id')
 
-    from diagnostico.views import paginar
     contexto['facturas'] =  paginar(request, facturas)
     return render(request, template_name=template, context=contexto)
 
@@ -63,7 +67,7 @@ def crearFactura(request):
     pacientes = Paciente.objects.filter(estado='A') \
         .values('id', 'usuario__nombre', 'usuario__apellido') \
         .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
-        .order_by('id', 'nombre_completo')  #.values_list('id', 'usuario__nombre', 'usuario__apellido') \
+        .order_by('id', 'nombre_completo')
 
     contexto['empresas'] = empresas
     contexto['pacientes'] = pacientes
