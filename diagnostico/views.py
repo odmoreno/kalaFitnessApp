@@ -16,7 +16,7 @@ from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect
 
-from diagnostico.models import Diagnostico
+from diagnostico.models import DiagnosticoFisioterapia
 from kalaapp.views import paginar
 from paciente.models import Paciente
 from personal.models import Personal
@@ -35,7 +35,7 @@ def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
     contexto={}
 
-    diagnosticos = Diagnostico.objects.filter(estado='A').order_by('-creado') \
+    diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A').order_by('-creado') \
         .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
                                                   Value(' '), 'paciente__usuario__nombre')) \
         .annotate(paciente_id=Concat('paciente_id', Value('')))
@@ -88,7 +88,7 @@ Funcion que retorna un nuevo diagnostico con los datos ingresados en formulario
 '''
 def getDiagnostico(request):
     try:
-        diagnostico = Diagnostico()
+        diagnostico = DiagnosticoFisioterapia()
         diagnostico.personal = Personal.objects.get(estado='A', id=1)
         diagnostico.paciente = Paciente.objects.get(estado='A', id=request.POST.get('paciente', 0))
         diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
@@ -116,7 +116,7 @@ def eliminarDiagnostico(request, id=0):
 
     if request.method == 'POST':
         try:
-            diagnosticoEliminado = Diagnostico.objects.get(id=id)
+            diagnosticoEliminado = DiagnosticoFisioterapia.objects.get(id=id)
 
             if diagnosticoEliminado and diagnosticoEliminado.estado == 'A':
                 diagnosticoEliminado.estado = 'I'
@@ -147,7 +147,7 @@ def editarDiagnostico(request, id=0):
     if request.method == 'POST':
         print id, request.POST
         try:
-            diagnostico = Diagnostico.objects.get(estado='A', id=id)
+            diagnostico = DiagnosticoFisioterapia.objects.get(estado='A', id=id)
         except:
             messages.add_message(request, messages.WARNING, 'Error inesperado consultando diagnostico!')
 
@@ -169,14 +169,14 @@ Funcion: guardarDiagnostico
 Entradas: - request
 Salidas: ninguna
 
-Funcion que persiste un diagnostico en base
+Funcion que persiste un Diagnostico en base
 '''
 @transaction.atomic
 def guardarDiagnostico(request):
 
     if request.method == 'POST':
         try:
-            diagnostico = Diagnostico.objects.filter(estado='A', id=request.POST.get('diagnostico_id', 0)).first()
+            diagnostico = DiagnosticoFisioterapia.objects.filter(estado='A', id=request.POST.get('diagnostico_id', 0)).first()
             diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
             diagnostico.area_afectada = request.POST.get('areaafectada', '')
             diagnostico.receta = request.POST.get('receta', '')

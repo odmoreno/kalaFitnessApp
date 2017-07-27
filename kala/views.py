@@ -1,9 +1,33 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http.response import HttpResponseRedirect
-from django.urls.base import reverse
+
 
 # Create your views here.
+@login_required
 def index(request):
-    return render(request, 'kalaapp/landing.html')
+    return render(request, 'landing.html')
+
+
+def login(request):
+    return render(request=request, template_name='login.html')
+
+
+def auth_view(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = auth.authenticate(username=username, password=password)
+
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect('index')
+    else:
+        return HttpResponseRedirect('/')
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request=request, template_name='logout.html')

@@ -10,6 +10,6 @@ app_name = 'kalaapp'
 
 urlpatterns = [
     #url(r'^$', index, name="index"),
-    url(r'^$', views.index2 , name="index2"),
+    url(r'^$', views.index , name="index"),
     url(r'^asignar$', views.asignarPersonalaPaciente, name="AsignarPersonalaPaciente"),
 ]

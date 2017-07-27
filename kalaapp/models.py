@@ -25,17 +25,10 @@ class TimeModel(models.Model):
     class Meta:
         abstract = True
 
-ROLES =(('administrador', 'administrador'),
-        ('paciente', 'paciente'),
-        ('fisioterapista', 'fisioterapista'),
-        ('nutricionista', 'nutricionista'),
-        ('invitado','invitado'))
-ESTADO_CIVIL=(('Soltero','Soltero'),
-              ('Casado','Casado'),
-              ('Viudo','Viudo'),
-              ('Divorciado','Divorciado'))
 
 class Rol(TimeModel):
+    ROLES = (('administrador', 'administrador'), ('paciente', 'paciente'), ('fisioterapista', 'fisioterapista'),
+             ('nutricionista', 'nutricionista'), ('invitado', 'invitado'))
     tipo = models.CharField(max_length=30, choices=ROLES, default='invitado')
     es_personal = models.BooleanField(_('es_personal'), default=False, blank=False)
     estado = models.CharField(max_length=1, default='A')
@@ -43,9 +36,8 @@ class Rol(TimeModel):
     class Meta:
         db_table = 'rol'
 
-
-
 class Usuario(TimeModel):
+    ESTADO_CIVIL = (('Soltero', 'Soltero'), ('Casado', 'Casado'), ('Viudo', 'Viudo'), ('Divorciado', 'Divorciado'))
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     rol = models.ForeignKey(Rol, on_delete=models.DO_NOTHING)
     nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False)

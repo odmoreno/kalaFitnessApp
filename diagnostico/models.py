@@ -8,7 +8,7 @@ from paciente.models import Paciente
 # Create your models here.
 
 
-class Diagnostico(TimeModel):
+class DiagnosticoFisioterapia(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
     condiciones_previas = models.CharField(max_length=1000, default='', null=False)
@@ -18,7 +18,18 @@ class Diagnostico(TimeModel):
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:
-        db_table = 'diagnostico'
+        db_table = 'diagnostico_fis'
+
+class DiagnosticoNutricion(TimeModel):
+    personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
+    paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
+    condiciones_previas = models.CharField(max_length=1000, default='', null=False)
+    area_afectada = models.CharField(max_length=1000, default='', null=False)
+    dieta = models.OneToOneField('Dieta', on_delete=models.CASCADE, unique=True)
+    estado = models.CharField(max_length=1, default='A')
+
+    class Meta:
+        db_table = 'diagnostico_nut'
 
 class Rutina(TimeModel):
     subrutina = models.ManyToManyField('Subrutina')
@@ -39,3 +50,25 @@ class Subrutina(TimeModel):
     class Meta:
         #managed = False
         db_table = 'subrutina'
+
+
+class Dieta(TimeModel):
+    plan_nut_diario = models.ForeignKey('PlanNutDiario', on_delete=models.CASCADE)
+    estado = models.CharField(max_length=1, default='A')
+
+    class Meta:
+        db_table = 'dieta'
+
+class PlanNutDiario(TimeModel):
+    DIAS = (('Lunes', 'Lunes'),('Martes', 'Martes'),('Miercoles', 'Miercoles'),('Jueves', 'Jueves'),
+            ('Viernes','Viernes'),('Sabado', 'Sabado'),('Domingo', 'Domingo'))
+    dia = models.CharField(max_length=30, choices=DIAS, default='Lunes', null=False)
+    desayuno = models.CharField(max_length=1000, default='', null=False)
+    colacion1 = models.CharField(max_length=1000, default='', null=False)
+    almuerzo = models.CharField(max_length=1000, default='', null=False)
+    colacion2 = models.CharField(max_length=1000, default='', null=False)
+    cena = models.CharField(max_length=1000, default='', null=False)
+    estado = models.CharField(max_length=1, default='A')
+
+    class Meta:
+        db_table = 'plan_nut_diario'

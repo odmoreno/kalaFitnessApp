@@ -15,10 +15,10 @@ from personal.models import Personal
 
 # Create your views here.
 @login_required
-def index2(request):
+def index(request):
     template = 'landing.html'
     data = {}
-    return render(request, template, data)
+    return render(request, template, context=data)
 
 '''
 Funcion: asignarPersonalaPaciente
