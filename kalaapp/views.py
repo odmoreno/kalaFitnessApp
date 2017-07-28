@@ -11,14 +11,28 @@ from django.shortcuts import render
 
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
+from .models import Usuario
 
 
 # Create your views here.
 @login_required
-def index(request):
+def home(request):
     template = 'landing.html'
-    data = {}
-    return render(request, template, context=data)
+    contexto = {}
+
+    #request.session.set_expiry(60*30)
+    user_sesion = request.session.get('user_sesion', None)
+    print user_sesion
+    try:
+        if not user_sesion:
+            user_sesion = Usuario.objects.filter(cedula=request.user.username).\
+                values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id').first()
+            request.session['user_sesion'] = user_sesion
+        contexto['user_sesion'] = user_sesion
+    except Exception, e:
+        print "error --> " + str(e)
+
+    return render(request, template, context=contexto)
 
 '''
 Funcion: asignarPersonalaPaciente

@@ -6,11 +6,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 
-# Create your views here.
-@login_required
-def index(request):
-    return render(request, 'landing.html')
-
 
 def login(request):
     return render(request=request, template_name='login.html')

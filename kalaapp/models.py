@@ -36,6 +36,7 @@ class Rol(TimeModel):
     class Meta:
         db_table = 'rol'
 
+
 class Usuario(TimeModel):
     ESTADO_CIVIL = (('Soltero', 'Soltero'), ('Casado', 'Casado'), ('Viudo', 'Viudo'), ('Divorciado', 'Divorciado'))
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
@@ -49,8 +50,8 @@ class Usuario(TimeModel):
     genero = models.CharField(max_length=1, blank=True, null=True)
     edad = models.PositiveSmallIntegerField(blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
-    foto = models.ImageField(upload_to = 'usuario/',
-                             default = 'usuario/noimagen.jpg', null=True,
+    foto = models.ImageField(upload_to='usuario/',
+                             default='usuario/noimagen.jpg', null=True,
                              blank=True, editable=True,
                              help_text="Foto")
     estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL, default='Soltero', null=False)

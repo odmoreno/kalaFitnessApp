@@ -1,7 +1,7 @@
 '''
-MODULO DIAGNOSTICO
+MODULO DIAGNOSTICO FISIOTERAPISTA Y NUTRICIONISTA
 
-VERSION 1.0.0
+VERSION 2.0.0
 
 ACTUALIZADO EN 15/07/2017
 
@@ -15,14 +15,15 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect
-
-from diagnostico.models import DiagnosticoFisioterapia
+from django.contrib.auth.decorators import login_required
+from diagnostico.models import DiagnosticoFisioterapia, DiagnosticoNutricion, Dieta, PlanNutDiario
 from kalaapp.views import paginar
 from paciente.models import Paciente
 from personal.models import Personal
-from .models import Rutina, Subrutina
+from .models import Rutina, Subrutina, DIAS
 
 # Create your views here.
+
 
 '''
 Funcion: listarDiagnosticos
@@ -31,18 +32,32 @@ Salidas: - HttpResponse con template diagnostico_listar.ntml y la lista de todos
 
 Funcion que permite listar los diagnosticos existentes
 '''
+
+
+@login_required
 def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
-    contexto={}
+    contexto = {}
+    diagnosticos = None
 
-    diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A').order_by('-creado') \
-        .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
-                                                  Value(' '), 'paciente__usuario__nombre')) \
-        .annotate(paciente_id=Concat('paciente_id', Value('')))
+    sesion = request.session.get('user_sesion', None)
+
+    if sesion['rol__tipo'] == 'fisioterapista':
+        diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A').order_by('-creado') \
+            .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
+                                                      Value(' '), 'paciente__usuario__nombre')) \
+            .annotate(paciente_id=Concat('paciente_id', Value('')))
+    elif sesion['rol__tipo'] == 'nutricionista':
+        diagnosticos = DiagnosticoNutricion.objects.filter(estado='A').order_by('-creado') \
+            .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
+                                                      Value(' '), 'paciente__usuario__nombre')) \
+            .annotate(paciente_id=Concat('paciente_id', Value('')))
 
     contexto['diagnosticos_paginator'] = paginar(request, diagnosticos)
+    contexto['user_sesion'] = sesion
 
     return render(request, template_name=template, context=contexto)
+
 
 '''
 Funcion: crearDiagnostico
@@ -51,14 +66,20 @@ Salidas: - HttpResponse con template crear.ntml y la lista de todas los paciente
 
 Funcion que permite crear un nuevo diagnostico
 '''
+
+@login_required
 @transaction.atomic
 def crearDiagnostico(request):
-    template = 'diagnostico_crear.html'
-    contexto={}
+    template = None
+    contexto = {}
     pacientes = None
 
+    sesion = request.session.get('user_sesion', None)
+    print sesion
+    rol = sesion.get('rol__tipo', None)
+
     if request.method == 'POST':
-        diagnostico = getDiagnostico(request)
+        diagnostico = getDiagnostico(request, rol)
 
         if diagnostico is not None:
             messages.add_message(request, messages.SUCCESS, 'Diagnostico creado con exito!')
@@ -67,7 +88,7 @@ def crearDiagnostico(request):
         return redirect('diagnostico:ListarDiagnosticos')
 
     try:
-        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=1)\
+        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=sesion['personal__id'])\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
             .order_by('nombre_completo')
@@ -77,6 +98,15 @@ def crearDiagnostico(request):
         messages.add_message(request, messages.WARNING, 'No tiene pacientes asignados, consulte con su administrador! ')
 
     contexto['pacientes'] = pacientes
+
+    if rol == 'fisioterapista':
+        template = 'diagnostico_crear.html'
+    elif rol == 'nutricionista':
+        template = 'diagnostico_nut_crear.html'
+        contexto['dias'] = {'One': 'Lunes', 'Two': 'Martes', 'Three': 'Miercoles',
+                            'Four': 'Jueves', 'Five': 'Viernes', 'Six': 'Sabado'}
+    else:
+        template = '404.html'
     return render(request, template_name=template, context=contexto)
 
 '''
@@ -86,20 +116,38 @@ Salidas:  - nueva diagnostico
 
 Funcion que retorna un nuevo diagnostico con los datos ingresados en formulario
 '''
-def getDiagnostico(request):
-    try:
-        diagnostico = DiagnosticoFisioterapia()
-        diagnostico.personal = Personal.objects.get(estado='A', id=1)
-        diagnostico.paciente = Paciente.objects.get(estado='A', id=request.POST.get('paciente', 0))
-        diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
-        diagnostico.area_afectada = request.POST.get('areaafectada', '')
-        diagnostico.receta = request.POST.get('receta', '')
-        s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
-        diagnostico.rutina = Rutina.objects.create()
-        diagnostico.rutina.subrutina.add(s)
-        diagnostico.save()
-    except:
-        return None
+
+
+@transaction.atomic
+def getDiagnostico(request, rol):
+    diagnostico = None
+    if rol:
+        try:
+            if rol == 'fisioterapista':
+                diagnostico = DiagnosticoFisioterapia()
+                diagnostico.area_afectada = request.POST.get('areaafectada', '')
+                diagnostico.receta = request.POST.get('receta', '')
+                s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
+                diagnostico.rutina = Rutina.objects.create()
+                diagnostico.rutina.subrutina.add(s)
+            elif rol == 'nutricionista':
+                print request.POST
+                diagnostico = DiagnosticoNutricion()
+                dieta = Dieta()
+                for key, dia in DIAS:
+                    plan_diario = PlanNutDiario(dia=dia, desayuno=dia+'_Desayuno', colacion1=dia+'_Colacion1',
+                                                almuerzo=dia+'_Almuerzo', colacion2=dia+'_Colacion2',
+                                                cena=dia+'_Cena')
+                    plan_diario.save()
+                    dieta.plan_nut_diario = plan_diario
+
+
+            diagnostico.personal = Personal.objects.get(estado='A', id=sesion['personal__id'])
+            diagnostico.paciente = Paciente.objects.get(estado='A', id=request.POST.get('paciente', 0))
+            diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
+            diagnostico.save()
+        except:
+            return None
     return diagnostico
 
 '''
@@ -110,6 +158,7 @@ Salidas: ninguna
 
 Funcion que permite eliminar un diagnostico existente
 '''
+@login_required
 @transaction.atomic
 def eliminarDiagnostico(request, id=0):
     contexto = {}
@@ -137,7 +186,6 @@ Salidas: ninguna
 
 Funcion que permite editar un diagnostico existente
 '''
-@transaction.atomic
 def editarDiagnostico(request, id=0):
     template = 'diagnostico_editar.html'
     contexto = {}
@@ -186,3 +234,7 @@ def guardarDiagnostico(request):
             messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico!')
 
     return redirect('diagnostico:ListarDiagnosticos')
+
+
+'''
+'''
