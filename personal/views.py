@@ -79,6 +79,10 @@ def verMensajes(request, personal_id=None):
             'nombres':nombres,
             'usuarios':usuarios
         }
+    else:
+        data={
+            'mensajes':None,
+        }
     return render(request,template,data)
 
 def leerMensaje(request, mensaje_id):
