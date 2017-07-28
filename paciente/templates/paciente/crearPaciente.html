@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Crear un nuevo paciente</title>
-</head>
-<body>
+{% extends 'blank.html' %}
+{% load l10n %}
+{% block title %}Nuevo Paciente{% endblock %}
+{% block content %}
 	<form action="" method="post">
 		{% csrf_token %}
 		Cedula:<input type="text" name="cedula" pattern="^[0-9]{10}" title="Numero de cedula invalido" required/>
@@ -34,7 +31,4 @@
         <input type="submit" value="Grabar Paciente" />
 
 	</form>
-
-
-</body>
-</html>
+{% endblock %}

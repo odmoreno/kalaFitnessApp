@@ -1,25 +1,35 @@
+{% extends 'blank.html' %}
+{% load l10n %}
+{% block title %}Nuevo Personal{% endblock %}
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="panel panel-default" style="margin-top: 40px">
+            <div class="panel-heading"><h4><b>Ingrese los datos de un Nuevo Personal</b></h4></div>
+        <div class="panel-body">
 
-{%  extends 'personal/base.html' %}
-{% block title %}Crear Personal{% endblock %}
-{% block body %}
-<div class="container-fluid">
-    <div class="row">
+            <div class="container-fluid">
+                <div class="row">
 
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% include 'personal/form_template.html' %}
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">Añadir</button>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% include 'personal/form_template.html' %}
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-success">Añadir</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
+
             </div>
         </div>
+        </div>
     </div>
-
 </div>
 <script type="text/javascript">
     $( "#id_nombre" ).prop('required', true);
@@ -30,6 +40,6 @@
     $( "#id_ocupacion" ).prop('required', true);
     $( "#id_genero" ).prop('required', true); 
     $( "#id_edad" ).attr("pattern", '^[0-9]{1,2}').attr('title','Edad invalida').prop('required', true);   
-</script>>
+</script>
 {% endblock %}
 
