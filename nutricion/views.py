@@ -34,3 +34,6 @@ def listar_fichas(request):
     }
     return render(request, template, context)
 
+def ver_horarios(request):
+    return 
+
