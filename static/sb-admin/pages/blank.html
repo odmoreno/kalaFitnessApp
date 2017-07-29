@@ -293,6 +293,7 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        {% if not nutricionista %}
                         <li>
                             <a href="/"><i class="fa fa-home fa-lg"></i> Home</a>
                         </li>
@@ -354,6 +355,21 @@
                         <li>
                             <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
                         </li>
+                        {% endif %}
+                        {% if nutricionista %}
+                            <li>
+                                <a href="#"><i class="fa fa-user-md"></i> Ficha <span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Listar</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'nutricion:crear_ficha' %}">Crear</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% endif %}
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

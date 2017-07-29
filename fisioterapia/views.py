@@ -31,7 +31,6 @@ def crear_ficha(request):
     print form._errors
     if form.is_valid():
         ficha = form.save(commit=False)
-
         print request.POST.get('paciente')
         paciente_id = request.POST.get('paciente')
         paciente = get_object_or_404(Paciente, pk=paciente_id)

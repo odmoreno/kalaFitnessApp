@@ -3,4 +3,25 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+from django.db import transaction
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from paciente.models import Paciente
+
+def index(request):
+    template = "nutricion/index.html"
+    #nutricionista = True
+    return render(request, template, { 'nutricionista': True})
+
+def crear_ficha(request):
+    template = "nutricion/crear-ficha.html"
+    pacientes = Paciente.objects.all()
+    context = {
+        'nutricionista': True,
+        "pacientes": pacientes
+    }
+    return render(request, template, context)
+
