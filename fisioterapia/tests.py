@@ -5,8 +5,9 @@ from django.test import TestCase
 from directmessages.apps import Inbox
 from directmessages.models import Message
 from django.contrib.auth.models import User
-from django.test import TestCase
-
+from django.test import TestCase, RequestFactory, Client
+from .views import listar_fichas
+import os
 
 class EnviarMensajeTestCase(TestCase):
     def setUp(self):
@@ -50,4 +51,15 @@ class LeerMensajeTestCase(TestCase):
 
         self.assertEqual(message, "Mensaje Mensaje Mensaje")
         self.assertEqual(unread_messages_after.count(), 0)
+
+class listarfichas(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_listar_fichas(self):
+       request = self.factory.get('/fisioterapia/ficha/lista')
+       response = listar_fichas(request)
+       #print  response.content
+       self.assertEqual(response.status_code, 200)
+
 
