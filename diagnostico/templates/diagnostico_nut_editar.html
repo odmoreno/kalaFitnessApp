@@ -1,7 +1,5 @@
 {% extends 'blank.html' %}
-{% load l10n %}
-{% block title %}Nuevo diagn&oacute;stico de nutrici&oacute;n{% endblock %}
-
+{% block title %}Editar diagn&oacute;stico{% endblock %}
 {% block content %}
     <!-- Page Content -->
     <div id="page-wrapper">
@@ -17,19 +15,19 @@
                         {% endfor %}
                     {% endif %}
                     <div class="panel panel-default" style="margin-top: 40px">
-                        <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo diagn&oacute;stico de nutrici&oacute;n</b></h4></div>
+                        <div class="panel-heading"><h4><b>Editar diagn&oacute;stico de nutrici&oacute;n</b></h4></div>
                         <div class="panel-body">
 
-                            <form class="form-vertical" method="post" action="{% url 'diagnostico:CrearDiagnostico' %}">
+                            <form class="form-vertical" method="post" action="{% url 'diagnostico:GuardarDiagnostico' %}">
                                     {% csrf_token %}
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Paciente:</label>
-                                                <select class="form-control" id="paciente_id" name="paciente" autofocus required>
+                                                <select class="form-control" id="paciente_id" name="paciente" autofocus disabled>
                                                 {% if pacientes %}
                                                     {% for paciente in pacientes %}
-                                                        <option value="{{ paciente.id }}">{{ paciente.nombre_completo }}</option>
+                                                        <option value="{{ paciente.id }}" {% if paciente.id == diagnostico.paciente.id %}selected{% endif %}>{{ paciente.nombre_completo }}</option>
                                                     {% endfor %}
                                                 {% endif %}
                                                 </select>
@@ -42,7 +40,7 @@
                                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea id="textarea" class="form-control" rows="2" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="2" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" pattern="\w+" required>{{ diagnostico.condiciones_previas }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -50,38 +48,38 @@
                                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label">Dieta:</label>
-                                                <textarea id="textarea" class="form-control" rows="2" name="dietadescripcion" maxlength="1000" placeholder="Descripción de la dieta" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="2" name="dietadescripcion" maxlength="1000" placeholder="Descripción de la dieta" pattern="\w+" required>{{ diagnostico.dieta.descripcion }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                     <div class="panel-group" id="accordion">
-                                                        {% for key, dia in dias %}
+                                                        {% for plan_diario in planes_diarios %}
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">
-                                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ key }}" aria-expanded="false" class="collapsed" style="text-decoration: none;">{{ dia }}</a>
+                                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter}}"  aria-expanded="false" class="collapsed" style="text-decoration: none;">{{ plan_diario.dia}}</a>
                                                                     </h4>
                                                                 </div>
-                                                                <div id="collapse{{ key }}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                                <div id="collapse{{ forloop.counter}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                                     <div class="panel-body">
                                                                         <div class="input-group">
                                                                               <span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;Desayuno</span>
-                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon1" name="{{ dia }}_Desayuno">
+                                                                            <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon1" name="{{ plan_diario.dia }}_Desayuno" value="{{ plan_diario.desayuno }}"/>
                                                                         </div>
                                                                         <div class="input-group">
                                                                               <span class="input-group-addon" id="basic-addon1">&nbsp;Colaci&oacute;n #1</span>
-                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon2" name="{{ dia }}_Colacion1">
+                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon2" name="{{ plan_diario.dia }}_Colacion1" value="{{ plan_diario.colacion1 }}"/>
                                                                         </div>
                                                                         <div class="input-group">
                                                                               <span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;Almuerzo</span>
-                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon3" name="{{ dia }}_Almuerzo">
+                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon3" name="{{ plan_diario.dia }}_Almuerzo" value="{{ plan_diario.almuerzo }}"/>
                                                                         </div>
                                                                         <div class="input-group">
                                                                               <span class="input-group-addon" id="basic-addon1">Colaci&oacute;n #2</span>
-                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon4" name="{{ dia }}_Colacion2">
+                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon4" name="{{ plan_diario.dia }}_Colacion2" value="{{ plan_diario.colacion2 }}"/>
                                                                         </div>
                                                                         <div class="input-group">
                                                                               <span class="input-group-addon" id="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cena</span>
-                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon5" name="{{ dia }}_Cena">
+                                                                              <input type="text" class="form-control" placeholder="Detalle" aria-describedby="basic-addon5" name="{{ plan_diario.dia }}_Cena"value="{{ plan_diario.cena }}"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -95,15 +93,15 @@
                                     </div>
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                                            <div class="form-group center-block">
-                                                <button id="submit" type="submit" class="btn btn-success">Crear diagnóstico</button>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success">Actualizar diagnóstico</button>
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="diagnostico_id" value="{{ diagnostico.id }}" />
                                 </form>
 
                         </div>
                     </div>
                 </div></div></div></div>
 {% endblock %}
-

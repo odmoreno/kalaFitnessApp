@@ -25,7 +25,6 @@ class DiagnosticoNutricion(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
     condiciones_previas = models.CharField(max_length=1000, default='', null=False)
-    #area_afectada = models.CharField(max_length=1000, default='', null=False)
     dieta = models.OneToOneField('Dieta', on_delete=models.CASCADE, unique=True)
     estado = models.CharField(max_length=1, default='A')
 
@@ -56,17 +55,18 @@ class Subrutina(TimeModel):
 
 
 class Dieta(TimeModel):
-    plan_nut_diario = models.ForeignKey('PlanNutDiario', on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=1000, default='', null=False)
     estado = models.CharField(max_length=1, default='A')
 
     class Meta:
         db_table = 'dieta'
 
-DIAS = (('Lunes', 'Lunes'), ('Martes', 'Martes'), ('Miercoles', 'Miercoles'),
-        ('Jueves', 'Jueves'), ('Viernes', 'Viernes'), ('Sabado', 'Sabado'))
+DIAS = ((1, 'Lunes'), (2, 'Martes'), (3, 'Miercoles'),
+        (4, 'Jueves'), (5, 'Viernes'), (6, 'Sabado'))
 
 
 class PlanNutDiario(TimeModel):
+    dieta = models.ForeignKey('Dieta', on_delete=models.CASCADE, default='')
     dia = models.CharField(max_length=30, choices=DIAS, default='Lunes', null=False)
     desayuno = models.CharField(max_length=1000, default='', null=False)
     colacion1 = models.CharField(max_length=1000, default='', null=False)

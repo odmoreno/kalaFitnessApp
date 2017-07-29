@@ -20,18 +20,15 @@ def home(request):
     template = 'landing.html'
     contexto = {}
 
-    #request.session.set_expiry(60*30)
+    request.session.set_expiry(60*30)
     user_sesion = request.session.get('user_sesion', None)
-    print user_sesion
+
     try:
         if not user_sesion:
-            user_sesion = Usuario.objects.filter(cedula=request.user.username).\
-                values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id').first()
-            request.session['user_sesion'] = user_sesion
-        contexto['user_sesion'] = user_sesion
-    except Exception, e:
-        print "error --> " + str(e)
-
+            request.session['user_sesion'] = Usuario.objects.filter(cedula=request.user.username).\
+                                    values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id').first()
+    except:
+        pass
     return render(request, template, context=contexto)
 
 '''
@@ -41,6 +38,7 @@ Salidas: - HttpResponse con template asignar.ntml y la lista de todas personal y
 
 Funcion que crear las asignaciones y/o eliminarlas
 '''
+
 
 @transaction.atomic
 def asignarPersonalaPaciente(request):
@@ -115,6 +113,8 @@ Salidas: Ninguna
 
 Funcion que permite eliminar las asignaciones enviadas como parametro
 '''
+
+
 def eliminarAsignaciones(asignaciones):
     if asignaciones is not None and asignaciones.count() > 0:
         for pp in asignaciones:
