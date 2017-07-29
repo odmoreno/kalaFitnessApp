@@ -50,6 +50,20 @@
     </style>
     {% block script %}{% endblock %}
 
+    <!-- DataTables JavaScript -->
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-responsive/dataTables.responsive.js' %}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+
+
 </head>
 
 <body style="font-family: 'Montserrat';">
@@ -361,7 +375,7 @@
                                 <a href="#"><i class="fa fa-user-md"></i> Ficha <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="{% url 'nutricion:listar_fichas' %}">Listar</a>
                                     </li>
                                     <li>
                                         <a href="{% url 'nutricion:crear_ficha' %}">Crear</a>

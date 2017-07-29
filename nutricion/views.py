@@ -25,3 +25,12 @@ def crear_ficha(request):
     }
     return render(request, template, context)
 
+def listar_fichas(request):
+    template = "nutricion/listar-fichas.html"
+    pacientes = Paciente.objects.all()
+    context = {
+        'nutricionista': True,
+        "pacientes": pacientes
+    }
+    return render(request, template, context)
+
