@@ -39,6 +39,9 @@ def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
     contexto = {}
     diagnosticos = None
+    pacientes = None
+    rol = None
+
     sesion = request.session.get('user_sesion', None)
 
     if sesion:

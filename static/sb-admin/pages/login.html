@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Kala App{% endblock %}</title>
+    <title>{% block title %}Kala Fitness App{% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
     <!--link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
@@ -60,7 +60,7 @@
 
     {% if next %}
         {% if user.is_authenticated %}
-            <h2>Su cuenta no posee los permisos para ver esta página.</h2>
+            {# <h2>Su cuenta no posee los permisos para ver esta página.</h2>#}
         {% endif %}
     {% endif %}
     <div class="container">
@@ -91,8 +91,10 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="btn btn-success">Ingresar</button>
+                                <p><a href="{% url 'password_reset' %}">¿Olvid&oacute; su constrase&ntilde;a?</a></p>
                             </fieldset>
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -78,14 +78,7 @@ TEMPLATES = [
     },
 ]
 
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#     'django.contrib.auth.context_processors.auth',
-#     'django.core.context_processors.debug',
-#     'django.core.context_processors.i18n',
-#     'django.core.context_processors.request',
-#     'django.core.context_processors.static',
-#     'django.contrib.messages.context_processors.messages',
-# )
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'kala.wsgi.application'
 
@@ -94,14 +87,14 @@ WSGI_APPLICATION = 'kala.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-     # 'default': {
-     #     'ENGINE': 'django.db.backends.mysql',
-     #     'NAME': 'gestionhc',
-     #     'USER': 'b39a26ea8a2c83',
-     #     'PASSWORD': '49e6b5e4',
-     #     'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
-     #     'PORT': '3306',
-     # },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'gestionhc',
+    #     'USER': 'b39a26ea8a2c83',
+    #     'PASSWORD': '49e6b5e4',
+    #     'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
+    #     'PORT': '3306',
+    # },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gestionhc',
