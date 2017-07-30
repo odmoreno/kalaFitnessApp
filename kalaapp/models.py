@@ -18,6 +18,7 @@ from PIL import Image
 from django.conf import settings
 from django.contrib import messages
 
+
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
     actualizado = models.DateTimeField(_('actualizado'), auto_now=True)
@@ -41,8 +42,8 @@ class Usuario(TimeModel):
     ESTADO_CIVIL = (('Soltero', 'Soltero'), ('Casado', 'Casado'), ('Viudo', 'Viudo'), ('Divorciado', 'Divorciado'))
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     rol = models.ForeignKey(Rol, on_delete=models.DO_NOTHING)
-    nombre = models.CharField(db_column='first_name', max_length=30, blank=False, null=False)
-    apellido = models.CharField(db_column='last_name', max_length=30, blank=False, null=False)
+    nombre = models.CharField(max_length=30, blank=False, null=False)
+    apellido = models.CharField(max_length=30, blank=False, null=False)
     cedula = models.CharField(max_length=10, unique=True)
     direccion = models.CharField(max_length=200, blank=True, null=True)
     telefono = models.CharField(max_length=50, blank=True, null=True)
@@ -102,6 +103,7 @@ class Usuario(TimeModel):
                 messages.add_message(request, messages.WARNING, 'No se puedo guardar la foto. ' + e.__str__())
 
         super(Usuario, self).save(*args, **kwargs)
+
 
 class Empresa(TimeModel):
     nombre = models.CharField(max_length=200, blank=False, null=False)
