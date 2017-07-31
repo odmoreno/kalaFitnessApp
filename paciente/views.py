@@ -66,13 +66,11 @@ def PacienteNuevo(request):
         usuario = form.save(commit=False)
         user = User()
         paciente = Paciente()
-
         user.username = form.cleaned_data['cedula']
         user.set_password('1234')
+        user.email = form.cleaned_data['email']
         user.save()
-
-        rol = Rol.objects.get(tipo='paciente')
-        rol.save()
+        rol = Rol.objects.filter(tipo='paciente').first()
 
         usuario.usuario = user
         usuario.rol = rol

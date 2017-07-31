@@ -4,7 +4,7 @@ from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
-from .forms import  UsuarioForm
+from .forms import  UsuarioForm, PersonalForm
 from personal.models import Personal
 #from paciente.views import paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
@@ -29,21 +29,20 @@ def eliminarPersonal(request, personal_id):
 
 @transaction.atomic
 def nuevoPersonal(request):
-    form = UsuarioForm(request.POST or None)
+    form = PersonalForm(request.POST or None)
+    print form
     if form.is_valid():
-        print  "dentro"
         personal = form.save(commit=False)
-        print personal
         user = User()
         user.username = form.cleaned_data['cedula']
         user.set_password('1234')
+        user.email = form.cleaned_data['email']
         user.save()
+        if form.cleaned_data["ocupacion"]==1:
+            rol = Rol.objects.get(tipo='fisioterapista')
 
-        print Rol.objects.get()
-
-        rol = Rol.objects.get(tipo='fisioterapista')
-        print  rol.tipo
-        #rol.save()
+        else:
+            rol = Rol.objects.get(tipo='nutricionista')
 
         personal.usuario = user
         personal.rol = rol
