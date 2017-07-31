@@ -13,8 +13,8 @@ from django.http import HttpRequest,HttpResponse
 from django.urls.base import reverse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
-
-from personal.forms import  UsuarioForm
+from kala.views import enviar_password_email, generar_password
+from personal.forms import UsuarioForm
 
 from django.http import JsonResponse
 
@@ -67,7 +67,8 @@ def PacienteNuevo(request):
         user = User()
         paciente = Paciente()
         user.username = form.cleaned_data['cedula']
-        user.set_password('1234')
+        password = generar_password()
+        user.set_password(password)
         user.email = form.cleaned_data['email']
         user.save()
         rol = Rol.objects.filter(tipo='paciente').first()
@@ -78,6 +79,8 @@ def PacienteNuevo(request):
 
         paciente.usuario = usuario
         paciente.save()
+
+        enviar_password_email(user.email, user.username, password)
 
         pacientes = Paciente.objects.all()
         return render(request, 'paciente/index.html', {'pacientes': pacientes})

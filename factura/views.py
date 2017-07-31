@@ -16,6 +16,8 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 from factura.models import Facturas
 from kalaapp.models import Empresa
@@ -29,9 +31,14 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las facturas
 
 Funcion que retorna todas las facturas leidas desde la base de datos
 '''
+
+@login_required
 def listarFacturas(request):
     template = 'factura_listar.html'
-    contexto={}
+    contexto = {}
+
+    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
+        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     facturas = Facturas.objects.filter(estado='A')\
                 .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
@@ -49,10 +56,15 @@ Salidas: - HttpResponse con template crear.ntml y la lista de todas las empresas
 
 Funcion que permite crear una factura
 '''
+
+@login_required()
 @transaction.atomic
 def crearFactura(request):
     template = 'factura_crear.html'
     contexto={}
+
+    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
+        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     if request.method == 'POST':
         factura = getFactura(request)
@@ -103,10 +115,15 @@ Salidas: ninguna
 
 Funcion que permite eliminar una factura existente
 '''
+
+@login_required()
 @transaction.atomic
 def eliminarFactura(request, id=0):
-    template='factura_listar.html'
+    template = 'factura_listar.html'
     contexto = {}
+
+    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
+        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     if request.method == 'POST':
         try:

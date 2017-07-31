@@ -8,17 +8,55 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render
-
+from django.http import Http404, HttpResponseForbidden, HttpResponse
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
-
+from .models import Usuario
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+
+@login_required
+def home(request):
+    template = 'landing.html'
+    contexto = {}
+    
+    request.session.set_expiry(60*30)
+    user_sesion = request.session.get('user_sesion', None)
+
+    if not user_sesion:
+        try:
+            user = User.objects.get(username=request.user.username)
+
+            if user is not None:
+                if user.is_superuser:
+                    request.session['user_sesion'] = {'id': user.id,
+                                                      'nombre': user.first_name,
+                                                      'apellido': user.last_name,
+                                                      'cedula': user.username,
+                                                      'rol__tipo': 'administrador',
+                                                      'personal__id': 0}
+                else:
+                    request.session['user_sesion'] = Usuario.objects.filter(cedula=request.user.username)\
+                                    .values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id', 'paciente__id')\
+                                    .first()
+        except User.DoesNotExist, e:
+            return HttpResponse(str(e))
+        except Exception, e2:
+            return HttpResponse(str(e2))
+    if request.session['user_sesion']:
+        return render(request=request, template_name=template, context=contexto)
+    else:
+        return Http404("Error inesperado!")
+
+
 @login_required
 def index2(request):
     template = 'landing.html'
     data = {}
     return render(request, template, data)
+
 
 '''
 Funcion: asignarPersonalaPaciente
@@ -28,13 +66,18 @@ Salidas: - HttpResponse con template asignar.ntml y la lista de todas personal y
 Funcion que crear las asignaciones y/o eliminarlas
 '''
 
+
+@login_required
 @transaction.atomic
 def asignarPersonalaPaciente(request):
     template = 'kalaapp_asignar.html'
     contexto = {}
     pacientes = None
     personal = None
-
+    
+    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
+        return HttpResponseForbidden("No esta autorizado a acceder a este módulo")
+    
     if request.method == 'POST':
         try:
             personal = Personal.objects.get(id = request.POST.get('personal_id', 0))
@@ -101,6 +144,8 @@ Salidas: Ninguna
 
 Funcion que permite eliminar las asignaciones enviadas como parametro
 '''
+
+
 def eliminarAsignaciones(asignaciones):
     if asignaciones is not None and asignaciones.count() > 0:
         for pp in asignaciones:
@@ -117,6 +162,8 @@ Salidas: - lista de objetos paginados
 
 Funcion que permite listar los diagnosticos existentes
 '''
+
+
 def paginar(request, objetos):
     if objetos is not None and objetos.count() > 0:
         objetos_por_pagina = 10
