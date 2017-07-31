@@ -62,21 +62,33 @@ def detallePersonal(request, personal_id):
 
 def verMensajes(request, personal_id=None):
     template= 'personal/mensajes.html'
-
+#separar mensajes
     mensajes=Message.objects.all().filter(recipient=request.user)
     if mensajes:
-        nombres=[]
-        usuarios=[]
+        nombresL = []
+        nombresN = []
+        usuariosL = []
+        usuariosN = []
         for m in mensajes:
-            usuario=Usuario.objects.get(usuario=m.sender)
-            nombre=usuario.nombre +" "+ usuario.apellido
-            nombres.append(nombre)
-            usuarios.append(usuario)
+            if m.read_at == None:
+                usuario=Usuario.objects.get(usuario=m.sender)
+                nombre=usuario.nombre +" "+ usuario.apellido
+                nombresN.append(nombre)
+                usuariosN.append(usuario)
+            else:
+                usuario = Usuario.objects.get(usuario=m.sender)
+                nombre = usuario.nombre + " " + usuario.apellido
+                nombresL.append(nombre)
+                usuariosL.append(usuario)
+
 
         data={
-            'mensajes': mensajes,
-            'nombres':nombres,
-            'usuarios':usuarios
+            'mensajesL': mensajesL,
+            'nombresL':nombresL,
+            'usuariosL':usuariosL,
+            'mensajesN': mensajesN,
+            'nombresN': nombresN,
+            'usuariosN': usuariosN
         }
     else:
         data={

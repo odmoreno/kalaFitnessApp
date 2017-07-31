@@ -3,66 +3,77 @@
 {% block title %}Mensajes{% endblock %}
 {% block content %}
 <div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Basic Tabs
-                </div>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    Mensajes
+            </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+            <div class="panel-body">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#home" data-toggle="tab">Mensajes No leidos</a>
-                        </li>
-                        <li><a href="#profile" data-toggle="tab">Mensajes Leidos</a>
-                        </li>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">Mensajes No leidos</a>
+                    </li>
+                    <li><a href="#profile" data-toggle="tab">Mensajes Leidos</a>
+                    </li>
                     </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="home">
-                            <h4>Mensajes No leidos</h4>
-                            <div class="container-fluid">
-                                <div class="panel panel-default" style="margin-top: 40px">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                    <h4>Mensajes No leidos</h4>
+                        {% if mensajes %}
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            {% for m in mensajes %}
+                             <div class="list-group">
+                                 {% for u in usuarios %}
+                                    {% if u.usuario == m.sender %}
+                                 <a href="{% url 'personal:leerMensaje' m.pk %}" class="list-group-item"> <span class="glyphicon glyphicon-envelope"> Mensaje de {{ u.nombre }} {{ u.apellido }}</span></a>
+                                    {% endif %}
+                                 {% endfor %}
+                             </div>
+                            {% endfor %}
 
-                                <div class="panel-body">
-
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            {% if mensajes %}
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-4"></div>
-                                                {% for m in mensajes %}
-                                                 <div class="list-group">
-                                                     {% for u in usuarios %}
-                                                        {% if u.usuario == m.sender %}
-                                                     <a href="{% url 'personal:leerMensaje' m.pk %}" class="list-group-item"> <span class="glyphicon glyphicon-envelope"> Mensaje de {{ u.nombre }} {{ u.apellido }}</span></a>
-                                                        {% endif %}
-                                                     {% endfor %}
-                                                 </div>
-                                                {% endfor %}
-
-                                            </div>
-                                            <div class="col-sm-4"></div>
-                                            {% else %}
-                                            <div class="col-sm-4"></div>
-                                                <div class="col-sm-4">
-                                                    <div class="alert alert-info">
-                                                        No se encuentran mensajes que presentar
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-sm-4"></div>
+                        {% else %}
+                        <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="alert alert-info">
+                                    No se encuentran mensajes que presentar
                                 </div>
                             </div>
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+                        <h4>Mensajes Leidos</h4>
+                        {% if mensajes %}
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            {% for m in mensajes %}
+                             <div class="list-group">
+                                 {% for u in usuarios %}
+                                    {% if u.usuario == m.sender %}
+                                 <a href="{% url 'personal:leerMensaje' m.pk %}" class="list-group-item"> <span class="glyphicon glyphicon-envelope"> Mensaje de {{ u.nombre }} {{ u.apellido }}</span></a>
+                                    {% endif %}
+                                 {% endfor %}
+                             </div>
+
+                            {% endfor %}
                         </div>
+                                <div class="col-sm-4"></div>
+                        {% else %}
+                        <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="alert alert-info">
+                                    No se encuentran mensajes que presentar
+                                </div>
+                            </div>
+                        <div class="col-sm-4"></div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 {% endblock %}
