@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from .models import Diagnostico, Rutina, Subrutina
+from .models import DiagnosticoFisioterapia, Rutina, Subrutina
 from personal.models import Personal
 from paciente.models import Paciente
 from kalaapp.models import Rol, Usuario
@@ -50,7 +50,7 @@ class verificarCreacionDiagnosticoTestCase(TestCase):
         paciente.save()
 
     def testCrearDiagnostico(self):
-        diagnostico = Diagnostico()
+        diagnostico = DiagnosticoFisioterapia()
         diagnostico.personal = Personal.objects.get(usuario__nombre='Christian', usuario__apellido='Jaramillo')
         diagnostico.paciente = Paciente.objects.get(usuario__nombre='Carola', usuario__apellido='Toledo')
         diagnostico.condiciones_previas = "Ninguna"
@@ -70,7 +70,7 @@ class verificarCreacionDiagnosticoTestCase(TestCase):
 
         diagnostico.save()
 
-        diagnostico_recuperado = Diagnostico.objects.filter(id=diagnostico.id).first()
+        diagnostico_recuperado = DiagnosticoFisioterapia.objects.filter(id=diagnostico.id).first()
 
         self.assertEquals(diagnostico_recuperado, diagnostico, 'Error diagnosticos no coinciden!')
         self.assertEquals(diagnostico_recuperado.personal, diagnostico.personal, 'Error personal asignado no coincide!')
@@ -117,7 +117,7 @@ class verificarEdicionDiagnosticoTestCase(TestCase):
         paciente.save()
 
     def testEditarDiagnostico(self):
-        diagnostico = Diagnostico()
+        diagnostico = DiagnosticoFisioterapia()
         diagnostico.personal = Personal.objects.get(usuario__nombre='Christian', usuario__apellido='Jaramillo')
         diagnostico.paciente = Paciente.objects.get(usuario__nombre='Carola', usuario__apellido='Toledo')
         diagnostico.condiciones_previas = "Ninguna"
@@ -136,7 +136,7 @@ class verificarEdicionDiagnosticoTestCase(TestCase):
 
         diagnostico.save()
 
-        diagnostico_recuperado = Diagnostico.objects.get(id=diagnostico.id)
+        diagnostico_recuperado = DiagnosticoFisioterapia.objects.get(id=diagnostico.id)
         diagnostico_recuperado.area_afectada = "Brazo izquierdo"
         diagnostico_recuperado.save()
 
@@ -184,7 +184,7 @@ class verificarEliminacionDiagnosticoTestCase(TestCase):
         paciente.save()
 
     def testEliminarDiagnostico(self):
-        diagnostico = Diagnostico()
+        diagnostico = DiagnosticoFisioterapia()
         diagnostico.personal = Personal.objects.get(usuario__nombre='Christian', usuario__apellido='Jaramillo')
         diagnostico.paciente = Paciente.objects.get(usuario__nombre='Carola', usuario__apellido='Toledo')
         diagnostico.condiciones_previas = "Ninguna"
@@ -203,12 +203,12 @@ class verificarEliminacionDiagnosticoTestCase(TestCase):
 
         diagnostico.save()
 
-        diagnostico_recuperado = Diagnostico.objects.get(id=diagnostico.id)
+        diagnostico_recuperado = DiagnosticoFisioterapia.objects.get(id=diagnostico.id)
         diagnostico_recuperado.delete()
 
         try:
-            diagnostico_recuperado_f = Diagnostico.objects.get(id=diagnostico_recuperado.id)
-        except Diagnostico.DoesNotExist:
+            diagnostico_recuperado_f = DiagnosticoFisioterapia.objects.get(id=diagnostico_recuperado.id)
+        except DiagnosticoFisioterapia.DoesNotExist:
             diagnostico_recuperado_f = None
 
         self.assertEquals(diagnostico_recuperado_f, None, 'Error diagnostico existe!')
