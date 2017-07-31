@@ -1,28 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth.decorators import login_required
-from django.contrib import auth
+
+from django.core.mail import send_mail
+import random
+import string
+from . import settings
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 
 
-
-def login(request):
-    return render(request=request, template_name='login.html')
-
-
-def auth_view(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    user = auth.authenticate(username=username, password=password)
-
-    if user is not None and user.is_active:
-        auth.login(request, user)
-        return HttpResponseRedirect('index')
-    else:
-        return HttpResponseRedirect('/')
+def generar_password(size=6, chars=string.ascii_lowercase + string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
-def logout(request):
-    auth.logout(request)
-    return render(request=request, template_name='logout.html')
+def enviar_password_email(request):
+    send_mail('Kala Fitness App', 'Su contraseña generada es: ' + generar_password() +
+              '\nEs recomendable que cambie la contraseña cuando inicie sesión', settings.EMAIL_HOST,
+        ['christianjara21@gmail.com'], fail_silently=False)
+    return HttpResponseRedirect('/')
+

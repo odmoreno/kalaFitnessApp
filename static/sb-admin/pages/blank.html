@@ -126,8 +126,20 @@
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                <li><a href="login.html" data-toggle="tooltip" title="Salir"><i class="fa fa-sign-out fa-lg"></i></a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-gear fa-lg"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{% url 'password_change' %}" ><i class="fa fa-unlock-alt fa-lg"></i> Cambiar contrase&ntilde;a</a>
                         </li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-lg"></i> Salir</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -150,7 +162,7 @@
                                     <a href="#">Editar</a>
                                 </li>
                                 <li>
-                                    <a href="#">Eliminar</a>
+                                    <a href="{% url 'paciente:index' %}">Eliminar</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -159,13 +171,13 @@
                             <a href="#"><i class="fa fa-male fa-lg"></i> Personal<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Crear</a>
+                                    <a href="{% url 'personal:nuevoPersonal' %}">Crear</a>
                                 </li>
                                 <li>
                                     <a href="#">Editar</a>
                                 </li>
                                 <li>
-                                    <a href="#">Eliminar</a>
+                                    <a href="{% url 'personal:index' %}">Eliminar</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

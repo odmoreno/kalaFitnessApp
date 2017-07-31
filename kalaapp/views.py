@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render
-
+from django.http import Http404, HttpResponseForbidden
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from .models import Usuario
@@ -19,7 +19,7 @@ from .models import Usuario
 def home(request):
     template = 'landing.html'
     contexto = {}
-
+    
     request.session.set_expiry(60*30)
     user_sesion = request.session.get('user_sesion', None)
 
@@ -29,7 +29,16 @@ def home(request):
                                     values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id').first()
     except:
         pass
-    return render(request, template, context=contexto)
+    return render(request=request, template_name=template, context=contexto)
+
+
+
+@login_required
+def index2(request):
+    template = 'landing.html'
+    data = {}
+    return render(request, template, data)
+
 
 '''
 Funcion: asignarPersonalaPaciente
@@ -40,13 +49,17 @@ Funcion que crear las asignaciones y/o eliminarlas
 '''
 
 
+@login_required
 @transaction.atomic
 def asignarPersonalaPaciente(request):
     template = 'kalaapp_asignar.html'
     contexto = {}
     pacientes = None
     personal = None
-
+    
+    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
+        return HttpResponseForbidden("No esta autorizado a acceder a este módulo")
+    
     if request.method == 'POST':
         try:
             personal = Personal.objects.get(id = request.POST.get('personal_id', 0))
