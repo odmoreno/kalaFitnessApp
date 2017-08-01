@@ -31,7 +31,7 @@ VERSION 2.0.0
 ACTUALIZADO EN 20/06/2017
 
 '''
-
+@login_required
 def pacientes(request):
     template = 'paciente/pacientes.html'
     p = Paciente.objects.all()
@@ -47,6 +47,7 @@ Salidas:Template para renderizacion junto con JSON con los pacientes de la base 
 *Funcion que retorna a los pacientes registrados en la base de datos*
 
 '''
+@login_required
 def index(request):
     pacientes = Paciente.objects.all()
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
@@ -58,7 +59,7 @@ Salidas:Template para renderizacion junto con FORM para el registro de nuevos Pa
 por medio de POST los datos para generar el registro del paciente en la base de datos*
 
 '''
-#@login_required
+@login_required
 @transaction.atomic
 def PacienteNuevo(request):
     form = UsuarioForm(request.POST or None)
@@ -112,6 +113,7 @@ Salidas:Template para renderizacion y lista de pacientes
 anterior del paciente para que esta sea editada.*
 
 '''
+@login_required
 @transaction.atomic
 def editarPaciente(request, paciente_id):
     pacientes = get_object_or_404(Paciente, pk=paciente_id)
@@ -138,11 +140,12 @@ Salidas:Template para renderizacion
 la base de datos retornando a la pagina de visualizacion de los pacientes.*
 
 '''
+@login_required
 @transaction.atomic
 def PacienteEliminar(request, paciente_id):
     paciente = Paciente.objects.get(pk=paciente_id)
     paciente.usuario.estado="I"
-    paciente.save()
+    paciente.usuario.save()
     pacientes = Paciente.objects.all()
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
@@ -152,7 +155,7 @@ Entradas: requerimiento e Identificador del paciente a ser visualizado
 Salidas:Template para renderizacion 
 *Funcion que recibe el id de un paciente que debe ser visualizado, y muestra su informacion.*
 '''
-
+@login_required
 def detallePaciente(request, paciente_id):
     paciente = get_object_or_404(Usuario, pk=paciente_id)
     return render(request, 'paciente/detalles.html', {'paciente': paciente})
@@ -165,6 +168,7 @@ Salidas: JSON con todos los pacientes
 *Funcion que retorna la informacion de los pacientes registrados en la base de datos
 en forma de un JSON*
 '''
+@login_required
 def reportePacientes(request):
     pacientes = Paciente.objects.all()
     p = []
@@ -180,10 +184,12 @@ def reportePacientes(request):
 
     return JsonResponse({"pacientes": p})
 
+@login_required
 def reportePDF(request):
     template = 'paciente/reportePDF.html'
     return render(request, template)
 
+@login_required
 def pdf_pacientes(request):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="pacientes.pdf"'

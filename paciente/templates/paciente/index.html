@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                         {% for paciente in pacientes %}
-                        {% if paciente.usuario.estado == "A" %}
+                            {% if paciente.usuario.estado == "A" %}
                                 <tr>
                                      <td scope="row"> <a href="{% url 'paciente:detail' paciente.id %}">{{ paciente.id}}</a></td>
                                     {% if paciente.usuario.foto %}
@@ -51,7 +51,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                        {% endif %}
+                            {% endif %}
 
                         {% endfor %}
                         </tbody>

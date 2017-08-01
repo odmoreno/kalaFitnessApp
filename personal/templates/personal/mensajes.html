@@ -16,6 +16,8 @@
                     </li>
                     <li><a href="#profile" data-toggle="tab">Mensajes Leidos</a>
                     </li>
+                    <li><a href="#new" data-toggle="tab">Nuevo Mensaje</a>
+                    </li>
                     </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
@@ -70,6 +72,14 @@
                             </div>
                         <div class="col-sm-4"></div>
                         {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="new">
+                         <h4>Nuevo Mensaje</h4>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <a href="{% url 'personal:nuevoMensajePersonal' %}"><button type="button" class="btn btn-outline btn-primary btn-lg">A Personal</button></a>
+                            <a href="{% url 'personal:nuevoMensaje' %}"><button type="button" class="btn btn-outline btn-success btn-lg" >A Paciente</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

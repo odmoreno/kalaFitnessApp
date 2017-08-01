@@ -4,7 +4,8 @@ from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
-from .forms import  UsuarioForm, PersonalForm, ComentarioForm, PersonalEditForm
+from paciente.models import Paciente
+from .forms import  UsuarioForm, PersonalForm, ComentarioForm, PersonalEditForm, ComentarioPersonalForm
 from personal.models import Personal
 #from paciente.views import paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
@@ -13,20 +14,23 @@ from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
 
-#@login_required
+@login_required
 def index(request):
     all_personal = Usuario.objects.filter(estado="A")
     return render(request, 'personal/index.html', {'all_personal': all_personal})
 
+@login_required
 def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
     # user=personal.usuario
     # user.delete()
     personal.estado="I"
+    personal.save()
     all_personal = Usuario.objects.filter(estado="A")
     #return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
     return render(request, 'personal/index.html', {'all_personal': all_personal})
 
+@login_required
 @transaction.atomic
 def nuevoPersonal(request):
     form = PersonalForm(request.POST or None)
@@ -55,10 +59,11 @@ def nuevoPersonal(request):
     }
     return render(request, 'personal/form_personal.html', context)
 
+@login_required
 @transaction.atomic
 def editarPersonal(request, personal_id):
     personal = get_object_or_404(Usuario, pk=personal_id)
-    print personal.rol.tipo
+
     form = PersonalEditForm(request.POST or None, instance=personal)
     #form.email=personal.usuario.email
     if form.is_valid():
@@ -83,10 +88,12 @@ def editarPersonal(request, personal_id):
     }
     return render(request, 'personal/form_personal.html', context)
 
+@login_required
 def detallePersonal(request, personal_id):
     personal = get_object_or_404(Usuario, pk=personal_id)
     return render(request, 'personal/detalles.html', {'personal': personal})
 
+@login_required
 def verMensajes(request, personal_id=None):
     template= 'personal/mensajes.html'
 #separar mensajes
@@ -127,8 +134,10 @@ def verMensajes(request, personal_id=None):
         }
     return render(request,template,data)
 
+@login_required
 def leerMensaje(request, mensaje_id):
     message=Message.objects.get(id=mensaje_id)
+    Inbox.read_message(message)
     user=User.objects.get(id=message.sender.id)
     usuarioN=Usuario.objects.get(usuario=user)
     nombre=usuarioN.nombre + " " + usuarioN.apellido
@@ -139,25 +148,50 @@ def leerMensaje(request, mensaje_id):
     }
     return render(request, "personal/leerMensaje.html", data)
 
-def nuevoMensaje(request):
-    personal = Usuario.objects.all()
-    print personal
+@login_required
+def nuevoMensajePaciente(request):
+    Paciente = Usuario.objects.all()
+
     form = ComentarioForm(request.POST or None)
     data = {
-        'personal': personal,
+        'personal': Paciente,
         'form': form,
     }
     if form.is_valid():
         para = form.cleaned_data["Destino"]
-        print "######"
         print para
-        to_user=para.usuario
+        print form
+        to = Usuario.objects.get(pk=para)
+        print to
+        to_user=to.usuario
 
         Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
         return render(request, "personal/mensajes.html")
 
     return render(request, "personal/nuevoMensaje.html", data)
 
+def nuevoMensajePersonal(request):
+    personal = Usuario.objects.all()
+    print personal
+    form = ComentarioPersonalForm(request.POST or None)
+    data = {
+        'personal': personal,
+        'form': form,
+    }
+    if form.is_valid():
+        para = form.cleaned_data["Destino"]
+        print para
+        print form
+        to = Usuario.objects.get(pk=para)
+        print to
+        to_user=to.usuario
+
+        Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
+        return render(request, "personal/mensajes.html")
+
+    return render(request, "personal/nuevoMensaje.html", data)
+
+@login_required
 def reportePersonal(request):
     personal = Personal.objects.all()
     per = []
@@ -173,6 +207,7 @@ def reportePersonal(request):
 
     return JsonResponse({"data": per})
 
+@login_required
 def reportePDF(request):
     template = 'personal/reportePDF.html'
     return render(request, template)

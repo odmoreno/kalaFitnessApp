@@ -9,7 +9,7 @@ class UsuarioForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'estado_civil' , 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'estado_civil', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'foto']
 
 class UsuarioEditForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
@@ -40,8 +40,13 @@ class PersonalForm(forms.ModelForm):
 
 
 class ComentarioForm(forms.Form):
-    CHOICES=Paciente.objects.all()
-    Destino = forms.ChoiceField(choices=((x.usuario, x.usuario.nombre +" "+ x.usuario.apellido) for x in CHOICES))
+    CHOICES = Paciente.objects.all()
+    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in CHOICES))
+    mensaje = forms.CharField(widget=forms.Textarea)
+
+class ComentarioPersonalForm(forms.Form):
+    CHOICES = Personal.objects.all()
+    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in CHOICES))
     mensaje = forms.CharField(widget=forms.Textarea)
 
 class PersonalEditForm(forms.ModelForm):
@@ -53,5 +58,5 @@ class PersonalEditForm(forms.ModelForm):
     ocupacion = forms.ChoiceField(choices=ROLES, required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'direccion','estado_civil', 'telefono', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'direccion','estado_civil','estado' , 'telefono', 'genero', 'edad', 'foto']
 
