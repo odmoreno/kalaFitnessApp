@@ -14,7 +14,7 @@ from django.urls.base import reverse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from kala.views import enviar_password_email, generar_password
-from personal.forms import UsuarioForm
+from personal.forms import UsuarioForm, UsuarioEditForm
 
 from django.http import JsonResponse
 
@@ -63,6 +63,20 @@ por medio de POST los datos para generar el registro del paciente en la base de 
 def PacienteNuevo(request):
     form = UsuarioForm(request.POST or None)
     if form.is_valid():
+        '''
+        Si no hay errores en el formulario, sigue el siguiente flujo:
+        1.-Crea un nuevo usuario
+        2.-Guarda los valores del formulario en ese usuario
+        3.-Crea un nuevo User
+        4.-Lo inicializa con los valores del form
+        5.-Guarda el User
+        6.-Obtiene el rol de paciente en un objeto
+        7.-Enlaza el nuevo user con el Usuario antes creado, y Con el Rol
+        8.-Crea un nuevo Paciente
+        9.-Lo enlaza con el nuevo usuario
+        10.-Guarda el paciente
+        
+        '''
         usuario = form.save(commit=False)
         user = User()
         paciente = Paciente()
@@ -71,6 +85,7 @@ def PacienteNuevo(request):
         user.set_password(password)
         user.email = form.cleaned_data['email']
         user.save()
+
         rol = Rol.objects.filter(tipo='paciente').first()
 
         usuario.usuario = user
@@ -90,6 +105,32 @@ def PacienteNuevo(request):
     }
     return render(request, 'paciente/form_paciente.html', context)
 '''
+Funcion: editarPaciente
+Entradas: requerimiento e Identificador del paciente a ser editado
+Salidas:Template para renderizacion y lista de pacientes 
+*Funcion que recibe el id de un paciente que debe ser editado, y Muestra un formulario llenado con la info 
+anterior del paciente para que esta sea editada.*
+
+'''
+@transaction.atomic
+def editarPaciente(request, paciente_id):
+    pacientes = get_object_or_404(Paciente, pk=paciente_id)
+    paciente=pacientes.usuario
+    form = UsuarioEditForm(request.POST or None, instance=paciente)
+    #form.email=personal.usuario.email
+    if form.is_valid():
+        user=paciente.usuario
+        user.email = form.cleaned_data['email']
+        user.save()
+        paciente = form.save()
+        all_pacientes = Paciente.objects.all()
+        return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'paciente/form_paciente.html', context)
+'''
 Funcion: PacienteEliminar
 Entradas: requerimiento e Identificador del paciente a ser eliminado 
 Salidas:Template para renderizacion 
@@ -100,7 +141,8 @@ la base de datos retornando a la pagina de visualizacion de los pacientes.*
 @transaction.atomic
 def PacienteEliminar(request, paciente_id):
     paciente = Paciente.objects.get(pk=paciente_id)
-    paciente.delete()
+    paciente.usuario.estado="I"
+    paciente.save()
     pacientes = Paciente.objects.all()
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
@@ -115,15 +157,7 @@ def detallePaciente(request, paciente_id):
     paciente = get_object_or_404(Usuario, pk=paciente_id)
     return render(request, 'paciente/detalles.html', {'paciente': paciente})
 
-@transaction.atomic
-def PacienteModificar(request, paciente_id):
-    paciente = Paciente.objects.get(pk=paciente_id)
-    form = UsuarioForm(request.GET or None)
-    context = {
-        "form": form,
-        "paciente": paciente.usuario
-    }
-    #return render(request, 'paciente/form_paciente.html', context)
+
 '''
 Funcion: reportePaciente
 Entradas: requerimiento 

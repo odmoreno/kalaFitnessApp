@@ -4,7 +4,7 @@ from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
-from .forms import  UsuarioForm, PersonalForm
+from .forms import  UsuarioForm, PersonalForm, ComentarioForm, PersonalEditForm
 from personal.models import Personal
 #from paciente.views import paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
@@ -15,22 +15,21 @@ from directmessages.models import Message
 
 #@login_required
 def index(request):
-    all_personal = Usuario.objects.all()
+    all_personal = Usuario.objects.filter(estado="A")
     return render(request, 'personal/index.html', {'all_personal': all_personal})
 
 def eliminarPersonal(request, personal_id):
     personal = Usuario.objects.get(pk=personal_id)
     # user=personal.usuario
     # user.delete()
-    personal.delete()
-    all_personal = Usuario.objects.all()
+    personal.estado="I"
+    all_personal = Usuario.objects.filter(estado="A")
     #return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
     return render(request, 'personal/index.html', {'all_personal': all_personal})
 
 @transaction.atomic
 def nuevoPersonal(request):
     form = PersonalForm(request.POST or None)
-    print form
     if form.is_valid():
         personal = form.save(commit=False)
         user = User()
@@ -38,7 +37,7 @@ def nuevoPersonal(request):
         user.set_password('1234')
         user.email = form.cleaned_data['email']
         user.save()
-        if form.cleaned_data["ocupacion"]==1:
+        if form.cleaned_data["ocupacion"]== "1":
             rol = Rol.objects.get(tipo='fisioterapista')
 
         else:
@@ -48,7 +47,35 @@ def nuevoPersonal(request):
         personal.rol = rol
         personal.save()
 
-        all_personal = Usuario.objects.all()
+        all_personal = Usuario.objects.filter(estado="A")
+        return render(request, 'personal/index.html', {'all_personal': all_personal})
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'personal/form_personal.html', context)
+
+@transaction.atomic
+def editarPersonal(request, personal_id):
+    personal = get_object_or_404(Usuario, pk=personal_id)
+    print personal.rol.tipo
+    form = PersonalEditForm(request.POST or None, instance=personal)
+    #form.email=personal.usuario.email
+    if form.is_valid():
+        user=personal.usuario
+        user.email = form.cleaned_data['email']
+        user.save()
+        if form.cleaned_data["ocupacion"] == "1":
+            rol = Rol.objects.get(tipo='fisioterapista')
+        else:
+            rol = Rol.objects.get(tipo='nutricionista')
+
+        print rol.tipo
+        personal.rol = rol
+        print personal.rol.tipo
+        personal.save()
+        personal = form.save()
+        all_personal = Usuario.objects.filter(estado="A")
         return render(request, 'personal/index.html', {'all_personal': all_personal})
 
     context = {
@@ -69,17 +96,21 @@ def verMensajes(request, personal_id=None):
         nombresN = []
         usuariosL = []
         usuariosN = []
+        mensajesL = []
+        mensajesN = []
         for m in mensajes:
             if m.read_at == None:
                 usuario=Usuario.objects.get(usuario=m.sender)
                 nombre=usuario.nombre +" "+ usuario.apellido
                 nombresN.append(nombre)
                 usuariosN.append(usuario)
+                mensajesN.append(m)
             else:
                 usuario = Usuario.objects.get(usuario=m.sender)
                 nombre = usuario.nombre + " " + usuario.apellido
                 nombresL.append(nombre)
                 usuariosL.append(usuario)
+                mensajesL.append(m)
 
 
         data={
@@ -109,12 +140,20 @@ def leerMensaje(request, mensaje_id):
     return render(request, "personal/leerMensaje.html", data)
 
 def nuevoMensaje(request):
-    personal= Usuario.objects.all()
+    personal = Usuario.objects.all()
     print personal
-    data={
-        'personal':personal,
+    form = ComentarioForm(request.POST or None)
+    data = {
+        'personal': personal,
+        'form': form,
     }
-    if request.method == 'POST':
+    if form.is_valid():
+        para = form.cleaned_data["Destino"]
+        print "######"
+        print para
+        to_user=para.usuario
+
+        Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
         return render(request, "personal/mensajes.html")
 
     return render(request, "personal/nuevoMensaje.html", data)
