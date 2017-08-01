@@ -77,7 +77,7 @@ Funcion que permite crear un nuevo diagnostico
 
 
 @login_required
-@rol_required(roles=['fisioterapista', 'nutricionista', 'administrador'])
+@rol_required(roles=['fisioterapista', 'nutricionista'])
 @transaction.atomic
 def crearDiagnostico(request):
     template = None
