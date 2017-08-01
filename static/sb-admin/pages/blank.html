@@ -194,6 +194,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        {% if request.session.user_sesion.rol__tipo == "administrador" %}
+                        {% else %}
                         <li>
                             <a href="#"><i class="fa fa-pencil-square-o fa-lg"></i> Diagn&oacute;stico<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -206,6 +208,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        {% endif %}
                         <li>
                             <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
                         </li>
