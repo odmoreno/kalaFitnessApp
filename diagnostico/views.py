@@ -22,6 +22,7 @@ from kalaapp.views import paginar
 from paciente.models import Paciente
 from personal.models import Personal
 from .models import Rutina, Subrutina, DIAS
+from kalaapp.decorators import rol_required
 
 # Create your views here.
 
@@ -36,6 +37,7 @@ Funcion que permite listar los diagnosticos existentes
 
 
 @login_required
+@rol_required(roles=['fisioterapista', 'nutricionista'])
 def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
     contexto = {}
@@ -47,9 +49,6 @@ def listarDiagnosticos(request):
 
     if sesion:
         rol = sesion.get('rol__tipo', None)
-
-        if rol != 'fisioterapista' and rol != 'nutricionista':
-            return HttpResponseForbidden("Acceso prohibido")
 
     if rol == 'fisioterapista':
         diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A').order_by('-creado') \
@@ -76,7 +75,9 @@ Salidas: - HttpResponse con template crear.ntml y la lista de todas los paciente
 Funcion que permite crear un nuevo diagnostico
 '''
 
+
 @login_required
+@rol_required(roles=['fisioterapista', 'nutricionista', 'administrador'])
 @transaction.atomic
 def crearDiagnostico(request):
     template = None
@@ -88,9 +89,6 @@ def crearDiagnostico(request):
 
     if sesion:
         rol = sesion.get('rol__tipo', '')
-
-        if rol != 'fisioterapista' and rol != 'nutricionista':
-            return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     if request.method == 'POST':
         diagnostico = getDiagnostico(request)
@@ -113,12 +111,13 @@ def crearDiagnostico(request):
 
     contexto['pacientes'] = pacientes
 
-    if rol:
-        if rol == 'fisioterapista':
-            template = 'diagnostico_crear.html'
-        elif rol == 'nutricionista':
-            template = 'diagnostico_nut_crear.html'
-            contexto['dias'] = DIAS
+    if rol == 'fisioterapista':
+        template = 'diagnostico_crear.html'
+    elif rol == 'nutricionista':
+        template = 'diagnostico_nut_crear.html'
+        contexto['dias'] = DIAS
+    else:
+        return redirect(to='/')
 
     return render(request, template_name=template, context=contexto)
 
@@ -130,7 +129,7 @@ Salidas:  - nueva diagnostico
 Funcion que retorna un nuevo diagnostico con los datos ingresados en formulario
 '''
 
-@login_required
+
 @transaction.atomic
 def getDiagnostico(request):
     diagnostico = None
@@ -187,6 +186,7 @@ Funcion que permite eliminar un diagnostico existente
 
 
 @login_required
+@rol_required(roles=['fisioterapista', 'nutricionista'])
 @transaction.atomic
 def eliminarDiagnostico(request, id=0):
     contexto = {}
@@ -196,10 +196,7 @@ def eliminarDiagnostico(request, id=0):
     if sesion:
         rol = sesion.get('rol__tipo', None)
 
-        if rol != 'fisioterapista' and rol != 'nutricionista':
-            return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
-
-    if rol and request.method == 'POST':
+    if request.method == 'POST':
         try:
             if rol == 'fisioterapista':
                 diagnosticoEliminado = DiagnosticoFisioterapia.objects.get(estado='A', id=id)
@@ -233,7 +230,9 @@ Salidas: ninguna
 Funcion que permite editar un diagnostico existente
 '''
 
+
 @login_required
+@rol_required(roles=['fisioterapista', 'nutricionista'])
 def editarDiagnostico(request, id=0):
     contexto = {}
     template = None
@@ -245,10 +244,7 @@ def editarDiagnostico(request, id=0):
     if sesion:
         rol = sesion.get('rol__tipo', None)
 
-        if rol != 'fisioterapista' and rol != 'nutricionista':
-            return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
-
-    if rol and request.method == 'POST':
+    if request.method == 'POST':
         try:
             if rol == 'fisioterapista':
                 diagnostico = DiagnosticoFisioterapia.objects.get(estado='A', id=id)
@@ -285,7 +281,6 @@ Funcion que persiste un Diagnostico en base
 '''
 
 
-@login_required
 @transaction.atomic
 def guardarDiagnostico(request):
     diagnostico = None
@@ -330,6 +325,3 @@ def guardarDiagnostico(request):
 
     return redirect('diagnostico:ListarDiagnosticos')
 
-
-'''
-'''
