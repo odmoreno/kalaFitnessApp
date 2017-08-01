@@ -13,6 +13,7 @@ from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from .models import Usuario
 from django.contrib.auth.models import User
+from .decorators import rol_required
 
 # Create your views here.
 
@@ -68,6 +69,7 @@ Funcion que crear las asignaciones y/o eliminarlas
 
 
 @login_required
+@rol_required(roles=['administrador'])
 @transaction.atomic
 def asignarPersonalaPaciente(request):
     template = 'kalaapp_asignar.html'
@@ -75,12 +77,9 @@ def asignarPersonalaPaciente(request):
     pacientes = None
     personal = None
     
-    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
-        return HttpResponseForbidden("No esta autorizado a acceder a este módulo")
-    
     if request.method == 'POST':
         try:
-            personal = Personal.objects.get(id = request.POST.get('personal_id', 0))
+            personal = Personal.objects.get(id=request.POST.get('personal_id', 0))
             pacientes_id = request.POST.getlist('paciente_seleccionado' or None)
 
             # Si la asignación con otro personal existe o esta siendo desasignada entonces eliminarla
@@ -160,7 +159,7 @@ Funcion: paginar
 Entradas: request, lista de objectos
 Salidas: - lista de objetos paginados
 
-Funcion que permite listar los diagnosticos existentes
+Funcion que permite paginar objetos existentes
 '''
 
 

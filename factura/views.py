@@ -23,6 +23,7 @@ from factura.models import Facturas
 from kalaapp.models import Empresa
 from kalaapp.views import paginar
 from paciente.models import Paciente
+from kalaapp.decorators import rol_required
 
 '''
 Funcion: listarFacturas
@@ -32,13 +33,12 @@ Salidas: HttpResponse con template factura.ntml y la lista de todas las facturas
 Funcion que retorna todas las facturas leidas desde la base de datos
 '''
 
+
 @login_required
+@rol_required(roles=['administrador'])
 def listarFacturas(request):
     template = 'factura_listar.html'
     contexto = {}
-
-    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
-        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     facturas = Facturas.objects.filter(estado='A')\
                 .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
@@ -57,14 +57,13 @@ Salidas: - HttpResponse con template crear.ntml y la lista de todas las empresas
 Funcion que permite crear una factura
 '''
 
+
 @login_required()
+@rol_required(roles=['administrador'])
 @transaction.atomic
 def crearFactura(request):
     template = 'factura_crear.html'
-    contexto={}
-
-    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
-        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
+    contexto = {}
 
     if request.method == 'POST':
         factura = getFactura(request)
@@ -93,6 +92,8 @@ Salidas:  - nueva factura
 
 Funcion que retorna una nueva factura con los datos ingresados en formulario
 '''
+
+
 def getFactura(request):
     try:
         factura = Facturas()
@@ -117,13 +118,11 @@ Funcion que permite eliminar una factura existente
 '''
 
 @login_required()
+@rol_required(roles=['administrador'])
 @transaction.atomic
 def eliminarFactura(request, id=0):
     template = 'factura_listar.html'
     contexto = {}
-
-    if request.session['user_sesion'].get('rol__tipo', '') != 'administrador':
-        return HttpResponseForbidden("No esta autorizado a acceder a este modulo")
 
     if request.method == 'POST':
         try:
