@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^personal/', include('personal.urls')),
     url(r'^factura/', include('factura.urls')),
     url(r'^fisioterapia/', include('fisioterapia.urls')),
+    url(r'^nutricion/', include('nutricion.urls')),
     url(r'^diagnostico/', include('diagnostico.urls')),
 
     url(r'^login/$', login, 

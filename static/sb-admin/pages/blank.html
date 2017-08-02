@@ -50,6 +50,20 @@
     </style>
     {% block scriptUp %}{% endblock %}
 
+    <!-- DataTables JavaScript -->
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables-responsive/dataTables.responsive.js' %}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+
+
 </head>
 
 <body style="font-family: 'Montserrat';">
@@ -139,7 +153,6 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -212,6 +225,35 @@
                         <li>
                             <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
                         </li>
+                        {% endif %}
+                        {% if nutricionista %}
+                            <li>
+                                <a href="#"><i class="fa fa-user-md"></i> Ficha <span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{% url 'nutricion:listar_fichas' %}">Listar</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'nutricion:crear_ficha' %}">Crear</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-calendar"></i> Citas <span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Ver Horarios</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Establecer Horario</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Cancelar Cita</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% endif %}
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
