@@ -76,7 +76,7 @@ def crearFactura(request):
     empresas = Empresa.objects.filter(estado='A') \
         .values('id', 'nombre') \
         .order_by('nombre')
-    pacientes = Paciente.objects.filter(estado='A') \
+    pacientes = Paciente.objects.filter(estado='A',usuario__estado='A') \
         .values('id', 'usuario__nombre', 'usuario__apellido') \
         .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
         .order_by('id', 'nombre_completo')

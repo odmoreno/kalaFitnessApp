@@ -121,12 +121,12 @@
                     <div style="font-size: small"><strong>{{ request.session.user_sesion.nombre}} {{ request.session.user_sesion.apellido }}</strong></div>
                     <div style="font-size: x-small; font-style: italic">{{ request.session.user_sesion.rol__tipo}}</div>
                 </div>
-                <li class="dropdown">
+                <!--<li class="dropdown">
                     <a href="{% url 'personal:mensajes' %}">
                         <i class="fa fa-envelope fa-lg"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <!-- /.dropdown-messages -->
-                </li>
+                    
+                </li> --!>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -149,11 +149,12 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        {% if not nutricionista and not fisioterapia%}
+                        
+
                         <li>
                             <a href="/"><i class="fa fa-home fa-lg"></i> Home</a>
                         </li>
-
+			{% if request.session.user_sesion.rol__tipo == "administrador" %}
                         <li>
                             <a href="#"><i class="fa fa-user fa-lg"></i> Pacientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -190,8 +191,12 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        {% if request.session.user_sesion.rol__tipo == "administrador" %}
+			<li>
+                            <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
+                        </li>
+                        
                         {% else %}
+				
                         <li>
                             <a href="#"><i class="fa fa-pencil-square-o fa-lg"></i> Diagn&oacute;stico<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -201,16 +206,13 @@
                                 <li>
                                     <a href="{% url 'diagnostico:CrearDiagnostico' %}">Crear</a>
                                 </li>
+
                             </ul>
+
                             <!-- /.nav-second-level -->
                         </li>
-                        {% endif %}
-                        <li>
-                            <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
-                        </li>
-                        {% endif %}
-                        {% if nutricionista %}
-                            <li>
+				{% if request.session.user_sesion.rol__tipo == "nutricionista" %}
+				<li>
                                 <a href="#"><i class="fa fa-user-md"></i> Ficha <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -235,9 +237,8 @@
                                     </li>
                                 </ul>
                             </li>
-                        {% endif %}
-                        {% if fisioterapia %}
-                            <li>
+				{% else %}
+				 <li>
                                 <a href="#"><i class="fa fa-user fa-lg"></i> Ficha<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -263,7 +264,13 @@
                                     </li>
                                 </ul>
                             </li>
+
+				{% endif %}
+
                         {% endif %}
+                        
+                      
+                     
 
                     </ul>
                 </div>
