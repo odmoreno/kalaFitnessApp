@@ -9,7 +9,11 @@ class UsuarioForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'estado_civil', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'estado_civil', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero','edad', 'foto']
+
+        widgets = {
+            'edad': forms.NumberInput(attrs={'minlength': 00, 'maxlength': 100})
+        }
 
 class UsuarioEditForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)

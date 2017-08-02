@@ -35,7 +35,7 @@ def eliminarPersonal(request, personal_id):
 def nuevoPersonal(request):
     form = PersonalForm(request.POST or None)
     if form.is_valid():
-        personal = form.save(commit=False)
+        usuario= form.save(commit=False)
         user = User()
         user.username = form.cleaned_data['cedula']
         user.set_password('1234')
@@ -47,10 +47,12 @@ def nuevoPersonal(request):
         else:
             rol = Rol.objects.get(tipo='nutricionista')
 
-        personal.usuario = user
-        personal.rol = rol
+        usuario.usuario = user
+        usuario.rol = rol
+        usuario.save()
+        personal=Personal()
+        personal.usuario=usuario
         personal.save()
-
         all_personal = Usuario.objects.filter(estado="A")
         return render(request, 'personal/index.html', {'all_personal': all_personal})
 
@@ -172,7 +174,6 @@ def nuevoMensajePaciente(request):
 
 def nuevoMensajePersonal(request):
     personal = Usuario.objects.all()
-    print personal
     form = ComentarioPersonalForm(request.POST or None)
     data = {
         'personal': personal,

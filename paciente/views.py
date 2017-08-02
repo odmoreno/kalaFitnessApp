@@ -157,8 +157,9 @@ Salidas:Template para renderizacion
 '''
 @login_required
 def detallePaciente(request, paciente_id):
-    paciente = get_object_or_404(Usuario, pk=paciente_id)
-    return render(request, 'paciente/detalles.html', {'paciente': paciente})
+    paciente = get_object_or_404(Paciente, pk=paciente_id)
+    usuario=paciente.usuario
+    return render(request, 'paciente/detalles.html', {'paciente': usuario})
 
 
 '''
