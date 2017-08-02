@@ -26,9 +26,9 @@ from io import BytesIO
 '''
 MODULO Pacientes
 
-VERSION 2.0.0
+VERSION 3.0.0
 
-ACTUALIZADO EN 20/06/2017
+ACTUALIZADO EN 01/08/2017
 
 '''
 @login_required
