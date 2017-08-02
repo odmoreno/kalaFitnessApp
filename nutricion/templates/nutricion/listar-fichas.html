@@ -32,9 +32,9 @@
                                     {% if pacientes %}
                                         {% for paciente in pacientes %}
                                             <tr class="">
-                                                <td>{{ paciente.id }}</td>
-                                                <td>{{ paciente.usuario.nombre }}</td>
-                                                <td>{{ paciente.usuario.apellido }}</td>
+                                                <td >{{ paciente.id }}</td>
+                                                <td class="capitalize">{{ paciente.usuario.nombre }}</td>
+                                                <td class="capitalize">{{ paciente.usuario.apellido }}</td>
                                                 <td>empty</td>
                                                 <td>empty</td>
                                                 <td><a href=""><p class="fa fa-user-md"> ficha </p></a></td>

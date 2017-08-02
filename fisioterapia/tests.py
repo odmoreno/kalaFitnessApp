@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.shortcuts import get_object_or_404
 from django.test import TestCase
 from directmessages.apps import Inbox
 from directmessages.models import Message
 from django.contrib.auth.models import User
 from django.test import TestCase, RequestFactory, Client
-from .views import listar_fichas
-import os
+from .views import listar_fichas, crear_ficha
+from paciente.models import Paciente
+from personal.models import Personal
+from fisioterapia.models import Ficha
+
+from paciente.tests import ingresarPacienteTestCase
 
 class EnviarMensajeTestCase(TestCase):
     def setUp(self):
@@ -62,4 +67,16 @@ class listarfichas(TestCase):
        #print  response.content
        self.assertEqual(response.status_code, 200)
 
+class crearficha(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        paciente = ingresarPacienteTestCase.testIngreso
 
+        print paciente
+
+
+    def test_crear_ficha(self):
+
+        request = self.factory.get('/fisioterapia/ficha')
+        response = crear_ficha(request)
+        self.assertEqual(response.status_code, 200)

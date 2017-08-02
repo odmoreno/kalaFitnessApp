@@ -19,9 +19,13 @@ from django.shortcuts import render
 from forms import ComentarioForm
 
 def index(request):
-    #template = "fisioterapia/blank.html"
     template = "fisioterapia/lista-fichas.html"
-    return render(request, template)
+    fichas = Ficha.objects.all()
+    context = {
+        "fichas": fichas,
+        'fisioterapia': True
+    }
+    return render(request, template, context)
 
 @transaction.atomic
 def crear_ficha(request):
@@ -40,7 +44,8 @@ def crear_ficha(request):
         ficha.save()
         return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
-        "form": form, "pacientes": pacientes
+        "form": form, "pacientes": pacientes,
+        'fisioterapia': True
     }
     return render(request, template, context)
 
@@ -52,12 +57,12 @@ def listar_fichas(request):
     for ficha in fichas:
         print ficha
         print ficha.paciente.usuario.nombre
-        print ficha.fecha, ficha.fecha.year, ficha.fecha.month, ficha.fecha.day
         print ficha.paciente_id
         print ficha.paciente
 
     context = {
-        "fichas": fichas
+        "fichas": fichas,
+        'fisioterapia': True
     }
     return render(request, template, context)
 

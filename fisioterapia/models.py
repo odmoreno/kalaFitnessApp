@@ -21,7 +21,7 @@ class Ficha(TimeModel):
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
 
     #estado = models.OneToOneField('EstadoFisico', on_delete=models.CASCADE, unique=True)
-    fecha = models.DateField(default=timezone.now, blank=False, null=False)
+    #fecha = models.DateField(default=timezone.now, blank=False, null=False)
     altura = models.FloatField(null=True)
     peso = models.FloatField(null=True)
     imc = models.FloatField(null=True)
