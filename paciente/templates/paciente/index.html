@@ -36,10 +36,10 @@
                                         <td><img src="{{ MEDIA_URL }}usuario/noimagen.jpg" width="50px" height="50px"/></td>
                                     {% endif %}
                                     <td><a href="{% url 'paciente:editar' paciente.id %}">Editar </a></td>
-                                    <td>{{ paciente.usuario.nombre }}</td>
-                                    <td>{{ paciente.usuario.apellido }}</td>
-                                    <td>{{ paciente.usuario.ocupacion}}</td>
-                                    <td>{{ paciente.usuario.direccion }}</td>
+                                    <td class="capitalize">{{ paciente.usuario.nombre }}</td>
+                                    <td class="capitalize">{{ paciente.usuario.apellido }}</td>
+                                    <td class="capitalize">{{ paciente.usuario.ocupacion}}</td>
+                                    <td class="capitalize">{{ paciente.usuario.direccion }}</td>
                                     <td>{{ paciente.usuario.telefono }}</td>
                                     <td>
                                         <form action="{% url 'paciente:eliminar' paciente.id %} " method="post" style="display: inline;" id="formBorrar">

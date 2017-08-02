@@ -1,8 +1,8 @@
-{%  extends 'fisioterapia/blank.html' %}
+{%  extends 'blank.html' %}
 {% load staticfiles %}
 {% block title %}Fisioterapia - Ficha Medica{% endblock %}
 
-{% block body %}
+{% block content %}
     <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -33,9 +33,9 @@
                                         {% for ficha in fichas %}
                                             <tr class="">
                                                 <td>{{ ficha.paciente_id }}</td>
-                                                <td>{{ ficha.paciente.usuario.nombre }}</td>
-                                                <td>{{ ficha.paciente.usuario.apellido }}</td>
-                                                <td>{{ ficha.fecha }}</td>
+                                                <td class="capitalize">{{ ficha.paciente.usuario.nombre }}</td>
+                                                <td class="capitalize">{{ ficha.paciente.usuario.apellido }}</td>
+                                                <td>{{ ficha.creado }}</td>
                                                 <td>{{ ficha.imc }}</td>
                                                 <td><a href=""><p class="fa fa-user-md"> ficha </p></a></td>
                                             </tr>

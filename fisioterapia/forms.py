@@ -20,14 +20,15 @@ class FichaForm(ModelForm):
     class Meta:
          model = Ficha
 
-         fields = ['fecha', 'altura', 'peso', 'imc', 'musculo', 'grasa_visceral', 'grasa_porcentaje',
+         fields = [#'fecha',
+                   'altura', 'peso', 'imc', 'musculo', 'grasa_visceral', 'grasa_porcentaje',
                    'cuello', 'hombros', 'pecho', 'brazo_derecho', 'brazo_izquierdo', 'antebrazo_derecho',
                    'antebrazo_izquierdo', 'cintura', 'cadera', 'muslo_derecho', 'muslo_izquierdo',
                    'pantorrilla_derecha', 'pantorrilla_izquierda', 'flexiones', 'sentadillas', 'saltoLargo',
                    'suspension', 'abdomen_bajo', 'abdomen_alto', 'espinales', 'lumbares', 'trenSuperior', 'trenInferior'
                    ]
          labels = {
-              'fecha': 'Fecha', 'altura': 'Altura', 'peso': 'Peso', 'imc': 'Imc', 'musculo': 'Musculo',
+              'altura': 'Altura', 'peso': 'Peso', 'imc': 'Imc', 'musculo': 'Musculo',
               'grasa_visceral': 'Grasa Viseral', 'grasa_porcentaje': 'Grasa Porcentual', 'cuello': 'Cuello',
               'hombros': 'Hombros', 'pecho': 'Pecho', 'brazo_derecho':  'Brazo Derecho', 'brazo_izquierdo': 'Brazo Izquierdo', 'antebrazo_derecho': 'Antebrazo Derecho',
                   'antebrazo_izquierdo': 'Antebrazo Izquierdo', 'cintura': 'Cintura', 'cadera': 'Cadera', 'muslo_derecho': 'Muslo Derecho', 'muslo_izquierdo': 'Muslo Izquierdo',
@@ -36,7 +37,7 @@ class FichaForm(ModelForm):
                   'trenSuperior': 'Tren Superior', 'trenInferior': 'Tren Inferior',
          }
          widgets = {
-             'fecha': DateTypeInput(attrs={'class': u'form-control'}),
+             #'fecha': DateTypeInput(attrs={'class': u'form-control'}),
              'altura': NumberInput(attrs={'class': u'form-control', 'placeholder': u'Altura en centimetros', 'min': '1.0', 'step': '0.1'}),
              'peso': NumberInput(
                  attrs={'class': u'form-control', 'placeholder': u'Peso en Kilogramos', 'min': '1.0',

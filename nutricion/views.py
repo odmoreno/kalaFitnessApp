@@ -13,7 +13,6 @@ from paciente.models import Paciente
 
 def index(request):
     template = "nutricion/index.html"
-    #nutricionista = True
     return render(request, template, { 'nutricionista': True})
 
 def crear_ficha(request):
