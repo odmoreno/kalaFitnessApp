@@ -74,9 +74,10 @@ class Usuario(TimeModel):
         # if fotoExtension not in settings.IMAGE_FILE_TYPES:
         #     form.add_error('foto', 'Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
         #             settings.IMAGE_FILE_TYPES))
-
+        print self.foto
         if self.foto and self.foto.name.find('noimagen.jpg') == -1:
             try:
+                print self.foto
                 img = Image.open(self.foto)
                 width, height = img.size
                 basewidth = 600
@@ -100,7 +101,7 @@ class Usuario(TimeModel):
                 output.seek(0)
                 self.foto = InMemoryUploadedFile(output, 'foto', "%s.jpg" % self.cedula, 'image/jpeg', output.len, None)
             except Exception as e:
-                messages.add_message(request, messages.WARNING, 'No se puedo guardar la foto. ' + e.__str__())
+                print str(e) + 'No se puedo guardar la foto'
 
         super(Usuario, self).save(*args, **kwargs)
 

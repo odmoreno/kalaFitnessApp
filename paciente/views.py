@@ -1,28 +1,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-#import MyPrint as MyPrint
-from django.db import transaction
-from django.shortcuts import render, get_object_or_404
-from paciente.models import Paciente
-#from paciente.models import paciente
-from kalaapp.models import Usuario, Rol
-from django.contrib.auth.models import User
-from django.http.response import HttpResponseRedirect
-from django.http import HttpRequest,HttpResponse
-from django.urls.base import reverse
-from django.core import serializers
-from django.contrib.auth.decorators import login_required
-from kala.views import enviar_password_email, generar_password
-from personal.forms import UsuarioForm, UsuarioEditForm
-from django.db.models import Value
-from django.db.models.functions import Concat
-from django.http import JsonResponse
-
-#import json
-#from django.http import JsonResponse
+# import json
+# from django.http import JsonResponse
 from io import BytesIO
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+# import MyPrint as MyPrint
+from django.db import transaction
+from django.db.models import Value
+from django.db.models.functions import Concat
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
+
+from kala.views import enviar_password_email, generar_password
+# from paciente.models import paciente
+from kalaapp.models import Rol
+from paciente.models import Paciente
+from personal.forms import UsuarioForm, UsuarioEditForm
 
 '''
 MODULO Pacientes
@@ -99,7 +96,7 @@ def PacienteNuevo(request):
 
         enviar_password_email(user.email, user.username, password)
 
-        pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value(' '), ''))
+        pacientes = Paciente.objects.all()
         return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
     context = {
@@ -126,7 +123,7 @@ def editarPaciente(request, paciente_id):
         user.email = form.cleaned_data['email']
         user.save()
         paciente = form.save()
-        all_pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value(' '), ''))
+        all_pacientes = Paciente.objects.all()
         return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
 
     context = {
@@ -147,7 +144,7 @@ def PacienteEliminar(request, paciente_id):
     paciente = Paciente.objects.get(pk=paciente_id)
     paciente.usuario.estado="I"
     paciente.usuario.save()
-    pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value(' '), ''))
+    pacientes = Paciente.objects.all()
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 
 '''

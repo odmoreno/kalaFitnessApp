@@ -32,9 +32,10 @@ def home(request):
 
             if user is not None:
                 if user.is_superuser:
+
                     request.session['user_sesion'] = {'id': user.id,
-                                                      'nombre': user.first_name,
-                                                      'apellido': user.last_name,
+                                                      'nombre': user.first_name if user.first_name != '' else 'N.',
+                                                      'apellido': user.last_name if user.last_name != '' else 'N.',
                                                       'cedula': user.username,
                                                       'rol__tipo': 'administrador',
                                                       'personal__id': 0}
