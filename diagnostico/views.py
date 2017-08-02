@@ -133,6 +133,7 @@ Funcion que retorna un nuevo diagnostico con los datos ingresados en formulario
 @transaction.atomic
 def getDiagnostico(request):
     diagnostico = None
+    rutina = None
     sesion = request.session.get('user_sesion', None)
     rol = None
 
@@ -143,9 +144,12 @@ def getDiagnostico(request):
         try:
             if rol == 'fisioterapista':
                 diagnostico = DiagnosticoFisioterapia()
+                rutina = Rutina()
+                subrutina = Subrutina()
                 diagnostico.area_afectada = request.POST.get('areaafectada', '')
                 diagnostico.receta = request.POST.get('receta', '')
                 #falta obtener rutinas
+                subrutina.nombre = request.POST.get('nombre', '')
                 s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
                 diagnostico.rutina = Rutina.objects.create()
                 diagnostico.rutina.subrutina.add(s)
