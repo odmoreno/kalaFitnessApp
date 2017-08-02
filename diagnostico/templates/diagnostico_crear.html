@@ -2,13 +2,13 @@
 {% load static %}
 {% load l10n %}
 {% block title %}Nuevo diagn&oacute;stico{% endblock %}
-{% block jqueryUI %}
-    <link href="{% static 'vendor/jquery/jquery-ui.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/jquery/jquery-ui.structure.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/jquery/jquery-ui.theme.min.css' %}" rel="stylesheet">
-    <script src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'sb-admin/js/agregar.js' %}"></script>
-{% endblock %}
+<!--{% block jqueryUI %}-->
+    <!--<link href="{% static 'vendor/jquery/jquery-ui.min.css' %}" rel="stylesheet">-->
+    <!--<link href="{% static 'vendor/jquery/jquery-ui.structure.min.css' %}" rel="stylesheet">-->
+    <!--<link href="{% static 'vendor/jquery/jquery-ui.theme.min.css' %}" rel="stylesheet">-->
+    <!--<script src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>-->
+    <!--<script src="{% static 'sb-admin/js/agregar.js' %}"></script>-->
+<!--{% endblock %}-->
 {% block content %}
     <!-- Page Content -->
     <div id="page-wrapper">
@@ -87,12 +87,12 @@
                                                                                 <label class="control-label">nombre:</label>
                                                                                 <textarea class="form-control" rows="1" name="tituloRutina" maxlength="100" placeholder="nombre de la rutina"></textarea>
                                                                                 <br>
-                                                                                <textarea class="form-control" id="nombre" rows="4" style="margin-left: 5px" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea>
-                                                                                <textarea class="form-control" id="detalle" rows="4" style="margin-left: 5px" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea>
+                                                                                <textarea class="form-control" id="nombre" rows="4" style="margin-left: 5px" name="nombre" maxlength="100" placeholder="nombre del Ejercicio"></textarea>
+                                                                                <textarea class="form-control" id="detalle" rows="4" style="margin-left: 5px" name="detalle" maxlength="1000" placeholder="Detalle del ejercicio"></textarea>
                                                                                 <textarea class="form-control" id="series" rows="1" style="margin-left: 5px" cols="15" name="series" maxlength="2" placeholder="#series"></textarea>
                                                                                 <textarea class="form-control" id="repeticiones" rows="1" style="margin-left: 5px" cols="15" name="repeticiones" maxlength="2" placeholder="#repeticiones"></textarea>
-                                                                                <textarea class="form-control" id="descanso" rows="1" style="margin-left: 5px" cols="15" name="descanso(min)" maxlength="2" placeholder="minutos descanso"></textarea>
-                                                                                <textarea class="form-control" id="enlace" rows="1" cols="60" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea>
+                                                                                <textarea class="form-control" id="descanso" rows="1" style="margin-left: 5px" cols="15" name="descanso" maxlength="2" placeholder="minutos descanso"></textarea>
+                                                                                <textarea class="form-control" id="enlace" rows="1" cols="60" name="url" maxlength="400" placeholder="enlace video"></textarea>
                                                                                 <br>
                                                                                 <button type="button" id="add" class="btn btn-default" style="float: left">Agregar subrutina</button>
                                                                                 <br>

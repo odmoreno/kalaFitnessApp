@@ -150,9 +150,13 @@ def getDiagnostico(request):
                 diagnostico.receta = request.POST.get('receta', '')
                 #falta obtener rutinas
                 subrutina.nombre = request.POST.get('nombre', '')
-                s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
+                subrutina.detalle = request.POST.get('detalle', '')
+                subrutina.veces = request.POST.get('series', '')
+                subrutina.repeticiones = request.POST.get('repeticiones', '')
+                subrutina.descanso = request.POST.get('descanso', '')
+                subrutina.link = request.POST.get('url', '')
                 diagnostico.rutina = Rutina.objects.create()
-                diagnostico.rutina.subrutina.add(s)
+                diagnostico.rutina.subrutina.add(subrutina)
             elif rol == 'nutricionista':
                 diagnostico = DiagnosticoNutricion()
 
