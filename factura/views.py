@@ -18,7 +18,8 @@ from django.db.models.functions import Concat
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+from datetime import datetime
+from django.utils.dateparse import parse_datetime
 from factura.models import Facturas
 from kalaapp.models import Empresa
 from kalaapp.views import paginar
@@ -45,7 +46,7 @@ def listarFacturas(request):
                 'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')\
                 .order_by('id')
 
-    contexto['facturas'] =  paginar(request, facturas)
+    contexto['facturas'] = paginar(request, facturas)
     return render(request, template_name=template, context=contexto)
 
 
@@ -58,7 +59,7 @@ Funcion que permite crear una factura
 '''
 
 
-@login_required()
+@login_required
 @rol_required(roles=['administrador'])
 @transaction.atomic
 def crearFactura(request):
@@ -99,9 +100,10 @@ def getFactura(request):
         factura = Facturas()
         factura.empresa = Empresa.objects.get(id=request.POST.get('empresa', 0))
         factura.paciente = Paciente.objects.get(id=request.POST.get('paciente', 0))
-        factura.serie = request.POST.get('serie')
-        factura.fecha_vencimiento = request.POST.get('fecha_vencimiento')
-        factura.total = request.POST.get('total')
+        factura.serie = request.POST.get('serie', '')
+        factura.fecha_vencimiento = datetime.strptime(request.POST.get('fecha_vencimiento', ''), '%d/%m/%Y')\
+            .strftime('%Y-%m-%d')
+        factura.total = request.POST.get('total', '')
         factura.save()
     except Exception, e:
         messages.add_message(request, messages.WARNING, 'Error inesperado! ' + str(e))

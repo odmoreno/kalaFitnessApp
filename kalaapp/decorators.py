@@ -4,17 +4,17 @@ from django.http import HttpResponseForbidden
 def rol_required(function=None, roles=[]):
     def _dec(view_func):
         def _view(request, *args, **kwargs):
-            rol_sesion = None
-            sesion = request.session.get('user_sesion', None)
+            try:
+                rol_sesion = request.session['user_sesion']['rol__tipo']
 
-            if sesion:
-                rol_sesion = sesion.get('rol__tipo', None)
-
-                for rol_ in roles:
-                    if rol_ == rol_sesion:
-                        return view_func(request, *args, **kwargs)
-            return HttpResponseForbidden("No esta autorizado paraa acceder a este modulo." +
-                                         "\nAdministracion KalaFitnessApp.")
+                if rol_sesion:
+                    for rol_ in roles:
+                        if rol_ == rol_sesion:
+                            return view_func(request, *args, **kwargs)
+            except Exception, e:
+                pass
+            return HttpResponseForbidden("No esta autorizado para acceder a este modulo." +
+                                         "<br>Administracion KalaFitnessApp.")
 
         _view.__name__ = view_func.__name__
         _view.__dict__ = view_func.__dict__

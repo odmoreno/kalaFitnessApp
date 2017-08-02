@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render
-from django.http import Http404, HttpResponseForbidden, HttpResponse
+from django.http import Http404, HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from .models import Usuario

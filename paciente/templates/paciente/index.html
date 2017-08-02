@@ -1,5 +1,6 @@
 {% extends 'blank.html' %}
 {% load l10n %}
+{% load static %}
 {% block title %}Pacientes Kala{% endblock %}
 {% block content %}
 
@@ -30,10 +31,10 @@
                             {% if paciente.usuario.estado == "A" %}
                                 <tr>
                                      <td scope="row"> <a href="{% url 'paciente:detail' paciente.id %}">{{ paciente.id}}</a></td>
-                                    {% if paciente.usuario.foto %}
-                                        <td><img src="{{ paciente.usuario.foto.url}}" width="50px" height="50px"/></td>
+                                    {% if paciente.foto %}
+                                        <td><img src="{% static paciente.foto %}" class="media-object rounded-circle" height="50px" width="50px"/></td>
                                     {% else %}
-                                        <td><img src="{{ MEDIA_URL }}usuario/noimagen.jpg" width="50px" height="50px"/></td>
+                                        <td><img src="{% static 'usuario/noimagen.jpg' %}" class="media-object rounded-circle" width="50px" height="50px"/></td>
                                     {% endif %}
                                     <td><a href="{% url 'paciente:editar' paciente.id %}">Editar </a></td>
                                     <td>{{ paciente.usuario.nombre }}</td>

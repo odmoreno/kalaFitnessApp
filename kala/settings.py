@@ -155,11 +155,11 @@ TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ['%d/%m/%Y','%d-%m-%Y']
+DATE_INPUT_FORMATS = ['%d/%m/%Y', '%d-%m-%Y']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
