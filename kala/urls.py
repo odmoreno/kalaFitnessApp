@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-from kala.views import index
-from django.contrib.auth.views import LoginView, LogoutView
-
-
+from . import views
+from django.contrib.auth.views import login, logout, password_change, password_change_done, password_reset, \
+                                        password_reset_done, password_reset_complete, password_reset_confirm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 
 urlpatterns = [
     url(r'^', include('kalaapp.urls')),
@@ -30,10 +30,34 @@ urlpatterns = [
     url(r'^fisioterapia/', include('fisioterapia.urls')),
     url(r'^nutricion/', include('nutricion.urls')),
     url(r'^diagnostico/', include('diagnostico.urls')),
-    url(r'^accounts/login/', LoginView.as_view(template_name="login.html"), name="login"),
-    #url(r'^accounts/login/', LoginView.as_view(template_name="kalaapp/login.html"), name="login"),
-    url(r'^accounts/logout/', LogoutView.as_view(template_name="kalaapp/logout.html"), name="logout"),
-    #url(r'^$', index, name='index'),
+
+    url(r'^login/$', login, 
+        {'template_name': 'login.html', 'authentication_form': AuthenticationForm, 'redirect_authenticated_user': True}, 
+        name='login'),
+    url(r'^logout/$', logout, 
+        {'next_page': settings.LOGIN_URL}, 
+        name="logout"),
+    url(r'^password_change/$', password_change,
+        {'template_name': 'password_change.html', 'password_change_form': PasswordChangeForm}, 
+        name='password_change'),
+    url(r'^password_change/done/$', password_change_done, 
+        {'template_name': 'password_change_done.html'},
+        name='password_change_done'),
+    url(r'^password_reset/$', password_reset,
+        {'template_name': 'password_reset.html',
+         'password_reset_form': PasswordResetForm},
+        name='password_reset'),
+    url(r'^password_reset/done/$', password_reset_done,
+        {'template_name': 'password_reset_done.html'},
+        name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        password_reset_confirm, 
+        {'template_name': 'password_reset_confirm.html', 'set_password_form': SetPasswordForm},
+        name='password_reset_confirm'),
+    url(r'reset/done/$', password_reset_complete, 
+        {'template_name': 'password_reset_complete.html'},
+        name='password_reset_complete'),
+
 ]
 
 if settings.DEBUG:

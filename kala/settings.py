@@ -78,6 +78,14 @@ TEMPLATES = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'kalafitnessapp@emailserver2017'
+EMAIL_HOST_USER = 'kalafitnessapp@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 WSGI_APPLICATION = 'kala.wsgi.application'
 
 
@@ -93,14 +101,14 @@ DATABASES = {
          'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
          'PORT': '3306',
      },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'gestionhc',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    #     'PORT': '3307',
-    # }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'gestionhc',
+    #    'USER': 'root',
+    #    'PASSWORD': '',
+    #    'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+    #    'PORT': '3307',
+    #}
 }
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
@@ -135,7 +143,9 @@ PASSWORD_HASHERS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'auth.User'
 #AUTH_USER_MODEL = 'kalaapp.Usuario'
 

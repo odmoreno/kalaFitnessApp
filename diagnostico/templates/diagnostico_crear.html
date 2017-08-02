@@ -1,6 +1,7 @@
 {% extends 'blank.html' %}
 {% load l10n %}
 {% block title %}Nuevo diagn&oacute;stico{% endblock %}
+
 {% block content %}
     <!-- Page Content -->
     <div id="page-wrapper">
@@ -41,21 +42,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas"></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" pattern="\w+" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada"></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" pattern="\w+" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta"></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" pattern="[a-z]+" required></textarea>
                                             </div>
                                         </div>
 
@@ -157,7 +158,7 @@
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-success">Crear diagnóstico</button>
+                                                <button id="submit" type="submit" class="btn btn-success">Crear diagnóstico</button>
                                             </div>
                                         </div>
                                     </div>
@@ -166,4 +167,37 @@
                         </div>
                     </div>
                 </div></div></div></div>
+    {% block scriptDown %}
+    <script>
+    $('#textarea').keyup(validarExpresion);
+
+        function validarExpresion() {
+            var errorMsg = "Utiliza un formato que coincida con el solicitado.";
+            var textarea = this;
+            var pattern = new RegExp('^' + $(textarea).attr('pattern') + '$');
+            // check each line of text
+            console.log($(textarea).attr('pattern'))
+            $.each($(this).val().split("\n"), function () {
+                // check if the line matches the pattern
+                var hasError = !this.match(pattern);
+
+                if (typeof textarea.setCustomValidity === 'function') {
+                    textarea.setCustomValidity(hasError ? errorMsg : '');
+
+                } else {
+                    // Not supported by the browser, fallback to manual error display...
+                    $(textarea).toggleClass('error', !!hasError);
+                    $(textarea).toggleClass('ok', !hasError);
+                    if (hasError) {
+                        $(textarea).attr('title', errorMsg);
+                    } else {
+                        $(textarea).removeAttr('title');
+                    }
+                }
+                return !hasError;
+            });
+        }
+    </script>
 {% endblock %}
+{% endblock %}
+
