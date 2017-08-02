@@ -1,4 +1,5 @@
 {% extends 'blank.html' %}
+{% load static %}
 {% load l10n %}
 {% block title %}Personal Kala{% endblock %}
 {% block content %}
@@ -32,9 +33,9 @@
                                 <td scope="row"> <a href="{% url 'personal:detail' personal.id %}">{{ personal.id}}</a></td>
 
                                 {% if personal.usuario.foto %}
-                                    <td><img src="{{ personal.usuario.foto.url}}" width="50px" height="50px"/></td>
+                                   <td><img src="{% static personal.foto %}" class="media-object rounded-circle" height="50px" width="50px"/></td>
                                 {% else %}
-                                    <td><img src="{{ MEDIA_URL }}usuario/noimagen.jpg" width="50px" height="50px"/></td>
+                                    <td><img src="{% static 'usuario/noimagen.jpg' %}" class="media-object rounded-circle" width="50px" height="50px"/></td>
                                 {% endif %}
                                 <td><a href="{% url 'personal:editar' personal.id %}">Editar </a></td>
                                 <td class="capitalize">{{ personal.nombre }}</td>

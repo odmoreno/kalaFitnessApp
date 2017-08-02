@@ -90,7 +90,11 @@ Formulario para la creacion de un Mensaje
 '''
 class ComentarioForm(forms.Form):
     CHOICES = Paciente.objects.all()
-    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in CHOICES))
+    C=[]
+    for p in CHOICES:
+        if p.usuario.estado !="I":
+            C.append(p)
+    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in C))
     mensaje = forms.CharField(widget=forms.Textarea)
 '''
 
@@ -100,7 +104,12 @@ Formulario para la creacion de un nuevo Mensaje
 '''
 class ComentarioPersonalForm(forms.Form):
     CHOICES = Personal.objects.all()
-    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in CHOICES))
+    C=[]
+    for p in CHOICES:
+        if p.usuario.estado !="I":
+            C.append(p)
+
+    Destino = forms.ChoiceField(choices=((x.usuario.id, x.usuario.nombre +" "+ x.usuario.apellido) for x in C))
     mensaje = forms.CharField(widget=forms.Textarea)
 '''
 

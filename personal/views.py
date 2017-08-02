@@ -232,16 +232,19 @@ def nuevoMensajePersonal(request):
     }
     if form.is_valid():
         para = form.cleaned_data["Destino"]
-        print para
-        print form
+
+
         to = Usuario.objects.get(pk=para)
-        print to
-        to_user=to.usuario
+        #to_user=to.usuario
+        to_user=User.object.get(username=to.usuario)
+        print to_user
 
         Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
         return render(request, "personal/mensajes.html")
+    else:
+        form=ComentarioPersonalForm()
 
-    return render(request, "personal/nuevoMensaje.html", data)
+    return render(request, "personal/nuevoMensajePersonal.html", data)
 
 @login_required
 def reportePersonal(request):
