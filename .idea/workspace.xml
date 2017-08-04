@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/factura/templates/factura_listar.html" afterPath="$PROJECT_DIR$/factura/templates/factura_listar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kalaapp/models.py" afterPath="$PROJECT_DIR$/kalaapp/models.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/media/usuario/0983024994.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/media/usuario/0983300000.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kalaapp/views.py" afterPath="$PROJECT_DIR$/kalaapp/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paciente/templates/paciente/detalles.html" afterPath="$PROJECT_DIR$/paciente/templates/paciente/detalles.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paciente/templates/paciente/index.html" afterPath="$PROJECT_DIR$/paciente/templates/paciente/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paciente/views.py" afterPath="$PROJECT_DIR$/paciente/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/personal/templates/personal/index.html" afterPath="$PROJECT_DIR$/personal/templates/personal/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,7 +50,69 @@
     <favorites_list name="kalaFitnessApp" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/factura/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="29" column="85" lean-forward="false" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/paciente/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="161" column="63" lean-forward="false" selection-start-line="161" selection-start-column="55" selection-end-line="161" selection-end-column="63" />
+              <folding>
+                <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detalles.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/detalles.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usuario" pinned="false" current-in-tab="false">
+        <entry file="das://table:/eab854ba/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/paciente/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,8 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pacientepersonal__personal_id</find>
-      <find>foto</find>
       <find>sati</find>
       <find>satis</find>
       <find>pacientes</find>
@@ -89,6 +152,8 @@
       <find>form</find>
       <find>annot</find>
       <find>index.html</find>
+      <find>concat</find>
+      <find>detalle</find>
     </findStrings>
     <replaceStrings>
       <replace>null=False</replace>
@@ -118,39 +183,38 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/settings.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/forms.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/urls.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/forms.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kala/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/settings.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kala/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/urls.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/diagnostico/templates/respaldo fichas" />
-        <option value="dbtable:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.rol" />
         <option value="$PROJECT_DIR$/diagnostico/tests.py" />
         <option value="dbtable:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.paciente" />
         <option value="$PROJECT_DIR$/personal/models.py" />
@@ -187,7 +251,6 @@
         <option value="$PROJECT_DIR$/kala/views.py" />
         <option value="$PROJECT_DIR$/factura/templates/factura_listar.html" />
         <option value="$PROJECT_DIR$/diagnostico/models.py" />
-        <option value="$PROJECT_DIR$/kalaapp/views.py" />
         <option value="$PROJECT_DIR$/diagnostico/views.py" />
         <option value="$PROJECT_DIR$/factura/models.py" />
         <option value="$PROJECT_DIR$/kala/settings.py" />
@@ -197,9 +260,12 @@
         <option value="$PROJECT_DIR$/factura/tests.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/form_template.html" />
         <option value="$PROJECT_DIR$/paciente/templates/paciente/form_paciente.html" />
-        <option value="$PROJECT_DIR$/paciente/templates/paciente/index.html" />
-        <option value="$PROJECT_DIR$/paciente/views.py" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/blank.html" />
+        <option value="$PROJECT_DIR$/personal/templates/personal/index.html" />
+        <option value="$PROJECT_DIR$/paciente/templates/paciente/index.html" />
+        <option value="$PROJECT_DIR$/kalaapp/views.py" />
+        <option value="$PROJECT_DIR$/paciente/views.py" />
+        <option value="$PROJECT_DIR$/paciente/templates/paciente/detalles.html" />
       </list>
     </option>
   </component>
@@ -244,22 +310,6 @@
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="factura" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="kalaapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="kalaapp" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
               <item name="paciente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -274,24 +324,6 @@
               <item name="paciente" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="paciente" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="sb-admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="sb-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -303,7 +335,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.215847" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -702,16 +734,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16364606" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.072916664" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28091684" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.9218241" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31161782" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -824,12 +857,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kalaapp/urls.py" />
-    <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/password_change_done.html" />
-    <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/password_reset_confirm.html" />
-    <entry file="file://$PROJECT_DIR$/personal/passGen.py" />
-    <entry file="file://$PROJECT_DIR$/dependencias.txt" />
-    <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/index.html" />
     <entry file="file://$PROJECT_DIR$/requirements.txt" />
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/login.html" />
     <entry file="file://$PROJECT_DIR$/to-do list" />
@@ -879,19 +906,17 @@
     <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.usuario" />
     <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.diagnostico_fis" />
     <entry file="file://$PROJECT_DIR$/factura/templates/base.html" />
-    <entry file="file://$PROJECT_DIR$/kalaapp/views.py" />
     <entry file="file://C:/Python27/Lib/site-packages/django/contrib/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
           <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kala/urls.py" />
     <entry file="file://$PROJECT_DIR$/kala/views.py" />
     <entry file="file://$PROJECT_DIR$/diagnostico/views.py" />
-    <entry file="file://$PROJECT_DIR$/personal/urls.py" />
-    <entry file="file://$PROJECT_DIR$/kala/settings.py" />
     <entry file="file://$PROJECT_DIR$/kalaapp/decorators.py" />
     <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.facturas" />
     <entry file="file://$PROJECT_DIR$/diagnostico/tests.py" />
@@ -899,17 +924,125 @@
     <entry file="file://$PROJECT_DIR$/kalaapp/models.py" />
     <entry file="file://$PROJECT_DIR$/factura/models.py" />
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.empresa" />
-    <entry file="file://$PROJECT_DIR$/factura/tests.py" />
-    <entry file="file://$PROJECT_DIR$/paciente/urls.py" />
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/password_change.html" />
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/form_template.html" />
     <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/form_paciente.html" />
     <entry file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" />
     <entry file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" />
-    <entry file="file://$PROJECT_DIR$/factura/views.py" />
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario" />
-    <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" />
-    <entry file="file://$PROJECT_DIR$/paciente/views.py" />
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" />
+    <entry file="file://$PROJECT_DIR$/factura/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="85" lean-forward="false" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kala/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="99" column="30" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/personal/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/personal/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/personal/templates/personal/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="35" column="74" lean-forward="false" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/factura/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="80" column="92" lean-forward="true" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="34" column="73" lean-forward="false" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kalaapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="120" column="55" lean-forward="false" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paciente/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/eab854ba/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paciente/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="161" column="63" lean-forward="false" selection-start-line="161" selection-start-column="55" selection-end-line="161" selection-end-column="63" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/detalles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

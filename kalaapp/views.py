@@ -23,7 +23,7 @@ def home(request):
     template = 'landing.html'
     contexto = {}
     
-    request.session.set_expiry(60*30)
+    request.session.set_expiry(10800)
     user_sesion = request.session.get('user_sesion', None)
 
     if not user_sesion:
@@ -118,12 +118,12 @@ def asignarPersonalaPaciente(request):
             messages.add_message(request, messages.WARNING, 'Error inesperado al crear asignacion!, ' + str(e))
 
     try:
-        personal = Personal.objects.filter(estado='A') \
+        personal = Personal.objects.filter(estado='A', usuario__estado='A') \
             .values('id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
             .order_by('id', 'nombre_completo')
 
-        pacientes = Paciente.objects.filter(estado='A') \
+        pacientes = Paciente.objects.filter(estado='A', usuario__estado='A') \
             .values('id', 'pacientepersonal__personal_id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula', 'usuario__telefono',
                    'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \

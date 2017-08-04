@@ -1,5 +1,6 @@
 {% extends 'blank.html' %}
 {% load l10n %}
+{% load static %}
 {% block title %}Detalles{% endblock %}
 {% block content %}
 <div id="page-wrapper">
@@ -14,7 +15,11 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <a href="{% url 'paciente:detail' paciente.id %}">
-                                    <img src="https://cdn4.iconfinder.com/data/icons/line-user/512/user_info-512.png" class="img-responsive">
+                                    {% if paciente.foto %}
+                                        <img src="/static/{{ paciente.foto }}" class="img-responsive">
+                                    {% else %}
+                                        <img src="/static/usuario/noimagen.jpg" class="img-responsive">
+                                    {% endif %}
                                 </a>
                                 <h1>{{ paciente.nombre }}</h1> <h1>{{ paciente.apellido }}</h1>
                             </div>

@@ -17,7 +17,7 @@ from django.shortcuts import render, get_object_or_404
 
 from kala.views import enviar_password_email, generar_password
 # from paciente.models import paciente
-from kalaapp.models import Rol
+from kalaapp.models import Rol, Usuario
 from paciente.models import Paciente
 from personal.forms import UsuarioForm, UsuarioEditForm
 
@@ -47,7 +47,8 @@ Salidas:Template para renderizacion junto con JSON con los pacientes de la base 
 '''
 @login_required
 def index(request):
-    pacientes = Paciente.objects.all()
+    pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value('')))
+    print pacientes
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 '''
 Funcion: PacienteNuevo
@@ -157,6 +158,7 @@ Salidas:Template para renderizacion
 def detallePaciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, pk=paciente_id)
     usuario=paciente.usuario
+    print usuario.foto
     return render(request, 'paciente/detalles.html', {'paciente': usuario})
 
 
