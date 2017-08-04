@@ -1,0 +1,117 @@
+{%  extends 'blank.html' %}
+{% load static %}
+{% block title %}Asignaciones{% endblock %}
+
+{% block content %}
+    {% block script %}
+        <script>
+        window.onload = function() {
+            buscarAsignaciones();
+        };
+
+        function buscarAsignaciones(){
+            var pid = $("#personal_id option:selected").attr("value");
+            $('.checkbox').each(function () {
+                if (pid == $(this).attr("id")){
+                       $(this).attr('checked', 'checked');
+                }
+                else{
+                    $(this).removeAttr('checked');
+                }
+            });
+        }
+
+        </script>
+    {% endblock %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    {% if messages %}
+                        <div class="row messages">
+                        {% for message in messages %}
+                            <div {% if message.tags %} class="alert alert-{{ message.tags }} fade in alert-dismissable"{% endif %} style="margin-left:18px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="panel panel-default" style="margin-top: 40px">
+                    <div class="panel-heading"><h4><b>Asignaciones</b></h4></div>
+                        <div class="panel-body">
+                            <form class="form-vertical" method="post" action="{% url 'kalaapp:AsignarPersonalaPaciente' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione al personal para asignarle pacientes</label>
+                                            <select class="form-control" id="personal_id" name="personal_id" onchange="buscarAsignaciones()" autofocus required>
+                                            {% if personal %}
+                                                {% for persona in personal %}
+                                                    <option value="{{ persona.id }}">{{ persona.nombre_completo }}</option>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 20px">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" width="100%">
+                                        <thead class="thead-inverse">
+                                            <tr>
+                                              <th class="text-center sorting">ID</th>
+                                              <th class="text-center sorting">Foto</th>
+                                              <th class="text-center sorting">Nombre</th>
+                                              <th class="text-center sorting">C&eacute;dula</th>
+                                              <th class="text-center sorting">Tel&eacute;fono</th>
+                                              <th class="text-center sorting">Ocupaci&oacute;n</th>
+                                              <th class="text-center sorting">Edad</th>
+                                              <th class="text-center sorting">G&eacute;nero</th>
+                                              <th class="text-center">Asignaci&oacute;n</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% if pacientes %}
+                                            {% for paciente in pacientes %}
+                                                    <tr>
+                                                        <td class="text-center">{{ paciente.id }}</td>
+                                                        <td><img src="{% static paciente.usuario__foto %}" class="media-object rounded-circle" height="50px" width="50px"/></td>
+                                                        <td>{{ paciente.nombre_completo }}</td>
+                                                        <td>{{ paciente.usuario__cedula}}</td>
+                                                        <td>{{ paciente.usuario__telefono }}</td>
+                                                        <td>{{ paciente.usuario__ocupacion }}</td>
+                                                        <td>{{ paciente.usuario__edad }}</td>
+                                                        <td>{{ paciente.usuario__genero }}</td>
+                                                        <td class="text-center">
+                                                            <div class="form-group text-center">
+                                                                <input class="checkbox" id="{{ paciente.pacientepersonal__personal_id }}" value="{{ paciente.id }}" type="checkbox" name="paciente_seleccionado"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td align="center" colspan="9">Sin informaci&oacute;n</td>
+                                            </tr>
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 20px">
+                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Actualizar asignaciones</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

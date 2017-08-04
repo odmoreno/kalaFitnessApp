@@ -1,0 +1,87 @@
+{% extends 'blank.html' %}
+{% load l10n %}
+{% block title %}Detalles{% endblock %}
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid songs-container">
+        <div class="panel panel-default" style="margin-top: 40px">
+
+            <div class="panel-body">
+                <div class="row">
+
+        <!-- Info izquierda -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'personal:detail' personal.id %}">
+                            <img src="https://cdn4.iconfinder.com/data/icons/line-user/512/user_info-512.png" class="img-responsive">
+                    </a>
+                    <h1>{{ personal.nombre }} <small>{{ personal.id}}</small></h1> <h1>{{ personal.apellido }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info derecha -->
+        <div class="col-sm-8 col-md-9">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal" action="" method="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Nombre:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Apellido:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.apellido }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Cedula:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.cedula }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Dirección:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.direccion }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Ocupación:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.ocupacion }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Telefono:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.telefono }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class ="control-label col-sm-3">Edad:</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{ personal.edad }}</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

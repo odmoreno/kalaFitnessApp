@@ -1,0 +1,8 @@
+#validar factura
+#	serie sin letras, no repetida entre facturas
+#	no puede haber valor de 0
+#	la fecha no puede pasar mas de un año en vencimiento
+#	iva deberia salir automatico
+	
+#Tener todo correctamente versionado y comentado
+HECHO!

@@ -1,0 +1,66 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% load factura_filter %}
+{% block title %}Crear Factura{% endblock %}
+{% block jqueryUI %}
+    <link href="{% static 'vendor/jquery/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/jquery/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/jquery/jquery-ui.theme.min.css' %}" rel="stylesheet">
+    <script src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>
+{% endblock %}
+{% block scriptUp %}
+    <script>
+	$( function() {
+		$( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy', minDate: 0, maxDate: "+1Y" });
+	} );
+
+  </script>
+{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                    <div class="panel panel-default" style="margin-top: 40px">
+                        <div class="panel-heading"><h4><b>Ingrese los datos de una nueva factura</b></h4></div>
+                        <div class="panel-body">
+                            <form class="form-vertical" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="control-label">Empresa:</label>
+                                    <select class="form-control" id="empresa_id" name="empresa" required>
+                                    {% if empresas %}
+                                        {% for empresa in empresas %}
+                                            <option value="{{ empresa.id }}">{{ empresa.nombre }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Paciente:</label>
+                                    <select class="form-control" id="paciente_id" name="paciente" autofocus required>
+                                    {% if pacientes %}
+                                        {% for paciente in pacientes %}
+                                            <option value="{{ paciente.id }}">{{ paciente.id }} - {{ paciente.nombre_completo }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Serie:</label><input class="form-control" type="text" name="serie" pattern="[0-9]{1,25}" placeholder="Serie de la factura (Máx. 25 dígitos)" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Fecha de vencimiento: (1 año máximo)</label><input type="text" class="form-control" id="datepicker" name="fecha_vencimiento" placeholder="Formato dd/mm/aaaa (Máx. 12 meses desde hoy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Total:</label><input class="form-control" type="number" name="total" step="0.01" min="1.0" max="100000.0" placeholder="Total de la factura" required/>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Crear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div></div></div></div>
+{% endblock %}
