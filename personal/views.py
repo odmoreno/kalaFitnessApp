@@ -10,6 +10,7 @@ from personal.models import Personal
 #from paciente.views import paciente
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
@@ -34,9 +35,10 @@ def eliminarPersonal(request, personal_id):
     # user.delete()
     personal.estado="I"
     personal.save()
-    all_personal = Usuario.objects.filter(estado="A")
+    #all_personal = Usuario.objects.filter(estado="A")
     #return HttpResponse({"message": "Se elimino el personal" + personal_id}, content_type="application/json")
-    return render(request, 'personal/index.html', {'all_personal': all_personal})
+    #return render(request, 'personal/index.html', {'all_personal': all_personal})
+    return redirect('personal:index')
 
 '''
 Funcion: nuevoPersonal
@@ -49,7 +51,7 @@ por medio de POST los datos para generar el registro del paciente en la base de 
 @login_required
 @transaction.atomic
 def nuevoPersonal(request):
-    form = PersonalForm(request.POST or None)
+    form = PersonalForm(request.POST, request.FILES)
     if form.is_valid():
         usuario= form.save(commit=False)
         user = User()
@@ -65,12 +67,14 @@ def nuevoPersonal(request):
 
         usuario.usuario = user
         usuario.rol = rol
+        usuario.foto = form.cleaned_data['foto']
         usuario.save()
         personal=Personal()
         personal.usuario=usuario
         personal.save()
-        all_personal = Usuario.objects.filter(estado="A")
-        return render(request, 'personal/index.html', {'all_personal': all_personal})
+        #all_personal = Usuario.objects.filter(estado="A")
+        #return render(request, 'personal/index.html', {'all_personal': all_personal})
+        return redirect('personal:index')
 
     context = {
         "form": form,
@@ -105,8 +109,9 @@ def editarPersonal(request, personal_id):
         personal.rol = rol
         personal.save()
         personal = form.save()
-        all_personal = Usuario.objects.filter(estado="A")
-        return render(request, 'personal/index.html', {'all_personal': all_personal})
+        #all_personal = Usuario.objects.filter(estado="A")
+        #return render(request, 'personal/index.html', {'all_personal': all_personal})
+        return redirect('personal:index')
 
     context = {
         "form": form,

@@ -16,12 +16,13 @@
                             <div class="panel-body">
                                 <a href="{% url 'paciente:detail' paciente.id %}">
                                     {% if paciente.foto %}
-                                        <img src="/static/{{ paciente.foto }}" class="img-responsive">
+                                        <img src="/static/{{ paciente.foto }}" class="img-rounded img-responsive">
                                     {% else %}
-                                        <img src="/static/usuario/noimagen.jpg" class="img-responsive">
+                                        <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive">
                                     {% endif %}
                                 </a>
-                                <h1>{{ paciente.nombre }}</h1> <h1>{{ paciente.apellido }}</h1>
+                                <h3>{{ paciente.id}}</h3>
+                                <h1>{{ paciente.nombre }} {{ paciente.apellido }}</h1>
                             </div>
                         </div>
                     </div>

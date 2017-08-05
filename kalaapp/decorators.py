@@ -11,10 +11,10 @@ def rol_required(function=None, roles=[]):
                     for rol_ in roles:
                         if rol_ == rol_sesion:
                             return view_func(request, *args, **kwargs)
+                    return HttpResponseForbidden("No esta autorizado para acceder a este modulo." +
+                                                 "<br>Administracion KalaFitnessApp.")
             except Exception, e:
-                pass
-            return HttpResponseForbidden("No esta autorizado para acceder a este modulo." +
-                                         "<br>Administracion KalaFitnessApp.")
+                print str(e)
 
         _view.__name__ = view_func.__name__
         _view.__dict__ = view_func.__dict__

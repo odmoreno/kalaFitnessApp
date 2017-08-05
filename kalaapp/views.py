@@ -77,7 +77,8 @@ def asignarPersonalaPaciente(request):
     contexto = {}
     pacientes = None
     personal = None
-    
+    personal_id_actual = 0
+
     if request.method == 'POST':
         try:
             personal = Personal.objects.get(id=request.POST.get('personal_id', 0))
@@ -85,12 +86,12 @@ def asignarPersonalaPaciente(request):
 
             # Si la asignación con otro personal existe o esta siendo desasignada entonces eliminarla
             try:
-                asigDiferentePersonal = PacientePersonal.objects.filter(estado='A', paciente__in = pacientes_id)\
-                                                                        .exclude(personal = personal)
+                asigDiferentePersonal = PacientePersonal.objects.filter(estado='A', paciente__in=pacientes_id) \
+                    .exclude(personal=personal)
                 eliminarAsignaciones(asigDiferentePersonal)
 
-                asigMismoPersonal = PacientePersonal.objects.filter(estado='A', personal = personal)\
-                                                                    .exclude(paciente__in = pacientes_id)
+                asigMismoPersonal = PacientePersonal.objects.filter(estado='A', personal=personal) \
+                    .exclude(paciente__in=pacientes_id)
                 eliminarAsignaciones(asigMismoPersonal)
 
             except PacientePersonal.DoesNotExist:
@@ -101,10 +102,12 @@ def asignarPersonalaPaciente(request):
             for pid in pacientes_id:
 
                 try:
-                    paciente = Paciente.objects.get(id = pid)
-                    pp = PacientePersonal.objects.get(estado = 'A', personal = personal, paciente = paciente)
+                    paciente = Paciente.objects.get(id=pid)
+                    pp = PacientePersonal.objects.get(estado='A', personal=personal, paciente=paciente)
+                    print '5 ' + pp
                 except PacientePersonal.DoesNotExist, e:
-                    pp = PacientePersonal.objects.create(personal = personal, paciente = paciente)
+                    pp = PacientePersonal.objects.create(personal=personal, paciente=paciente)
+                    print '6 ' + pp
                     veces = veces + 1
 
             if veces > 0:
@@ -119,13 +122,13 @@ def asignarPersonalaPaciente(request):
 
     try:
         personal = Personal.objects.filter(estado='A', usuario__estado='A') \
-            .values('id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula') \
+            .values('id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula', 'usuario__rol__tipo') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
             .order_by('id', 'nombre_completo')
 
         pacientes = Paciente.objects.filter(estado='A', usuario__estado='A') \
-            .values('id', 'pacientepersonal__personal_id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula', 'usuario__telefono',
-                   'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto') \
+            .values('id', 'pacientepersonal__personal_id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula',
+                    'usuario__telefono', 'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
             .order_by('id', 'nombre_completo')
 
@@ -134,7 +137,7 @@ def asignarPersonalaPaciente(request):
 
     contexto['pacientes'] = pacientes
     contexto['personal'] = personal
-
+    contexto['personal_id_actual'] = int(personal_id_actual)
     return render(request, template_name=template, context=contexto)
 
 '''

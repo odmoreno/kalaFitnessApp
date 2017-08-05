@@ -46,7 +46,7 @@ def listarFacturas(request):
                 'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')\
                 .order_by('id')
 
-    contexto['facturas'] = paginar(request, facturas)
+    contexto['facturas'] = facturas #paginar(request, facturas)
     return render(request, template_name=template, context=contexto)
 
 

@@ -12,6 +12,7 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -48,7 +49,6 @@ Salidas:Template para renderizacion junto con JSON con los pacientes de la base 
 @login_required
 def index(request):
     pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value('')))
-    print pacientes
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 '''
 Funcion: PacienteNuevo
@@ -61,7 +61,7 @@ por medio de POST los datos para generar el registro del paciente en la base de 
 @login_required
 @transaction.atomic
 def PacienteNuevo(request):
-    form = UsuarioForm(request.POST or None)
+    form = UsuarioForm(request.POST, request.FILES)
     if form.is_valid():
         '''
         Si no hay errores en el formulario, sigue el siguiente flujo:
@@ -90,6 +90,7 @@ def PacienteNuevo(request):
 
         usuario.usuario = user
         usuario.rol = rol
+        usuario.foto = form.cleaned_data['foto']
         usuario.save()
 
         paciente.usuario = usuario
@@ -97,8 +98,9 @@ def PacienteNuevo(request):
 
         enviar_password_email(user.email, user.username, password)
 
-        pacientes = Paciente.objects.all()
-        return render(request, 'paciente/index.html', {'pacientes': pacientes})
+        #pacientes = Paciente.objects.all()
+        #return render(request, 'paciente/index.html', {'pacientes': pacientes})
+        return redirect('paciente:index')
 
     context = {
         "form": form,
@@ -124,8 +126,9 @@ def editarPaciente(request, paciente_id):
         user.email = form.cleaned_data['email']
         user.save()
         paciente = form.save()
-        all_pacientes = Paciente.objects.all()
-        return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
+        #all_pacientes = Paciente.objects.all()
+        #return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
+        return redirect('paciente:index')
 
     context = {
         "form": form,
@@ -143,10 +146,12 @@ la base de datos retornando a la pagina de visualizacion de los pacientes.*
 @transaction.atomic
 def PacienteEliminar(request, paciente_id):
     paciente = Paciente.objects.get(pk=paciente_id)
-    paciente.usuario.estado="I"
+    paciente.usuario.estado = "I"
+    paciente.estado = "I"
     paciente.usuario.save()
-    pacientes = Paciente.objects.all()
-    return render(request, 'paciente/index.html', {'pacientes': pacientes})
+    #pacientes = Paciente.objects.all()
+    #return render(request, 'paciente/index.html', {'pacientes': pacientes})
+    return redirect('paciente:index')
 
 '''
 Funcion: detallePaciente
@@ -158,7 +163,6 @@ Salidas:Template para renderizacion
 def detallePaciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, pk=paciente_id)
     usuario=paciente.usuario
-    print usuario.foto
     return render(request, 'paciente/detalles.html', {'paciente': usuario})
 
 

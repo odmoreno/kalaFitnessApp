@@ -61,7 +61,7 @@ def listarDiagnosticos(request):
                                                       Value(' '), 'paciente__usuario__nombre')) \
             .annotate(paciente_id=Concat('paciente_id', Value('')))
 
-    contexto['diagnosticos_paginator'] = paginar(request, diagnosticos)
+    contexto['diagnosticos_paginator'] = diagnosticos #paginar(request, diagnosticos)
     contexto['user_sesion'] = sesion
 
     return render(request, template_name=template, context=contexto)

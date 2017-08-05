@@ -14,9 +14,14 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'personal:detail' personal.id %}">
-                            <img src="https://cdn4.iconfinder.com/data/icons/line-user/512/user_info-512.png" class="img-responsive">
+                        {% if personal.foto %}
+                            <img src="/static/{{ personal.foto }}" class="img-rounded img-responsive">
+                        {% else %}
+                            <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive">
+                        {% endif %}
                     </a>
-                    <h1>{{ personal.nombre }} <small>{{ personal.id}}</small></h1> <h1>{{ personal.apellido }}</h1>
+                    <h3>{{ personal.id}}</h3>
+                    <h1>{{ personal.nombre }} {{ personal.apellido }}</h1>
                 </div>
             </div>
         </div>

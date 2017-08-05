@@ -20,6 +20,9 @@ class DiagnosticoFisioterapia(TimeModel):
     class Meta:
         db_table = 'diagnostico_fis'
 
+    def __unicode__(self):
+        return str(self.id)
+
 
 class DiagnosticoNutricion(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)

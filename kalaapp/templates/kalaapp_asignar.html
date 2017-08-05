@@ -1,9 +1,7 @@
 {%  extends 'blank.html' %}
 {% load static %}
-{% block title %}Asignaciones{% endblock %}
-
-{% block content %}
-    {% block script %}
+{% block title %}Asignaciones del personal{% endblock %}
+{% block script %}
         <script>
         window.onload = function() {
             buscarAsignaciones();
@@ -23,6 +21,8 @@
 
         </script>
     {% endblock %}
+{% block content %}
+
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -47,11 +47,12 @@
                                         <div class="form-group">
                                             <label class="control-label">Seleccione al personal para asignarle pacientes</label>
                                             <select class="form-control" id="personal_id" name="personal_id" onchange="buscarAsignaciones()" autofocus required>
-                                            {% if personal %}
-                                                {% for persona in personal %}
-                                                    <option value="{{ persona.id }}">{{ persona.nombre_completo }}</option>
-                                                {% endfor %}
-                                            {% endif %}
+                                                <option value="0">Elija una persona</option>
+                                                {% if personal %}
+                                                    {% for persona in personal %}
+                                                        <option value="{{ persona.id }}" {% if personal_id_actual == persona.id %}selected{% endif %}>{{ persona.id }} - {{ persona.nombre_completo }} ({{ persona.usuario__rol__tipo }})</option>
+                                                    {% endfor %}
+                                                {% endif %}
                                             </select>
                                         </div>
                                     </div>
@@ -77,7 +78,7 @@
                                             {% for paciente in pacientes %}
                                                     <tr>
                                                         <td class="text-center">{{ paciente.id }}</td>
-                                                        <td><img src="{% static paciente.usuario__foto %}" class="media-object rounded-circle" height="50px" width="50px"/></td>
+                                                        <td><img src="{% static paciente.usuario__foto %}" class="img-circle" height="50px" width="50px"/></td>
                                                         <td>{{ paciente.nombre_completo }}</td>
                                                         <td>{{ paciente.usuario__cedula}}</td>
                                                         <td>{{ paciente.usuario__telefono }}</td>
