@@ -1,55 +1,59 @@
 {% extends 'blank.html' %}
 {% load static %}
 {% load l10n %}
-{% block title %}Personal Kala{% endblock %}
+{% block title %}Personal{% endblock %}
 {% block content %}
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="panel panel-default" style="margin-top: 40px">
-
+        <div class="panel-heading"><h4><b>Personal</b></h4></div>
         <div class="panel-body">
             <div class="container-fluid">
-
                 <div class="row">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead class="thead-inverse">
                     <tr>
-                        <th>#</th>
-                        <th>Foto</th>
-                        <th>Editar</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Rol</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
-                        <th>Cedula</th>
-                        <th>Eliminar</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Foto</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Rol</th>
+                        <th class="text-center">Direccion</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Cedula</th>
+                        <th class="text-center">Editar</th>
+                        <th class="text-center">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for personal in all_personal %}
                         {% if personal.rol.es_personal %}
                             <tr>
-                                <td scope="row"> <a href="{% url 'personal:detail' personal.id %}">{{ personal.id}}</a></td>
+                                <td class="text-center" scope="row"><a href="{% url 'personal:detail' personal.id %}">{{ personal.id}}</a></td>
 
                                 {% if personal %}
                                    <td><img src="/static/{{ personal.foto }}" class="img-circle" height="50px" width="50px"/></td>
                                 {% else %}
-                                    <td><img src="{% static 'usuario/noimagen.jpg' %}" class="img-circle" width="50px" height="50px"/></td>
+                                    <td><img src="/static/usuario/noimagen.jpg" class="img-circle" width="50px" height="50px"/></td>
                                 {% endif %}
-                                <td><a href="{% url 'personal:editar' personal.id %}">Editar </a></td>
                                 <td class="capitalize">{{ personal.nombre }}</td>
                                 <td class="capitalize">{{ personal.apellido }}</td>
                                 <td class="capitalize">{{ personal.rol.tipo}}</td>
                                 <td class="capitalize">{{ personal.direccion }}</td>
                                 <td>{{ personal.telefono }}</td>
                                 <td>{{ personal.cedula }}</td>
-                                <td>
-                                    <!-- Delete personal -->
+                                <td  class="text-center">
+                                    <a href="{% url 'personal:editar' personal.id %}">
+                                        <button type="submit" class="btn btn-sm btn-info">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td class="text-center">
                                     <form action="{% url 'personal:eliminarPersonal' personal.id %}" method="post" style="display: inline;">
                                         {% csrf_token %}
                                         <input type="hidden" name="personal_id" value="{{ personal.id }}" />
-                                        <button type="submit" class="btn btn-default btn-sm">
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarpersonal"> <!--submit-->
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
                                     </form>
@@ -66,7 +70,45 @@
         </div>
         </div>
     </div>
+    <!-- Modal Dialog -->
+        <div class="modal fade" id="eliminarpersonal" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Eliminar permanentemente</h4>
+              </div>
+              <div class="modal-body">
+                <p>¿Est&aacute; seguro de eliminar el personal?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirm">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
 </div>
 
+{% endblock %}
+{% block scriptDown %}
+    <!-- Dialog show event handler -->
+    <script type="text/javascript">
+      $('#eliminarpersonal').on('show.bs.modal', function (e) {
+          $message = $(e.relatedTarget).attr('data-message');
+          $(this).find('.modal-body p').text($message);
+          $title = $(e.relatedTarget).attr('data-title');
+          $(this).find('.modal-title').text($title);
+
+          // Pass form reference to modal for submission on yes/ok
+          var form = $(e.relatedTarget).closest('form');
+          $(this).find('.modal-footer #confirm').data('form', form);
+      });
+
+      <!-- Form confirm (yes/ok) handler, submits form -->
+      $('#eliminarpersonal').find('.modal-footer #confirm').on('click', function(){
+          $(this).data('form').submit();
+      });
+    </script>
 {% endblock %}
 

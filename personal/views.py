@@ -56,7 +56,9 @@ def nuevoPersonal(request):
         usuario= form.save(commit=False)
         user = User()
         user.username = form.cleaned_data['cedula']
-        user.set_password('1234')
+        #user.set_password('1234')
+        password = generar_password()
+        user.set_password(password)
         user.email = form.cleaned_data['email']
         user.save()
         if form.cleaned_data["ocupacion"]== "1":
@@ -72,6 +74,7 @@ def nuevoPersonal(request):
         personal=Personal()
         personal.usuario=usuario
         personal.save()
+        enviar_password_email(user.email, user.username, password)
         #all_personal = Usuario.objects.filter(estado="A")
         #return render(request, 'personal/index.html', {'all_personal': all_personal})
         return redirect('personal:index')
