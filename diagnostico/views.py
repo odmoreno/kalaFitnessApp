@@ -42,7 +42,6 @@ def listarDiagnosticos(request):
     template = 'diagnostico_listar.html'
     contexto = {}
     diagnosticos = None
-    pacientes = None
     rol = None
 
     sesion = request.session.get('user_sesion', None)
@@ -50,18 +49,22 @@ def listarDiagnosticos(request):
     if sesion:
         rol = sesion.get('rol__tipo', None)
 
-    if rol == 'fisioterapista':
-        diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A').order_by('-creado') \
-            .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
-                                                      Value(' '), 'paciente__usuario__nombre')) \
-            .annotate(paciente_id=Concat('paciente_id', Value('')))
-    elif rol == 'nutricionista':
-        diagnosticos = DiagnosticoNutricion.objects.filter(estado='A').order_by('-creado') \
-            .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
-                                                      Value(' '), 'paciente__usuario__nombre')) \
-            .annotate(paciente_id=Concat('paciente_id', Value('')))
+        if rol == 'fisioterapista':
+            diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+                .order_by('-creado') \
+                .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
+                                                          Value(' '), 'paciente__usuario__nombre')) \
+                .annotate(paciente_id=Concat('paciente_id', Value('')))\
+                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))
+        elif rol == 'nutricionista':
+            diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+                .order_by('-creado') \
+                .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
+                                                          Value(' '), 'paciente__usuario__nombre')) \
+                .annotate(paciente_id=Concat('paciente_id', Value('')))\
+                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))
 
-    contexto['diagnosticos_paginator'] = diagnosticos #paginar(request, diagnosticos)
+    contexto['diagnosticos'] = diagnosticos
     contexto['user_sesion'] = sesion
 
     return render(request, template_name=template, context=contexto)
@@ -100,11 +103,12 @@ def crearDiagnostico(request):
         return redirect('diagnostico:ListarDiagnosticos')
 
     try:
-        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=sesion.get('personal__id', 0))\
+        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__estado='A',
+                                            pacientepersonal__personal_id=sesion.get('personal__id', 0))\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
             .order_by('nombre_completo')
-        if pacientes is not None and pacientes.count() == 0:
+        if pacientes is None or pacientes.count() == 0:
             raise Exception
     except Exception, e:
         messages.add_message(request, messages.WARNING, 'No tiene pacientes asignados, consulte con su administrador! ')
@@ -146,7 +150,8 @@ def getDiagnostico(request):
                 diagnostico.area_afectada = request.POST.get('areaafectada', '')
                 diagnostico.receta = request.POST.get('receta', '')
                 #falta obtener rutinas
-                s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2, repeticiones=1, descanso=45, link='http://google.ec')
+                s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2,
+                                             repeticiones=1, descanso=45, link='http://google.ec')
                 diagnostico.rutina = Rutina.objects.create()
                 diagnostico.rutina.subrutina.add(s)
             elif rol == 'nutricionista':
@@ -260,7 +265,8 @@ def editarDiagnostico(request, id=0):
             messages.add_message(request, messages.WARNING, 'Error inesperado consultando diagnostico!')
 
         try:
-            pacientes = Paciente.objects.filter(estado='A', pacientepersonal__personal_id=sesion.get('personal__id', 0)) \
+            pacientes = Paciente.objects.filter(estado='A', pacientepersonal__estado='A',
+                                                pacientepersonal__personal_id=sesion.get('personal__id', 0)) \
                 .values('id', 'usuario__nombre', 'usuario__apellido') \
                 .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
                 .order_by('nombre_completo')

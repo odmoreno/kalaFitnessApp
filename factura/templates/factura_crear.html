@@ -9,6 +9,9 @@
     <script src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>
 {% endblock %}
 {% block scriptUp %}
+    <style>
+        .form-control[readonly] { background-color: #ffffff;}
+    </style>
     <script>
 	$( function() {
 		$( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy', minDate: 0, maxDate: "+1Y" });

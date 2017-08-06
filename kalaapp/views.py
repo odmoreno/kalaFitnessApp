@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Concat
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
@@ -43,10 +43,9 @@ def home(request):
                     request.session['user_sesion'] = Usuario.objects.filter(cedula=request.user.username)\
                                     .values('id', 'nombre', 'apellido', 'cedula', 'rol__tipo', 'personal__id', 'paciente__id')\
                                     .first()
-        except User.DoesNotExist, e:
-            return HttpResponse(str(e))
-        except Exception, e2:
-            return HttpResponse(str(e2))
+        except Exception, e:
+            return HttpResponseRedirect(redirect_to='/')
+
     if request.session['user_sesion']:
         return render(request=request, template_name=template, context=contexto)
     else:
@@ -63,7 +62,7 @@ def index2(request):
 '''
 Funcion: asignarPersonalaPaciente
 Entradas: request
-Salidas: - HttpResponse con template asignar.ntml y la lista de todas personal y pacientes
+Salidas: - HttpResponse con template asignar.ntml y la lista del personal y pacientes
 
 Funcion que crear las asignaciones y/o eliminarlas
 '''
@@ -81,41 +80,44 @@ def asignarPersonalaPaciente(request):
 
     if request.method == 'POST':
         try:
-            personal = Personal.objects.get(id=request.POST.get('personal_id', 0))
-            pacientes_id = request.POST.getlist('paciente_seleccionado' or None)
+            personal_id_actual = request.POST.get('personal_id', 0)
+
+            if int(personal_id_actual) == 0:
+                messages.add_message(request, messages.WARNING, 'Seleccione a un personal para asignar dicho paciente!')
+                return redirect('kalaapp:AsignarPersonalaPaciente')
+
+            personal = Personal.objects.get(id=personal_id_actual)
+            pacientes_id = request.POST.getlist('paciente_seleccionado', [0])
 
             # Si la asignación con otro personal existe o esta siendo desasignada entonces eliminarla
             try:
-                asigDiferentePersonal = PacientePersonal.objects.filter(estado='A', paciente__in=pacientes_id) \
+                asignaciones_otro_personal = PacientePersonal.objects.filter(estado='A', paciente__in=pacientes_id) \
                     .exclude(personal=personal)
-                eliminarAsignaciones(asigDiferentePersonal)
-
-                asigMismoPersonal = PacientePersonal.objects.filter(estado='A', personal=personal) \
+                eliminarAsignaciones(asignaciones_otro_personal)
+                asignaciones_mias = PacientePersonal.objects.filter(estado='A', personal=personal) \
                     .exclude(paciente__in=pacientes_id)
-                eliminarAsignaciones(asigMismoPersonal)
-
-            except PacientePersonal.DoesNotExist:
+                eliminarAsignaciones(asignaciones_mias)
+            except Exception, e:
                 messages.add_message(request, messages.WARNING, 'No existen asignaciones a eliminar!, ' + str(e))
 
             # Si la asignación no existe entonces crearla
+
             veces = 0
             for pid in pacientes_id:
-
-                try:
-                    paciente = Paciente.objects.get(id=pid)
-                    pp = PacientePersonal.objects.get(estado='A', personal=personal, paciente=paciente)
-                    print '5 ' + pp
-                except PacientePersonal.DoesNotExist, e:
-                    pp = PacientePersonal.objects.create(personal=personal, paciente=paciente)
-                    print '6 ' + pp
-                    veces = veces + 1
+                if pid > 0:
+                    try:
+                        paciente = Paciente.objects.get(id=pid)
+                        pp = PacientePersonal.objects.get(estado='A', personal=personal, paciente=paciente)
+                    except PacientePersonal.DoesNotExist, e:
+                        pp = PacientePersonal.objects.create(personal=personal, paciente=paciente)
+                        veces = veces + 1
 
             if veces > 0:
                 if veces == 1:
                     msg = '1 asignacion creada con exito!'
                 else:
                     msg = str(veces) + ' asignaciones creadas con exito!'
-                messages.add_message(request, messages.WARNING, msg)
+                messages.add_message(request, messages.SUCCESS, msg)
 
         except Exception, e:
             messages.add_message(request, messages.WARNING, 'Error inesperado al crear asignacion!, ' + str(e))
@@ -128,10 +130,14 @@ def asignarPersonalaPaciente(request):
 
         pacientes = Paciente.objects.filter(estado='A', usuario__estado='A') \
             .values('id', 'pacientepersonal__personal_id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula',
-                    'usuario__telefono', 'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto') \
+                    'usuario__telefono', 'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto',
+                    'pacientepersonal__personal__usuario__foto', 'pacientepersonal__personal__usuario__apellido',
+                    'pacientepersonal__personal__usuario__nombre')\
+            .annotate(foto_p=Concat('pacientepersonal__personal__usuario__foto', Value('')))\
             .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
+            .annotate(nombre_completo_p=Concat('pacientepersonal__personal__usuario__apellido', Value(' '),
+                                               'pacientepersonal__personal__usuario__nombre')) \
             .order_by('id', 'nombre_completo')
-
     except Exception, e:
         messages.add_message(request, messages.WARNING, 'Error inesperado al consultar informacion!, ' + str(e))
 

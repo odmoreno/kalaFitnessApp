@@ -22,7 +22,7 @@
                     <div class="panel panel-default" style="margin-top: 40px">
                     <div class="panel-heading"><h4><b>Últimos diagn&oacute;sticos</b></h4></div>
                         <div class="panel-body">
-                            <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed table-responsive vertical-align" width="100%">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed table-responsive vertical-align" id="dataTables-example" width="100%">
                                     <thead class="thead-inverse">
                                     <tr>
                                         <th class="text-center sorting">ID</th>
@@ -34,11 +34,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% if diagnosticos_paginator %}
-                                        {% for diagnostico in diagnosticos_paginator %}
+                                    {% if diagnosticos %}
+                                        {% for diagnostico in diagnosticos %}
                                                 <tr>
                                                     <td style="text-align: center;">{{diagnostico.id}}</td>
-                                                    <td>{{ diagnostico.paciente_nombre_completo}}</td>
+                                                    <td>
+                                                        <img src="{% static diagnostico.paciente_foto %}" class="img-circle" height="50px" width="50px"/>
+                                                        &nbsp;&nbsp;&nbsp;{{ diagnostico.paciente_nombre_completo }}
+                                                    </td>
                                                     <td>{{ diagnostico.creado}}</td>
                                                     <td>{{ diagnostico.actualizado}}</td>
                                                     <td class="text-center">
