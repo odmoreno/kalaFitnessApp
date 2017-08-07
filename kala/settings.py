@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
     'fisioterapia.apps.FisioterapiaConfig',
-    'nutricion.apps.NutricionConfig'
+    'nutricion.apps.NutricionConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -142,6 +143,13 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

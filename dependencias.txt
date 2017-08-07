@@ -7,3 +7,4 @@ django-directmessages
 bcrypt
 Pillow
 django_forms_bootstrap
+djangorestframework
