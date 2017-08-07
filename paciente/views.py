@@ -228,7 +228,7 @@ def reporteHombres(request):
 
     for paciente in pacientes:
         if paciente.usuario.genero=='M':
-            cedula = paciente.usuario.cedula
+            cedula = (paciente.usuario.cedula)
             nombre = paciente.usuario.nombre
             apellido = paciente.usuario.apellido
             telefono = paciente.usuario.telefono

@@ -257,7 +257,7 @@ def reporteTotal(request):
     per = []
 
     for p in personal:
-        cedula = p.usuario.cedula
+        cedula = str(p.usuario.cedula)
         nombre = p.usuario.nombre
         apellido = p.usuario.apellido
         telefono = p.usuario.telefono
@@ -275,7 +275,7 @@ def reporteRol(request):
 
     for p in personal:
         if p.usuario.rol.tipo=='fisioterapista':
-            cedula = p.usuario.cedula
+            cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido
             telefono = p.usuario.telefono
@@ -293,7 +293,7 @@ def reporteMujeres(request):
 
     for p in personal:
         if p.usuario.genero=='F':
-            cedula = p.usuario.cedula
+            cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido
             telefono = p.usuario.telefono
@@ -311,7 +311,7 @@ def reporteHombres(request):
 
     for p in personal:
         if p.usuario.genero=='M':
-            cedula = p.usuario.cedula
+            cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido
             telefono = p.usuario.telefono

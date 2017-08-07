@@ -18,6 +18,7 @@ from django.db.models.functions import Concat
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.http import JsonResponse
 from datetime import datetime
 from django.utils.dateparse import parse_datetime
 from factura.models import Facturas
@@ -154,3 +155,35 @@ def apiFactura(request):
     contexto = {"facturas": facturas}
     return render(request, template_name=template, context=contexto)
 
+'''
+Funcion: reporteTotal
+Entradas: request
+Salidas: JSON con los datos de todas las facturas
+
+Funcion que permite obtener todas las facturas creadas
+'''
+@login_required
+def reporteTotal(request):
+    facturas = Facturas.objects.filter(estado='A')\
+                .values('id', 'paciente_id', 'paciente__usuario__apellido',\
+                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')\
+                .order_by('id')
+    rec = []
+
+    for f in facturas:
+        idf = str(f['id'])
+        paciente = str(f['paciente_id']) + ' ' + str(f['paciente__usuario__nombre']) + ' ' + str(f['paciente__usuario__apellido'])
+        serie = f['serie']
+        caduca = f['fecha_vencimiento']
+        ##genero = p.usuario.genero
+        total = str(f['total'])
+        record = {"id":idf,"paciente":paciente,"serie":serie,"caduca":caduca,"total":total}
+        rec.append(record)
+
+    return JsonResponse({"data": rec})
+
+
+@login_required
+def reportes(request):
+    template = 'reportes.html'
+    return render(request, template)

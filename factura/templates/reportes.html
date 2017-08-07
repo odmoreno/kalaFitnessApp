@@ -6,59 +6,53 @@
 <div class="container-fluid">
     <!-- Boton Reporte -->
     <div>
-      <button id="totales" type="button" class="btn">Pacientes totales</button>
-    </div>
-    <div>
-      <button id="hombres" type="button" class="btn">Pacientes hombres</button>
-    </div>
-    <div>
-      <button id="mujeres" type="button" class="btn">Pacientes mujeres</button>
+      <button id="totales" type="button" class="btn">Facturas totales</button>
     </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
 <script>
-  function body(pacientes){
+  function body(data){
     var body = [
         [
-            {text: 'Cedula', style: 'subItem'
-            }, {text: 'Nombre', style: 'subItem'
-            }, {text: 'Apellido', style: 'subItem'
-            }, {text: 'Telefono', style: 'subItem'
-            }, {text: 'Genero', style: 'subItem'
+            {text: 'Id', style: 'subItem'
+          }, {text: 'Paciente', style: 'subItem'
+        }, {text: 'Serie', style: 'subItem'
+      }, {text: 'Caduca', style: 'subItem'
+    }, {text: 'Total', style: 'subItem'
             }
         ]
     ]
 
-    pacientes.forEach(function(paciente){
+    data.forEach(function(obj){
         body.push(
             [
                 {text:
                     (function(){
-                        if (paciente.cedula) { return paciente.cedula;}
+                        if (obj.id) { return obj.id;}
                         return "";
                     })()
 
                 },{text:
                     (function(){
-                        if (paciente.nombre) { return paciente.nombre;}
+                        if (obj.paciente) { return obj.paciente;}
                         return "";
                     })()
 
                 },{text:
                     (function(){
-                        if (paciente.apellido) { return paciente.apellido;}
+                        if (obj.serie) { return obj.serie;}
                         return "";
                     })()
                 },{text:
                     (function(){
-                        if (paciente.telefono) { return paciente.telefono;}
+                        if (obj.caduca) { return obj.caduca;}
                         return "";
                     })()
                 },{text:
                     (function(){
-                        if (paciente.genero) { return paciente.genero;}
+                        if (obj.total) { return obj.total;}
                         return "";
                     })()
                 }
@@ -85,7 +79,7 @@
        content: [
 
            {  text: "KalaFitness APP", style: 'header' },
-           {  text: "Reporte de pacientes registrados en el sistema\n\n", style: 'subheader' },
+           {  text: "Reporte de facturas en el sistema\n\n", style: 'subheader' },
            {
                text: [
                    {
@@ -102,7 +96,7 @@
                    {
                        width: 'auto',
                        table: {
-                           widths: ['auto','*','*','auto','auto'],
+                           widths: ['*','*','*','*','*'],
                            body: body(pacientes)
                          }
                    },
@@ -139,23 +133,9 @@
   };
 
   $("#totales").click(function(){
-    $.get("/paciente/reporte/totales", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
-    });
-  });
-
-  $("#hombres").click(function(){
-    $.get("/paciente/reporte/hombres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
-    });
-  });
-
-  $("#mujeres").click(function(){
-    $.get("/paciente/reporte/mujeres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
+    $.get("/factura/reporte/total", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
     });
   });
 
