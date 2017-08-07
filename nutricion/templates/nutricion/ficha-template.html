@@ -9,7 +9,9 @@
                 <select class="form-control" id="paciente_id" name="paciente" autofocus>
                     {% if pacientes %}
                         {% for paciente in pacientes %}
-                            <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                            {% if not paciente.estado == 'I'  and not paciente.usuario.estado == 'I'%}
+                                <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </select>
