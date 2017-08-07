@@ -37,7 +37,9 @@
                                         {% for ficha in fichas %}
                                             <tr class="">
                                                 <td >{{  ficha.paciente_id }}</td>
-                                                <td class="capitalize">{{ ficha.paciente.usuario.nombre }}</td>
+                                                <td class="capitalize">
+                                                    <img src="/static/{{ ficha.paciente.usuario.foto }}" class="img-responsive"/>
+                                                    {{ ficha.paciente.usuario.nombre }}</td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.apellido }}</td>
                                                 <td>{{ ficha.actualizado }}</td>
                                                 <td>{{ ficha.proteina }}</td>
