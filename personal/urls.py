@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^mensajes/nuevo/paciente$', views.nuevoMensajePaciente, name='nuevoMensaje'),
     url(r'^mensajes/nuevo/personal$', views.nuevoMensajePersonal, name='nuevoMensajePersonal'),
     url(r'^mensajes/leer/(?P<mensaje_id>[0-9]+)/$', views.leerMensaje, name='leerMensaje'),
-    url(r'^reportes/$', views.reportePersonal),
+    url(r'^reportes/$', views.reportes, name="reportes"),
         url(r'^reporte/total/$', views.reporteTotal),
         url(r'^reporte/rol/$', views.reporteRol),
         url(r'^reporte/mujeres/$', views.reporteMujeres),

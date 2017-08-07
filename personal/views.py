@@ -262,7 +262,58 @@ def reporteTotal(request):
         apellido = p.usuario.apellido
         telefono = p.usuario.telefono
         ##genero = p.usuario.genero
-        rol = p.rol
+        rol = p.usuario.rol
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+        per.append(record)
+
+    return JsonResponse({"data": per})
+
+@login_required
+def reporteRol(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        cedula = p.usuario.cedula
+        nombre = p.usuario.nombre
+        apellido = p.usuario.apellido
+        telefono = p.usuario.telefono
+        ##genero = p.usuario.genero
+        rol = p.usuario.rol
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+        per.append(record)
+
+    return JsonResponse({"data": per})
+
+@login_required
+def reporteMujeres(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        cedula = p.usuario.cedula
+        nombre = p.usuario.nombre
+        apellido = p.usuario.apellido
+        telefono = p.usuario.telefono
+        ##genero = p.usuario.genero
+        rol = p.usuario.rol
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+        per.append(record)
+
+    return JsonResponse({"data": per})
+
+@login_required
+def reporteHombres(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        cedula = p.usuario.cedula
+        nombre = p.usuario.nombre
+        apellido = p.usuario.apellido
+        telefono = p.usuario.telefono
+        ##genero = p.usuario.genero
+        rol = p.usuario.rol
         record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
         per.append(record)
 

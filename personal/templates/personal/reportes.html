@@ -22,7 +22,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
 <script>
-  function body(pacientes){
+  function body(data){
     var body = [
         [
             {text: 'Cedula', style: 'subItem'
@@ -34,34 +34,34 @@
         ]
     ]
 
-    pacientes.forEach(function(paciente){
+    data.forEach(function(obj){
         body.push(
             [
                 {text:
                     (function(){
-                        if (paciente.cedula) { return paciente.cedula;}
+                        if (obj.cedula) { return obj.cedula;}
                         return "";
                     })()
 
                 },{text:
                     (function(){
-                        if (paciente.nombre) { return paciente.nombre;}
+                        if (obj.nombre) { return obj.nombre;}
                         return "";
                     })()
 
                 },{text:
                     (function(){
-                        if (paciente.apellido) { return paciente.apellido;}
+                        if (obj.apellido) { return obj.apellido;}
                         return "";
                     })()
                 },{text:
                     (function(){
-                        if (paciente.telefono) { return paciente.telefono;}
+                        if (obj.telefono) { return obj.telefono;}
                         return "";
                     })()
                 },{text:
                     (function(){
-                        if (paciente.rol) { return paciente.rol;}
+                        if (obj.rol) { return obj.rol;}
                         return "";
                     })()
                 }
