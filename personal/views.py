@@ -21,9 +21,9 @@ def index(request):
     return render(request, 'personal/index.html', {'all_personal': all_personal})
 '''
 Funcion: eliminarPersonal
-Entradas: requerimiento e Identificador del Personal a ser eliminado 
-Salidas:Template para renderizacion 
-*Funcion que recibe el id de un personal que debe ser eliminado, y elimina su registro de 
+Entradas: requerimiento e Identificador del Personal a ser eliminado
+Salidas:Template para renderizacion
+*Funcion que recibe el id de un personal que debe ser eliminado, y elimina su registro de
 la base de datos retornando a la pagina de visualizacion de los pacientes.*
 
 '''
@@ -84,8 +84,8 @@ def nuevoPersonal(request):
 '''
 Funcion: editarPersonal
 Entradas: requerimiento e Identificador del Personal a ser editado
-Salidas:Template para renderizacion y lista de Personal 
-*Funcion que recibe el id de un Personal que debe ser editado, y Muestra un formulario llenado con la info 
+Salidas:Template para renderizacion y lista de Personal
+*Funcion que recibe el id de un Personal que debe ser editado, y Muestra un formulario llenado con la info
 anterior del Personal para que esta sea editada.*
 
 '''
@@ -119,8 +119,8 @@ def editarPersonal(request, personal_id):
     return render(request, 'personal/form_personal.html', context)
 '''
 Funcion: detallePersonal
-Entradas: requerimiento e Identificador del paciente a ser visualizado 
-Salidas:Template para renderizacion 
+Entradas: requerimiento e Identificador del paciente a ser visualizado
+Salidas:Template para renderizacion
 *Funcion que recibe el id de un Personal que debe ser visualizado, y muestra su informacion.*
 '''
 @login_required
@@ -130,8 +130,8 @@ def detallePersonal(request, personal_id):
 
 '''
 Funcion: verMensaje
-Entradas: requerimiento  
-Salidas:Template para renderizacion 
+Entradas: requerimiento
+Salidas:Template para renderizacion
 *Funcion que retorna una pagina con todos los mensajes cuyo destinatario es el usuario que ha iniciado sesion.*
 '''
 @login_required
@@ -176,8 +176,8 @@ def verMensajes(request):
     return render(request,template,data)
 '''
 Funcion: leerMensaje
-Entradas: requerimiento, id del mensaje a ser leido 
-Salidas:Template para renderizacion 
+Entradas: requerimiento, id del mensaje a ser leido
+Salidas:Template para renderizacion
 *Funcion que permite retornar a informacion de un mensaje a ser visto por el usuario*
 '''
 @login_required
@@ -196,7 +196,7 @@ def leerMensaje(request, mensaje_id):
 '''
 Funcion: nuevoMensajePaciente
 Entradas: requerimiento
-Salidas:Template para renderizacion con formulario de creacion de mensaje 
+Salidas:Template para renderizacion con formulario de creacion de mensaje
 *Funcion que permite enviar un mensaje a un paciente*
 '''
 
@@ -225,7 +225,7 @@ def nuevoMensajePaciente(request):
 '''
 Funcion: nuevoMensajePersonal
 Entradas: requerimiento
-Salidas:Template para renderizacion con formulario de creacion de mensaje 
+Salidas:Template para renderizacion con formulario de creacion de mensaje
 *Funcion que permite enviar un mensaje a un Personal*
 '''
 def nuevoMensajePersonal(request):
@@ -251,23 +251,115 @@ def nuevoMensajePersonal(request):
 
     return render(request, "personal/nuevoMensajePersonal.html", data)
 
+
+'''
+Funcion: reporteTotal
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
-def reportePersonal(request):
+def reporteTotal(request):
     personal = Personal.objects.all()
     per = []
 
     for p in personal:
-        cedula = p.usuario.cedula
+        cedula = str(p.usuario.cedula)
         nombre = p.usuario.nombre
         apellido = p.usuario.apellido
         telefono = p.usuario.telefono
-        genero = p.usuario.genero
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+        ##genero = p.usuario.genero
+        rol = p.usuario.rol.tipo
+        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
         per.append(record)
 
     return JsonResponse({"data": per})
 
+
+'''
+Funcion: reporteRol
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por rol
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
-def reportePDF(request):
-    template = 'personal/reportePDF.html'
+def reporteRol(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        if p.usuario.rol.tipo=='fisioterapista':
+            cedula = str(p.usuario.cedula)
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
+
+    return JsonResponse({"data": per})
+
+
+'''
+Funcion: reporteMujeres
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por genero femenino
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteMujeres(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        if p.usuario.genero=='F':
+            cedula = str(p.usuario.cedula)
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
+
+    return JsonResponse({"data": per})
+
+'''
+Funcion: reporteHombres
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por genero hombres
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteHombres(request):
+    personal = Personal.objects.all()
+    per = []
+
+    for p in personal:
+        if p.usuario.genero=='M':
+            cedula = str(p.usuario.cedula)
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
+
+    return JsonResponse({"data": per})
+
+
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: template de reportes de personal
+'''
+@login_required
+def reportes(request):
+    template = 'personal/reportes.html'
     return render(request, template)

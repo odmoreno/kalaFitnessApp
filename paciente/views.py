@@ -75,7 +75,7 @@ def PacienteNuevo(request):
         8.-Crea un nuevo Paciente
         9.-Lo enlaza con el nuevo usuario
         10.-Guarda el paciente
-        
+
         '''
         usuario = form.save(commit=False)
         user = User()
@@ -109,8 +109,8 @@ def PacienteNuevo(request):
 '''
 Funcion: editarPaciente
 Entradas: requerimiento e Identificador del paciente a ser editado
-Salidas:Template para renderizacion y lista de pacientes 
-*Funcion que recibe el id de un paciente que debe ser editado, y Muestra un formulario llenado con la info 
+Salidas:Template para renderizacion y lista de pacientes
+*Funcion que recibe el id de un paciente que debe ser editado, y Muestra un formulario llenado con la info
 anterior del paciente para que esta sea editada.*
 
 '''
@@ -136,9 +136,9 @@ def editarPaciente(request, paciente_id):
     return render(request, 'paciente/form_paciente.html', context)
 '''
 Funcion: PacienteEliminar
-Entradas: requerimiento e Identificador del paciente a ser eliminado 
-Salidas:Template para renderizacion 
-*Funcion que recibe el id de un paciente que debe ser eliminado, y elimina su registro de 
+Entradas: requerimiento e Identificador del paciente a ser eliminado
+Salidas:Template para renderizacion
+*Funcion que recibe el id de un paciente que debe ser eliminado, y elimina su registro de
 la base de datos retornando a la pagina de visualizacion de los pacientes.*
 
 '''
@@ -155,8 +155,8 @@ def PacienteEliminar(request, paciente_id):
 
 '''
 Funcion: detallePaciente
-Entradas: requerimiento e Identificador del paciente a ser visualizado 
-Salidas:Template para renderizacion 
+Entradas: requerimiento e Identificador del paciente a ser visualizado
+Salidas:Template para renderizacion
 *Funcion que recibe el id de un paciente que debe ser visualizado, y muestra su informacion.*
 '''
 @login_required
@@ -167,14 +167,14 @@ def detallePaciente(request, paciente_id):
 
 
 '''
-Funcion: reportePaciente
-Entradas: requerimiento 
+Funcion: reporteTotales
+Entradas: requerimiento
 Salidas: JSON con todos los pacientes
 *Funcion que retorna la informacion de los pacientes registrados en la base de datos
 en forma de un JSON*
 '''
 @login_required
-def reportePacientes(request):
+def reporteTotales(request):
     pacientes = Paciente.objects.all()
     p = []
 
@@ -189,22 +189,60 @@ def reportePacientes(request):
 
     return JsonResponse({"pacientes": p})
 
+'''
+Funcion: reporteMujeres
+Entradas: requerimiento
+Salidas: JSON con todos los pacientes del genero femenino
+*Funcion que retorna la informacion de los pacientes registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
-def reportePDF(request):
-    template = 'paciente/reportePDF.html'
+def reporteMujeres(request):
+    pacientes = Paciente.objects.all()
+    p = []
+
+    for paciente in pacientes:
+        if paciente.usuario.genero=='F':
+            cedula = paciente.usuario.cedula
+            nombre = paciente.usuario.nombre
+            apellido = paciente.usuario.apellido
+            telefono = paciente.usuario.telefono
+            genero = paciente.usuario.genero
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+            p.append(record)
+
+    return JsonResponse({"pacientes": p})
+
+
+'''
+Funcion: reporteHombres
+Entradas: requerimiento
+Salidas: JSON con todos los pacientes del genero femenino
+*Funcion que retorna la informacion de los pacientes registrados en la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteHombres(request):
+    pacientes = Paciente.objects.all()
+    p = []
+
+    for paciente in pacientes:
+        if paciente.usuario.genero=='M':
+            cedula = (paciente.usuario.cedula)
+            nombre = paciente.usuario.nombre
+            apellido = paciente.usuario.apellido
+            telefono = paciente.usuario.telefono
+            genero = paciente.usuario.genero
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+            p.append(record)
+
+    return JsonResponse({"pacientes": p})
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de pacientes
+'''
+@login_required
+def reportes(request):
+    template = 'paciente/reportes.html'
     return render(request, template)
-
-@login_required
-def pdf_pacientes(request):
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="pacientes.pdf"'
-
-    buffer = BytesIO()
-
-    report = MyPrint(buffer, 'Letter')
-    pdf = report.print_users()
-
-    response.write(pdf)
-    return response
-
-

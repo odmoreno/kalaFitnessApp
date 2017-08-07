@@ -136,7 +136,7 @@
                     <a href="{% url 'personal:mensajes' %}">
                         <i class="fa fa-envelope fa-lg"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    
+
                 </li> --!>
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -152,7 +152,7 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                
+
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -160,7 +160,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        
+
 
                         <li>
                             <a href="/"><i class="fa fa-home fa-lg"></i> Home</a>
@@ -175,6 +175,9 @@
                                 <li>
                                     <a href="{% url 'paciente:index' %}">Listar</a>
                                 </li>
+                                <li>
+                                    <a href="{% url 'paciente:reportes' %}">Reporte</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -186,6 +189,9 @@
                                 </li>
                                 <li>
                                     <a href="{% url 'personal:index' %}">Listar</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'personal:reportes' %}">Reporte</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -199,15 +205,18 @@
                                 <li>
                                     <a href="{% url 'factura:CrearFactura' %}">Crear</a>
                                 </li>
+                                <li>
+                                    <a href="{% url 'factura:reportes' %}">Reporte</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 			<li>
                             <a href="{% url 'kalaapp:AsignarPersonalaPaciente' %}"><i class="fa fa-thumb-tack fa-lg"></i> Asignaciones</a>
                         </li>
-                        
+
                         {% else %}
-				
+
                         <li>
                             <a href="#"><i class="fa fa-pencil-square-o fa-lg"></i> Diagn&oacute;stico<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -279,9 +288,9 @@
 				{% endif %}
 
                         {% endif %}
-                        
-                      
-                     
+
+
+
 
                     </ul>
                 </div>

@@ -1,0 +1,144 @@
+{% extends 'blank.html' %}
+{% load l10n %}
+{% load static %}
+{% block title %}Reportes {% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <!-- Boton Reporte -->
+    <div>
+      <button id="totales" type="button" class="btn">Facturas totales</button>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
+<script>
+  function body(data){
+    var body = [
+        [
+            {text: 'Id', style: 'subItem'
+          }, {text: 'Paciente', style: 'subItem'
+        }, {text: 'Serie', style: 'subItem'
+      }, {text: 'Caduca', style: 'subItem'
+    }, {text: 'Total', style: 'subItem'
+            }
+        ]
+    ]
+
+    data.forEach(function(obj){
+        body.push(
+            [
+                {text:
+                    (function(){
+                        if (obj.id) { return obj.id;}
+                        return "";
+                    })()
+
+                },{text:
+                    (function(){
+                        if (obj.paciente) { return obj.paciente;}
+                        return "";
+                    })()
+
+                },{text:
+                    (function(){
+                        if (obj.serie) { return obj.serie;}
+                        return "";
+                    })()
+                },{text:
+                    (function(){
+                        if (obj.caduca) { return obj.caduca;}
+                        return "";
+                    })()
+                },{text:
+                    (function(){
+                        if (obj.total) { return obj.total;}
+                        return "";
+                    })()
+                }
+            ]
+        );
+    });
+    return body;
+  }
+
+  function pdf(pacientes){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd='0'+dd
+    }
+    if(mm<10) {
+        mm='0'+mm
+    }
+    today = mm+'/'+dd+'/'+yyyy;
+
+    var pdf = {
+       content: [
+
+           {  text: "KalaFitness APP", style: 'header' },
+           {  text: "Reporte de facturas en el sistema\n\n", style: 'subheader' },
+           {
+               text: [
+                   {
+                       text: "Fecha: ",
+                       style: 'subItem'
+                   }, {
+                       text: today + "\n\n"
+                   }
+               ]
+           },
+           {
+               columns : [
+                   { width: '*', text: ''},
+                   {
+                       width: 'auto',
+                       table: {
+                           widths: ['*','*','*','*','*'],
+                           body: body(pacientes)
+                         }
+                   },
+                   { width: '*', text: ''}
+               ]
+           }
+       ],
+       styles: {
+           header: {
+               fontSize: 18,
+               bold: true,
+               alignment: 'center',
+               color: 'blue'
+           },
+           subheader: {
+               fontSize: 14,
+               bold: true,
+               alignment: 'center',
+               color: 'blue'
+           },
+           subItem: {
+               bold: true,
+               color: 'blue'
+           },
+           tableHeader: {
+               bold: true,
+               fontSize: 13,
+               color: 'black'
+           }
+       }
+    };
+
+    pdfMake.createPdf(pdf).open();
+  };
+
+  $("#totales").click(function(){
+    $.get("/factura/reporte/total", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
+    });
+  });
+
+
+</script>
+{% endblock %}

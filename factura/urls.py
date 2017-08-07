@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^crear$', crearFactura, name='CrearFactura'),
     url(r'^eliminar/(?P<id>\d+)$', eliminarFactura, name='EliminarFactura'),
     url(r'^api/$', views.apiFactura, name="ApiFactura"),
+    url(r'^reportes/$', views.reportes, name="reportes"),
+        url(r'^reporte/total/$', views.reporteTotal),
 ]
-
