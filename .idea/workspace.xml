@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/paciente/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dependencias.txt" afterPath="$PROJECT_DIR$/dependencias.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kala/settings.py" afterPath="$PROJECT_DIR$/kala/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-    </list>
+    <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html" />
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,6 +26,21 @@
     <expand>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="gestionhc" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="gestionhc" type="e3449647:DbNodeDescriptor" />
+        <item name="gestionhc" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="gestionhc" type="e3449647:DbNodeDescriptor" />
+        <item name="gestionhc" type="e3449647:DbNodeDescriptor" />
+        <item name="usuario" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
         <item name="gestionhc@localhost" type="e3449647:DbNodeDescriptor" />
       </path>
       <path>
@@ -50,33 +59,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/paciente/serializers.py">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/personal/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="421">
+              <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
+                <marker date="1502138705532" expanded="true" signature="366:532" ph="..." />
+                <marker date="1502138705532" expanded="true" signature="466:532" ph="..." />
+                <marker date="1502138705532" expanded="true" signature="4080:4380" ph="..." />
+                <marker date="1502138705532" expanded="true" signature="4139:4215" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
+      <file leaf-file-name="factura_listar.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/factura/templates/factura_listar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1279">
-              <caret line="272" column="28" lean-forward="true" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
+            <state relative-caret-position="394">
+              <caret line="46" column="73" lean-forward="false" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="117" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paciente" pinned="false" current-in-tab="false">
-        <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.paciente">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -155,36 +159,35 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/settings.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/detalles.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/urls.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/detalles.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/personal/forms.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/personal/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/settings.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kalaapp/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/serializers.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -274,6 +277,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,23 +288,23 @@
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="diagnostico" type="462c0819:PsiDirectoryNode" />
+              <item name="factura" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="kala" type="462c0819:PsiDirectoryNode" />
+              <item name="factura" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="paciente" type="462c0819:PsiDirectoryNode" />
+              <item name="personal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -704,29 +708,42 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1308" height="784" extended-state="6" />
+    <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20592949" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46995378" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49764943" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.50235057" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46967742" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41419354" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886502" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27938214" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41448382" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46995378" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41448382" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312789" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20592949" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -826,7 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,9 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="499">
           <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-          <folding>
-            <element signature="e#24#63#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -859,13 +872,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/correcciones sprint#2" />
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal" />
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_crear.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -878,31 +885,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_nut">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_fis">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.paciente_personal">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_nut" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_fis" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.paciente_personal" />
     <entry file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -913,18 +901,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol" />
     <entry file="file://$PROJECT_DIR$/diagnostico/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="27" column="71" lean-forward="false" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,27 +927,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/factura/templates/factura_listar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+        <state relative-caret-position="394">
+          <caret line="46" column="73" lean-forward="false" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="117" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/django/template/defaulttags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="646" column="4" lean-forward="false" selection-start-line="646" selection-start-column="4" selection-end-line="646" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/django/template/defaulttags.py" />
     <entry file="file://$PROJECT_DIR$/kalaapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-77">
           <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="false" />
-            <marker date="1501995993041" expanded="true" signature="6480:6549" ph="..." />
           </folding>
         </state>
       </provider>
@@ -975,17 +948,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario" />
     <entry file="file://$PROJECT_DIR$/kalaapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -998,7 +964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="67" column="59" lean-forward="false" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1035,8 +1000,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/personal/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="132" column="42" lean-forward="false" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+        <state relative-caret-position="421">
+          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1502138705532" expanded="true" signature="366:532" ph="..." />
+            <marker date="1502138705532" expanded="true" signature="466:532" ph="..." />
+            <marker date="1502138705532" expanded="true" signature="4080:4380" ph="..." />
+            <marker date="1502138705532" expanded="true" signature="4139:4215" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1063,20 +1035,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.auth_user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.auth_user" />
     <entry file="file://$PROJECT_DIR$/kala/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -1088,7 +1048,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
           <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="86" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1096,26 +1055,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9a2be539-cfee-48a3-98a4-0b13a9e13685/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.auth_user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9a2be539-cfee-48a3-98a4-0b13a9e13685/console.sql" />
+    <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.auth_user" />
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1178,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,7 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,28 +1140,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.paciente">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/paciente/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.paciente" />
+    <entry file="file://$PROJECT_DIR$/paciente/serializers.py" />
     <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1279">
           <caret line="272" column="28" lean-forward="true" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
