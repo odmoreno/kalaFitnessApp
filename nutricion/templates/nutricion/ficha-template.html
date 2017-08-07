@@ -1,0 +1,214 @@
+<div class="tab-pane fade in active" id="ficha-pills">
+    <hr>
+    <h4>Frecuencia de consumo de alimentos</h4>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Paciente:</label>
+                <select class="form-control" id="paciente_id" name="paciente" autofocus>
+                    {% if pacientes %}
+                        {% for paciente in pacientes %}
+                            <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px">
+            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                <div class="form-group">
+
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.lacteos.label_tag}}</label>
+                    {{ form.lacteos }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.vegetales.label_tag}}</label>
+                    {{ form.vegetales }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.frutas.label_tag}}</label>
+                    {{ form.frutas }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.cho.label_tag}}</label>
+                    {{ form.cho }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.carnes.label_tag}}</label>
+                    {{ form.carnes }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.comidas_rapidas.label_tag}}</label>
+                    {{ form.comidas_rapidas }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.frituras.label_tag}}</label>
+                    {{ form.frituras }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.enlatados.label_tag}}</label>
+                    {{ form.enlatados }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.gaseosas.label_tag}}</label>
+                    {{ form.gaseosas }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.energizantes.label_tag}}</label>
+                    {{ form.energizantes }}
+                </div>
+                <div class="form-group">
+                    {{ form.message.errors }}
+                    {{ field.errors }}
+                    {{ form.subject.errors }}
+                    {{ form.sender.errors }}
+                    <label class="control-label">{{ form.infusiones.label_tag}}</label>
+                    {{ form.infusiones }}
+                </div>
+            </div>
+             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                 <div class="form-group">
+                     <!-- <span class="text-danger small">{{ form.lacteos_input.errors }}</span>-->
+                    <label class="control-label">{{ form.lacteos_input.label_tag}}</label>
+                    {{ form.lacteos_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.vegetales_input.label_tag}}</label>
+                    {{ form.vegetales_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.frutas_input.label_tag}}</label>
+                    {{ form.frutas_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.cho_input.label_tag}}</label>
+                    {{ form.cho_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.carnes_input.label_tag}}</label>
+                    {{ form.carnes_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.comidas_rapidas_input.label_tag}}</label>
+                    {{ form.comidas_rapidas_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.frituras_input.label_tag}}</label>
+                    {{ form.frituras_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.enlatados_input.label_tag}}</label>
+                    {{ form.enlatados_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.gaseosas_input.label_tag}}</label>
+                    {{ form.gaseosas_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.energizantes_input.label_tag}}</label>
+                    {{ form.energizantes_input }}
+                </div>
+                 <div class="form-group">
+                    <label class="control-label">{{ form.infusiones_input.label_tag}}</label>
+                    {{ form.infusiones_input }}
+                </div>
+             </div>
+    </div>
+</div>
+ <div class="tab-pane fade" id="estado-pills">
+     <h4>Anamnesis Alimentaria</h4>
+     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta1.label_tag}}</label>
+             {{ form.pregunta1 }}
+         </div>
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta2.label_tag}}</label>
+             {{ form.pregunta2 }}
+         </div>
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta3.label_tag}}</label>
+             {{ form.pregunta3 }}
+         </div>
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta4.label_tag}}</label>
+             {{ form.pregunta4}}
+         </div>
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta5.label_tag}}</label>
+             {{ form.pregunta5 }}
+         </div>
+         <div class="form-group">
+             <label class="control-label">{{ form.pregunta6.label_tag}}</label>
+             {{ form.pregunta6 }}
+         </div>
+     </div>
+ </div>
+<div class="tab-pane fade" id="req-pills">
+    <h4>Requerimientos</h4>
+    <hr>
+    <h5>Valor calorico total:</h5>
+        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+            <div class="form-group">
+                 <label class="control-label">{{ form.proteina.label_tag}}</label> %
+                {{ form.proteina }} g...cal
+            </div>
+            <div class="form-group">
+                 <label class="control-label">{{ form.grasas.label_tag}}</label> %
+                {{ form.grasas }} g...cal
+            </div>
+            <div class="form-group">
+                 <label class="control-label">{{ form.carbohidratos.label_tag}}</label> %
+                {{ form.carbohidratos }} g...cal
+            </div>
+        </div>
+    <hr>
+    <h5>Tipo de dieta:</h5>
+    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+        <div class="form-group">
+                {{ form.dieta }}
+        </div>
+    </div>
+</div>
