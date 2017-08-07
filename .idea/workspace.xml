@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/ficha-temp.html" afterPath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/ficha-temp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/form_template_ficha.html" afterPath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/form_template_ficha.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/lista-fichas.html" afterPath="$PROJECT_DIR$/fisioterapia/templates/fisioterapia/lista-fichas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fisioterapia/urls.py" afterPath="$PROJECT_DIR$/fisioterapia/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fisioterapia/views.py" afterPath="$PROJECT_DIR$/fisioterapia/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nutricion/templates/nutricion/crear-ficha.html" afterPath="$PROJECT_DIR$/nutricion/templates/nutricion/crear-ficha.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nutricion/templates/nutricion/listar-fichas.html" afterPath="$PROJECT_DIR$/nutricion/templates/nutricion/listar-fichas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nutricion/views.py" afterPath="$PROJECT_DIR$/nutricion/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/*/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/nutricion/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="441">
-              <caret line="87" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+              <caret line="87" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -120,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/nutricion/templates/nutricion/listar-fichas.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="44" column="19" lean-forward="true" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+              <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -130,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/nutricion/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="70" lean-forward="true" selection-start-line="8" selection-start-column="70" selection-end-line="10" selection-end-column="84" />
+              <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="10" selection-end-column="84" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -152,7 +145,7 @@
         <entry file="file://$PROJECT_DIR$/nutricion/templates/nutricion/crear-ficha.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+              <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -1001,7 +994,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27912253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4762684" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3207856" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3371522" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3371522" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5499182" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="2" side_tool="true" content_ui="tabs" />
@@ -1466,7 +1459,7 @@
     <entry file="file://$PROJECT_DIR$/nutricion/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="70" lean-forward="true" selection-start-line="8" selection-start-column="70" selection-end-line="10" selection-end-column="84" />
+          <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="10" selection-end-column="84" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -1486,7 +1479,7 @@
     <entry file="file://$PROJECT_DIR$/nutricion/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <caret line="87" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
@@ -1520,7 +1513,7 @@
     <entry file="file://$PROJECT_DIR$/nutricion/templates/nutricion/listar-fichas.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="44" column="19" lean-forward="true" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1528,7 +1521,7 @@
     <entry file="file://$PROJECT_DIR$/nutricion/templates/nutricion/crear-ficha.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding />
         </state>
       </provider>
