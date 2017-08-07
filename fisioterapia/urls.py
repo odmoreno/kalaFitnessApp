@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^mensajes/$', views.verMensajes, name='mensajesF'),
     url(r'^mensajes/nuevo/$', views.nuevoMensaje, name='nuevoMensajeF'),
     url(r'^mensajes/leer/(?P<mensaje_id>[0-9]+)/$', views.leerMensaje, name='leerMensajeF'),
+    url(r'(?P<ficha_id>[0-9]+)/eliminar/$', views.eliminar_ficha, name="eliminar_ficha"),
+    url(r'^editar/(?P<ficha_id>[0-9]+)/$', views.editar_ficha, name='editar_ficha'),
 ]

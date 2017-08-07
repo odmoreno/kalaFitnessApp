@@ -32,15 +32,16 @@ def crear_ficha(request):
     template = "fisioterapia/ficha-temp.html"
     form = FichaForm(request.POST or None)
     pacientes = Paciente.objects.all()
+    sesion = request.session.get('user_sesion', None)
     print form._errors
     if form.is_valid():
         ficha = form.save(commit=False)
         print request.POST.get('paciente')
         paciente_id = request.POST.get('paciente')
         paciente = get_object_or_404(Paciente, pk=paciente_id)
-        personal = get_object_or_404(Personal, pk=1)
         ficha.paciente = paciente
-        ficha.personal = personal
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        ficha.paciente = paciente
         ficha.save()
         return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
@@ -63,6 +64,38 @@ def listar_fichas(request):
     context = {
         "fichas": fichas,
         'fisioterapia': True
+    }
+    return render(request, template, context)
+
+
+@transaction.atomic
+def eliminar_ficha(request, ficha_id):
+    ficha = Ficha.objects.get(pk=ficha_id)
+    ficha.delete()
+    return HttpResponseRedirect("/fisioterapia/ficha/lista/")
+
+@transaction.atomic
+def editar_ficha(request, ficha_id):
+
+    ficha_fisio = get_object_or_404(Ficha, pk=ficha_id)
+    template = "fisioterapia/ficha-temp.html"
+    form = FichaForm(request.POST or None, instance=ficha_fisio)
+    pacientes = Paciente.objects.all()
+    sesion = request.session.get('user_sesion', None)
+    if form.is_valid():
+        ficha = form.save(commit=False)
+        paciente_id = request.POST.get('paciente')
+        paciente = get_object_or_404(Paciente, pk=paciente_id)
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        ficha.paciente = paciente
+        ficha.personal = personal
+        ficha.save()
+        return HttpResponseRedirect("/fisioterapia/ficha/lista/")
+    context = {
+        'form': form,
+        'ficha': ficha_fisio,
+        'flag': True,
+        "pacientes": pacientes
     }
     return render(request, template, context)
 

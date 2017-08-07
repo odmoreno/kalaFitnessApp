@@ -61,6 +61,7 @@ def eliminar_ficha(request, ficha_id):
     ficha.delete()
     return HttpResponseRedirect("/nutricion/ficha/lista/")
 
+@transaction.atomic
 def editar_ficha(request, ficha_id):
 
     ficha_nutri = get_object_or_404(ficha_nutricion, pk=ficha_id)

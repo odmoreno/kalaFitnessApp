@@ -21,11 +21,13 @@
                                 <thead>
                                     <tr>
                                         <th>Paciente ID</th>
+                                        <th>Foto</th>
                                         <th>Nombre </th>
                                         <th>Apellido</th>
                                         <th>Fecha</th>
                                         <th>IMC</th>
-                                        <th>Ficha</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,30 +35,24 @@
                                         {% for ficha in fichas %}
                                             <tr class="">
                                                 <td>{{ ficha.paciente_id }}</td>
+                                                <td><img src="/static/{{ ficha.paciente.usuario.foto }}" class="img-responsive" height="50px" width="50px"/></td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.nombre }}</td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.apellido }}</td>
                                                 <td>{{ ficha.creado }}</td>
                                                 <td>{{ ficha.imc }}</td>
-                                                <td><a href=""><p class="fa fa-user-md"> ficha </p></a></td>
+                                                <td><a href="{% url 'fisioterapia:editar_ficha' ficha.id %}">
+                                                    <button type="submit" class="btn btn-info">
+                                                        <p class="fa fa-edit "></p>
+                                                    </button>
+                                                </a></td>
+                                                <td><a href="{%  url 'fisioterapia:eliminar_ficha' ficha.id %}">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </button>
+                                                   </a></td>
                                             </tr>
                                         {% endfor %}
                                     {% endif %}
-                                    <tr class="odd gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
-                                        <td class="center">4</td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5</td>
-                                        <td class="center">C</td>
-                                        <td class="center">4</td>
-                                    </tr>
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

@@ -32,10 +32,16 @@
                                         <div class="form-group">
                                             <label class="control-label">Paciente:</label>
                                             <select class="form-control" id="paciente_id" name="paciente" autofocus>
-                                                {% if pacientes %}
-                                                    {% for paciente in pacientes %}
-                                                        <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
-                                                    {% endfor %}
+                                                {% if not flag %}
+                                                    {% if pacientes %}
+                                                        {% for paciente in pacientes %}
+                                                            {% if not paciente.estado == 'I'  and not paciente.usuario.estado == 'I'%}
+                                                                <option value="{{ paciente.id }}" class="capitalize">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% else%}
+                                                     <option value="{{ ficha.paciente.id }}" class="capitalize">{{ ficha.paciente.usuario.nombre }} {{ ficha.paciente.usuario.apellido }}</option>
                                                 {% endif %}
                                             </select>
                                         </div>
@@ -46,7 +52,11 @@
                                 <div class="row" style="padding-top: 20px">
                                     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                         <div class="form-group">
-                                            <button type="submit" class="col-md-4 col-md-offset-4 btn btn-outline btn-success">Crear ficha</button>
+                                            {%  if not flag %}
+                                                <button type="submit" class="col-md-4 col-md-offset-4 btn btn-outline btn-success">Crear ficha</button>
+                                            {%  else %}
+                                                <button type="submit" class="col-md-4 col-md-offset-4 btn btn-outline btn-success">Modificar</button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
