@@ -182,7 +182,11 @@ def reporteTotal(request):
 
     return JsonResponse({"data": rec})
 
-
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de facturas
+'''
 @login_required
 def reportes(request):
     template = 'reportes.html'

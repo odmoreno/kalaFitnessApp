@@ -251,6 +251,14 @@ def nuevoMensajePersonal(request):
 
     return render(request, "personal/nuevoMensajePersonal.html", data)
 
+
+'''
+Funcion: reporteTotal
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
 def reporteTotal(request):
     personal = Personal.objects.all()
@@ -268,6 +276,14 @@ def reporteTotal(request):
 
     return JsonResponse({"data": per})
 
+
+'''
+Funcion: reporteRol
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por rol
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
 def reporteRol(request):
     personal = Personal.objects.all()
@@ -286,6 +302,14 @@ def reporteRol(request):
 
     return JsonResponse({"data": per})
 
+
+'''
+Funcion: reporteMujeres
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por genero femenino
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
 def reporteMujeres(request):
     personal = Personal.objects.all()
@@ -304,6 +328,13 @@ def reporteMujeres(request):
 
     return JsonResponse({"data": per})
 
+'''
+Funcion: reporteHombres
+Entradas: requerimiento get http
+Salidas: JSON con todo el personal filtrado por genero hombres
+*Funcion que retorna la informacion del personal registrados en la base de datos
+en forma de un JSON*
+'''
 @login_required
 def reporteHombres(request):
     personal = Personal.objects.all()
@@ -322,6 +353,12 @@ def reporteHombres(request):
 
     return JsonResponse({"data": per})
 
+
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: template de reportes de personal
+'''
 @login_required
 def reportes(request):
     template = 'personal/reportes.html'

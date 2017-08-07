@@ -237,7 +237,11 @@ def reporteHombres(request):
             p.append(record)
 
     return JsonResponse({"pacientes": p})
-
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de pacientes
+'''
 @login_required
 def reportes(request):
     template = 'paciente/reportes.html'
