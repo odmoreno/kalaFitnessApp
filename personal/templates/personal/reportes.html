@@ -142,30 +142,30 @@
   };
 
   $("#totales").click(function(){
-    $.get("/personal/reporte/total", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
+    $.get("/personal/reporte/total", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
     });
   });
 
   $("#rol").click(function(){
-    $.get("/personal/reporte/rol", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
+    $.get("/personal/reporte/rol", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
     });
   });
 
   $("#hombres").click(function(){
-    $.get("/personal/reporte/hombres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
+    $.get("/personal/reporte/hombres", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
     });
   });
 
   $("#mujeres").click(function(){
-    $.get("/personal/reporte/mujeres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
+    $.get("/personal/reporte/mujeres", function(res, status){
+      console.log(res.data);
+      pdf(res.data);
     });
   });
 

@@ -262,7 +262,7 @@ def reporteTotal(request):
         apellido = p.usuario.apellido
         telefono = p.usuario.telefono
         ##genero = p.usuario.genero
-        rol = p.usuario.rol
+        rol = p.usuario.rol.tipo
         record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
         per.append(record)
 
@@ -274,14 +274,15 @@ def reporteRol(request):
     per = []
 
     for p in personal:
-        cedula = p.usuario.cedula
-        nombre = p.usuario.nombre
-        apellido = p.usuario.apellido
-        telefono = p.usuario.telefono
-        ##genero = p.usuario.genero
-        rol = p.usuario.rol
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
-        per.append(record)
+        if p.usuario.rol.tipo=='fisioterapista':
+            cedula = p.usuario.cedula
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
 
     return JsonResponse({"data": per})
 
@@ -291,14 +292,15 @@ def reporteMujeres(request):
     per = []
 
     for p in personal:
-        cedula = p.usuario.cedula
-        nombre = p.usuario.nombre
-        apellido = p.usuario.apellido
-        telefono = p.usuario.telefono
-        ##genero = p.usuario.genero
-        rol = p.usuario.rol
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
-        per.append(record)
+        if p.usuario.genero=='F':
+            cedula = p.usuario.cedula
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
 
     return JsonResponse({"data": per})
 
@@ -308,14 +310,15 @@ def reporteHombres(request):
     per = []
 
     for p in personal:
-        cedula = p.usuario.cedula
-        nombre = p.usuario.nombre
-        apellido = p.usuario.apellido
-        telefono = p.usuario.telefono
-        ##genero = p.usuario.genero
-        rol = p.usuario.rol
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
-        per.append(record)
+        if p.usuario.genero=='M':
+            cedula = p.usuario.cedula
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            ##genero = p.usuario.genero
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
 
     return JsonResponse({"data": per})
 
