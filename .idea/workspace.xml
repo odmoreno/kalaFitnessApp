@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html" />
+    <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dependencias.txt" afterPath="$PROJECT_DIR$/dependencias.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kala/settings.py" afterPath="$PROJECT_DIR$/kala/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kalaapp/models.py" afterPath="$PROJECT_DIR$/kalaapp/models.py" />
+    </list>
     <ignored path=".idea/*/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,6 +43,7 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="kalaFitnessApp" />
   </component>
@@ -47,55 +52,18 @@
       <file leaf-file-name="kalaapp_asignar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
+            <state relative-caret-position="702">
               <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
-              <folding>
-                <marker date="1501995993034" expanded="true" signature="6128:6132" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:6708" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:6766" ph="{% for paciente in pacientes ... %}" />
-                <marker date="1501995993034" expanded="true" signature="6128:7075" ph="{% if pacientes ... %}" />
-                <marker date="1501995993034" expanded="true" signature="6128:7123" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:7168" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:7250" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:7741" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:7799" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6128:7883" ph="{% block content ... %}" />
-                <marker date="1501995993034" expanded="true" signature="6213:6650" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6310:6588" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="6865:7022" ph="..." />
-                <marker date="1501995993034" expanded="false" signature="6959:6967" ph="ó" />
-                <marker date="1501995993034" expanded="false" signature="7308:7325" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="7326:7705" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="7408:7670" ph="..." />
-                <marker date="1501995993034" expanded="true" signature="7469:7631" ph="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usuario" pinned="false" current-in-tab="false">
-        <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rol" pinned="false" current-in-tab="false">
-        <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
+            <state relative-caret-position="220">
+              <caret line="312" column="7" lean-forward="false" selection-start-line="312" selection-start-column="7" selection-end-line="312" selection-end-column="7" />
               <folding>
                 <element signature="e#126#165#0" expanded="true" />
               </folding>
@@ -103,10 +71,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kala/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="160" column="60" lean-forward="false" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings_desarrollo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kala/settings_desarrollo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="diagnostico_editar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_editar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -116,19 +104,21 @@
       <file leaf-file-name="diagnostico_crear.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
+            <state relative-caret-position="504">
               <caret line="28" column="128" lean-forward="false" selection-start-line="28" selection-start-column="128" selection-end-line="28" selection-end-column="128" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kalaapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
-              <folding />
+            <state relative-caret-position="154">
+              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+              <folding>
+                <element signature="e#531#570#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,22 +126,9 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="396">
               <caret line="27" column="71" lean-forward="false" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
-              <folding>
-                <marker date="1501995992919" expanded="true" signature="284:913" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="952:1372" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="1335:1372" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="1399:1553" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="1525:1553" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="1583:2220" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="2164:2220" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="2246:2423" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="2396:2423" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="2433:2532" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="2567:3203" ph="..." />
-                <marker date="1501995992919" expanded="true" signature="3166:3203" ph="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,18 +136,10 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kalaapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1147">
+            <state relative-caret-position="1278">
               <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
-                <marker date="1501995993041" expanded="true" signature="6480:6549" ph="..." />
-                <marker date="1501995993041" expanded="true" signature="6551:6719" ph="'''...'''" />
-                <marker date="1501995993041" expanded="true" signature="6761:7054" ph="..." />
-                <marker date="1501995993041" expanded="true" signature="6823:7054" ph="..." />
-                <marker date="1501995993041" expanded="true" signature="6855:7054" ph="..." />
-                <marker date="1501995993041" expanded="true" signature="7057:7204" ph="'''...'''" />
-                <marker date="1501995993041" expanded="true" signature="7237:7731" ph="..." />
-                <marker date="1501995993041" expanded="true" signature="7289:7731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -247,35 +216,35 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kala/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kala/settings.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paciente/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kala/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/templates/factura_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/views.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/forms.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/tests.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/personal/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/forms.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/kalaapp/urls.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/diagnostico/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/dependencias.txt" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paciente/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/personal/views.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -290,7 +259,6 @@
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_editar.html" />
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_modal_eliminar.html" />
         <option value="$PROJECT_DIR$/kalaapp/templates/landing.html" />
-        <option value="$PROJECT_DIR$/kalaapp/models.py" />
         <option value="$PROJECT_DIR$/kala/forms.py" />
         <option value="$PROJECT_DIR$/kalaapp/urls.py" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/logout.html" />
@@ -307,7 +275,6 @@
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_reset_done.html" />
         <option value="$PROJECT_DIR$/kala/views.py" />
         <option value="$PROJECT_DIR$/factura/models.py" />
-        <option value="$PROJECT_DIR$/kala/settings.py" />
         <option value="$PROJECT_DIR$/factura/tests.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/form_template.html" />
         <option value="$PROJECT_DIR$/paciente/templates/paciente/form_paciente.html" />
@@ -331,6 +298,8 @@
         <option value="$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" />
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" />
         <option value="$PROJECT_DIR$/diagnostico/views.py" />
+        <option value="$PROJECT_DIR$/kala/settings.py" />
+        <option value="$PROJECT_DIR$/kalaapp/models.py" />
       </list>
     </option>
   </component>
@@ -340,11 +309,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1308" />
-    <option name="height" value="784" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="52" />
+    <option name="y" value="-11" />
+    <option name="width" value="1315" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -365,23 +334,109 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-              <item name="kalaapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sb-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fisioterapia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kalaFitnessApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clienteRest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,7 +472,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django tests.Test: diagnostico.tests">
+  <component name="RunManager">
     <configuration name="Test: diagnostico.tests" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -437,76 +492,23 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+    <configuration default="false" name="inserts" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kalaapp" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="kalaFitnessApp" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="kalaFitnessApp" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="kalaFitnessApp" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kalaapp/inserts.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -528,29 +530,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="kalaFitnessApp" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -562,13 +541,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <module name="kalaFitnessApp" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -607,24 +579,6 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration name="inserts" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kalaapp" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="kalaFitnessApp" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kalaapp/inserts.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <configuration name="kalaFitnessApp" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -648,15 +602,12 @@
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Django server.kalaFitnessApp" />
-      <item index="1" class="java.lang.String" itemvalue="Python.inserts" />
-      <item index="2" class="java.lang.String" itemvalue="Django tests.Test: diagnostico.tests" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Python.inserts" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Django tests.Test: diagnostico.tests" />
-        <item index="1" class="java.lang.String" itemvalue="Python.inserts" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.inserts" />
       </list>
     </recent_temporary>
   </component>
@@ -785,42 +736,29 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1308" height="784" extended-state="6" />
+    <frame x="52" y="-11" width="1315" height="780" extended-state="6" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19878142" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4422188" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17387821" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22676282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3882897" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19951923" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38863975" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -898,11 +836,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="django-line">
-          <url>file://$PROJECT_DIR$/paciente/templates/paciente/index.html</url>
-          <line>12</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kalaapp/views.py</url>
           <line>1</line>
@@ -921,7 +854,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kala/urls.py" />
     <entry file="file://$PROJECT_DIR$/kala/views.py" />
     <entry file="das://table:/f4d58e9/9a2be539-cfee-48a3-98a4-0b13a9e13685/gestionhc.facturas" />
     <entry file="file://$PROJECT_DIR$/diagnostico/tests.py" />
@@ -936,14 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kala/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="99" column="30" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -955,7 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -974,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -982,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,9 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-125">
           <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1014,9 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
           <caret line="171" column="37" lean-forward="true" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
-          <folding>
-            <element signature="e#24#63#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1045,9 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1246">
           <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
-          <folding>
-            <element signature="e#67#106#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,7 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,9 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="499">
           <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-          <folding>
-            <element signature="e#24#63#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1080,9 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1090,7 +995,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="13" column="84" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="84" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,7 +1003,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="66" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1110,13 +1013,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal" />
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_crear.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1128,60 +1025,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_nut">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_fis">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_nut" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.diagnostico_fis" />
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="63" column="14" lean-forward="true" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.paciente_personal">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.paciente_personal" />
     <entry file="file://$PROJECT_DIR$/kalaapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1147">
+        <state relative-caret-position="1278">
           <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
-            <marker date="1501995993041" expanded="true" signature="6480:6549" ph="..." />
-            <marker date="1501995993041" expanded="true" signature="6551:6719" ph="'''...'''" />
-            <marker date="1501995993041" expanded="true" signature="6761:7054" ph="..." />
-            <marker date="1501995993041" expanded="true" signature="6823:7054" ph="..." />
-            <marker date="1501995993041" expanded="true" signature="6855:7054" ph="..." />
-            <marker date="1501995993041" expanded="true" signature="7057:7204" ph="'''...'''" />
-            <marker date="1501995993041" expanded="true" signature="7237:7731" ph="..." />
-            <marker date="1501995993041" expanded="true" signature="7289:7731" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1190,79 +1053,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#2630#2636#0#HTML" expanded="true" />
-            <element signature="e#2642#2648#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
+        <state relative-caret-position="702">
           <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
-          <folding>
-            <marker date="1501995993034" expanded="true" signature="6128:6132" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:6708" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:6766" ph="{% for paciente in pacientes ... %}" />
-            <marker date="1501995993034" expanded="true" signature="6128:7075" ph="{% if pacientes ... %}" />
-            <marker date="1501995993034" expanded="true" signature="6128:7123" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:7168" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:7250" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:7741" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:7799" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6128:7883" ph="{% block content ... %}" />
-            <marker date="1501995993034" expanded="true" signature="6213:6650" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6310:6588" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="6865:7022" ph="..." />
-            <marker date="1501995993034" expanded="false" signature="6959:6967" ph="ó" />
-            <marker date="1501995993034" expanded="false" signature="7308:7325" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="7326:7705" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="7408:7670" ph="..." />
-            <marker date="1501995993034" expanded="true" signature="7469:7631" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kalaapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol" />
     <entry file="file://$PROJECT_DIR$/diagnostico/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="396">
           <caret line="27" column="71" lean-forward="false" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
-          <folding>
-            <marker date="1501995992919" expanded="true" signature="284:913" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="952:1372" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="1335:1372" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="1399:1553" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="1525:1553" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="1583:2220" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="2164:2220" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="2246:2423" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="2396:2423" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="2433:2532" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="2567:3203" ph="..." />
-            <marker date="1501995992919" expanded="true" signature="3166:3203" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="504">
           <caret line="28" column="128" lean-forward="false" selection-start-line="28" selection-start-column="128" selection-end-line="28" selection-end-column="128" />
           <folding />
         </state>
@@ -1270,25 +1083,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_editar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario" />
+    <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="312" column="7" lean-forward="false" selection-start-line="312" selection-start-column="7" selection-end-line="312" selection-end-column="7" />
+          <folding>
+            <element signature="e#126#165#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
+    <entry file="file://$PROJECT_DIR$/kala/settings_desarrollo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kala/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="160" column="60" lean-forward="false" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kalaapp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding>
-            <element signature="e#126#165#0" expanded="true" />
+            <element signature="e#531#570#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['127.0.0.1',]
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'corsheaders',
     'directmessages',
     'django_forms_bootstrap',
@@ -44,7 +45,9 @@ INSTALLED_APPS = [
     'factura.apps.FacturaConfig',
     'diagnostico.apps.DiagnosticoConfig',
     'fisioterapia.apps.FisioterapiaConfig',
-    'nutricion.apps.NutricionConfig'
+    'nutricion.apps.NutricionConfig',
+    'clienteRest.apps.ClienterestConfig',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +151,16 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'auth.User'
 #AUTH_USER_MODEL = 'kalaapp.Usuario'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 LANGUAGE_CODE = 'es'
 
