@@ -7,12 +7,16 @@
             <div class="form-group">
                 <label class="control-label">Paciente:</label>
                 <select class="form-control" id="paciente_id" name="paciente" autofocus>
-                    {% if pacientes %}
-                        {% for paciente in pacientes %}
-                            {% if not paciente.estado == 'I'  and not paciente.usuario.estado == 'I'%}
-                                <option value="{{ paciente.id }}">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
-                            {% endif %}
-                        {% endfor %}
+                    {% if not flag %}
+                        {% if pacientes %}
+                            {% for paciente in pacientes %}
+                                {% if not paciente.estado == 'I'  and not paciente.usuario.estado == 'I'%}
+                                    <option value="{{ paciente.id }}" class="capitalize">{{ paciente.usuario.nombre }} {{ paciente.usuario.apellido }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% else%}
+                         <option value="{{ ficha.paciente.id }}" class="capitalize">{{ ficha.paciente.usuario.nombre }} {{ ficha.paciente.usuario.apellido }}</option>
                     {% endif %}
                 </select>
             </div>

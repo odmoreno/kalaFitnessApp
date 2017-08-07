@@ -55,6 +55,37 @@ def listar_fichas(request):
     }
     return render(request, template, context)
 
+@transaction.atomic
+def eliminar_ficha(request, ficha_id):
+    ficha = ficha_nutricion.objects.get(pk=ficha_id)
+    ficha.delete()
+    return HttpResponseRedirect("/nutricion/ficha/lista/")
+
+def editar_ficha(request, ficha_id):
+
+    ficha_nutri = get_object_or_404(ficha_nutricion, pk=ficha_id)
+    template = "nutricion/crear-ficha.html"
+    form = FichaForm(request.POST or None, instance=ficha_nutri)
+    pacientes = Paciente.objects.all()
+    sesion = request.session.get('user_sesion', None)
+    if form.is_valid():
+        ficha = form.save(commit=False)
+        paciente_id = request.POST.get('paciente')
+        paciente = get_object_or_404(Paciente, pk=paciente_id)
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        ficha.paciente = paciente
+        ficha.personal = personal
+        ficha.save()
+        return HttpResponseRedirect("/nutricion/ficha/lista/")
+    context = {
+        'form': form,
+        'ficha': ficha_nutri,
+        'flag': True,
+        "pacientes": pacientes
+    }
+    return render(request, template, context)
+
+
 def ver_horarios(request):
     return
 

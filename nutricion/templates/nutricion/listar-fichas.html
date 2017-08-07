@@ -28,6 +28,8 @@
                                         <th>% Grasas</th>
                                         <th>% Carbohidratos</th>
                                         <th>Ficha</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,6 +44,8 @@
                                                 <td>{{ ficha.grasas }}</td>
                                                 <td>{{ ficha.carbohidratos }}</td>
                                                 <td><a href=""><p class="fa fa-user-md"> ficha </p></a></td>
+                                                <td><a href="{% url 'nutricion:editar_ficha' ficha.id %}"><p class="fa fa-edit ">Editar</p></a></td>
+                                                <td><a href="{%  url 'nutricion:eliminar_ficha' ficha.id %}"><span  class="glyphicon glyphicon-remove">Eliminar</span></a></td>
                                             </tr>
                                         {% endfor %}
                                     {% endif %}
