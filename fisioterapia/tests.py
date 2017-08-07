@@ -69,6 +69,7 @@ class listarfichas(TestCase):
 
 class crearficha(TestCase):
     def setUp(self):
+        self.client.session
         self.factory = RequestFactory()
         paciente = ingresarPacienteTestCase.testIngreso
 
