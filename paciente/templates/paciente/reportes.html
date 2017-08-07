@@ -1,45 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Kala App{% endblock %}</title>
-    <!-- Loads the path to your static files -->
-    {% load staticfiles %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'personal/style.css' %}" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
-
-</head>
-<body>
-    <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <!-- header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'paciente:index' %}">kala App</a>
-        </div>
-
-        <!-- Boton Reporte -->
-        <div>
-          <button id="reporte" type="button" class="btn">Reporte PDF</button>
-        </div>
-
-
-
+{% extends 'blank.html' %}
+{% load l10n %}
+{% load static %}
+{% block title %}Reportes {% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <!-- Boton Reporte -->
+    <div>
+      <button id="totales" type="button" class="btn">Pacientes totales</button>
     </div>
-</nav>
-    {% block body %}
-    {% endblock %}
+    <div>
+      <button id="hombres" type="button" class="btn">Pacientes hombres</button>
+    </div>
+    <div>
+      <button id="mujeres" type="button" class="btn">Pacientes mujeres</button>
+    </div>
 
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
 <script>
   function body(pacientes){
     var body = [
@@ -160,8 +138,22 @@
     pdfMake.createPdf(pdf).open();
   };
 
-  $("#reporte").click(function(){
-    $.get("/paciente/reporte/", function(data, status){
+  $("#totales").click(function(){
+    $.get("/paciente/reporte/totales", function(data, status){
+      console.log(data.pacientes);
+      pdf(data.pacientes);
+    });
+  });
+
+  $("#hombres").click(function(){
+    $.get("/paciente/reporte/hombres", function(data, status){
+      console.log(data.pacientes);
+      pdf(data.pacientes);
+    });
+  });
+
+  $("#mujeres").click(function(){
+    $.get("/paciente/reporte/mujeres", function(data, status){
       console.log(data.pacientes);
       pdf(data.pacientes);
     });
@@ -169,5 +161,4 @@
 
 
 </script>
-</body>
-</html>
+{% endblock %}

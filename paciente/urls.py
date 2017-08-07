@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^editar/(?P<paciente_id>[0-9]+)/$', views.editarPaciente, name='editar'),
     #url(r'^modificar/(?P<paciente_id>\d+)/$', views.PacienteModificar, name="modificar"),
     url(r'^eliminar/(?P<paciente_id>\d+)/', views.PacienteEliminar, name="eliminar"),
-    url(r'^reporte/$', views.reportePacientes, name='reportePacientes'),
-    url(r'^pdf/$', views.reportePDF, name="reportePDF"),
+    url(r'^reporte/hombres/$', views.reporteHombres),
+    url(r'^reporte/mujeres/$', views.reporteMujeres),
+    url(r'^reporte/totales/$', views.reporteTotales),
+    url(r'^reportes/$', views.reportes, name="reportes"),
 ]
