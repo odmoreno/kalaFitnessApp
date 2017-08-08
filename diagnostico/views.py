@@ -51,18 +51,20 @@ def listarDiagnosticos(request):
 
         if rol == 'fisioterapista':
             diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
-                .order_by('-creado') \
-                .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
-                                                          Value(' '), 'paciente__usuario__nombre')) \
+                .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
+                                                          Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
-                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))
+                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))\
+                .annotate(cedula=Concat('paciente__usuario__cedula', Value('')))\
+                .order_by('-creado')
         elif rol == 'nutricionista':
             diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
-                .order_by('-creado') \
-                .annotate(paciente_nombre_completo=Concat('paciente__usuario__apellido', \
-                                                          Value(' '), 'paciente__usuario__nombre')) \
+                .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
+                                                          Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
-                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))
+                .annotate(paciente_foto=Concat('paciente__usuario__foto', Value(''))) \
+                .annotate(cedula=Concat('paciente__usuario__cedula', Value(''))) \
+                .order_by('-creado') \
 
     contexto['diagnosticos'] = diagnosticos
     contexto['user_sesion'] = sesion
