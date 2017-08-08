@@ -1,6 +1,5 @@
 *.pyc
-.idea/
-.idea/workspace.xml
+.idea/*
 # Created by https://www.gitignore.io/api/linux,python,pycharm,windows
 
 ### Linux ###
@@ -94,7 +93,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
