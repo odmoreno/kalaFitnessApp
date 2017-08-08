@@ -41,7 +41,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Paciente:</label>
+                                    <labelclass="control-label">Paciente:</label>
                                     <select class="form-control" id="paciente_id" name="paciente" autofocus required>
                                     {% if pacientes %}
                                         {% for paciente in pacientes %}
@@ -51,16 +51,19 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Serie:</label><input class="form-control" type="text" name="serie" pattern="[0-9]{1,25}" placeholder="Serie de la factura (Máx. 25 dígitos)" required/>
+                                    <label class="control-label">Serie:</label>
+                                    <input class="form-control" type="text" name="serie" pattern="[0-9]{1,25}" placeholder="Serie de la factura (Máx. 25 dígitos)" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Fecha de vencimiento: (1 año máximo)</label><input type="text" class="form-control" id="datepicker" name="fecha_vencimiento" placeholder="Formato dd/mm/aaaa (Máx. 12 meses desde hoy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" readonly/>
+                                    <label class="control-label">Fecha de vencimiento: (1 año máximo)</label>
+                                    <input type="text" class="form-control" id="datepicker" name="fecha_vencimiento" placeholder="Formato dd/mm/aaaa (Máx. 12 meses desde hoy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" readonly/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Total:</label><input class="form-control" type="number" name="total" step="0.01" min="1.0" max="100000.0" placeholder="Total de la factura" required/>
+                                    <label class="control-label">Total:</label>
+                                    <input class="form-control" type="number" name="total" step="0.01" min="1.0" max="100000.0" placeholder="Total de la factura" required/>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Crear</button>
+                                    <button type="submit" class="btn btn-success">Crear factura</button>
                                 </div>
                             </form>
                         </div>

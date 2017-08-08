@@ -78,6 +78,8 @@ def PacienteNuevo(request):
 
         '''
         usuario = form.save(commit=False)
+
+        print usuario.foto
         user = User()
         paciente = Paciente()
         user.username = form.cleaned_data['cedula']
@@ -98,8 +100,8 @@ def PacienteNuevo(request):
 
         enviar_password_email(user.email, user.username, password)
 
-        #pacientes = Paciente.objects.all()
-        #return render(request, 'paciente/index.html', {'pacientes': pacientes})
+        # pacientes = Paciente.objects.all()
+        # return render(request, 'paciente/index.html', {'pacientes': pacientes})
         return redirect('paciente:index')
 
     context = {

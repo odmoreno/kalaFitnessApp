@@ -1,92 +1,98 @@
 {% extends 'blank.html' %}
 {% load l10n %}
+{% load static %}
 {% block title %}Detalles{% endblock %}
 {% block content %}
 <div id="page-wrapper">
-    <div class="container-fluid songs-container">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
         <div class="panel panel-default" style="margin-top: 40px">
-
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                         <b><h4>Detalles de {{ personal.nombre }} {{ personal.apellido }}</h4></b>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                         <a class="btn btn-link pull-right" href="{% url 'personal:index' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Regresar</a>
+                    </div>
+                </div>
+            </div>
             <div class="panel-body">
                 <div class="row">
-
-        <!-- Info izquierda -->
-        <div class="col-sm-4 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="{% url 'personal:detail' personal.id %}">
-                        {% if personal.foto %}
-                            <img src="/static/{{ personal.foto }}" class="img-rounded img-responsive">
-                        {% else %}
-                            <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive">
-                        {% endif %}
-                    </a>
-                    <h3>{{ personal.id}}</h3>
-                    <h1>{{ personal.nombre }} {{ personal.apellido }}</h1>
+                    <!-- Info izquierda -->
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                {% if personal.foto %}
+                                    <img src="/static/{{ personal.foto }}" class="img-rounded img-responsive">
+                                {% else %}
+                                    <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive">
+                                {% endif %}
+                                <!--<h3>{{ personal.id}}</h3>
+                                <h1>{{ personal.nombre }} {{ personal.apellido }}</h1>-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Info derecha -->
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <form class="form-horizontal" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Nombre:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.nombre }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Apellido:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.apellido }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Cedula:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.cedula }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Dirección:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.direccion }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Ocupación:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.ocupacion }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Telefono:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.telefono }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class ="control-label col-sm-3">Edad:</label>
+                                        <div class="col-sm-5">
+                                            <p class="form-control-static">{{ personal.edad }}</p>
+                                        </div>
+                                    </div>
+                        </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Info derecha -->
-        <div class="col-sm-8 col-md-9">
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" action="" method="" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Nombre:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.nombre }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Apellido:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.apellido }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Cedula:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.cedula }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Dirección:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.direccion }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Ocupación:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.ocupacion }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Telefono:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.telefono }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class ="control-label col-sm-3">Edad:</label>
-                            <div class="col-sm-5">
-                                <p class="form-control-static">{{ personal.edad }}</p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
     </div>
-
-</div>
-        </div>
+    </div>
     </div>
 </div>
-
 
 {% endblock %}
 
