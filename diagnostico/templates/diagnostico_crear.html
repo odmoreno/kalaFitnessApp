@@ -135,75 +135,6 @@
 
 {% block scriptDown %}
         <script>
-            var num = 1;
-
-            function eliminarAccordion(id) {
-                $('#accordion' + id).remove();
-
-                $('#cantidadrutinas').attr('value', $('#accordion-parent').children().length);
-
-                /*$('#accordion-parent').children().each(function (index) {
-                    $(this).attr('id', 'accordion' + (index + 1));
-                    $('#idheading').attr('data-parent', '#accordion' + (index + 1));
-                    $('#idheading').val('#'+(index + 1))
-                });*/
-            }
-
-
-            $('#btn-agregarrutina').click( function() {
-                num = num + 1;
-                numstr = num.toString();
-
-                var nuevoaccordion = "<div class=\"panel-group\" id=\"accordion"+numstr+"\">\n" +
-"                                                <div class=\"panel panel-default\">\n" +
-"                                                    <div class=\"panel-heading\">\n" +
-"                                                        <h4 class=\"panel-title\">\n" +
-"                                                            <input type=\"hidden\" id=\"idaccordion\" name=\"idaccordion\" value=\""+numstr+"\"/>\n" +
-"                                                            <a data-toggle=\"collapse\" id=\"idheading\" data-parent=\"#accordion"+numstr+"\" style=\"text-decoration: none;\" href=\"#collapse"+numstr+"\">#"+numstr+"</a>\n" +
-"                                                            <a role=\"button\" id=\"closeaccordion"+numstr+"\" onclick=\"eliminarAccordion("+numstr+")\"><i class=\"fa fa-close pull-right\"></i></a>"+
-"                                                        </h4>\n" +
-"                                                    </div>\n" +
-"                                                    <div id=\"collapse"+numstr+"\" class=\"panel-collapse collapse in\">\n" +
-"                                                        <div class=\"panel-body\">\n" +
-"                                                            <div class=\"row\">\n" +
-"                                                                <div class=\"col-lg-6 col-md-6 col-xs-6 col-sm-6\">\n" +
-"                                                                    <label class=\"control-label\" for=\"nombrerutina\">Nombre:</label>\n" +
-"                                                                    <textarea class=\"form-control\" rows=\"1\" name=\"nombrerutina\" maxlength=\"500\" placeholder=\"Nombre\" required></textarea>\n" +
-"                                                                </div>\n" +
-"                                                                <div class=\"col-lg-6 col-md-6 col-xs-6 col-sm-6\">\n" +
-"                                                                    <label class=\"control-label\" for=\"descripcionrutina\">Descripci&oacute;n:</label>\n" +
-"                                                                    <textarea class=\"form-control\" rows=\"1\" name=\"descripcionrutina\" maxlength=\"500\" placeholder=\"Descripci&oacute;n\" required></textarea>\n" +
-"                                                                </div>\n" +
-"                                                            </div>\n" +
-"                                                            <div class=\"row\" style=\"padding-top: 20px\">\n" +
-"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
-"                                                                    <label class=\"control-label\" for=\"repeticionesrutina\">Repeticiones:</label>\n" +
-"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"repeticionesrutina\" placeholder=\"Cantidad\" required/>\n" +
-"                                                                </div>\n" +
-"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
-"                                                                    <label class=\"control-label\" for=\"vecesrutina\">Veces por repetici&oacute;n:</label>\n" +
-"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"vecesrutina\" placeholder=\"Cantidad\" required/>\n" +
-"                                                                </div>\n" +
-"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
-"                                                                    <label class=\"control-label\" for=\"descansorutina\">Descanso entre repetici&oacute;n:</label>\n" +
-"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"descansorutina\" placeholder=\"Minutos\" required/>\n" +
-"                                                                </div>\n" +
-"                                                            </div>\n" +
-"                                                            <div class=\"row\" style=\"padding-top: 20px\">\n" +
-"                                                                <div class=\"col-lg-12 col-md-12 col-xs-12 col-sm-12\">\n" +
-"                                                                    <label class=\"control-label\" for=\"videoenlace\">Video demostraci&oacute;n:</label>\n" +
-"                                                                    <input class=\"form-control\" type=\"text\" maxlength=\"1000\" name=\"videoenlace\" placeholder=\"Enlace al video\"/>\n" +
-"                                                                </div>\n" +
-"                                                            </div>\n" +
-"                                                        </div>\n" +
-"                                                    </div>\n" +
-"                                                </div>\n" +
-"                                            </div>";
-                $('#accordion-parent').append(nuevoaccordion)
-                $('#cantidadrutinas').attr('value', $('#accordion-parent').children().length);
-            });
-        </script>
-        <script>
             $('#textarea').keyup(validarExpresion);
 
                 function validarExpresion() {
@@ -232,4 +163,4 @@
                     });
                 }
             </script>
-    {% endblock %}
+{% endblock %}

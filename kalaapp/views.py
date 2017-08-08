@@ -131,12 +131,12 @@ def asignarPersonalaPaciente(request):
         pacientes = Paciente.objects.filter(estado='A', usuario__estado='A') \
             .values('id', 'pacientepersonal__personal_id', 'usuario__nombre', 'usuario__apellido', 'usuario__cedula',
                     'usuario__telefono', 'usuario__ocupacion', 'usuario__edad', 'usuario__genero', 'usuario__foto',
-                    'pacientepersonal__personal__usuario__foto', 'pacientepersonal__personal__usuario__apellido',
-                    'pacientepersonal__personal__usuario__nombre')\
+                    'pacientepersonal__personal__usuario__foto', 'pacientepersonal__personal__usuario__nombre',
+                    'pacientepersonal__personal__usuario__apellido')\
             .annotate(foto_p=Concat('pacientepersonal__personal__usuario__foto', Value('')))\
-            .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
-            .annotate(nombre_completo_p=Concat('pacientepersonal__personal__usuario__apellido', Value(' '),
-                                               'pacientepersonal__personal__usuario__nombre')) \
+            .annotate(nombre_completo=Concat('usuario__nombre', Value(' '), 'usuario__apellido')) \
+            .annotate(nombre_completo_p=Concat('pacientepersonal__personal__usuario__nombre', Value(' '),
+                                               'pacientepersonal__personal__usuario__apellido')) \
             .order_by('id', 'nombre_completo')
     except Exception, e:
         messages.add_message(request, messages.WARNING, 'Error inesperado al consultar informacion!, ' + str(e))

@@ -106,7 +106,7 @@ def crearDiagnostico(request):
         pacientes = Paciente.objects.filter(estado='A', pacientepersonal__estado='A',
                                             pacientepersonal__personal_id=sesion.get('personal__id', 0))\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
-            .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
+            .annotate(nombre_completo=Concat('usuario__nombre', Value(' '), 'usuario__apellido')) \
             .order_by('nombre_completo')
         if pacientes is None or pacientes.count() == 0:
             raise Exception
@@ -149,6 +149,7 @@ def getDiagnostico(request):
                 diagnostico = DiagnosticoFisioterapia()
                 diagnostico.area_afectada = request.POST.get('areaafectada', '')
                 diagnostico.receta = request.POST.get('receta', '')
+                diagnostico.rutina = Rutina.objects.create()
 
                 cantidad_rutinas = int(request.POST.get('cantidadrutinas', '0'))
                 id_rutinas = request.POST.getlist('idaccordion', [])
@@ -159,14 +160,13 @@ def getDiagnostico(request):
                 descanso_rutinas = request.POST.getlist('descansorutina', [])
                 videoenlace_rutinas = request.POST.getlist('videoenlace', [])
 
-                for id, nom, desc, rep, vec, des, vid in zip(id_rutinas, nombre_rutinas, descripcion_rutinas, \
-                    repeticiones_rutinas, veces_rutinas, descanso_rutinas, videoenlace_rutinas):
+                for id, nom, desc, rep, vec, des, vid in zip(id_rutinas, nombre_rutinas, descripcion_rutinas,
+                                                             repeticiones_rutinas, veces_rutinas, descanso_rutinas,
+                                                             videoenlace_rutinas):
 
-                    s = Subrutina.objects.create(nombre=nom, detalle=desc,
-                                                 veces=vec, repeticiones=rep, descanso=des, link=vid)
-                    print s
-                    diagnostico.rutina = Rutina.objects.create()
-                    diagnostico.rutina.subrutina.add(s)
+                    subrutina = Subrutina.objects.create(nombre=nom, detalle=desc, repeticiones=rep, veces=vec,
+                                                         descanso=des, link=vid)
+                    diagnostico.rutina.subrutina.add(subrutina)
             elif rol == 'nutricionista':
                 diagnostico = DiagnosticoNutricion()
 
@@ -218,7 +218,13 @@ def eliminarDiagnostico(request, id=0):
         try:
             if rol == 'fisioterapista':
                 diagnosticoEliminado = DiagnosticoFisioterapia.objects.get(estado='A', id=id)
-                #Falta inactivar rutinas
+                subrutinas = Subrutina.objects.filter(rutina=diagnosticoEliminado.rutina)
+                for subrutina in subrutinas:
+                    subrutina.estado = 'I'
+                    subrutina.save()
+                diagnosticoEliminado.rutina.estado = 'I'
+                diagnosticoEliminado.rutina.save()
+
             elif rol == 'nutricionista':
                 diagnosticoEliminado = DiagnosticoNutricion.objects.get(estado='A', id=id)
                 diagnosticoEliminado.dieta.estado = 'I'
@@ -234,8 +240,8 @@ def eliminarDiagnostico(request, id=0):
                 messages.add_message(request, messages.SUCCESS, 'Diagnostico eliminado con exito!')
             else:
                 messages.add_message(request, messages.WARNING, 'Diagnostico no encontrado o ya eliminado')
-        except:
-            messages.add_message(request, messages.WARNING, 'Error inesperado!')
+        except Exception, e:
+            messages.add_message(request, messages.WARNING, 'Error inesperado! ' + str(e))
 
     return redirect('diagnostico:ListarDiagnosticos')
 
@@ -250,14 +256,16 @@ Funcion que permite editar un diagnostico existente
 
 
 @login_required
-@rol_required(roles=['fisioterapista', 'nutricionista'])
+#@rol_required(roles=['fisioterapista', 'nutricionista'])
 def editarDiagnostico(request, id=0):
     contexto = {}
     template = None
+    rol = None
     diagnostico = None
     pacientes = None
+    subrutinas = None
+
     sesion = request.session.get('user_sesion', None)
-    rol = None
 
     if sesion:
         rol = sesion.get('rol__tipo', None)
@@ -265,11 +273,12 @@ def editarDiagnostico(request, id=0):
     if request.method == 'POST':
         try:
             if rol == 'fisioterapista':
-                diagnostico = DiagnosticoFisioterapia.objects.get(estado='A', id=id)
                 template = 'diagnostico_editar.html'
+                diagnostico = DiagnosticoFisioterapia.objects.get(id=id, estado='A')
+                subrutinas = Subrutina.objects.filter(rutina=diagnostico.rutina, rutina__estado='A', estado='A')
             elif rol == 'nutricionista':
-                diagnostico = DiagnosticoNutricion.objects.get(estado='A', id=id)
                 template = 'diagnostico_nut_editar.html'
+                diagnostico = DiagnosticoNutricion.objects.get(estado='A', id=id)
                 dias = {'One': 'Lunes', 'Two': 'Martes', 'Three': 'Miercoles',
                         'Four': 'Jueves', 'Five': 'Viernes', 'Six': 'Sabado'}
                 planes_diarios = PlanNutDiario.objects.filter(estado='A', dieta=diagnostico.dieta).order_by('id')
@@ -288,6 +297,7 @@ def editarDiagnostico(request, id=0):
 
         contexto['diagnostico'] = diagnostico
         contexto['pacientes'] = pacientes
+        contexto['subrutinas'] = subrutinas
 
     return render(request, template_name=template, context=contexto)
 
@@ -307,16 +317,40 @@ def guardarDiagnostico(request):
     rol = None
 
     if sesion:
-        rol = sesion.get('rol__tipo', None)
+        rol = sesion.get('rol__tipo', '')
 
-    if rol and request.method == 'POST':
+    if request.method == 'POST':
         try:
-            if rol == 'fisioterapia':
-                diagnostico = DiagnosticoFisioterapia.objects.get(estado='A', id=request.POST.get('diagnostico_id', 0))
+            if rol == 'fisioterapista':
+                diagnostico = DiagnosticoFisioterapia.objects.get(id=request.POST.get('diagnostico_id', 0), estado='A')
                 diagnostico.condiciones_previas = request.POST.get('condicionesprevias', '')
                 diagnostico.area_afectada = request.POST.get('areaafectada', '')
                 diagnostico.receta = request.POST.get('receta', '')
-                #Falta guardar rutina editada
+
+                cantidad_rutinas = int(request.POST.get('cantidadrutinas', '0'))
+                id_rutinas = request.POST.getlist('idaccordion', [])
+                nombre_rutinas = request.POST.getlist('nombrerutina', [])
+                descripcion_rutinas = request.POST.getlist('descripcionrutina', [])
+                repeticiones_rutinas = request.POST.getlist('repeticionesrutina', [])
+                veces_rutinas = request.POST.getlist('vecesrutina', [])
+                descanso_rutinas = request.POST.getlist('descansorutina', [])
+                videoenlace_rutinas = request.POST.getlist('videoenlace', [])
+
+                print cantidad_rutinas, id_rutinas, nombre_rutinas, descripcion_rutinas, repeticiones_rutinas,\
+                      veces_rutinas, descanso_rutinas, videoenlace_rutinas
+
+                subrutinas = Subrutina.objects.filter(estado='A', rutina__estado='A', rutina=diagnostico.rutina)\
+                    .order_by('id')
+
+                for index, subrutina in enumerate(subrutinas):
+                    print index, subrutina
+                    subrutina.nombre = nombre_rutinas[index]
+                    subrutina.detalle = descripcion_rutinas[index]
+                    subrutina.repeticiones = repeticiones_rutinas[index]
+                    subrutina.veces = veces_rutinas[index]
+                    subrutina.descanso = descanso_rutinas[index]
+                    subrutina.link = videoenlace_rutinas[index]
+                    subrutina.save()
 
             elif rol == 'nutricionista':
                 diagnostico = DiagnosticoNutricion.objects.get(estado='A',
@@ -340,7 +374,7 @@ def guardarDiagnostico(request):
             else:
                 raise Exception
         except Exception, e:
-            messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico!')
+            messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico! ' + str(e))
 
     return redirect('diagnostico:ListarDiagnosticos')
 
