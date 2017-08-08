@@ -149,11 +149,24 @@ def getDiagnostico(request):
                 diagnostico = DiagnosticoFisioterapia()
                 diagnostico.area_afectada = request.POST.get('areaafectada', '')
                 diagnostico.receta = request.POST.get('receta', '')
-                #falta obtener rutinas
-                s = Subrutina.objects.create(nombre="caminata", detalle="caminata x 60 minutos", veces=2,
-                                             repeticiones=1, descanso=45, link='http://google.ec')
-                diagnostico.rutina = Rutina.objects.create()
-                diagnostico.rutina.subrutina.add(s)
+
+                cantidad_rutinas = int(request.POST.get('cantidadrutinas', '0'))
+                id_rutinas = request.POST.getlist('idaccordion', [])
+                nombre_rutinas = request.POST.getlist('nombrerutina', [])
+                descripcion_rutinas = request.POST.getlist('descripcionrutina', [])
+                repeticiones_rutinas = request.POST.getlist('repeticionesrutina', [])
+                veces_rutinas = request.POST.getlist('vecesrutina', [])
+                descanso_rutinas = request.POST.getlist('descansorutina', [])
+                videoenlace_rutinas = request.POST.getlist('videoenlace', [])
+
+                for id, nom, desc, rep, vec, des, vid in zip(id_rutinas, nombre_rutinas, descripcion_rutinas, \
+                    repeticiones_rutinas, veces_rutinas, descanso_rutinas, videoenlace_rutinas):
+
+                    s = Subrutina.objects.create(nombre=nom, detalle=desc,
+                                                 veces=vec, repeticiones=rep, descanso=des, link=vid)
+                    print s
+                    diagnostico.rutina = Rutina.objects.create()
+                    diagnostico.rutina.subrutina.add(s)
             elif rol == 'nutricionista':
                 diagnostico = DiagnosticoNutricion()
 
