@@ -14,7 +14,8 @@ class UsuarioForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'estado_civil', 'cedula', 'direccion', 'telefono', 'ocupacion', 'genero','edad', 'foto']
+        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+                  'genero', 'edad', 'foto']
         CHOICES=(
             ('M', 'Masculino'),
             ('F', 'Femenino'),
@@ -22,7 +23,7 @@ class UsuarioForm(forms.ModelForm):
         )
         widgets = {
             'edad': forms.NumberInput(attrs={'min': '0', 'max': '100'}),
-            'genero' : forms.Select(choices=CHOICES)
+            'genero': forms.Select(choices=CHOICES)
         }
 '''
 
@@ -33,7 +34,8 @@ class UsuarioEditForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido','estado_civil', 'direccion', 'telefono', 'ocupacion', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+                  'genero', 'edad', 'foto']
         CHOICES = (
             ('M', 'Masculino'),
             ('F', 'Femenino'),
@@ -72,7 +74,8 @@ class PersonalForm(forms.ModelForm):
     ocupacion = forms.ChoiceField(choices=ROLES, required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'estado_civil', 'cedula', 'direccion', 'telefono', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+                  'genero', 'edad', 'foto']
         CHOICES = (
             ('M', 'Masculino'),
             ('F', 'Femenino'),
@@ -126,7 +129,8 @@ class PersonalEditForm(forms.ModelForm):
     ocupacion = forms.ChoiceField(choices=ROLES, required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'direccion','estado_civil','estado' , 'telefono', 'genero', 'edad', 'foto']
+        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+                  'genero', 'edad', 'foto']
         CHOICES = (
             ('M', 'Masculino'),
             ('F', 'Femenino'),

@@ -1,5 +1,5 @@
 *.pyc
-.idea/
+.idea/*
 # Created by https://www.gitignore.io/api/linux,python,pycharm,windows
 
 ### Linux ###
