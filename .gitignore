@@ -1,5 +1,6 @@
 *.pyc
 .idea/
+.idea/workspace.xml
 # Created by https://www.gitignore.io/api/linux,python,pycharm,windows
 
 ### Linux ###
