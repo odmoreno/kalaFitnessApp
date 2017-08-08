@@ -256,7 +256,7 @@ Funcion que permite editar un diagnostico existente
 
 
 @login_required
-#@rol_required(roles=['fisioterapista', 'nutricionista'])
+@rol_required(roles=['fisioterapista', 'nutricionista'])
 def editarDiagnostico(request, id=0):
     contexto = {}
     template = None
