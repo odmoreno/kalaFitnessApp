@@ -42,21 +42,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" pattern="[a-z]+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" required></textarea>
                                             </div>
                                         </div>
 
@@ -64,91 +64,61 @@
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                             <div class="form-group">
-                                                <label class="control-label">Rutina:</label>
-                                                <!--<button type="button" class="btn btn-default" style="float: right">Agregar rutina</button>-->
-
+                                                <label class="control-label">Rutinas:</label>
+                                                <a role="button" id="btn-agregarrutina" class="btn btn-link pull-right" style="text-decoration: none;"><i class="fa fa-plus-square-o fa-lg"></i>&nbsp;&nbsp;<span>Agregar rutina</span></a>
+                                                <input type="hidden" id="cantidadrutinas" name="cantidadrutinas" value="1"/>
                                                     <div  class="row">
-                                                        <div class="panel-body">
-                                                                <div class="panel-group" id="accordion">
+                                                        <div class="panel-body" id="accordion-parent">
+                                                                <div class="panel-group" id="accordion1">
                                                                     <div class="panel panel-default">
                                                                         <div class="panel-heading">
                                                                             <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Descripcion rutina</a>
+                                                                                <input type="hidden" id="idaccordion" name="idaccordion" value="1"/>
+                                                                                <a data-toggle="collapse" id="idheading" data-parent="#accordion1" style="text-decoration: none;" href="#collapse1">#1</a>
                                                                             </h4>
                                                                         </div>
-                                                                        <div id="collapseOne" class="panel-collapse collapse in">
+                                                                        <div id="collapse1" class="panel-collapse collapse in">
                                                                             <div class="panel-body">
-                                                                                <label class="control-label">nombre:</label>
-                                                                                <textarea class="form-control" rows="1" name="tituloRutina" maxlength="100" placeholder="nombre de la rutina"></textarea>
-                                                                                <table>
-                                                                                        <tr>
-                                                                                            <th class="titulo">Ejercicios</th>
-                                                                                            <th class="titulo">Detalle</th>
-                                                                                            <th class="titulo">Series</th>
-                                                                                            <th class="titulo">Repeticiones</th>
-                                                                                            <th class="titulo">Descanso(min)</th>
-                                                                                            <th class="titulo">Enlace Video</th>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td><textarea class="form-control" rows="4" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td><textarea class="form-control" rows="4" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td><textarea class="form-control" rows="4" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td><textarea class="form-control" rows="4" name="tituloEjercicio" maxlength="100" placeholder="nombre del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="4" name="detalleEjercicio" maxlength="1000" placeholder="Detalle del ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="seriesEjercicio" maxlength="2" placeholder="#series del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="6" name="repeticionEjercicio" maxlength="2" placeholder="#repeticiones del Ejercicio"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="3" name="descansoEjercicio" maxlength="2" placeholder="minutos descanso"></textarea></td>
-                                                                                            <td><textarea class="form-control" rows="1" cols="100" name="urlEjercicio" maxlength="400" placeholder="enlace video"></textarea></td>
-                                                                                        </tr>
-                                                                                </table>
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                                                                        <label class="control-label" for="nombrerutina">Nombre:</label>
+                                                                                        <textarea class="form-control" rows="1" name="nombrerutina" maxlength="500" placeholder="Nombre" required></textarea>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                                                                        <label class="control-label" for="descripcionrutina">Descripci&oacute;n:</label>
+                                                                                        <textarea class="form-control" rows="1" name="descripcionrutina" maxlength="500" placeholder="Descripci&oacute;n" required></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row" style="padding-top: 20px">
+                                                                                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                        <label class="control-label" for="repeticionesrutina">Repeticiones:</label>
+                                                                                        <input class="form-control" type="number" step="1" min="0" max="999" name="repeticionesrutina" placeholder="Cantidad" required/>
+                                                                                    </div>
+                                                                                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                        <label class="control-label" for="vecesrutina">Veces por repetici&oacute;n:</label>
+                                                                                        <input class="form-control" type="number" step="1" min="0" max="999" name="vecesrutina" placeholder="Cantidad" required/>
+                                                                                    </div>
+                                                                                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                        <label class="control-label" for="descansorutina">Descanso entre repetici&oacute;n:</label>
+                                                                                        <input class="form-control" type="number" step="1" min="0" max="999" name="descansorutina" placeholder="Minutos" required/>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row" style="padding-top: 20px">
+                                                                                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                                                                        <div class="row">
+                                                                                            <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                                                                                                <label class="control-label" for="videoenlace">Video demostraci&oacute;n:</label>
+                                                                                                <input class="form-control" id="input-videoenlace" type="text" maxlength="1000" oninput="cargarVideo();" name="videoenlace" placeholder="Enlace al video"/>
+                                                                                            </div>
+                                                                                            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+                                                                                                <a href="" target="_blank" id="btn-vervideo" class="btn btn-primary pull-right" style="text-decoration: none; margin-top: 25px"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--<div class="panel panel-default">
-                                                                        <div class="panel-heading">
-                                                                            <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Descripcion rutina</a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id="collapseTwo" class="panel-collapse collapse">
-                                                                            <div class="panel-body">
-
-                                                                               </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="panel panel-default">
-                                                                        <div class="panel-heading">
-                                                                            <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Descripcion rutina</a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id="collapseThree" class="panel-collapse collapse">
-                                                                            <div class="panel-body">
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>-->
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -158,7 +128,7 @@
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <button id="submit" type="submit" class="btn btn-success">Crear diagnóstico</button>
+                                                <button id="submit" type="submit" class="btn btn-primary">Crear diagnóstico</button>
                                             </div>
                                         </div>
                                     </div>
@@ -167,37 +137,112 @@
                         </div>
                     </div>
                 </div></div></div></div>
-    {% block scriptDown %}
-    <script>
-    $('#textarea').keyup(validarExpresion);
 
-        function validarExpresion() {
-            var errorMsg = "Utiliza un formato que coincida con el solicitado.";
-            var textarea = this;
-            var pattern = new RegExp('^' + $(textarea).attr('pattern') + '$');
-            // check each line of text
-            console.log($(textarea).attr('pattern'))
-            $.each($(this).val().split("\n"), function () {
-                // check if the line matches the pattern
-                var hasError = !this.match(pattern);
+{% endblock %}
 
-                if (typeof textarea.setCustomValidity === 'function') {
-                    textarea.setCustomValidity(hasError ? errorMsg : '');
+{% block scriptDown %}
+        <script>
+            var num = 1;
 
-                } else {
-                    // Not supported by the browser, fallback to manual error display...
-                    $(textarea).toggleClass('error', !!hasError);
-                    $(textarea).toggleClass('ok', !hasError);
-                    if (hasError) {
-                        $(textarea).attr('title', errorMsg);
-                    } else {
-                        $(textarea).removeAttr('title');
-                    }
-                }
-                return !hasError;
+            function eliminarAccordion(id) {
+                $('#accordion' + id).remove();
+                $('#cantidadrutinas').attr('value', $('#accordion-parent').children().length);
+            }
+
+            $('#btn-agregarrutina').click( function() {
+                num = num + 1;
+                numstr = num.toString();
+
+                var nuevoaccordion = "<div class=\"panel-group\" id=\"accordion"+numstr+"\">\n" +
+"                                                <div class=\"panel panel-default\">\n" +
+"                                                    <div class=\"panel-heading\">\n" +
+"                                                        <h4 class=\"panel-title\">\n" +
+"                                                            <input type=\"hidden\" id=\"idaccordion\" name=\"idaccordion\" value=\""+numstr+"\"/>\n" +
+"                                                            <a data-toggle=\"collapse\" id=\"idheading\" data-parent=\"#accordion"+numstr+"\" style=\"text-decoration: none;\" href=\"#collapse"+numstr+"\">#"+numstr+"</a>\n" +
+"                                                            <a role=\"button\" id=\"closeaccordion"+numstr+"\" onclick=\"eliminarAccordion("+numstr+")\"><i class=\"fa fa-close pull-right\"></i></a>"+
+"                                                        </h4>\n" +
+"                                                    </div>\n" +
+"                                                    <div id=\"collapse"+numstr+"\" class=\"panel-collapse collapse in\">\n" +
+"                                                        <div class=\"panel-body\">\n" +
+"                                                            <div class=\"row\">\n" +
+"                                                                <div class=\"col-lg-6 col-md-6 col-xs-6 col-sm-6\">\n" +
+"                                                                    <label class=\"control-label\" for=\"nombrerutina\">Nombre:</label>\n" +
+"                                                                    <textarea class=\"form-control\" rows=\"1\" name=\"nombrerutina\" maxlength=\"500\" placeholder=\"Nombre\" required></textarea>\n" +
+"                                                                </div>\n" +
+"                                                                <div class=\"col-lg-6 col-md-6 col-xs-6 col-sm-6\">\n" +
+"                                                                    <label class=\"control-label\" for=\"descripcionrutina\">Descripci&oacute;n:</label>\n" +
+"                                                                    <textarea class=\"form-control\" rows=\"1\" name=\"descripcionrutina\" maxlength=\"500\" placeholder=\"Descripci&oacute;n\" required></textarea>\n" +
+"                                                                </div>\n" +
+"                                                            </div>\n" +
+"                                                            <div class=\"row\" style=\"padding-top: 20px\">\n" +
+"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
+"                                                                    <label class=\"control-label\" for=\"repeticionesrutina\">Repeticiones:</label>\n" +
+"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"repeticionesrutina\" placeholder=\"Cantidad\" required/>\n" +
+"                                                                </div>\n" +
+"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
+"                                                                    <label class=\"control-label\" for=\"vecesrutina\">Veces por repetici&oacute;n:</label>\n" +
+"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"vecesrutina\" placeholder=\"Cantidad\" required/>\n" +
+"                                                                </div>\n" +
+"                                                                <div class=\"col-lg-4 col-md-4 col-xs-4 col-sm-4\">\n" +
+"                                                                    <label class=\"control-label\" for=\"descansorutina\">Descanso entre repetici&oacute;n:</label>\n" +
+"                                                                    <input class=\"form-control\" type=\"number\" step=\"1\" min=\"0\" max=\"999\" name=\"descansorutina\" placeholder=\"Minutos\" required/>\n" +
+"                                                                </div>\n" +
+"                                                            </div>\n" +
+"                                                            <div class=\"row\" style=\"padding-top: 20px\">\n" +
+"                                                                <div class=\"col-lg-12 col-md-12 col-xs-12 col-sm-12\">\n" +
+"                                                                    <label class=\"control-label\" for=\"videoenlace\">Video demostraci&oacute;n:</label>\n" +
+"                                                                    <input class=\"form-control\" type=\"text\" maxlength=\"1000\" name=\"videoenlace\" placeholder=\"Enlace al video\"/>\n" +
+"                                                                </div>\n" +
+"                                                            </div>\n" +
+"                                                        </div>\n" +
+"                                                    </div>\n" +
+"                                                </div>\n" +
+"                                            </div>";
+                $('#accordion-parent').append(nuevoaccordion);
+                $('#cantidadrutinas').attr('value', $('#accordion-parent').children().length);
             });
+        </script>
+        <script>
+            /*$('#textarea').keyup(validarExpresion);
+
+                function validarExpresion() {
+                    var errorMsg = "Utiliza un formato que coincida con el solicitado.";
+                    var textarea = this;
+                    var pattern = new RegExp('^' + $(textarea).attr('pattern') + '$');
+                    // check each line of text
+                    $.each($(this).val().split("\n"), function () {
+                        // check if the line matches the pattern
+                        var hasError = !this.match(pattern);
+
+                        if (typeof textarea.setCustomValidity === 'function') {
+                            textarea.setCustomValidity(hasError ? errorMsg : '');
+
+                        } else {
+                            // Not supported by the browser, fallback to manual error display...
+                            $(textarea).toggleClass('error', !!hasError);
+                            $(textarea).toggleClass('ok', !hasError);
+                            if (hasError) {
+                                $(textarea).attr('title', errorMsg);
+                            } else {
+                                $(textarea).removeAttr('title');
+                            }
+                        }
+                        return !hasError;
+                    });
+                }*/
+            </script>
+    <script>
+        $(document).ready(
+            $('#btn-vervideo').addClass('disabled')
+        )
+        function cargarVideo(){
+            if($('#input-videoenlace').val().length > 0){
+                $('#btn-vervideo').attr('href', $('#input-videoenlace').val());
+                $('#btn-vervideo').removeClass('disabled')
+            }
+            else{
+                $('#btn-vervideo').addClass('disabled')
+            }
         }
     </script>
 {% endblock %}
-{% endblock %}
-
