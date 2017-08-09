@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="name" class ="control-label col-sm-3">Ocupación:</label>
                                         <div class="col-sm-5">
-                                            <p class="form-control-static">{{ personal.ocupacion }}</p>
+                                            <p class="form-control-static">{% if personal.ocupacion == '2' %}Nutricionista {% else %} Fisioterapista {% endif %}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">

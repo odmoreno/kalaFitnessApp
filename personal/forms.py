@@ -34,7 +34,7 @@ class UsuarioEditForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+        fields = ['nombre', 'apellido', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
                   'genero', 'edad', 'foto']
         CHOICES = (
             ('M', 'Masculino'),
@@ -129,7 +129,7 @@ class PersonalEditForm(forms.ModelForm):
     ocupacion = forms.ChoiceField(choices=ROLES, required=True)
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
+        fields = ['nombre', 'apellido', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',
                   'genero', 'edad', 'foto']
         CHOICES = (
             ('M', 'Masculino'),
