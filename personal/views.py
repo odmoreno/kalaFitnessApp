@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
+from kala.views import enviar_password_email, generar_password
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
 from paciente.models import Paciente
