@@ -181,13 +181,14 @@ def reporteTotales(request):
     p = []
 
     for paciente in pacientes:
-        cedula = paciente.usuario.cedula
-        nombre = paciente.usuario.nombre
-        apellido = paciente.usuario.apellido
-        telefono = paciente.usuario.telefono
-        genero = paciente.usuario.genero
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
-        p.append(record)
+        if paciente.usuario.genero == 'M' or paciente.usuario.genero == 'F':
+            cedula = paciente.usuario.cedula
+            nombre = paciente.usuario.nombre
+            apellido = paciente.usuario.apellido
+            telefono = paciente.usuario.telefono
+            genero = paciente.usuario.genero
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+            p.append(record)
 
     return JsonResponse({"pacientes": p})
 
