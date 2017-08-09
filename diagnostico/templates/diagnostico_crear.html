@@ -42,21 +42,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" pattern="\w+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" pattern="[a-z]+" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" required></textarea>
                                             </div>
                                         </div>
 
@@ -106,12 +106,12 @@
                                                                                 <div class="row" style="padding-top: 20px">
                                                                                     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                                                                                         <div class="row">
-                                                                                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                                                                            <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
                                                                                                 <label class="control-label" for="videoenlace">Video demostraci&oacute;n:</label>
-                                                                                                <textarea class="form-control" id="input-videoenlace" rows=5 type="text" maxlength="1000" oninput="cargarVideo();" name="videoenlace" placeholder="Enlace al video"></textarea>
+                                                                                                <input class="form-control" id="input-videoenlace" type="text" maxlength="1000" oninput="cargarVideo();" name="videoenlace" placeholder="Enlace al video"/>
                                                                                             </div>
-                                                                                            <div class="col-lg-16 col-md-16 col-xs-6 col-sm-6">
-                                                                                                <iframe id="iframe-videoenlace" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+                                                                                            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+                                                                                                <a href="" target="_blank" id="btn-vervideo" class="btn btn-primary pull-right" style="text-decoration: none; margin-top: 25px"><span class="glyphicon glyphicon-eye-open"></span></a>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -128,7 +128,7 @@
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <button id="submit" type="submit" class="btn btn-success">Crear diagnóstico</button>
+                                                <button id="submit" type="submit" class="btn btn-primary">Crear diagnóstico</button>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +203,7 @@
             });
         </script>
         <script>
-            $('#textarea').keyup(validarExpresion);
+            /*$('#textarea').keyup(validarExpresion);
 
                 function validarExpresion() {
                     var errorMsg = "Utiliza un formato que coincida con el solicitado.";
@@ -229,11 +229,20 @@
                         }
                         return !hasError;
                     });
-                }
+                }*/
             </script>
     <script>
+        $(document).ready(
+            $('#btn-vervideo').addClass('disabled')
+        )
         function cargarVideo(){
-            $('#iframe-videoenlace').attr('src', $('#input-videoenlace').val());
+            if($('#input-videoenlace').val().length > 0){
+                $('#btn-vervideo').attr('href', $('#input-videoenlace').val());
+                $('#btn-vervideo').removeClass('disabled')
+            }
+            else{
+                $('#btn-vervideo').addClass('disabled')
+            }
         }
     </script>
 {% endblock %}
