@@ -30,7 +30,7 @@
                                         <th class="text-center sorting">C&eacute;dula</th>
                                         <th class="text-center sorting">Registro</th>
                                         <th class="text-center sorting">Actualizado</th>
-                                        <th class="text-center">Ver</th>
+                                        <th class="text-center">Editar</th>
                                         <th class="text-center">Eliminar</th>
                                     </tr>
                                     </thead>
@@ -51,8 +51,8 @@
                                                         <form action="{% url 'diagnostico:EditarDiagnostico' diagnostico.id %}" method="post" style="display: inline;">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="diagnostico_id" value="{{ diagnostico.id }}" />
-                                                            <button type="submit" class="btn btn-sm btn-default">
-                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            <button type="submit" class="btn btn-sm btn-info">
+                                                                <span class="glyphicon glyphicon-edit"></span>
                                                             </button>
                                                         </form>
                                                     </td>
