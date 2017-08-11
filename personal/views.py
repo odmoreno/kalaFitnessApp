@@ -99,6 +99,8 @@ def editarPersonal(request, personal_id):
     personal = get_object_or_404(Usuario, pk=personal_id)
 
     form = PersonalEditForm(request.POST or None, instance=personal)
+    user=personal.usuario
+    form.fields["email"].initial = user.email
 
     if form.is_valid():
         user=personal.usuario
