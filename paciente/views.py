@@ -78,8 +78,6 @@ def PacienteNuevo(request):
 
         '''
         usuario = form.save(commit=False)
-
-        print usuario.foto
         user = User()
         paciente = Paciente()
         user.username = form.cleaned_data['cedula']
@@ -96,6 +94,10 @@ def PacienteNuevo(request):
         usuario.save()
 
         paciente.usuario = usuario
+        paciente.n_hijos=form.cleaned_data['n_hijos']
+        paciente.motivo_consulta=form.cleaned_data['motivo_consulta']
+        paciente.observaciones=form.cleaned_data['observaciones']
+
         paciente.save()
 
         enviar_password_email(user.email, user.username, password)
@@ -122,18 +124,20 @@ def editarPaciente(request, paciente_id):
     pacientes = get_object_or_404(Paciente, pk=paciente_id)
     paciente=pacientes.usuario
     form = UsuarioEditForm(request.POST or None, instance=paciente)
+    user=paciente.usuario
+
+    form.email=user.email
     #form.email=personal.usuario.email
     if form.is_valid():
         user=paciente.usuario
         user.email = form.cleaned_data['email']
         user.save()
         paciente = form.save()
-        #all_pacientes = Paciente.objects.all()
-        #return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
         return redirect('paciente:index')
 
     context = {
         "form": form,
+        "editar":True
     }
     return render(request, 'paciente/form_paciente.html', context)
 '''

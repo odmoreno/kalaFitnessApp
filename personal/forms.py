@@ -12,6 +12,9 @@ Formulario para la creacion de un nuevo Usuario
 
 class UsuarioForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput, label="Email", required=True)
+    n_hijos = forms.IntegerField(label ="Numero de Hijos", widget=forms.NumberInput(attrs={'min':'0', 'max':'20'}))
+    observaciones = forms.CharField(widget=forms.Textarea(attrs={'max_length':'200'}), label="Observaciones", required=True)
+    motivo_consulta = forms.CharField(widget=forms.Textarea(attrs={'max_length':'200'}), label="Motivo de Consulta", required = True)
     class Meta:
         model = Usuario
         fields = ['nombre', 'apellido', 'cedula', 'email', 'estado_civil', 'direccion', 'telefono', 'ocupacion',

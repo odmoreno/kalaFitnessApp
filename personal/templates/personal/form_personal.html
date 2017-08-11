@@ -1,19 +1,27 @@
 {% extends 'blank.html' %}
 {% load l10n %}
-{% block title %}Nuevo personal{% endblock %}
+{% block title %}{% if editar %}Editar Personal{% else %}Nuevo personal{% endif %}{% endblock %}
 {% block content %}
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
              <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <div class="panel panel-default" style="margin-top: 40px">
-                    <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo personal</b></h4></div>
+                    {% if editar %}
+                        <div class="panel-heading"><h4><b>Editar Personal</b></h4></div>
+                    {% else %}
+                        <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo personal</b></h4></div>
+                    {% endif %}
                     <div class="panel-body">
                         <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% include 'personal/form_template.html' %}
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Crear personal</button>
+                                {% if editar %}
+                                    <button type="submit" class="btn btn-success">Editar</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-success">Crear personal</button>
+                                {% endif %}
                             </div>
                         </form>
                     </div>
