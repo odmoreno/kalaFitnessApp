@@ -125,8 +125,7 @@ def editarPaciente(request, paciente_id):
     paciente=pacientes.usuario
     form = UsuarioEditForm(request.POST or None, instance=paciente)
     user=paciente.usuario
-
-    form.email=user.email
+    form.fields["email"].initial = user.email
     #form.email=personal.usuario.email
     if form.is_valid():
         user=paciente.usuario
