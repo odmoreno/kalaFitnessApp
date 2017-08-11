@@ -20,7 +20,7 @@ from rest_framework.authtoken.models import Token
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-        
+
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
     actualizado = models.DateTimeField(_('actualizado'), auto_now=True)

@@ -71,5 +71,6 @@ class SubrutinaSerializer(serializers.ModelSerializer):
 class PlanNutDiarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanNutDiario
+        fields = '__all__'
 
 
