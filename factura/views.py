@@ -44,7 +44,7 @@ def listarFacturas(request):
 
     facturas = Facturas.objects.filter(estado='A')\
                 .values('id', 'empresa__nombre', 'paciente_id', 'paciente__usuario__apellido',\
-                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total')\
+                'paciente__usuario__nombre', 'serie', 'fecha_vencimiento', 'total', 'creado')\
                 .order_by('id')
 
     contexto['facturas'] = facturas #paginar(request, facturas)
@@ -79,8 +79,8 @@ def crearFactura(request):
         .order_by('nombre')
     pacientes = Paciente.objects.filter(estado='A',usuario__estado='A') \
         .values('id', 'usuario__nombre', 'usuario__apellido') \
-        .annotate(nombre_completo=Concat('usuario__apellido', Value(' '), 'usuario__nombre')) \
-        .order_by('id', 'nombre_completo')
+        .annotate(nombre_completo=Concat('usuario__nombre', Value(' '), 'usuario__apellido')) \
+        .order_by('nombre_completo')
 
     contexto['empresas'] = empresas
     contexto['pacientes'] = pacientes
