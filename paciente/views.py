@@ -124,8 +124,11 @@ def editarPaciente(request, paciente_id):
     pacientes = get_object_or_404(Paciente, pk=paciente_id)
     paciente=pacientes.usuario
     form = UsuarioEditForm(request.POST or None, instance=paciente)
-    user=paciente.usuario
-    form.fields["email"].initial = user.email
+    try:
+        user=paciente.usuario
+        form.fields["email"].initial = user.email
+    except:
+        pass
     #form.email=personal.usuario.email
     if form.is_valid():
         user=paciente.usuario
