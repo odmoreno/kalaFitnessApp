@@ -5,6 +5,7 @@ from paciente.models import Paciente
 from personal.models import Personal
 from diagnostico.models import DiagnosticoNutricion, DiagnosticoFisioterapia, Subrutina, PlanNutDiario, Rutina, Dieta
 from fisioterapia.models import Ficha
+from directmessages.models import Message
 from nutricion.models import ficha_nutricion
 
 ## Serializers para los modelos que usaremos en la API
@@ -71,6 +72,11 @@ class SubrutinaSerializer(serializers.ModelSerializer):
 class PlanNutDiarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanNutDiario
+        fields = '__all__'
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
         fields = '__all__'
 
 

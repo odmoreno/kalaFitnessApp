@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^rutinas/(?P<paciente_us>[0-9]+)/$', api.RutinasList.as_view()),
     url(r'^fichas/fisioterapia/(?P<paciente_us>[0-9]+)/$', api.FichaFisList.as_view()),
     url(r'^fichas/nutricion/(?P<paciente_us>[0-9]+)/$', api.FichaNutList.as_view()),
+    url(r'^mensajes/(?P<paciente_us>[0-9]+)/$', api.MensajesList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
 
