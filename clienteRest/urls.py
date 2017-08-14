@@ -7,6 +7,7 @@ from clienteRest import views as api
 
 urlpatterns = [
     url(r'^api-token-auth/', views.obtain_auth_token),
+    url(r'^autenticar$', api.autenticar),
     url(r'^personal/', api.PersonalList.as_view()),
     url(r'^personal/(?P<paciente_us>[0-9]+)/$', api.PersonalAsignadoList.as_view()),
     url(r'^diagnosticoN/(?P<paciente_us>[0-9]+)/$', api.DiagnosticoNutList.as_view()),
@@ -20,4 +21,4 @@ urlpatterns = [
                                namespace='rest_framework')),
 
 ]
-#urlpatterns= format_suffix_patterns(urlpatterns)
+urlpatterns= format_suffix_patterns(urlpatterns)
