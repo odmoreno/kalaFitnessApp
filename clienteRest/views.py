@@ -20,8 +20,21 @@ from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializ
 # Vistas que definiran la funcionalidad del API REST de cliente
 # Seguir Las Historias de Usuario de Cliente
 # Mi progreso, Mis Mensajes, Enviar Mensajes, Recibir Mensajes, Ver Citas, Separar Citas.
+from rest_framework.authtoken.models import Token
 
 from rest_framework.authentication import BasicAuthentication
+
+#AUTH
+# http POST http://127.0.0.1:8000/api/api-token-auth/ -- username=carlos password=carlos123
+#Devuelve JSON como:
+#{
+  #  "token": "valorvalorvalor"
+#}
+
+
+
+
+# A todos los requerimientos agregarles'Authorization: Token valor-del-token'
 
 
 class QuietBasicAuthentication(BasicAuthentication):
@@ -29,6 +42,15 @@ class QuietBasicAuthentication(BasicAuthentication):
     def authenticate_header(self, request):
         return 'xBasic realm="%s"' % self.www_authenticate_realm
 
+class UsuarioDatos(APIView):
+
+    def get(self, request, token):
+
+        t=get_object_or_404(Token, key=token)
+        user=t.user
+        usuario=get_object_or_404(Usuario, usuario=user)
+        response = UsuarioSerializer(usuario )
+        return Response(response.data or None)
 
 class PersonalList(APIView):
     def get(self, request):
@@ -189,19 +211,3 @@ def autenticar(request):
             mensaje = str(e)
     return JsonResponse({'respuesta': 0, 'mensaje': mensaje})
 
-
-# def verMensajes(requets):
-#     pass
-#
-# def nuevoMensaje(requets):
-#     pass
-#
-# def miProgreso(request):
-#     pass
-#
-# def citasDisponibles(request):
-#     pass
-#
-# def separarCita(request):
-#     pass
-#

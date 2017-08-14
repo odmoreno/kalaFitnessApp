@@ -33,6 +33,7 @@ def crear_ficha(request):
     form = FichaForm(request.POST or None)
     pacientes = Paciente.objects.all()
     sesion = request.session.get('user_sesion', None)
+
     print form._errors
     if form.is_valid():
         ficha = form.save(commit=False)
@@ -41,7 +42,7 @@ def crear_ficha(request):
         paciente = get_object_or_404(Paciente, pk=paciente_id)
         ficha.paciente = paciente
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
-        ficha.paciente = paciente
+        ficha.personal = personal
         ficha.save()
         return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
@@ -86,6 +87,11 @@ def editar_ficha(request, ficha_id):
         ficha = form.save(commit=False)
         paciente_id = request.POST.get('paciente')
         paciente = get_object_or_404(Paciente, pk=paciente_id)
+        print "ABC", paciente, sesion.get('personal__id', 0)
+        #
+        #
+        #
+
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
         ficha.paciente = paciente
         ficha.personal = personal

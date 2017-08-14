@@ -73,6 +73,7 @@ def nuevoPersonal(request):
         usuario.rol = rol
         usuario.foto = form.cleaned_data['foto']
         usuario.save()
+        
         personal=Personal()
         personal.usuario=usuario
         personal.save()
