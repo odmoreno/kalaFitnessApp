@@ -15,7 +15,7 @@ from django.db import transaction
 from django.http import HttpResponseForbidden
 from django.db.models import Value
 from django.db.models.functions import Concat
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from diagnostico.models import DiagnosticoFisioterapia, DiagnosticoNutricion, Dieta, PlanNutDiario
 from kalaapp.views import paginar
@@ -379,4 +379,26 @@ def guardarDiagnostico(request):
             messages.add_message(request, messages.WARNING, 'Error inesperado al actualizar diagnostico! ' + str(e))
 
     return redirect('diagnostico:ListarDiagnosticos')
+
+'''
+Funcion: detalleDiagnostico
+Entradas: requerimiento e Identificador del diagnostico a ser visualizado
+Salidas:Template para renderizacion
+*Funcion que recibe el id de un diagnostico que debe ser visualizado, y muestra su informacion.*
+'''
+@login_required
+def detalleDiagnostico(request, diagnostico_id):
+    rol = None
+    sesion = request.session.get('user_sesion', None)
+    if sesion:
+        rol = sesion.get('rol__tipo', None)
+    if rol == 'fisioterapista':
+        template = 'diagnostico_detalle.html'
+        diagnostico = get_object_or_404(DiagnosticoFisioterapia, pk=diagnostico_id)
+        return render(request, 'diagnostico/diagnostico_detalle.html', {'diagnostico': diagnostico})
+    elif rol == 'nutricionista':
+        template = 'diagnostico_detalleNut.html'
+        diagnostico = get_object_or_404(DiagnosticoNutricion, pk=diagnostico_id)
+        return render(request, 'diagnostico/diagnostico_detalleNut.html', {'diagnostico': diagnostico})
+    #usuario = paciente.usuario
 
