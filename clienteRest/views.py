@@ -37,9 +37,10 @@ class PersonalList(APIView):
 ## Estas dos funciones retornan todos los diagnosticos en la base de datos
 class DiagnosticoNutList(APIView):
 
-    def get(self, request, pacienteid=None):
+    def get(self, request, paciente_us=None):
+        #5555555557
         try:
-            paciente = get_object_or_404(Paciente, usuario=request.user)
+            paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
             diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
             response = DiagnosticoNutSerializer(diagnosticos, many=True)
             return Response(response.data or None)
@@ -49,7 +50,7 @@ class DiagnosticoNutList(APIView):
 
 class DiagnosticoFisList(APIView):
 
-    def get(self, request, pacienteid=None):
+    def get(self, request, paciente_us=None):
         try:
             paciente =get_object_or_404(Paciente, usuario=request.user)
             diagnosticos=DiagnosticoFisioterapia.objects.filter(paciente=paciente)
@@ -62,7 +63,7 @@ class DiagnosticoFisList(APIView):
 
 #Estas dos funciones retornas respectivamente todas las rutinas o Dietas que han sido asigndas a un paciente
 class RutinasList(APIView):
-    def get(self, request):
+    def get(self, request, paciente_us):
         try:
             paciente = get_object_or_404(Paciente, usuario=request.user)
             diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente)
@@ -78,7 +79,7 @@ class RutinasList(APIView):
 
 class DietasList(APIView):
 
-    def get(self, request):
+    def get(self, request, paciente_us):
         try:
             paciente = get_object_or_404(Paciente, usuario=request.user)
             diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
