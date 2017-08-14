@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from rest_framework.decorators import api_view
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from kalaapp.models import Usuario
@@ -9,6 +10,9 @@ from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from diagnostico.models import DiagnosticoNutricion, DiagnosticoFisioterapia, Subrutina, PlanNutDiario, Rutina, Dieta
 from fisioterapia.models import Ficha
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+from rest_framework.renderers import JSONRenderer
 
 from nutricion.models import ficha_nutricion
 from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer
@@ -157,6 +161,28 @@ class HorariosList(APIView):
     def post(self, request, pacienteID, citaID):
         pass
 
+
+def autenticar(request):
+    mensaje = None
+
+    if request.method == 'GET':
+        username = request.GET.get('username', '')
+        password = request.GET.get('password', '')
+        print request.GET
+        print '_username: ' + username
+        print '_password: ' + password
+        try:
+            user = get_object_or_404(User, username=username)
+            print 'user_pass: ' + user.password
+            print 'user_hash: ' + password
+
+            if user and check_password(password, user.password):
+                usuario = get_object_or_404(Usuario, usuario=user)
+                usuario = UsuarioSerializer(usuario)
+                return JsonResponse({'respuesta': 1, 'usuario': JSONRenderer().render(usuario.data)})
+        except Exception, e:
+            mensaje = str(e)
+    return JsonResponse({'respuesta': 0, 'mensaje': mensaje})
 
 
 # def verMensajes(requets):
