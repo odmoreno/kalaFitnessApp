@@ -6,12 +6,24 @@
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="row">
-                <div class="alert-message alert-message-info">
-                    <h4> Mensaje de {{sender}}</h4>
-                    <p>{{mensaje}}</p>
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4> Mensaje de {{sender}}</h4>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{mensaje}}</p>
+                        </div>
+                        <div class="panel-footer">
+                            {% if personal %}
+                                <a href="{% url 'personal:nuevoMensajePersonal' %}"><button type="button" class="btn btn-outline btn-success btn-lg">Responder</button></a>
+                            {% else %}
+                                <a href="{% url 'personal:nuevoMensaje' %}"><button type="button" class="btn btn-outline btn-success btn-lg" >Responder</button></a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p>Boton</p>
+
         </div>
     </div>
 </div>

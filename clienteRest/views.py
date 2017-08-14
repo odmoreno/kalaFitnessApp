@@ -13,9 +13,10 @@ from fisioterapia.models import Ficha
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from rest_framework.renderers import JSONRenderer
-
 from nutricion.models import ficha_nutricion
-from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer
+from directmessages.apps import Inbox
+from directmessages.models import Message
+from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer, MessageSerializer
 # Vistas que definiran la funcionalidad del API REST de cliente
 # Seguir Las Historias de Usuario de Cliente
 # Mi progreso, Mis Mensajes, Enviar Mensajes, Recibir Mensajes, Ver Citas, Separar Citas.
@@ -145,10 +146,14 @@ class FichaNutList (APIView):
 class MensajesList(APIView):
 
     #Para obtener los mensajes delPaciente
-    def get(self, request):
-        pass
+    def get(self, request, paciente_us):
+        user=User.objects.filter(username=paciente_us)
+        mensajes = Message.objects.filter(recipient=user)
+        response=MessageSerializer(mensajes, many=True)
+        return Response(response.data or None)
+
     #Para enviar un mensaje
-    def post(self, request):
+    def post(self, request, paciente_us):
         pass
 
 
