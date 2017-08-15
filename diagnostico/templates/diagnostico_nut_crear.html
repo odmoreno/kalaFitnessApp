@@ -96,7 +96,7 @@
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group center-block">
-                                                <button id="submit" type="submit" class="btn btn-success">Crear diagnóstico</button>
+                                                <button id="submit" type="submit" class="btn btn-primary">Crear diagnóstico</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,3 +107,34 @@
                 </div></div></div></div>
 {% endblock %}
 
+{% block scriptDown %}
+    <script>
+            $('#textarea').keyup(validarExpresion);
+
+                function validarExpresion() {
+                    var errorMsg = "Utiliza un formato que coincida con el solicitado.";
+                    var textarea = this;
+                    var pattern = new RegExp('^' + $(textarea).attr('pattern') + '$');
+                    // check each line of text
+                    $.each($(this).val().split("\n"), function () {
+                        // check if the line matches the pattern
+                        var hasError = !this.match(pattern);
+
+                        if (typeof textarea.setCustomValidity === 'function') {
+                            textarea.setCustomValidity(hasError ? errorMsg : '');
+
+                        } else {
+                            // Not supported by the browser, fallback to manual error display...
+                            $(textarea).toggleClass('error', !!hasError);
+                            $(textarea).toggleClass('ok', !hasError);
+                            if (hasError) {
+                                $(textarea).attr('title', errorMsg);
+                            } else {
+                                $(textarea).removeAttr('title');
+                            }
+                        }
+                        return !hasError;
+                    });
+                }
+            </script>
+{% endblock %}

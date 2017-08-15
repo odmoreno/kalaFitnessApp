@@ -1,27 +1,33 @@
 {% extends 'blank.html' %}
 {% load l10n %}
-{% load static %}
+{% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
 <div id="page-wrapper">
-    <div class="container-fluid">
-        <!-- Boton Reporte -->
-        <div>
-          <button id="totales" type="button" class="btn">Personal total</button>
-        </div>
-        <div>
-          <button id="rol" type="button" class="btn">Personal por rol</button>
-        </div>
-        <div>
-          <button id="mujeres" type="button" class="btn">Personal mujeres</button>
-        </div>
-        <div>
-          <button id="hombres" type="button" class="btn">Personal hombres</button>
+  <div class="container-fluid">
+    <div class="panel panel-default" style="margin-top: 40px">
+        <div class="panel-heading"><h4><b>Reportes de personal</b></h4></div>
+        <div class="panel-body">
+          <div class="container-fluid">
+                <div >
+                    <div class="form-group">
+                      <label >Tipo de reporte:</label>
+                      <select class="form-control" id="tipo">
+                          <option>Total</option>
+                          <option>Rol</option>
+                          <option>Hombres</option>
+                          <option>Mujeres</option>
+                      </select>
+                    </div>
+                    <button id="generar" class="btn btn-default">Generar PDF</button>
+                </div>
+          </div>
         </div>
     </div>
+  </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
+<script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
 <script>
   function body(data){
     var body = [
@@ -72,7 +78,7 @@
     return body;
   }
 
-  function pdf(pacientes){
+  function pdf(data, nombre, tipo){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -96,7 +102,12 @@
                        text: "Fecha: ",
                        style: 'subItem'
                    }, {
-                       text: today + "\n\n"
+                       text: today + "\n"
+                   },{
+                       text: "Tipo: ",
+                       style: 'subItem'
+                   }, {
+                       text: tipo + "\n\n"
                    }
                ]
            },
@@ -107,7 +118,7 @@
                        width: 'auto',
                        table: {
                            widths: ['*','*','*','*','*'],
-                           body: body(pacientes)
+                           body: body(data)
                          }
                    },
                    { width: '*', text: ''}
@@ -138,36 +149,33 @@
            }
        }
     };
-
-    pdfMake.createPdf(pdf).open();
+    pdfMake.createPdf(pdf).download(nombre);
   };
 
-  $("#totales").click(function(){
-    $.get("/personal/reporte/total", function(res, status){
-      console.log(res.data);
-      pdf(res.data);
-    });
-  });
+  $("#generar").click(function(){
+    var value = $('#tipo').find(":selected").text();
 
-  $("#rol").click(function(){
-    $.get("/personal/reporte/rol", function(res, status){
-      console.log(res.data);
-      pdf(res.data);
-    });
-  });
-
-  $("#hombres").click(function(){
-    $.get("/personal/reporte/hombres", function(res, status){
-      console.log(res.data);
-      pdf(res.data);
-    });
-  });
-
-  $("#mujeres").click(function(){
-    $.get("/personal/reporte/mujeres", function(res, status){
-      console.log(res.data);
-      pdf(res.data);
-    });
+    if (value == "Total") {
+        $.get("/personal/reporte/total", function(res, status){
+          console.log(res.data);
+          pdf(res.data, "reporte_total.pdf", value);
+        });
+    } else if (value == 'Rol'){
+        $.get("/personal/reporte/rol", function(res, status){
+          console.log(res.data);
+          pdf(res.data, "reporte_rol.pdf", value);
+        });
+    } else if (value == 'Hombres') {
+        $.get("/personal/reporte/hombres", function(res, status){
+          console.log(res.data);
+          pdf(res.data, "reporte_hombres.pdf", value);
+        });
+    } else if (value == 'Mujeres') {
+        $.get("/personal/reporte/mujeres", function(res, status){
+          console.log(res.data);
+          pdf(res.data, "reporte_mujeres.pdf", value);
+        });
+    }
   });
 
 

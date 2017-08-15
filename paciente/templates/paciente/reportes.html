@@ -1,26 +1,35 @@
 {% extends 'blank.html' %}
 {% load l10n %}
-{% load static %}
+{% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
 <div id="page-wrapper">
-<div class="container-fluid">
-    <!-- Boton Reporte -->
-    <div>
-      <button id="totales" type="button" class="btn">Pacientes totales</button>
+  <div class="container-fluid">
+    <div class="panel panel-default" style="margin-top: 40px">
+        <div class="panel-heading"><h4><b>Reporte de pacientes</b></h4></div>
+        <div class="panel-body">
+          <div class="container-fluid">
+                <div >
+                    <div class="form-group">
+                      <label >Tipo de reporte:</label>
+                      <select class="form-control" id="tipo">
+                          <option>Total</option>
+                          <option>Hombres</option>
+                          <option>Mujeres</option>
+                      </select>
+                    </div>
+                    <button id="generar" class="btn btn-default">Generar PDF</button>
+                </div>
+          </div>
+        </div>
     </div>
-    <div>
-      <button id="hombres" type="button" class="btn">Pacientes hombres</button>
-    </div>
-    <div>
-      <button id="mujeres" type="button" class="btn">Pacientes mujeres</button>
-    </div>
+  </div>
 </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
+
+<script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
 <script>
-  function body(pacientes){
+  function body(data){
     var body = [
         [
             {text: 'Cedula', style: 'subItem'
@@ -32,7 +41,7 @@
         ]
     ]
 
-    pacientes.forEach(function(paciente){
+    data.forEach(function(paciente){
         body.push(
             [
                 {text:
@@ -69,7 +78,7 @@
     return body;
   }
 
-  function pdf(pacientes){
+  function pdf(data, nombre, tipo){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -93,7 +102,12 @@
                        text: "Fecha: ",
                        style: 'subItem'
                    }, {
-                       text: today + "\n\n"
+                       text: today + "\n"
+                   },{
+                       text: "Tipo: ",
+                       style: 'subItem'
+                   }, {
+                       text: tipo + "\n\n"
                    }
                ]
            },
@@ -104,7 +118,7 @@
                        width: 'auto',
                        table: {
                            widths: ['auto','*','*','auto','auto'],
-                           body: body(pacientes)
+                           body: body(data)
                          }
                    },
                    { width: '*', text: ''}
@@ -136,30 +150,29 @@
        }
     };
 
-    pdfMake.createPdf(pdf).open();
+    pdfMake.createPdf(pdf).download(nombre);
   };
 
-  $("#totales").click(function(){
-    $.get("/paciente/reporte/totales", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
-    });
-  });
+  $("#generar").click(function(){
+    var value = $('#tipo').find(":selected").text();
 
-  $("#hombres").click(function(){
-    $.get("/paciente/reporte/hombres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
-    });
+    if (value == "Total") {
+      $.get("/paciente/reporte/totales", function(data, status){
+        console.log(data.pacientes);
+        pdf(data.pacientes, "reporte_pacientes.pdf", value);
+      });
+    } else if (value == 'Hombres') {
+      $.get("/paciente/reporte/hombres", function(data, status){
+        console.log(data.pacientes);
+        pdf(data.pacientes, "reporte_pacientesHombres.pdf", value);
+      });
+    } else if (value == 'Mujeres') {
+      $.get("/paciente/reporte/mujeres", function(data, status){
+        console.log(data.pacientes);
+        pdf(data.pacientes, "reporte_pacientesMujeres.pdf", value);
+      });
+    }
   });
-
-  $("#mujeres").click(function(){
-    $.get("/paciente/reporte/mujeres", function(data, status){
-      console.log(data.pacientes);
-      pdf(data.pacientes);
-    });
-  });
-
 
 </script>
 {% endblock %}

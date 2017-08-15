@@ -11,6 +11,7 @@ app_name = 'diagnostico'
 urlpatterns = [
     url(r'^$', listarDiagnosticos, name='ListarDiagnosticos'),
     url(r'^crear$', crearDiagnostico, name='CrearDiagnostico'),
+    url(r'^(?P<diagnostico_id>[0-9]+)/$', views.detalleDiagnostico, name='detail'),
     url(r'^editar/(?P<id>\d+)$', editarDiagnostico, name='EditarDiagnostico'),
     url(r'^eliminar/(?P<id>\d+)$', eliminarDiagnostico, name='EliminarDiagnostico'),
     url(r'^guardar$', guardarDiagnostico, name='GuardarDiagnostico'),

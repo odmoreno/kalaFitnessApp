@@ -2,11 +2,6 @@
 # Create your models here.
 # 19262203
 # This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `#managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 from django.db import models
@@ -17,7 +12,14 @@ from django.utils.six import StringIO
 from PIL import Image
 from django.conf import settings
 from django.contrib import messages
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 class TimeModel(models.Model):
     creado = models.DateTimeField(_('creado'), auto_now_add=True)
@@ -67,14 +69,6 @@ class Usuario(TimeModel):
         db_table = 'usuario'
 
     def save(self, *args, **kwargs):
-
-        # fotoNombre = request.FILES['foto'].name
-        # fotoExtension = fotoNombre.split('.')[len(fotoNombre.split('.')) - 1].lower()
-        #
-        # if fotoExtension not in settings.IMAGE_FILE_TYPES:
-        #     form.add_error('foto', 'Imagen no valida, solo las siguientes extensiones son permitidas: %s' % ', '.join(
-        #             settings.IMAGE_FILE_TYPES))
-
         if self.foto and self.foto.name.find('noimagen.jpg') == -1:
             try:
                 img = Image.open(self.foto)
@@ -122,173 +116,3 @@ class Empresa(TimeModel):
         db_table = 'empresa'
 
 
-'''
-class Citas(models.Model):
-    detalle = models.CharField(max_length=200)
-    #citas_estado = models.ForeignKey('CitasEstados', models.DO_NOTHING)
-    rango = models.ForeignKey('Rangos', models.DO_NOTHING)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'citas'
-
-
-# class CitasEstados(models.Model):
-#     detalle = models.CharField(max_length=200)
-#     estado = models.CharField(max_length=1)
-#     creado = models.DateTimeField()
-#     actualizado = models.DateTimeField()
-#
-#     class Meta:
-#         #managed = False
-#         db_table = 'citas_estados'
-
-class Horarios(models.Model):
-    detalle = models.CharField(max_length=200, blank=True, null=True)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'horarios'
-
-
-class Mensajes(models.Model):
-    usuarios = models.ForeignKey('Usuarios', models.DO_NOTHING)
-    mensaje_tipo = models.ForeignKey('MensajesTipo', models.DO_NOTHING)
-    #mensaje_estado = models.ForeignKey('MensajesEstados', models.DO_NOTHING)
-    mensaje = models.CharField(max_length=999)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'mensajes'
-
-
-# class MensajesEstados(models.Model):
-#     detalle = models.CharField(max_length=200)
-#     estado = models.CharField(max_length=1)
-#     creado = models.DateTimeField()
-#     actualizado = models.DateTimeField()
-#
-#     class Meta:
-#         #managed = False
-#         db_table = 'mensajes_estados'
-
-
-class MensajesTipo(models.Model):
-    detalle = models.CharField(max_length=200)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'mensajes_tipo'
-
-
-class Planificaciones(models.Model):
-    horario = models.ForeignKey(Horarios, models.DO_NOTHING)
-    rango = models.ForeignKey('Rangos', models.DO_NOTHING)
-    fecha_vigencia = models.DateField()
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'planificaciones'
-
-
-class Rangos(models.Model):
-    inicio = models.ForeignKey('Tiempos', models.DO_NOTHING, db_column='inicio', related_name='rango_inicio')
-    fin = models.ForeignKey('Tiempos', models.DO_NOTHING, db_column='fin', related_name='rango_fin')
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'rangos'
-
-class SesionesFisioterapia(models.Model):
-    personal = models.ForeignKey(Personal, models.DO_NOTHING)
-    fichas_general = models.ForeignKey(FichasGenerales, models.DO_NOTHING)
-    fuerza_ts = models.FloatField(blank=True, null=True)
-    fuerza_ti = models.FloatField(blank=True, null=True)
-    flexiones_p = models.IntegerField(blank=True, null=True)
-    sentadillas = models.IntegerField(blank=True, null=True)
-    salto_largo = models.IntegerField(blank=True, null=True)
-    suspension = models.IntegerField(blank=True, null=True)
-    abdominales_bajos = models.IntegerField(blank=True, null=True)
-    abdominales_altos = models.IntegerField(blank=True, null=True)
-    espinales = models.IntegerField(blank=True, null=True)
-    observaciones = models.CharField(max_length=200, blank=True, null=True)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'sesiones_fisioterapia'
-
-
-class SesionesNutricion(models.Model):
-    personal = models.ForeignKey(Personal, models.DO_NOTHING)
-    fichas_general = models.ForeignKey(FichasGenerales, models.DO_NOTHING)
-    horas_sueno = models.IntegerField(blank=True, null=True)
-    comidas_diarias = models.IntegerField(blank=True, null=True)
-    enfermedad_digestiva = models.IntegerField(blank=True, null=True)
-    alimentos_permitidos = models.CharField(max_length=999, blank=True, null=True)
-    alimentos_no_permitidos = models.CharField(max_length=999, blank=True, null=True)
-    biotipo = models.CharField(max_length=200, blank=True, null=True)
-    observaciones = models.CharField(max_length=200, blank=True, null=True)
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'sesiones_nutricion'
-
-
-class Tiempos(models.Model):
-    hora = models.IntegerField()
-    minuto = models.IntegerField()
-    estado = models.CharField(max_length=1)
-    creado = models.DateTimeField()
-    actualizado = models.DateTimeField()
-
-    class Meta:
-        #managed = False
-        db_table = 'tiempos'
-'''
-'''
-from usuario.models import Usuario
-from usuario.models import Rol
-
-
-r = Rol.objects.all()
-r = Rol.objects.all().order_by('id').first()
-roles = Rol.objects.bulk_create([Rol(tipo='administrador', es_personal=False),
-                                 Rol(tipo='paciente', es_personal=False),
-                                 Rol(tipo='fisioterapista', es_personal=True),
-                                 Rol(tipo='nutricionista', es_personal=True)])
-for x in roles:
-    x.save()
-
-for x in roles:
-    x.save()
-
-r = Rol.objects.all().order_by('id').first()
-u = Usuario.objects.create_superuser(username='chaljara', email='chaljara@espol.edu.ec', cedula='0921825345',
-                                     password='adminadmin', rol=r)
-
-p=Personal.objects.create(rol=r, username="chaljara2", email="chaljara@espol.edu.ec", cedula="09218255345", first_name="christian", last_name="jaramillo", password="adminadmin")
-'''

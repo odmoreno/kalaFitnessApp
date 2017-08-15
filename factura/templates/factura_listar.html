@@ -24,11 +24,11 @@
                                     <thead class="thead-inverse">
                                     <tr>
                                       <th class="text-center sorting">ID</th>
-                                      <th class="text-center sorting">Empresa</th>
                                       <th class="text-center sorting">Paciente</th>
                                       <th class="text-center sorting">Serie</th>
-                                      <th class="text-center sorting">Fecha de vencimiento</th>
                                       <th class="text-center sorting">Total</th>
+                                      <th class="text-center sorting">Fecha de vencimiento</th>
+                                      <th class="text-center sorting">Creado</th>
                                       <th class="text-center">Eliminar</th>
                                     </tr>
                                     </thead>
@@ -37,11 +37,11 @@
                                         {% for factura in facturas %}
                                                 <tr>
                                                     <td style="text-align: center;">{{factura.id}}</td>
-                                                    <td>{{ factura.empresa__nombre }}</td>
-                                                    <td>{{ factura.paciente_id }} - {{ factura.paciente__usuario__apellido }} {{ factura.paciente__usuario__nombre }}</td>
+                                                    <td>{{ factura.paciente__usuario__nombre }} {{ factura.paciente__usuario__apellido }}</td>
                                                     <td>{{ factura.serie}}</td>
-                                                    <td>{{ factura.fecha_vencimiento }}</td>
                                                     <td>${{ factura.total }}</td>
+                                                    <td>{{ factura.fecha_vencimiento }}</td>
+                                                    <td>{{ factura.creado }}</td>
                                                     <td class="text-center">
                                                         <!-- Eliminar Factura-->
                                                         <form action="{% url 'factura:EliminarFactura' factura.id %} " method="post" style="display: inline;">
@@ -62,27 +62,6 @@
                                     {% endif %}
                                     </tbody>
                                 </table>
-                                {% if facturas and facturas.has_other_pages %}
-                                      <ul class="pagination center-block">
-                                            {% if facturas.has_previous %}
-                                                <li><a href="?pag={{ facturas.previous_page_number }}">&laquo;</a></li>
-                                            {% else %}
-                                                <li class="disabled"><span>&laquo;</span></li>
-                                            {% endif %}
-                                            {% for i in facturas.paginator.page_range %}
-                                              {% if facturas.number == i %}
-                                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                                              {% else %}
-                                                <li><a href="?pag={{ i }}">{{ i }}</a></li>
-                                              {% endif %}
-                                            {% endfor %}
-                                            {% if facturas.has_next %}
-                                              <li><a href="?pag={{ facturas.next_page_number }}">&raquo;</a></li>
-                                            {% else %}
-                                              <li class="disabled"><span>&raquo;</span></li>
-                                            {% endif %}
-                                      </ul>
-                                {% endif %}
                         </div>
                     </div></div></div></div>
         <!-- Modal Dialog -->

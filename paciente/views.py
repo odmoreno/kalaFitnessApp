@@ -78,8 +78,6 @@ def PacienteNuevo(request):
 
         '''
         usuario = form.save(commit=False)
-
-        print usuario.foto
         user = User()
         paciente = Paciente()
         user.username = form.cleaned_data['cedula']
@@ -96,6 +94,10 @@ def PacienteNuevo(request):
         usuario.save()
 
         paciente.usuario = usuario
+        paciente.n_hijos=form.cleaned_data['n_hijos']
+        paciente.motivo_consulta=form.cleaned_data['motivo_consulta']
+        paciente.observaciones=form.cleaned_data['observaciones']
+
         paciente.save()
 
         enviar_password_email(user.email, user.username, password)
@@ -122,18 +124,22 @@ def editarPaciente(request, paciente_id):
     pacientes = get_object_or_404(Paciente, pk=paciente_id)
     paciente=pacientes.usuario
     form = UsuarioEditForm(request.POST or None, instance=paciente)
+    try:
+        user=paciente.usuario
+        form.fields["email"].initial = user.email
+    except:
+        pass
     #form.email=personal.usuario.email
     if form.is_valid():
         user=paciente.usuario
         user.email = form.cleaned_data['email']
         user.save()
         paciente = form.save()
-        #all_pacientes = Paciente.objects.all()
-        #return render(request, 'paciente/index.html', {'pacientes': all_pacientes})
         return redirect('paciente:index')
 
     context = {
         "form": form,
+        "editar":True
     }
     return render(request, 'paciente/form_paciente.html', context)
 '''
@@ -181,13 +187,14 @@ def reporteTotales(request):
     p = []
 
     for paciente in pacientes:
-        cedula = paciente.usuario.cedula
-        nombre = paciente.usuario.nombre
-        apellido = paciente.usuario.apellido
-        telefono = paciente.usuario.telefono
-        genero = paciente.usuario.genero
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
-        p.append(record)
+        if paciente.usuario.genero == 'M' or paciente.usuario.genero == 'F':
+            cedula = paciente.usuario.cedula
+            nombre = paciente.usuario.nombre
+            apellido = paciente.usuario.apellido
+            telefono = paciente.usuario.telefono
+            genero = paciente.usuario.genero
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+            p.append(record)
 
     return JsonResponse({"pacientes": p})
 

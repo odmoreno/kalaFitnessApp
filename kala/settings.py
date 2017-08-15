@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['127.0.0.1',]
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'corsheaders',
     'directmessages',
     'django_forms_bootstrap',
@@ -45,18 +46,21 @@ INSTALLED_APPS = [
     'diagnostico.apps.DiagnosticoConfig',
     'fisioterapia.apps.FisioterapiaConfig',
     'nutricion.apps.NutricionConfig',
+    'clienteRest.apps.ClienterestConfig',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'clienteRest.middleware.TokenAuth',
 ]
 
 ROOT_URLCONF = 'kala.urls'
@@ -95,22 +99,22 @@ WSGI_APPLICATION = 'kala.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'gestionhc',
-         'USER': 'b39a26ea8a2c83',
-         'PASSWORD': '49e6b5e4',
-         'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
-         'PORT': '3306',
-     },
-    # 'default': {
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'gestionhc',
-    #    'USER': 'root',
-    #    'PASSWORD': '',
-    #    'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    #    'PORT': '3307',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gestionhc',
+        'USER': 'b39a26ea8a2c83',
+        'PASSWORD': '49e6b5e4',
+        'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    },
+    #'default': {
+      #  'ENGINE': 'django.db.backends.mysql',
+      #  'NAME': 'gestionhc',
+     #   'USER': 'root',
+     #   'PASSWORD': '',
+      #  'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+     #   'PORT': '3307',
+    #}
 }
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
@@ -150,6 +154,18 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'auth.User'
 #AUTH_USER_MODEL = 'kalaapp.Usuario'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.IsAdminUser',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 LANGUAGE_CODE = 'es'
 

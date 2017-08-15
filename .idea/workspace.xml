@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
+
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
-=======
-<<<<<<< HEAD
+
+
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
     <ignored path=".idea/*/" />
-=======
-<<<<<<< Updated upstream
+
+
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html" />
     <ignored path=".idea/" />
-=======
+
     <list default="true" id="b33033e0-13a5-49de-a744-7204ca983c3b" name="Default" comment="Sprint#3 Task#105 106 Modelo rutina, html">
-<<<<<<< Updated upstream
+
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-=======
+
       <change type="DELETED" beforePath="$PROJECT_DIR$/paciente/serializers.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kala/settings.py" afterPath="$PROJECT_DIR$/kala/settings.py" />
->>>>>>> Stashed changes
+
     </list>
     <ignored path=".idea/*/" />
->>>>>>> Stashed changes
->>>>>>> christian
+
+
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-<<<<<<< HEAD
+
     <PATH>
       <PATH_ELEMENT>
         <option name="myItemId" />
@@ -92,7 +92,7 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
-=======
+
     <expand>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
@@ -120,7 +120,7 @@
       </path>
     </expand>
     <select />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -131,15 +131,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-<<<<<<< HEAD
+
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
+
+
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/forms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -151,11 +151,11 @@
                 <marker date="1502138705532" expanded="true" signature="466:532" ph="..." />
                 <marker date="1502138705532" expanded="true" signature="4080:4380" ph="..." />
                 <marker date="1502138705532" expanded="true" signature="4139:4215" ph="..." />
-=======
+
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
             <state relative-caret-position="371">
               <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
               <folding>
@@ -177,35 +177,35 @@
                 <marker date="1501995993034" expanded="true" signature="7326:7705" ph="..." />
                 <marker date="1501995993034" expanded="true" signature="7408:7670" ph="..." />
                 <marker date="1501995993034" expanded="true" signature="7469:7631" ph="..." />
-=======
+
             <state relative-caret-position="4914">
               <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
               <folding>
                 <element signature="e#126#165#0" expanded="true" />
->>>>>>> Stashed changes
->>>>>>> christian
+
+
               </folding>
-=======
+
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="272" column="28" lean-forward="false" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
               <folding />
->>>>>>> Stashed changes
+
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
+
       <file leaf-file-name="factura_listar.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/factura/templates/factura_listar.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="394">
               <caret line="46" column="73" lean-forward="false" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="117" />
               <folding />
-=======
+
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kala/settings.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -233,17 +233,17 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
             <state relative-caret-position="112">
               <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
               <folding>
                 <element signature="e#126#165#0" expanded="true" />
-=======
+
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
->>>>>>> christian
+
               </folding>
             </state>
           </provider>
@@ -264,7 +264,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-=======
+
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kala/settings.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -280,7 +280,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
->>>>>>> Stashed changes
+
               <folding />
             </state>
           </provider>
@@ -291,22 +291,22 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
               <caret line="28" column="128" lean-forward="false" selection-start-line="28" selection-start-column="128" selection-end-line="28" selection-end-column="128" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-=======
+
+
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kalaapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
             <state relative-caret-position="274">
               <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
               <folding />
-=======
+
             <state relative-caret-position="1242">
               <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
               <folding>
@@ -317,14 +317,14 @@
                 <marker date="1502138108821" expanded="true" signature="5494:5548" ph="..." />
                 <marker date="1502138108821" expanded="true" signature="5551:10643" ph="'''...'''" />
               </folding>
->>>>>>> Stashed changes
->>>>>>> christian
+
+
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< Updated upstream
-=======
+
+
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diagnostico/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -368,11 +368,11 @@
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> christian
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
+
+
+
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -385,11 +385,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-<<<<<<< HEAD
+
       <find>src</find>
       <find>sigh</find>
-=======
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
       <find>accounts/</find>
       <find>confirmDelete</find>
       <find>django.contrib.sessions.middleware.SessionMiddleware</find>
@@ -412,13 +412,13 @@
       <find>pacientes_id</find>
       <find>personal_id_actual</find>
       <find>exito</find>
-<<<<<<< HEAD
+
       <find>suspension</find>
       <find>remove</find>
       <find>edit</find>
       <find>normal</find>
       <find>dist</find>
-=======
+
       <find>formBorrar</find>
       <find>confirmDeleteLabel</find>
       <find>print</find>
@@ -427,7 +427,7 @@
       <find>4</find>
       <find>&lt;i&gt;</find>
       <find>5</find>
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
     </findStrings>
     <replaceStrings>
       <replace>null=False</replace>
@@ -459,7 +459,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-<<<<<<< HEAD
+
     <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kalaapp/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
@@ -489,7 +489,7 @@
     <setting file="file://$PROJECT_DIR$/factura/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/factura/templatetags/factura_filter.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
-=======
+
     <setting file="file://$PROJECT_DIR$/paciente/tests.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/paciente/urls.py" root0="SKIP_INSPECTION" />
@@ -518,31 +518,31 @@
     <setting file="file://$PROJECT_DIR$/kalaapp/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kalaapp/decorators.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-<<<<<<< Updated upstream
+
     <setting file="file://$PROJECT_DIR$/personal/templates/personal/index.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
-=======
->>>>>>> Stashed changes
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
+
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
+
+
+
+
         <option value="$PROJECT_DIR$/factura/templatetags/factura_filter.py" />
         <option value="$PROJECT_DIR$/kalaapp/templates/kalaapp/landing2.html" />
         <option value="$PROJECT_DIR$/kalaapp/templates/landing2.html" />
         <option value="C:/gestionhc_facturas.sql" />
         <option value="C:/gestionhc_diagnostico.sql" />
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_editar.html" />
->>>>>>> Stashed changes
+
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_editar.html" />
-=======
->>>>>>> Stashed changes
+
+
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_modal_eliminar.html" />
         <option value="$PROJECT_DIR$/kalaapp/templates/landing.html" />
         <option value="$PROJECT_DIR$/kala/forms.py" />
@@ -553,7 +553,7 @@
         <option value="$PROJECT_DIR$/static/sb-admin/pages/login.html" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_change.html" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_change_done.html" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_reset_complete.html" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_reset.html" />
         <option value="$PROJECT_DIR$/static/sb-admin/pages/password_reset_confirm.html" />
@@ -570,15 +570,15 @@
         <option value="$PROJECT_DIR$/personal/models.py" />
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_crear.html" />
         <option value="$PROJECT_DIR$/kalaapp/decorators.py" />
-<<<<<<< HEAD
-=======
+
+
         <option value="$PROJECT_DIR$/static/sb-admin/pages/blank.html" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
         <option value="$PROJECT_DIR$/kalaapp/views.py" />
         <option value="$PROJECT_DIR$/kalaapp/templates/kalaapp_asignar.html" />
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html" />
         <option value="$PROJECT_DIR$/diagnostico/views.py" />
-<<<<<<< HEAD
+
         <option value="$PROJECT_DIR$/fisioterapia/forms.py" />
         <option value="$PROJECT_DIR$/nutricion/models.py" />
         <option value="$PROJECT_DIR$/nutricion/forms.py" />
@@ -600,8 +600,8 @@
         <option value="$PROJECT_DIR$/static/sb-admin/.gitignore" />
         <option value="$PROJECT_DIR$/static/sb-admin/dist/css/sb-admin-2.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
-=======
-<<<<<<< Updated upstream
+
+
         <option value="$PROJECT_DIR$/diagnostico/templates/diagnostico_listar.html" />
         <option value="$PROJECT_DIR$/factura/templates/factura_crear.html" />
         <option value="$PROJECT_DIR$/kalaapp/models.py" />
@@ -620,15 +620,15 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/dependencias.txt" />
         <option value="$PROJECT_DIR$/paciente/serializers.py" />
-<<<<<<< Updated upstream
-=======
+
+
         <option value="$PROJECT_DIR$/dependencias.txt" />
->>>>>>> Stashed changes
-=======
+
+
         <option value="$PROJECT_DIR$/kala/settings.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
->>>>>>> Stashed changes
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
       </list>
     </option>
   </component>
@@ -683,7 +683,7 @@
     <panes>
       <pane id="ProjectPane">
         <subPane>
-<<<<<<< HEAD
+
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="kalaFitnessApp" />
@@ -920,20 +920,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-=======
+
           <expand>
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
             </path>
-<<<<<<< Updated upstream
+
             <path>
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
+
               <item name="kalaapp" type="462c0819:PsiDirectoryNode" />
-=======
-<<<<<<< Updated upstream
+
+
               <item name="factura" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -946,16 +946,16 @@
               <item name="kalaFitnessApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="kalaFitnessApp" type="462c0819:PsiDirectoryNode" />
               <item name="personal" type="462c0819:PsiDirectoryNode" />
-=======
+
               <item name="kala" type="462c0819:PsiDirectoryNode" />
->>>>>>> Stashed changes
->>>>>>> christian
+
+
             </path>
-=======
->>>>>>> Stashed changes
+
+
           </expand>
           <select />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -1368,7 +1368,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
+
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
@@ -1384,57 +1384,57 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57283145" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-=======
-<<<<<<< Updated upstream
+
+
     <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49764943" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.50235057" order="8" side_tool="true" content_ui="tabs" />
-=======
+
     <frame x="-8" y="-8" width="1308" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20913461" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
-<<<<<<< HEAD
+
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4422188" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17387821" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22676282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46995378" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
->>>>>>> Stashed changes
+
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-<<<<<<< Updated upstream
+
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46967742" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41419354" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886502" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27938214" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46995378" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41419354" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886502" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
->>>>>>> christian
+
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
->>>>>>> Stashed changes
+
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-<<<<<<< Updated upstream
-=======
+
+
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41448382" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
->>>>>>> Stashed changes
+
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1442,45 +1442,45 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
+
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4762684" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3207856" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3371522" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5499182" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-<<<<<<< Updated upstream
+
       <window_info id="Python Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46995378" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41448382" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312789" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3882897" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
->>>>>>> Stashed changes
+
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-<<<<<<< HEAD
+
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19213313" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
-=======
+
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20592949" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27912253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
+
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57283145" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18589744" sideWeight="0.51104975" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5736196" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932693" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1490,25 +1490,25 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2449923" sideWeight="0.51121795" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
+
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4762684" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3207856" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3371522" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5499182" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47765794" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3220339" sideWeight="0.49679488" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3882897" sideWeight="0.48878205" order="11" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19213313" sideWeight="0.48895028" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-<<<<<<< HEAD
+
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27912253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-=======
+
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27964744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1569,22 +1569,22 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-<<<<<<< Updated upstream
-=======
+
+
         <line-breakpoint enabled="true" type="django-line">
           <url>file://$PROJECT_DIR$/paciente/templates/paciente/index.html</url>
           <line>13</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
+
+
+
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/kalaapp/views.py</url>
           <line>1</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1593,16 +1593,16 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-<<<<<<< HEAD
+
       <option name="time" value="11" />
-=======
+
       <option name="time" value="9" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
+
     <entry file="file://C:/Python27/Lib/site-packages/django/urls/resolvers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1618,8 +1618,8 @@
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/core/checks/registry.py">
-=======
-<<<<<<< Updated upstream
+
+
     <entry file="file://$PROJECT_DIR$/personal/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1627,15 +1627,15 @@
         </state>
       </provider>
     </entry>
-=======
->>>>>>> Stashed changes
+
+
     <entry file="file://$PROJECT_DIR$/paciente/models.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="499">
           <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="1710">
           <caret line="95" column="5" lean-forward="false" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
           <folding>
@@ -1643,41 +1643,41 @@
             <marker date="1502138108821" expanded="true" signature="4550:4626" ph="..." />
             <marker date="1502138108821" expanded="true" signature="4920:5021" ph="..." />
           </folding>
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/factura/urls.py">
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+
     <entry file="file://C:/Python27/Lib/site-packages/django/core/management/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="358" column="0" lean-forward="false" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
-=======
-<<<<<<< Updated upstream
+
+
     <entry file="file://$PROJECT_DIR$/kalaapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="13" column="84" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="84" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
     <entry file="file://$PROJECT_DIR$/paciente/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="60" />
-=======
->>>>>>> Stashed changes
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
+
         </state>
       </provider>
     </entry>
@@ -1697,7 +1697,7 @@
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/db/backends/mysql/base.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="95">
           <caret line="300" column="0" lean-forward="false" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
         </state>
@@ -1721,10 +1721,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-=======
+
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> Stashed changes
+
         </state>
       </provider>
     </entry>
@@ -1732,32 +1732,32 @@
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal" />
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_crear.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="476">
           <caret line="28" column="129" lean-forward="true" selection-start-line="28" selection-start-column="129" selection-end-line="28" selection-end-column="129" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
         <state relative-caret-position="204">
           <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kalaapp/decorators.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="154">
           <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="70">
           <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
         </state>
@@ -1788,14 +1788,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-=======
+
         <state relative-caret-position="273">
           <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="45" />
-=======
+
         <state relative-caret-position="177">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-<<<<<<< Updated upstream
-=======
+
+
         </state>
       </provider>
     </entry>
@@ -1803,7 +1803,7 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
@@ -1818,7 +1818,7 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
->>>>>>> Stashed changes
+
         </state>
       </provider>
     </entry>
@@ -1835,28 +1835,28 @@
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.rol" />
     <entry file="file://$PROJECT_DIR$/diagnostico/models.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="286">
           <caret line="27" column="71" lean-forward="false" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="-3">
           <caret line="171" column="37" lean-forward="true" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_crear.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="175">
           <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-=======
+
         <state relative-caret-position="166">
           <caret line="28" column="128" lean-forward="false" selection-start-line="28" selection-start-column="128" selection-end-line="28" selection-end-column="128" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
@@ -1864,7 +1864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-210">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
         </state>
       </provider>
     </entry>
@@ -1876,7 +1876,7 @@
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/db/transaction.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="17">
           <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
         </state>
@@ -1940,19 +1940,19 @@
         <state relative-caret-position="218">
           <caret line="60" column="52" lean-forward="true" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
           <folding />
-=======
-<<<<<<< HEAD
+
+
         <state relative-caret-position="196">
           <caret line="20" column="77" lean-forward="true" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-=======
-<<<<<<< Updated upstream
+
+
         <state relative-caret-position="394">
           <caret line="46" column="73" lean-forward="false" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="117" />
           <folding />
-=======
+
         <state relative-caret-position="304">
           <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
@@ -1960,52 +1960,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="646" column="4" lean-forward="false" selection-start-line="646" selection-start-column="4" selection-end-line="646" selection-end-column="4" />
->>>>>>> Stashed changes
+
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/template/defaulttags.py" />
     <entry file="file://$PROJECT_DIR$/kalaapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="-77">
           <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="false" />
           </folding>
-=======
+
         <state relative-caret-position="-1246">
           <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
->>>>>>> Stashed changes
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/factura/views.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="17">
           <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="119">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
->>>>>>> Stashed changes
-=======
+
+
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+
     <entry file="file://$PROJECT_DIR$/factura/templates/factura_crear.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-265">
           <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-=======
+
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
->>>>>>> Stashed changes
->>>>>>> christian
+
+
         </state>
       </provider>
     </entry>
@@ -2019,76 +2019,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/login.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="228">
           <caret line="67" column="59" lean-forward="false" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="499">
           <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/factura/templates/factura_crear.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="266">
           <caret line="43" column="42" lean-forward="false" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+
     <entry file="file://$PROJECT_DIR$/correcciones sprint#2" />
     <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/form_paciente.html">
-=======
+
     <entry file="file://$PROJECT_DIR$/personal/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
         <state relative-caret-position="187">
           <caret line="13" column="84" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="84" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/index.html">
->>>>>>> christian
+
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="1207">
           <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="88" selection-end-column="14" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
         <state relative-caret-position="272">
           <caret line="16" column="66" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="66" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/index.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="286">
           <caret line="53" column="49" lean-forward="true" selection-start-line="51" selection-start-column="40" selection-end-line="53" selection-end-column="49" />
         </state>
@@ -2124,18 +2124,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fisioterapia/templates/fisioterapia/form_template_ficha.html">
-=======
-<<<<<<< HEAD
+
+
         <state relative-caret-position="0">
           <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-=======
+
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
-<<<<<<< Updated upstream
+
     <entry file="file://$PROJECT_DIR$/personal/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
@@ -2151,31 +2151,31 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/index.html">
-=======
+
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.personal" />
     <entry file="file://$PROJECT_DIR$/diagnostico/templates/diagnostico_nut_crear.html">
->>>>>>> Stashed changes
+
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="476">
           <caret line="28" column="129" lean-forward="true" selection-start-line="28" selection-start-column="129" selection-end-line="28" selection-end-column="129" />
-=======
+
         <state relative-caret-position="204">
           <caret line="12" column="114" lean-forward="false" selection-start-line="12" selection-start-column="114" selection-end-line="12" selection-end-column="114" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/form_personal.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="218">
           <caret line="15" column="78" lean-forward="false" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/panels-wells.html">
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2183,7 +2183,7 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+
     <entry file="file://$PROJECT_DIR$/nutricion/templates/nutricion/listar-fichas.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2284,7 +2284,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
           <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-=======
+
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f22e86e-9cc2-47de-9add-2d98204a4cd9/console.sql" />
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.auth_user" />
     <entry file="file://$PROJECT_DIR$/kala/views.py">
@@ -2305,8 +2305,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-<<<<<<< Updated upstream
-=======
+
+
         </state>
       </provider>
     </entry>
@@ -2321,7 +2321,7 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
->>>>>>> Stashed changes
+
         </state>
       </provider>
     </entry>
@@ -2338,10 +2338,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-<<<<<<< Updated upstream
+
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-=======
+
         <state relative-caret-position="177">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
         </state>
@@ -2364,7 +2364,7 @@
           <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
-<<<<<<< HEAD
+
             <marker date="1501995993041" expanded="true" signature="6480:6549" ph="..." />
             <marker date="1501995993041" expanded="true" signature="6551:6719" ph="'''...'''" />
             <marker date="1501995993041" expanded="true" signature="6761:7054" ph="..." />
@@ -2373,34 +2373,34 @@
             <marker date="1501995993041" expanded="true" signature="7057:7204" ph="'''...'''" />
             <marker date="1501995993041" expanded="true" signature="7237:7731" ph="..." />
             <marker date="1501995993041" expanded="true" signature="7289:7731" ph="..." />
-=======
->>>>>>> Stashed changes
->>>>>>> christian
+
+
+
           </folding>
-=======
->>>>>>> Stashed changes
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/sb-admin/pages/blank.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="309">
           <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="56" />
-<<<<<<< Updated upstream
+
           <folding />
-=======
+
         <state relative-caret-position="104">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/paciente/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="371">
           <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
           <folding>
@@ -2423,11 +2423,11 @@
             <marker date="1501995993034" expanded="true" signature="7408:7670" ph="..." />
             <marker date="1501995993034" expanded="true" signature="7469:7631" ph="..." />
           </folding>
-=======
-<<<<<<< Updated upstream
+
+
         <state relative-caret-position="119">
           <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="60" />
->>>>>>> christian
+
         </state>
       </provider>
     </entry>
@@ -2440,16 +2440,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/paciente/templates/paciente/detalles.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="274">
           <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
-=======
+
         <state relative-caret-position="272">
           <caret line="16" column="170" lean-forward="false" selection-start-line="16" selection-start-column="170" selection-end-line="16" selection-end-column="170" />
-<<<<<<< Updated upstream
->>>>>>> christian
+
+
           <folding />
-=======
+
         <state relative-caret-position="371">
           <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
         </state>
@@ -2468,22 +2468,22 @@
             <marker date="1502138108821" expanded="true" signature="5494:5548" ph="..." />
             <marker date="1502138108821" expanded="true" signature="5551:10643" ph="'''...'''" />
           </folding>
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/detalles.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="221">
           <caret line="13" column="77" lean-forward="false" selection-start-line="13" selection-start-column="77" selection-end-line="13" selection-end-column="77" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="396">
           <caret line="27" column="71" lean-forward="false" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
-<<<<<<< HEAD
+
           <folding>
             <marker date="1501995992919" expanded="true" signature="284:913" ph="..." />
             <marker date="1501995992919" expanded="true" signature="952:1372" ph="..." />
@@ -2498,37 +2498,37 @@
             <marker date="1501995992919" expanded="true" signature="2567:3203" ph="..." />
             <marker date="1501995992919" expanded="true" signature="3166:3203" ph="..." />
           </folding>
-=======
->>>>>>> Stashed changes
+
+
           <folding />
-=======
->>>>>>> Stashed changes
->>>>>>> christian
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-<<<<<<< Updated upstream
-=======
+
+
         <state relative-caret-position="504">
           <caret line="28" column="128" lean-forward="false" selection-start-line="28" selection-start-column="128" selection-end-line="28" selection-end-column="128" />
           <folding />
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dependencias.txt">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-<<<<<<< Updated upstream
+
         </state>
       </provider>
     </entry>
@@ -2537,8 +2537,8 @@
         <state relative-caret-position="1990">
           <caret line="151" column="1" lean-forward="false" selection-start-line="151" selection-start-column="1" selection-end-line="151" selection-end-column="1" />
           <folding />
-=======
->>>>>>> Stashed changes
+
+
         </state>
       </provider>
     </entry>
@@ -2546,19 +2546,19 @@
     <entry file="file://$PROJECT_DIR$/paciente/serializers.py" />
     <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
+
         <state relative-caret-position="112">
-=======
-<<<<<<< Updated upstream
+
+
         <state relative-caret-position="1279">
           <caret line="272" column="28" lean-forward="true" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
-=======
+
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-=======
+
         <state relative-caret-position="102">
           <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="26" />
->>>>>>> Stashed changes
+
           <folding />
         </state>
       </provider>
@@ -2566,15 +2566,15 @@
     <entry file="das://table:/f4d58e9/6f22e86e-9cc2-47de-9add-2d98204a4cd9/gestionhc.usuario" />
     <entry file="file://$PROJECT_DIR$/diagnostico/views.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
+
         <state relative-caret-position="4914">
->>>>>>> christian
+
           <caret line="273" column="25" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
           <folding>
             <element signature="e#126#165#0" expanded="true" />
           </folding>
->>>>>>> Stashed changes
-=======
+
+
         <state relative-caret-position="17">
           <caret line="272" column="28" lean-forward="false" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
           <folding />
@@ -2594,8 +2594,8 @@
         <state relative-caret-position="34">
           <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
->>>>>>> Stashed changes
->>>>>>> 9765dcc2695cbfe091a2393fe99d517c5e7a98f2
+
+
         </state>
       </provider>
     </entry>

@@ -1,19 +1,28 @@
 {% extends 'blank.html' %}
 {% load l10n %}
-{% block title %}Nuevo paciente{% endblock %}
+{% block title %}{% if editar %}Editar Paciente{% else %}Nuevo paciente{% endif %}{% endblock %}
 {% block content %}
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
                 <div class="panel panel-default" style="margin-top: 40px">
-                    <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo paciente</b></h4></div>
+                    {% if editar %}
+                        <div class="panel-heading"><h4><b>Editar Paciente</b></h4></div>
+                    {% else %}
+                        <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo paciente</b></h4></div>
+                    {% endif %}
                     <div class="panel-body">
                         <form class="form-vertical" method="post">
                             {% csrf_token %}
                             {% include 'personal/form_template.html' %}
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Crear paciente</button>
+                                {% if editar %}
+                                    <button type="submit" class="btn btn-success">Editar paciente</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-success">Crear paciente</button>
+                                {% endif %}
+
                             </div>
                         </form>
                     </div>
