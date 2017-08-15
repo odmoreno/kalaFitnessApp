@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django import forms
 from django.test import TestCase, Client, RequestFactory
 from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-
 
 # Create your tests here.
 
@@ -113,6 +112,7 @@ class EliminarPacienteTestCase(TestCase):
 
 class PacienteViewsTestCase(TestCase):
     def setUp(self):
+        User.objects.create_user(username= 'carlos', password = 'carlos123')
         #self.client.login(username='carlos', password='carlos123')
         s = Rol.objects.create(tipo='paciente')
         s.save()
@@ -152,32 +152,70 @@ class PacienteViewsTestCase(TestCase):
         paciente.usuario = usuario
         paciente.save()
 
-    def testGenerarViews(self):
-        self.client.login(username='carlos', password='carlos123')
+    def testGenerarIndexView(self):
         paciente = Paciente.objects.all()
         paciente=paciente[0]
         id=paciente.id
         print id
         c = Client()
+        c.login(username='carlos', password='carlos123')
         response1 = c.get(reverse("paciente:index"))
-        response2 = c.get(reverse("paciente:paciente"))
-        response3 = c.get('/paciente/%s/' % id)
-        response4 = c.get('/paciente/editar/%s/' % id)
-        self.assertEquals(response1.status_code, 302)
+        self.assertEquals(response1.status_code, 200)
         print "listar"
-        self.assertEquals(response2.status_code, 302)
-        print "crear"
-        self.assertEquals(response3.status_code, 302)
-        print "detalles"
-        self.assertEquals(response4.status_code, 302)
-        print "eliminar"
 
-    def testCrearView(self):
+
+    def testGenerarCrearView(self):
+        self.client.login(username='carlos', password='carlos123')
+        paciente = Paciente.objects.all()
+        paciente = paciente[0]
+        id = paciente.id
+        print id
         c = Client()
-        response1 = c.post(reverse("paciente:paciente"), {'nombre':'Carlos','cedula':'1234567896', 'apellido':'Manosalvas', 'email':'carlos@gmail.com', 'estado_civil':'Soltero', 'direccion':'Por ahi', 'telefono':'2341472', 'ocupacion':'Estudiante','genero':'M', 'edad':'23', 'observaciones':'Algo', 'motivo_consulta':'Otra'})
-        usuario=Usuario.objects.get(cedula='1234567896')
-        print usuario
-        self.assertEquals(response1.status_code, 302)
-       # self.assertEquals(usuario, Usuario.objects.get(cedula='1234567896'))
-        print "creacion"
+        c.login(username='carlos', password='carlos123')
+        response2 = c.get(reverse("paciente:paciente"))
+        self.assertEquals(response2.status_code, 200)
+        print "crear"
+
+
+    def testGenerarDetallesView(self):
+        self.client.login(username='carlos', password='carlos123')
+        paciente = Paciente.objects.all()
+        paciente = paciente[0]
+        id = paciente.id
+        print id
+        c = Client()
+        c.login(username='carlos', password='carlos123')
+        response3 = c.get('/paciente/%s/' % id)
+        self.assertEquals(response3.status_code, 200)
+        print "detalles"
+
+
+    def testGenerarEditarView(self):
+        self.client.login(username='carlos', password='carlos123')
+        paciente = Paciente.objects.all()
+        paciente = paciente[0]
+        id = paciente.id
+        print id
+        c = Client()
+        c.login(username='carlos', password='carlos123')
+        response4 = c.get('/paciente/editar/%s/' % id)
+
+        self.assertEquals(response4.status_code, 200)
+        print "editar"
+        print response4.status_code
+
+    def testGenerarEliminarView(self):
+        self.client.login(username='carlos', password='carlos123')
+        paciente = Paciente.objects.all()
+        paciente = paciente[0]
+        id = paciente.id
+        print id
+        c = Client()
+        c.login(username='carlos', password='carlos123')
+        response4 = c.get('/paciente/eliminar/%s/' % id)
+        print response4
+        self.assertEquals(response4.status_code, 200)
+        print "editar"
+        print response4.status_code
+
 

@@ -135,7 +135,12 @@ Salidas:Template para renderizacion
 '''
 @login_required
 def detallePersonal(request, personal_id):
-    personal = get_object_or_404(Usuario, pk=personal_id)
+    try:
+        personal = get_object_or_404(Usuario, pk=personal_id)
+        print persona
+    except:
+        return HttpResponse(status=404)
+
     return render(request, 'personal/detalles.html', {'personal': personal})
 
 '''

@@ -48,7 +48,12 @@ Salidas:Template para renderizacion junto con JSON con los pacientes de la base 
 '''
 @login_required
 def index(request):
-    pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value('')))
+
+    try:
+        print pacientes
+        pacientes = Paciente.objects.all().annotate(foto=Concat('usuario__foto', Value('')))
+    except:
+        return HttpResponse(status=404)
     return render(request, 'paciente/index.html', {'pacientes': pacientes})
 '''
 Funcion: PacienteNuevo
@@ -136,12 +141,13 @@ def editarPaciente(request, paciente_id):
         user.save()
         paciente = form.save()
         return redirect('paciente:index')
+    else:
+        context = {
+            "form": form,
+            "editar":True
+        }
 
-    context = {
-        "form": form,
-        "editar":True
-    }
-    return render(request, 'paciente/form_paciente.html', context)
+        return redirect('paciente/form_paciente.html')
 '''
 Funcion: PacienteEliminar
 Entradas: requerimiento e Identificador del paciente a ser eliminado
@@ -159,7 +165,10 @@ def PacienteEliminar(request, paciente_id):
     paciente.usuario.save()
     #pacientes = Paciente.objects.all()
     #return render(request, 'paciente/index.html', {'pacientes': pacientes})
-    return redirect('paciente:index')
+
+
+    return HttpResponse(status=302)
+    #return redirect('paciente:index')
 
 '''
 Funcion: detallePaciente
