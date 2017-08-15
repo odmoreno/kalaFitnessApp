@@ -41,7 +41,7 @@ def crear_ficha(request):
         paciente = get_object_or_404(Paciente, pk=paciente_id)
         ficha.paciente = paciente
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
-        ficha.paciente = paciente
+        ficha.personal = personal
         ficha.save()
         return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
@@ -100,56 +100,4 @@ def editar_ficha(request, ficha_id):
     return render(request, template, context)
 
 
-def verMensajes(request, personal_id=None):
-    template= 'fisioterapia/mensajes.html'
-
-    mensajes=Message.objects.all().filter(recipient=request.user)
-    if mensajes:
-        nombres=[]
-        usuarios=[]
-        for m in mensajes:
-            usuario=Usuario.objects.get(usuario=m.sender)
-            nombre=usuario.nombre +" "+ usuario.apellido
-            nombres.append(nombre)
-            usuarios.append(usuario)
-
-        data={
-            'mensajes': mensajes,
-            'nombres':nombres,
-            'usuarios':usuarios
-        }
-
-    data={}
-    return render(request,template,data)
-
-def leerMensaje(request, mensaje_id):
-    message=Message.objects.get(id=mensaje_id)
-    user=User.objects.get(id=message.sender.id)
-    usuarioN=Usuario.objects.get(usuario=user)
-    nombre=usuarioN.nombre + " " + usuarioN.apellido
-    data={
-        'sender':nombre,
-        'mensaje':message.content,
-
-    }
-    return render(request, "fisioterapia/leerMensaje.html", data)
-
-
-###CORREGIR###
-def nuevoMensaje(request):
-    personal= Usuario.objects.all()
-    print personal
-    form=ComentarioForm(request.POST or None)
-    data={
-        'personal':personal,
-        'form':form,
-    }
-    if form.is_valid():
-        para=form.cleaned_data["Destino"]
-        to_user=para[0].usuario.usuario
-
-        Inbox.send_message(request.user, to_user, form.cleaned_data["comentario"])
-        return render(request, "fisioterapia/mensajes.html")
-
-    return render(request, "fisioterapia/nuevoMensaje.html", data)
 
