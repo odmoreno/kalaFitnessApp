@@ -1,11 +1,13 @@
 from django import forms
-from django.forms import NumberInput, ModelForm, Select, TextInput
+from django.forms import NumberInput, ModelForm, Select, TextInput, DateField, DateInput, Textarea
 from django.forms.extras.widgets import  SelectDateWidget
+from datetimewidget.widgets import DateTimeWidget, TimeWidget, DateWidget
+
 
 from paciente.models import Paciente
 from kalaapp.models import Usuario, Rol
 from django.contrib.auth.models import User
-from fisioterapia.models import Ficha
+from fisioterapia.models import Ficha, Horario
 
 
 
@@ -15,6 +17,20 @@ class ComentarioForm(forms.Form):
 
 class DateTypeInput(forms.DateInput):
     input_type = 'date'
+
+class HorariosForm(ModelForm):
+    class Meta:
+        model = Horario
+        fields = [ 'fecha', 'hora', 'detalle', 'estado' ]
+        labels = {'fecha':'Fecha', 'hora': 'Hora', 'detalle': 'Detalle', 'estado': 'Estado'}
+        widgets = {
+            'fecha': DateWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
+            'hora': TimeWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
+            'detalle': Textarea(
+                attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...', 'rows': 10, 'cols': 40,
+                       'style': 'height: 6em;'}),
+            'estado': Select(attrs={'class': u'form-control'}),
+                   }
 
 class FichaForm(ModelForm):
     class Meta:
@@ -118,3 +134,5 @@ class FichaForm(ModelForm):
              'trenInferior': TextInput(attrs={'class': u'form-control','placeholder': u'Ingresar Hora'}),
              'trenSuperior': TextInput(attrs={'class': u'form-control', 'placeholder': u'Ingresar Hora'}),
          }
+
+

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'nutricion.apps.NutricionConfig',
     'clienteRest.apps.ClienterestConfig',
     'rest_framework.authtoken',
+    'datetimewidget',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     #'clienteRest.middleware.TokenAuth',
 ]
 
@@ -173,7 +175,7 @@ TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 

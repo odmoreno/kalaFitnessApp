@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="kala" uuid="9b031bef-d83c-4a6c-b387-542856991762">
+    <data-source source="LOCAL" name="Django default" uuid="7ca7cec6-8cd1-47c3-be0c-42d51a3b061c">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

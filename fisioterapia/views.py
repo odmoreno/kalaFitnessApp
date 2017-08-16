@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
 from paciente.models import Paciente
 from personal.models import Personal
-from fisioterapia.models import Ficha
+from fisioterapia.models import Ficha , Horario
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
-from .forms import FichaForm
+from .forms import FichaForm, HorariosForm
 
 
 from django.shortcuts import render
@@ -105,5 +105,33 @@ def editar_ficha(request, ficha_id):
     }
     return render(request, template, context)
 
+@transaction.atomic
+def establecer_horario (request):
+    template= 'fisioterapia/crear-horario.html'
+    form = HorariosForm(request.POST or None)
+    sesion = request.session.get('user_sesion', None)
+    print form._errors
+    if form.is_valid():
+        horario = form.save(commit=False)
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        horario.personal = personal
+        horario.save()
+        return HttpResponseRedirect("/fisioterapia/horario/ver/")
+    context ={
+        "form" : form
+    }
+    return render(request, template, context)
 
+def ver_horarios(request):
+    template = "fisioterapia/listar-horarios.html"
+    horarios = Horario.objects.all()
+    context = {
+        "horarios": horarios,
+    }
+    return render(request, template, context)
 
+@transaction.atomic
+def eliminar_cita(request, horario_id):
+    cita = Horario.objects.get(pk=horario_id)
+    cita.delete()
+    return HttpResponseRedirect("/fisioterapia/horario/ver/")

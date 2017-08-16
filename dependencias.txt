@@ -8,3 +8,4 @@ bcrypt
 Pillow
 django_forms_bootstrap
 djangorestframework
+django-datetime-widget
