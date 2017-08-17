@@ -10,8 +10,8 @@ from django.http.response import HttpResponseRedirect
 from kalaapp.decorators import rol_required
 from paciente.models import Paciente
 from personal.models import Personal
-from .models import ficha_nutricion
-from .forms import FichaForm
+from .models import ficha_nutricion, HorarioNut
+from .forms import FichaForm, HorariosForm
 
 def index(request):
     template = "nutricion/index.html"
@@ -87,6 +87,33 @@ def editar_ficha(request, ficha_id):
     return render(request, template, context)
 
 
-def ver_horarios(request):
-    return
+@transaction.atomic
+def establecer_horario (request):
+    template= 'nutricion/crear-horario.html'
+    form = HorariosForm(request.POST or None)
+    sesion = request.session.get('user_sesion', None)
+    print form._errors
+    if form.is_valid():
+        horario = form.save(commit=False)
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        horario.personal = personal
+        horario.save()
+        return HttpResponseRedirect("/nutricion/horario/ver/")
+    context ={
+        "form" : form
+    }
+    return render(request, template, context)
 
+def ver_horarios(request):
+    template = "nutricion/listar-horarios.html"
+    horarios = HorarioNut.objects.all()
+    context = {
+        "horarios": horarios,
+    }
+    return render(request, template, context)
+
+@transaction.atomic
+def eliminar_cita(request, horario_id):
+    cita = HorarioNut.objects.get(pk=horario_id)
+    cita.delete()
+    return HttpResponseRedirect("/nutricion/horario/ver/")

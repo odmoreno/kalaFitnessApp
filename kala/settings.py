@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'clienteRest.apps.ClienterestConfig',
     'rest_framework.authtoken',
     'datetimewidget',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [

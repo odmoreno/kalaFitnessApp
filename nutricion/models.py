@@ -29,6 +29,12 @@ TIPO =(('diario', 'Diario'),
         ('raravez', 'Rara vez'),
        ('nunca', 'Nunca'))
 
+VECES= (('1', '4-5 veces'),
+        ('2', '2-3 veces'),
+        ('3', '1 vez'),
+        ('4', 'Rara vez'),
+        ('5', 'Nunca'))
+
 ESTADO = (('1', 'No tomada'),
           ('2', 'Finalizada'))
 
@@ -49,17 +55,17 @@ class ficha_nutricion(TimeModel):
     energizantes = models.CharField(max_length=200, choices=TIPO, default='diario', null=False)
     infusiones = models.CharField(max_length=200, choices=TIPO, default='diario', null=False)
 
-    lacteos_input = models.CharField(max_length=20, null=False)
-    vegetales_input = models.CharField(max_length=20, null=False)
-    frutas_input = models.CharField(max_length=20, null=False)
-    cho_input = models.CharField(max_length=20, null=False)
-    carnes_input = models.CharField(max_length=20, null=False)
-    comidas_rapidas_input = models.CharField(max_length=20, null=False)
-    frituras_input = models.CharField(max_length=20, null=False)
-    enlatados_input = models.CharField(max_length=20, null=False)
-    gaseosas_input = models.CharField(max_length=20, null=False)
-    energizantes_input = models.CharField(max_length=20, null=False)
-    infusiones_input = models.CharField(max_length=20, null=False)
+    lacteos_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    vegetales_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    frutas_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    cho_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    carnes_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    comidas_rapidas_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    frituras_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    enlatados_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    gaseosas_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    energizantes_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
+    infusiones_input = models.CharField(max_length=20,choices=VECES, default='3', null=False)
 
     #Anamnesis alimentaria
     pregunta1= models.CharField(max_length=100, null=False)

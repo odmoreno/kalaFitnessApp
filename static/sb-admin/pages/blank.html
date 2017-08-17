@@ -35,7 +35,7 @@
     <![endif]-->
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
     {% block jqueryUI %}{% endblock %}
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -246,13 +246,10 @@
                                 <a href="#"><i class="fa fa-calendar"></i> Citas <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Ver Horarios</a>
+                                        <a href="{% url 'nutricion:ver_horarios' %}">Ver Horarios</a>
                                     </li>
                                     <li>
-                                        <a href="#">Establecer Horario</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Cancelar Cita</a>
+                                        <a href="{% url 'nutricion:crear_horario' %}">Establecer Horario</a>
                                     </li>
                                 </ul>
                             </li>
@@ -277,9 +274,6 @@
                                     </li>
                                     <li>
                                         <a href="{% url 'fisioterapia:crear_horario' %}">Establecer Horario</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Cancelar Cita</a>
                                     </li>
                                 </ul>
                             </li>
