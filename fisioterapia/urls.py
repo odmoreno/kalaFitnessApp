@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^horario/$', views.establecer_horario, name="crear_horario"),
     url(r'^horario/ver/$', views.ver_horarios, name="ver_horarios"),
     url(r'(?P<horario_id>[0-9]+)/cita/eliminar/$', views.eliminar_cita, name="eliminar_cita"),
+    url(r'^reportes/$', views.reportes, name="reportes"),
+        url(r'^reporte/ficha/(?P<paciente_cedula>[0-9]+)/$', views.reporteFicha),
 ]

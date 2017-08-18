@@ -1,0 +1,255 @@
+{% extends 'blank.html' %}
+{% load l10n %}
+{% load staticfiles %}
+{% block title %}Reportes {% endblock %}
+{% block content %}
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="panel panel-default" style="margin-top: 40px">
+        <div class="panel-heading"><h4><b>Reportes de diagnostico</b></h4></div>
+        <div class="panel-body">
+          <div class="container-fluid">
+                <div >
+                    <div class="form-group">
+                      <label >Cedula del paciente:</label>
+                      <input class="form-control" id="cedula"></input>
+                    </div>
+                    <button id="generar" class="btn btn-default">Generar PDF</button>
+                </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
+<script>
+  function tabla1(altura, peso, imc, musculo){
+    return [
+        [
+            {text: 'Altura', style: 'subItem'},
+            {text: 'Peso', style: 'subItem'},
+            {text: 'IMC', style: 'subItem'},
+            {text: 'Musculo', style: 'subItem'}
+        ],[
+            {text:
+                (function(){
+                    if (altura) { return altura;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (peso) { return peso;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (imc) { return imc;}
+                    return "";
+                })()
+            },{text:
+                (function(){
+                    if (musculo) { return musculo;}
+                    return "";
+                })()
+            }
+        ]
+    ]
+  }
+
+  function tabla2(visceral, porcentaje, flexiones, sentadillas, salto){
+    return [
+        [
+            {text: 'Grasa visceral', style: 'subItem'},
+            {text: 'Grasa porcentaje', style: 'subItem'},
+            {text: 'Flexiones', style: 'subItem'},
+            {text: 'Sentadillas', style: 'subItem'},
+            {text: 'Salto largo', style: 'subItem'}
+        ],[
+            {text:
+                (function(){
+                    if (visceral) { return visceral;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (porcentaje) { return porcentaje;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (flexiones) { return flexiones;}
+                    return "";
+                })()
+            },{text:
+                (function(){
+                    if (sentadillas) { return sentadillas;}
+                    return "";
+                })()
+            },{text:
+                (function(){
+                    if (salto) { return salto;}
+                    return "";
+                })()
+            }
+        ]
+    ]
+  }
+
+  function tabla3(bajo, alto, espinales, lumbares, trenSuperior){
+    return [
+        [
+            {text: 'Abdomen bajo', style: 'subItem'},
+            {text: 'Abdomen bajo', style: 'subItem'},
+            {text: 'Espinales', style: 'subItem'},
+            {text: 'Lumbares', style: 'subItem'},
+            {text: 'Tren SUperior', style: 'subItem'}
+        ],[
+            {text:
+                (function(){
+                    if (bajo) { return bajo;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (alto) { return alto;}
+                    return "";
+                })()
+
+            },{text:
+                (function(){
+                    if (espinales) { return espinales;}
+                    return "";
+                })()
+            },{text:
+                (function(){
+                    if (lumbares) { return lumbares;}
+                    return "";
+                })()
+            },{text:
+                (function(){
+                    if (trenSuperior) { return trenSuperior;}
+                    return "";
+                })()
+            }
+        ]
+    ]
+  }
+
+  function pdf(data, nombre){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd='0'+dd
+    }
+    if(mm<10) {
+        mm='0'+mm
+    }
+    today = mm+'/'+dd+'/'+yyyy;
+
+    var pdf = {
+       content: [
+
+           {  text: "KalaFitness APP", style: 'header' },
+           {  text: "Reporte de ficha medica de paciente\n\n", style: 'subheader' },
+           {
+               text: [
+                   {
+                       text: "Fecha: ",
+                       style: 'subItem'
+                   }, {
+                       text: today + "\n"
+                   },{
+                       text: "Nombre: ",
+                       style: 'subItem'
+                   }, {
+                       text: data.nombre + " " + data.apellido + "\n"
+                   },{
+                       text: "Cedula: ",
+                       style: 'subItem'
+                   }, {
+                       text: data.cedula + "\n\n"
+                   }
+               ]
+           },
+           {
+               columns : [
+                   {
+                       width: 'auto',
+                       table: {
+                           widths: ['*','*','*','*'],
+                           body: tabla1(data.altura, data.peso, data.imc, data.musculo)
+                         }
+                   }
+               ]
+           },{  text: "\n\n", style: 'subheader' },
+           {
+               columns : [
+                   {
+                       width: 'auto',
+                       table: {
+                           widths: ['*','*','*','*','*'],
+                           body: tabla2(data.grasa_visceral, data.grasa_porcentaje, data.flexiones, data.sentadillas, data.saltoLargo)
+                         }
+                   }
+               ]
+           },{  text: "\n\n", style: 'subheader' },
+           {
+               columns : [
+                   {
+                       width: 'auto',
+                       table: {
+                           widths: ['*','*','*','*','*'],
+                           body: tabla3(data.abdomen_bajo, data.abdomen_alto, data.espinales, data.lumbares, data.trenSuperior)
+                         }
+                   }
+               ]
+           },{  text: "\n\n", style: 'subheader' }
+       ],
+       styles: {
+           header: {
+               fontSize: 18,
+               bold: true,
+               alignment: 'center',
+               color: 'blue'
+           },
+           subheader: {
+               fontSize: 14,
+               bold: true,
+               alignment: 'center',
+               color: 'blue'
+           },
+           subItem: {
+               bold: true,
+               color: 'blue'
+           },
+           tableHeader: {
+               bold: true,
+               fontSize: 13,
+               color: 'black'
+           }
+       }
+    };
+    pdfMake.createPdf(pdf).download(nombre);
+  };
+
+  $("#generar").click(function(){
+    var value = $('#cedula').val();
+
+    $.get("/fisioterapia/reporte/ficha/" + value, function(res){
+      console.log(value, res.data);
+      pdf(res.data, "reporte_ficha_" + value + ".pdf");
+    });
+
+  });
+
+
+</script>
+{% endblock %}

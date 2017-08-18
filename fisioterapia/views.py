@@ -155,3 +155,70 @@ def eliminar_cita(request, horario_id):
     cita = Horario.objects.get(pk=horario_id)
     cita.delete()
     return HttpResponseRedirect("/fisioterapia/horario/ver/")
+
+'''
+Funcion: reporteTotal
+Entradas: paciente_cedula, la cedula del paciente
+Salidas: JSON con una ficha medica del paciente
+*Funcion que retorna la informacion de las fichas de un paciente de la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteFicha(request, paciente_cedula):
+    fichas = Ficha.objects.all()
+
+    for f in fichas:
+        if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
+            cedula = f.paciente.usuario.cedula
+            nombre = f.paciente.usuario.nombre
+            apellido = f.paciente.usuario.apellido
+            genero = f.paciente.usuario.genero
+            altura = f.altura
+            peso = f.peso
+            imc = f.imc
+            musculo = f.musculo
+            grasa_visceral = f.grasa_visceral
+            grasa_porcentaje = f.grasa_porcentaje
+
+            flexiones = f.flexiones
+            sentadillas = f.sentadillas
+            saltoLargo = f.saltoLargo
+            suspension = f.suspension
+
+            abdomen_bajo = f.abdomen_bajo
+            abdomen_alto = f.abdomen_alto
+            espinales = f.espinales
+            lumbares = f.lumbares
+            trenSuperior = f.trenSuperior
+
+            record = {
+                "cedula": cedula,
+                "apellido":apellido,
+                "nombre":nombre,
+                "genero":genero,
+                "altura": altura,
+                "peso": peso,
+                "imc": imc,
+                "musculo": musculo,
+                "grasa_visceral": grasa_visceral,
+                "grasa_porcentaje" : grasa_porcentaje,
+                "flexiones" : flexiones,
+                "sentadillas" : sentadillas,
+                "saltoLargo" : saltoLargo,
+                "suspension" : suspension,
+                "abdomen_bajo" :abdomen_bajo,
+                "abdomen_alto" :abdomen_alto,
+                "espinales" :espinales,
+                "lumbares" :lumbares,
+                "trenSuperior" :trenSuperior
+            }
+            return JsonResponse({"data": record})
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de fichas
+'''
+@login_required
+def reportes(request):
+    template = 'fisioterapia_reportes.html'
+    return render(request, template)
