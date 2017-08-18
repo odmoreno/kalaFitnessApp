@@ -73,7 +73,7 @@ def nuevoPersonal(request):
         usuario.rol = rol
         usuario.foto = form.cleaned_data['foto']
         usuario.save()
-        
+
         personal=Personal()
         personal.usuario=usuario
         personal.save()
@@ -404,14 +404,14 @@ def reporteTotal(request):
     per = []
 
     for p in personal:
-        cedula = str(p.usuario.cedula)
-        nombre = p.usuario.nombre
-        apellido = p.usuario.apellido
-        telefono = p.usuario.telefono
-        ##genero = p.usuario.genero
-        rol = p.usuario.rol.tipo
-        record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
-        per.append(record)
+        if p.usuario.estado=='A':
+            cedula = str(p.usuario.cedula)
+            nombre = p.usuario.nombre
+            apellido = p.usuario.apellido
+            telefono = p.usuario.telefono
+            rol = p.usuario.rol.tipo
+            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            per.append(record)
 
     return JsonResponse({"data": per})
 
@@ -429,7 +429,7 @@ def reporteRol(request):
     per = []
 
     for p in personal:
-        if p.usuario.rol.tipo=='fisioterapista':
+        if p.usuario.rol.tipo=='fisioterapista' and p.usuario.estado=='A':
             cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido
@@ -455,7 +455,7 @@ def reporteMujeres(request):
     per = []
 
     for p in personal:
-        if p.usuario.genero=='F':
+        if p.usuario.genero=='F' and p.usuario.estado=='A':
             cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido
@@ -480,7 +480,7 @@ def reporteHombres(request):
     per = []
 
     for p in personal:
-        if p.usuario.genero=='M':
+        if p.usuario.genero=='M' and p.usuario.estado=='A':
             cedula = str(p.usuario.cedula)
             nombre = p.usuario.nombre
             apellido = p.usuario.apellido

@@ -187,7 +187,7 @@ def reporteTotales(request):
     p = []
 
     for paciente in pacientes:
-        if paciente.usuario.genero == 'M' or paciente.usuario.genero == 'F':
+        if paciente.usuario.estado=='A':
             cedula = paciente.usuario.cedula
             nombre = paciente.usuario.nombre
             apellido = paciente.usuario.apellido
@@ -211,7 +211,7 @@ def reporteMujeres(request):
     p = []
 
     for paciente in pacientes:
-        if paciente.usuario.genero=='F':
+        if paciente.usuario.genero=='F' and paciente.usuario.estado=='A':
             cedula = paciente.usuario.cedula
             nombre = paciente.usuario.nombre
             apellido = paciente.usuario.apellido
@@ -236,7 +236,7 @@ def reporteHombres(request):
     p = []
 
     for paciente in pacientes:
-        if paciente.usuario.genero=='M':
+        if paciente.usuario.genero=='M' and paciente.usuario.estado=='A':
             cedula = (paciente.usuario.cedula)
             nombre = paciente.usuario.nombre
             apellido = paciente.usuario.apellido
