@@ -57,6 +57,7 @@ def listarDiagnosticos(request):
                 .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))\
                 .annotate(cedula=Concat('paciente__usuario__cedula', Value('')))\
                 .order_by('-creado')
+
         elif rol == 'nutricionista':
             diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
                 .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
@@ -277,6 +278,7 @@ def editarDiagnostico(request, id=0):
             if rol == 'fisioterapista':
                 template = 'diagnostico_editar.html'
                 diagnostico = DiagnosticoFisioterapia.objects.get(id=id, estado='A')
+
                 subrutinas = Subrutina.objects.filter(rutina=diagnostico.rutina, rutina__estado='A', estado='A')
             elif rol == 'nutricionista':
                 template = 'diagnostico_nut_editar.html'
@@ -388,17 +390,33 @@ Salidas:Template para renderizacion
 '''
 @login_required
 def detalleDiagnostico(request, diagnostico_id):
+    contexto = {}
     rol = None
+    diagnostico = None
+    template = None
+    subrutinas = None
+    planes_diarios = None
     sesion = request.session.get('user_sesion', None)
     if sesion:
         rol = sesion.get('rol__tipo', None)
     if rol == 'fisioterapista':
         template = 'diagnostico_detalle.html'
         diagnostico = get_object_or_404(DiagnosticoFisioterapia, pk=diagnostico_id)
-        return render(request, 'diagnostico/diagnostico_detalle.html', {'diagnostico': diagnostico})
+        subrutinas = Subrutina.objects.filter(rutina=diagnostico.rutina, rutina__estado='A', estado='A')
+        contexto['diagnostico'] = diagnostico
+        contexto['subrutinas'] = subrutinas
+        return render(request, template_name=template, context= contexto )
     elif rol == 'nutricionista':
         template = 'diagnostico_detalleNut.html'
         diagnostico = get_object_or_404(DiagnosticoNutricion, pk=diagnostico_id)
-        return render(request, 'diagnostico/diagnostico_detalleNut.html', {'diagnostico': diagnostico})
-    #usuario = paciente.usuario
+        planes_diarios = PlanNutDiario.objects.filter(estado='A', dieta=diagnostico.dieta).order_by('id')
+        contexto['diagnostico'] = diagnostico
+        contexto['planes_diarios'] = planes_diarios
+        return render(request, template_name=template, context=contexto)
+
+
+
+
+
+
 

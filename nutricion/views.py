@@ -86,6 +86,26 @@ def editar_ficha(request, ficha_id):
     }
     return render(request, template, context)
 
+'''
+Funcion: detalleFichas
+Entradas: requerimiento e Identificador de la ficha a ser visualizada
+Salidas:Template para renderizacion
+*Funcion que recibe el id de una ficha que debe ser visualizada, y muestra su informacion.*
+'''
+
+def detalleFicha(request, ficha_id):
+    contexto = {}
+    ficha = None
+    template = None
+    paciente = None
+    template = 'nutricion/ficha-detalle.html'
+    ficha = get_object_or_404(ficha_nutricion, pk=ficha_id)
+    form = FichaForm(request.POST or None, instance=ficha)
+    contexto['form'] = form
+    contexto['ficha'] = ficha
+    contexto['paciente'] = ficha.paciente
+    return render(request, template_name=template, context=contexto)
+
 
 @transaction.atomic
 def establecer_horario (request):
