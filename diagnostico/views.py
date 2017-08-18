@@ -10,9 +10,11 @@ ACTUALIZADO EN 15/07/2017
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
 from django.contrib import messages
 from django.db import transaction
 from django.http import HttpResponseForbidden
+from django.http import JsonResponse
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect, get_object_or_404
@@ -402,3 +404,48 @@ def detalleDiagnostico(request, diagnostico_id):
         return render(request, 'diagnostico/diagnostico_detalleNut.html', {'diagnostico': diagnostico})
     #usuario = paciente.usuario
 
+'''
+Funcion: reporteTotal
+Entradas: paciente_cedula, la cedula del paciente
+Salidas: JSON con todos los diagnosticos del paciente
+*Funcion que retorna la informacion de los diagnosticos de un paciente la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteTotal(request, paciente_cedula):
+    diagnosticos = DiagnosticoFisioterapia.objects.all()
+    #rutinas = Subrutina.objects.all()
+    #print rutinas
+    su = []
+
+    for d in diagnosticos:
+        if d.paciente.usuario.cedula==paciente_cedula and d.estado=='A': #and paciente.usuario.estado=='A':
+            cedula = d.paciente.usuario.cedula
+            condiciones_previas = d.condiciones_previas
+            area_afectada = d.area_afectada
+            nombre = d.paciente.usuario.nombre
+            apellido = d.paciente.usuario.apellido
+            genero = d.paciente.usuario.genero
+            receta = d.receta
+            subrutinas = su
+            record = {
+                "cedula": cedula,
+                "condiciones_previas":condiciones_previas,
+                "area_afectada":area_afectada,
+                "apellido":apellido,
+                "nombre":nombre,
+                "genero":genero,
+                "receta":receta,
+                "subrutinas": subrutinas
+            }
+            return JsonResponse({"data": record})
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de diagnosticos
+'''
+@login_required
+def reportes(request):
+    print "aquiiiii"
+    template = 'reportes_diagnostico.html'
+    return render(request, template)
