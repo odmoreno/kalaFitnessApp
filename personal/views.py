@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
+from kala.views import enviar_password_email, generar_password
 from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
 from paciente.models import Paciente
@@ -12,6 +13,7 @@ from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages as me
 from directmessages.apps import Inbox
 from directmessages.models import Message
 
@@ -71,12 +73,14 @@ def nuevoPersonal(request):
         usuario.rol = rol
         usuario.foto = form.cleaned_data['foto']
         usuario.save()
+        
         personal=Personal()
         personal.usuario=usuario
         personal.save()
         enviar_password_email(user.email, user.username, password)
         #all_personal = Usuario.objects.filter(estado="A")
         #return render(request, 'personal/index.html', {'all_personal': all_personal})
+        m.add_message(request, m.SUCCESS, 'Personal creado con exito!')
         return redirect('personal:index')
 
     context = {
@@ -98,6 +102,8 @@ def editarPersonal(request, personal_id):
     personal = get_object_or_404(Usuario, pk=personal_id)
 
     form = PersonalEditForm(request.POST or None, instance=personal)
+    user=personal.usuario
+    form.fields["email"].initial = user.email
 
     if form.is_valid():
         user=personal.usuario
@@ -112,6 +118,7 @@ def editarPersonal(request, personal_id):
         personal.rol = rol
         personal.save()
         personal = form.save()
+        m.add_message(request, m.SUCCESS, 'Personal editado con exito!')
         #all_personal = Usuario.objects.filter(estado="A")
         #return render(request, 'personal/index.html', {'all_personal': all_personal})
         return redirect('personal:index')
@@ -141,8 +148,9 @@ Salidas:Template para renderizacion
 def verMensajes(request):
     template= 'personal/mensajes.html'
 #separar mensajes
-    mensajes=Message.objects.all().filter(recipient=request.user)
-    if mensajes:
+    mensajes=Message.objects.filter(recipient=request.user)
+    print mensajes
+    if mensajes is not None:
         nombresL = []
         nombresN = []
         usuariosL = []
@@ -151,11 +159,29 @@ def verMensajes(request):
         mensajesN = []
         for m in mensajes:
             if m.read_at == None:
-                usuario=Usuario.objects.get(usuario=m.sender)
-                nombre=usuario.nombre +" "+ usuario.apellido
-                nombresN.append(nombre)
-                usuariosN.append(usuario)
-                mensajesN.append(m)
+                try:
+                    print "entro"
+                    usuario=Usuario.objects.get(usuario=m.sender)
+                    nombre = usuario.nombre + " " + usuario.apellido
+                    nombresN.append(nombre)
+                    usuariosN.append(usuario)
+                    mensajesN.append(m)
+                except:
+                    print "entro2"
+                    usuario= Usuario()
+                    usuario.estado="I"
+                    usuario.usuario=m.sender
+                    usuario.nombre="Administrador"
+                    usuario.apellido="Kala"
+                    usuario.cedula="0922658845"
+                    rol = Rol.objects.filter(tipo='administrador').first()
+                    usuario.rol=rol
+                    usuario.save()
+                    nombre = usuario.nombre + " " + usuario.apellido
+                    nombresN.append(nombre)
+                    usuariosN.append(usuario)
+                    mensajesN.append(m)
+
             else:
                 usuario = Usuario.objects.get(usuario=m.sender)
                 nombre = usuario.nombre + " " + usuario.apellido
@@ -186,13 +212,18 @@ Salidas:Template para renderizacion
 @login_required
 def leerMensaje(request, mensaje_id):
     message=Message.objects.get(id=mensaje_id)
-    Inbox.read_message(message)
+    Inbox.read_message(mensaje_id)
     user=User.objects.get(id=message.sender.id)
     usuarioN=Usuario.objects.get(usuario=user)
+    if usuarioN.rol.tipo == "administrador" or usuarioN.rol.tipo == "nutricionista" or usuarioN.rol.tipo == "fisioterapista":
+        espersonal=True
+    else:
+        espersonal=False
     nombre=usuarioN.nombre + " " + usuarioN.apellido
     data={
         'sender':nombre,
         'mensaje':message.content,
+        'personal':espersonal
 
     }
     return render(request, "personal/leerMensaje.html", data)
@@ -220,8 +251,59 @@ def nuevoMensajePaciente(request):
         print to
         to_user=to.usuario
 
-        Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
-        return render(request, "personal/mensajes.html")
+        try:
+            Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
+            me.add_message(request, me.SUCCESS, 'Mensaje Enviado con exito!')
+        except:
+            me.add_message(request, me.WARNING, 'Mensaje No pudo ser enviado!')
+        mensajes = Message.objects.filter(recipient=request.user)
+        print mensajes
+        if mensajes is not None:
+            nombresL = []
+            nombresN = []
+            usuariosL = []
+            usuariosN = []
+            mensajesL = []
+            mensajesN = []
+            for m in mensajes:
+                if m.read_at == None:
+                    try:
+                        usuario = Usuario.objects.get(usuario=m.sender)
+                        nombre = usuario.nombre + " " + usuario.apellido
+                        nombresN.append(nombre)
+                        usuariosN.append(usuario)
+                        mensajesN.append(m)
+                    except:
+                        usuario = Usuario()
+                        usuario.estado = "I"
+                        usuario.usuario = m.sender
+                        usuario.nombre = "Administrador"
+                        usuario.apellido = "Kala"
+                        usuario.cedula = "0922658845"
+                        rol = Rol.objects.filter(tipo='administrador').first()
+                        usuario.rol = rol
+                        usuario.save()
+                        nombre = usuario.nombre + " " + usuario.apellido
+                        nombresN.append(nombre)
+                        usuariosN.append(usuario)
+                        mensajesN.append(m)
+
+                else:
+                    usuario = Usuario.objects.get(usuario=m.sender)
+                    nombre = usuario.nombre + " " + usuario.apellido
+                    nombresL.append(nombre)
+                    usuariosL.append(usuario)
+                    mensajesL.append(m)
+
+            data = {
+                'mensajesL': mensajesL,
+                'nombresL': nombresL,
+                'usuariosL': usuariosL,
+                'mensajesN': mensajesN,
+                'nombresN': nombresN,
+                'usuariosN': usuariosN
+            }
+        return render(request, "personal/mensajes.html", data)
 
     return render(request, "personal/nuevoMensaje.html", data)
 
@@ -244,11 +326,65 @@ def nuevoMensajePersonal(request):
 
         to = Usuario.objects.get(pk=para)
         #to_user=to.usuario
-        to_user=User.object.get(username=to.usuario)
+        to_user=to.usuario
         print to_user
+        try:
+            Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
+            me.add_message(request, me.SUCCESS, 'Mensaje Enviado con exito!')
+        except:
+            me.add_message(request, me.WARNING, 'Mensaje No pudo ser enviado!')
 
-        Inbox.send_message(request.user, to_user, form.cleaned_data["mensaje"])
-        return render(request, "personal/mensajes.html")
+        mensajes = Message.objects.filter(recipient=request.user)
+        print mensajes
+        if mensajes is not None:
+            nombresL = []
+            nombresN = []
+            usuariosL = []
+            usuariosN = []
+            mensajesL = []
+            mensajesN = []
+            for m in mensajes:
+                if m.read_at == None:
+                    try:
+                        print "entro"
+                        usuario = Usuario.objects.get(usuario=m.sender)
+                        nombre = usuario.nombre + " " + usuario.apellido
+                        nombresN.append(nombre)
+                        usuariosN.append(usuario)
+                        mensajesN.append(m)
+                    except:
+                        print "entro2"
+                        usuario = Usuario()
+                        usuario.estado = "I"
+                        usuario.usuario = m.sender
+                        usuario.nombre = "Administrador"
+                        usuario.apellido = "Kala"
+                        usuario.cedula = "0922658845"
+                        rol = Rol.objects.filter(tipo='administrador').first()
+                        usuario.rol = rol
+                        usuario.save()
+                        nombre = usuario.nombre + " " + usuario.apellido
+                        nombresN.append(nombre)
+                        usuariosN.append(usuario)
+                        mensajesN.append(m)
+
+                else:
+                    usuario = Usuario.objects.get(usuario=m.sender)
+                    nombre = usuario.nombre + " " + usuario.apellido
+                    nombresL.append(nombre)
+                    usuariosL.append(usuario)
+                    mensajesL.append(m)
+
+            data = {
+                'mensajesL': mensajesL,
+                'nombresL': nombresL,
+                'usuariosL': usuariosL,
+                'mensajesN': mensajesN,
+                'nombresN': nombresN,
+                'usuariosN': usuariosN
+            }
+
+        return render(request, "personal/mensajes.html", data)
     else:
         form=ComentarioPersonalForm()
 

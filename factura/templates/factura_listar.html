@@ -37,7 +37,7 @@
                                         {% for factura in facturas %}
                                                 <tr>
                                                     <td style="text-align: center;">{{factura.id}}</td>
-                                                    <td>{{ factura.paciente_id }} - {{ factura.paciente__usuario__apellido }} {{ factura.paciente__usuario__nombre }}</td>
+                                                    <td>{{ factura.paciente__usuario__nombre }} {{ factura.paciente__usuario__apellido }}</td>
                                                     <td>{{ factura.serie}}</td>
                                                     <td>${{ factura.total }}</td>
                                                     <td>{{ factura.fecha_vencimiento }}</td>

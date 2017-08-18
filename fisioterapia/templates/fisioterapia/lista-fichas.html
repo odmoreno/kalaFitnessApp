@@ -20,7 +20,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Paciente ID</th>
+                                        <th>Detalle</th>
                                         <th>Foto</th>
                                         <th>Nombre </th>
                                         <th>Apellido</th>
@@ -34,7 +34,9 @@
                                     {% if fichas %}
                                         {% for ficha in fichas %}
                                             <tr class="">
-                                                <td>{{ ficha.paciente_id }}</td>
+                                                <td><button type="submit" class="btn btn-default">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </button></td>
                                                 <td><img src="/static/{{ ficha.paciente.usuario.foto }}" class="img-responsive" height="50px" width="50px"/></td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.nombre }}</td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.apellido }}</td>

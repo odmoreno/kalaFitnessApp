@@ -23,6 +23,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, Pa
 
 urlpatterns = [
     url(r'^', include('kalaapp.urls')),
+    url(r'^api/', include('clienteRest.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^paciente/', include('paciente.urls')),
     url(r'^personal/', include('personal.urls')),

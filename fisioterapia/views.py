@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 from kalaapp.models import Usuario, Rol
 from paciente.models import Paciente
 from personal.models import Personal
-from fisioterapia.models import Ficha
+from fisioterapia.models import Ficha , Horario
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
-from .forms import FichaForm
+from .forms import FichaForm, HorariosForm
 
 
 from django.shortcuts import render
@@ -33,6 +33,7 @@ def crear_ficha(request):
     form = FichaForm(request.POST or None)
     pacientes = Paciente.objects.all()
     sesion = request.session.get('user_sesion', None)
+
     print form._errors
     if form.is_valid():
         ficha = form.save(commit=False)
@@ -41,7 +42,7 @@ def crear_ficha(request):
         paciente = get_object_or_404(Paciente, pk=paciente_id)
         ficha.paciente = paciente
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
-        ficha.paciente = paciente
+        ficha.personal = personal
         ficha.save()
         return HttpResponseRedirect("/fisioterapia/ficha/lista/")
     context = {
@@ -86,6 +87,11 @@ def editar_ficha(request, ficha_id):
         ficha = form.save(commit=False)
         paciente_id = request.POST.get('paciente')
         paciente = get_object_or_404(Paciente, pk=paciente_id)
+        print "ABC", paciente, sesion.get('personal__id', 0)
+        #
+        #
+        #
+
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
         ficha.paciente = paciente
         ficha.personal = personal
@@ -99,57 +105,33 @@ def editar_ficha(request, ficha_id):
     }
     return render(request, template, context)
 
-
-def verMensajes(request, personal_id=None):
-    template= 'fisioterapia/mensajes.html'
-
-    mensajes=Message.objects.all().filter(recipient=request.user)
-    if mensajes:
-        nombres=[]
-        usuarios=[]
-        for m in mensajes:
-            usuario=Usuario.objects.get(usuario=m.sender)
-            nombre=usuario.nombre +" "+ usuario.apellido
-            nombres.append(nombre)
-            usuarios.append(usuario)
-
-        data={
-            'mensajes': mensajes,
-            'nombres':nombres,
-            'usuarios':usuarios
-        }
-
-    data={}
-    return render(request,template,data)
-
-def leerMensaje(request, mensaje_id):
-    message=Message.objects.get(id=mensaje_id)
-    user=User.objects.get(id=message.sender.id)
-    usuarioN=Usuario.objects.get(usuario=user)
-    nombre=usuarioN.nombre + " " + usuarioN.apellido
-    data={
-        'sender':nombre,
-        'mensaje':message.content,
-
-    }
-    return render(request, "fisioterapia/leerMensaje.html", data)
-
-
-###CORREGIR###
-def nuevoMensaje(request):
-    personal= Usuario.objects.all()
-    print personal
-    form=ComentarioForm(request.POST or None)
-    data={
-        'personal':personal,
-        'form':form,
-    }
+@transaction.atomic
+def establecer_horario (request):
+    template= 'fisioterapia/crear-horario.html'
+    form = HorariosForm(request.POST or None)
+    sesion = request.session.get('user_sesion', None)
+    print form._errors
     if form.is_valid():
-        para=form.cleaned_data["Destino"]
-        to_user=para[0].usuario.usuario
+        horario = form.save(commit=False)
+        personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+        horario.personal = personal
+        horario.save()
+        return HttpResponseRedirect("/fisioterapia/horario/ver/")
+    context ={
+        "form" : form
+    }
+    return render(request, template, context)
 
-        Inbox.send_message(request.user, to_user, form.cleaned_data["comentario"])
-        return render(request, "fisioterapia/mensajes.html")
+def ver_horarios(request):
+    template = "fisioterapia/listar-horarios.html"
+    horarios = Horario.objects.all()
+    context = {
+        "horarios": horarios,
+    }
+    return render(request, template, context)
 
-    return render(request, "fisioterapia/nuevoMensaje.html", data)
-
+@transaction.atomic
+def eliminar_cita(request, horario_id):
+    cita = Horario.objects.get(pk=horario_id)
+    cita.delete()
+    return HttpResponseRedirect("/fisioterapia/horario/ver/")

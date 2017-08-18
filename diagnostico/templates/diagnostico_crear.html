@@ -42,21 +42,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" placeholder="Descripción de las condiciones previas" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" pattern="\w+" placeholder="Descripción de las condiciones previas" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" placeholder="Descripción de la área afectada" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" pattern="\w+" placeholder="Descripción de la área afectada" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" placeholder="Descripción de la receta" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" pattern="\w+" placeholder="Descripción de la receta" required></textarea>
                                             </div>
                                         </div>
 
@@ -105,15 +105,8 @@
                                                                                 </div>
                                                                                 <div class="row" style="padding-top: 20px">
                                                                                     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                                                                                        <div class="row">
-                                                                                            <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
                                                                                                 <label class="control-label" for="videoenlace">Video demostraci&oacute;n:</label>
                                                                                                 <input class="form-control" id="input-videoenlace" type="text" maxlength="1000" oninput="cargarVideo();" name="videoenlace" placeholder="Enlace al video"/>
-                                                                                            </div>
-                                                                                            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
-                                                                                                <a href="" target="_blank" id="btn-vervideo" class="btn btn-primary pull-right" style="text-decoration: none; margin-top: 25px"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                                                                            </div>
-                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -203,7 +196,7 @@
             });
         </script>
         <script>
-            /*$('#textarea').keyup(validarExpresion);
+            $('#textarea').keyup(validarExpresion);
 
                 function validarExpresion() {
                     var errorMsg = "Utiliza un formato que coincida con el solicitado.";
@@ -229,7 +222,7 @@
                         }
                         return !hasError;
                     });
-                }*/
+                }
             </script>
     <script>
         $(document).ready(

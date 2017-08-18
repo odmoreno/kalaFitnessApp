@@ -1,7 +1,25 @@
+from datetimewidget.widgets import DateWidget, TimeWidget
 from django import forms
-from django.forms import NumberInput, ModelForm, Select, TextInput, Textarea
-from nutricion.models import ficha_nutricion
+from django.forms import NumberInput, ModelForm, Select, TextInput, Textarea, RadioSelect
+from nutricion.models import ficha_nutricion, HorarioNut
 
+
+class HorizontalRadioSelect(forms.RadioSelect):
+    template_name = 'nutricion/horizontal_select.html'
+
+class HorariosForm(ModelForm):
+    class Meta:
+        model = HorarioNut
+        fields = [ 'fecha', 'hora', 'detalle', 'estado' ]
+        labels = {'fecha':'Fecha', 'hora': 'Hora', 'detalle': 'Detalle', 'estado': 'Estado'}
+        widgets = {
+            'fecha': DateWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
+            'hora': TimeWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
+            'detalle': Textarea(
+                attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...', 'rows': 10, 'cols': 40,
+                       'style': 'height: 6em;'}),
+            'estado': Select(attrs={'class': u'form-control'}),
+                   }
 
 class FichaForm(ModelForm):
     class Meta:
@@ -34,17 +52,17 @@ class FichaForm(ModelForm):
              'gaseosas': Select(attrs={'class': u'form-control'}),
              'energizantes': Select(attrs={'class': u'form-control'}),
              'infusiones': Select(attrs={'class': u'form-control'}),
-             'lacteos_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces - 0  para Rara vez y Nunca'}),
-             'vegetales_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'frutas_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'cho_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'carnes_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'comidas_rapidas_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'frituras_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'enlatados_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'gaseosas_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'energizantes_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
-             'infusiones_input': TextInput(attrs={'class': u'form-control', 'placeholder': u'# de veces -  0  para Rara vez y Nunca'}),
+             'lacteos_input': HorizontalRadioSelect(),
+             'vegetales_input': HorizontalRadioSelect(),
+             'frutas_input': HorizontalRadioSelect(),
+             'cho_input': HorizontalRadioSelect(),
+             'carnes_input': HorizontalRadioSelect(),
+             'comidas_rapidas_input': HorizontalRadioSelect(),
+             'frituras_input': HorizontalRadioSelect(),
+             'enlatados_input': HorizontalRadioSelect(),
+             'gaseosas_input': HorizontalRadioSelect(),
+             'energizantes_input': HorizontalRadioSelect(),
+             'infusiones_input': HorizontalRadioSelect(),
              'pregunta1': Textarea(attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...','rows': 10,'cols': 40,'style': 'height: 6em;'}),
              'pregunta2': Textarea(attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...','rows': 10,'cols': 40,'style': 'height: 6em;'}),
              'pregunta3': Textarea(attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...','rows': 10,'cols': 40,'style': 'height: 6em;'}),
