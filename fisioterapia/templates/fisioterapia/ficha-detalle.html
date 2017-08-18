@@ -1,0 +1,225 @@
+{%  extends 'blank.html' %}
+{% load staticfiles %}
+{% block title %}Fisioterapia - Ficha Medica{% endblock %}
+
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default" style="margin-top: 40px">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                     <b><h4>Detalles Ficha {{ ficha.paciente.usuario.nombre }} {{ ficha.paciente.usuario.apellido }}</h4></b>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                     <a class="btn btn-link pull-right" href="{% url 'fisioterapia:lista_fichas' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#ficha-pills" data-toggle="tab">Ficha Kala</a>
+                                </li>
+                                <li><a href="#estado-pills" data-toggle="tab">Estado Fisico</a>
+                                </li>
+                            </ul>
+                            <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="ficha-pills">
+                                        <h4>Home Tab</h4>
+                                        <div class="row" style="padding-top: 20px">
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.altura.label_tag}}</label>
+                                                    {{ form.altura }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">{{ form.musculo.label_tag}}</label>
+                                                    {{ form.musculo }}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.peso.label_tag}}</label>
+                                                    {{ form.peso }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.grasa_visceral.label_tag}}</label>
+                                                    {{ form.grasa_visceral }}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.imc.label_tag}}</label>
+                                                    {{ form.imc }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.grasa_porcentaje.label_tag}}</label>
+                                                    {{ form.grasa_porcentaje }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding-top: 20px">
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cuello.label_tag }}</label>
+                                                     {{ form.cuello }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.brazo_derecho.label_tag }}</label>
+                                                     {{ form.brazo_derecho }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.antebrazo_izquierdo.label_tag }}</label>
+                                                     {{ form.antebrazo_izquierdo }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.muslo_derecho.label_tag }}</label>
+                                                     {{ form.muslo_derecho }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pantorrilla_izquierda.label_tag }}</label>
+                                                     {{ form.pantorrilla_izquierda }}
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.hombros.label_tag }}</label>
+                                                     {{ form.hombros }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.brazo_izquierdo.label_tag }}</label>
+                                                     {{ form.brazo_izquierdo }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cintura.label_tag }}</label>
+                                                     {{ form.cintura }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.muslo_izquierdo.label_tag }}</label>
+                                                     {{ form.muslo_izquierdo }}
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pecho.label_tag }}</label>
+                                                     {{ form.pecho }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.antebrazo_derecho.label_tag }}</label>
+                                                     {{ form.antebrazo_derecho }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cadera.label_tag }}</label>
+                                                     {{ form.cadera }}
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pantorrilla_derecha.label_tag }}</label>
+                                                     {{ form.pantorrilla_derecha }}
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="estado-pills">
+                                                                        <h4>Profile Tab</h4>
+                                                                        <div class="row" style="padding-top: 20px">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.flexiones.label_tag }}</label>
+                                                                                    {{ form.flexiones }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.espinales.label_tag }}</label>
+                                                                                    {{ form.espinales }}
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.abdomen_bajo.label_tag }}</label>
+                                                                                    {{ form.abdomen_bajo }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.abdomen_alto.label_tag }}</label>
+                                                                                    {{ form.abdomen_alto }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.saltoLargo.label_tag }}</label>
+                                                                                    {{ form.saltoLargo }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.lumbares.label_tag }}</label>
+                                                                                    {{ form.lumbares }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="padding-top: 20px">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                     <label class="control-label">{{ form.sentadillas.label_tag }}</label>
+                                                                                     {{ form.sentadillas }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                     <label class="control-label">{{ form.suspension.label_tag }}</label>
+                                                                                     {{ form.suspension }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    {{ form.message.errors }}
+                                                                                    {{ field.errors }}
+                                                                                    {{ form.subject.errors }}
+                                                                                    {{ form.sender.errors }}
+                                                                                     <label class="control-label">{{ form.trenSuperior.label_tag }}</label>
+                                                                                     {{ form.trenSuperior }}
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    {{ form.message.errors }}
+                                                                                    {{ field.errors }}
+                                                                                    {{ form.subject.errors }}
+                                                                                    {{ form.sender.errors }}
+                                                                                     <label class="control-label">{{ form.trenInferior.label_tag }}</label>
+                                                                                     {{ form.trenInferior }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                </div>
+
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
