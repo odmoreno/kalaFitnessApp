@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^personal/', api.PersonalList.as_view()),
     url(r'^personal/(?P<paciente_us>[0-9]+)/$', api.PersonalAsignadoList.as_view()),
     url(r'^diagnosticoN/(?P<paciente_us>[0-9]+)/$', api.DiagnosticoNutList.as_view()),
+    url(r'^dietas/(?P<paciente_us>[0-9]+)/$', api.DietasNestedList.as_view()),
     url(r'^diagnosticoF/(?P<paciente_us>[0-9]+)/$', api.DiagnosticoFisList.as_view()),
     url(r'^plandieta/(?P<paciente_us>[0-9]+)/$', api.DietasList.as_view()),
     url(r'^rutinas/(?P<paciente_us>[0-9]+)/$', api.RutinasList.as_view()),

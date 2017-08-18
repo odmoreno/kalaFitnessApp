@@ -79,4 +79,20 @@ class MessageSerializer(serializers.ModelSerializer):
         model = Message
         fields = '__all__'
 
+class PlanNutDiarioNestedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlanNutDiario
+        fields = ('dia','desayuno','almuerzo','cena')
+
+class DietasNestedSerializer(serializers.ModelSerializer):
+    dietas = serializers.SerializerMethodField('obtenerDietas')
+
+    def obtenerDietas(self, dieta):
+        plan = PlanNutDiario.objects.filter(dieta=dieta.dieta)
+        response = PlanNutDiarioSerializer(plan, many=True)
+        return response.data
+    class Meta:
+        model=DiagnosticoNutricion
+        fields=('condiciones_previas','dietas')
+
 

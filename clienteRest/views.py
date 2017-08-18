@@ -16,7 +16,7 @@ from rest_framework.renderers import JSONRenderer
 from nutricion.models import ficha_nutricion
 from directmessages.apps import Inbox
 from directmessages.models import Message
-from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer, MessageSerializer
+from .serializers import DietasNestedSerializer, PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer, MessageSerializer
 # Vistas que definiran la funcionalidad del API REST de cliente
 # Seguir Las Historias de Usuario de Cliente
 # Mi progreso, Mis Mensajes, Enviar Mensajes, Recibir Mensajes, Ver Citas, Separar Citas.
@@ -139,6 +139,14 @@ class DietasList(APIView):
             return Response(response.data or None)
         except:
             return Response({"data": "No es un paciente"})
+
+class DietasNestedList(APIView):
+
+    def get(self, request, paciente_us):
+        paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
+        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+        response = DietasNestedSerializer(diagnosticos, many=True)
+        return Response(response.data or None)
 
 class FichaFisList (APIView):
     def get(self, request, paciente_us):
