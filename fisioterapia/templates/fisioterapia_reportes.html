@@ -6,7 +6,7 @@
 <div id="page-wrapper">
   <div class="container-fluid">
     <div class="panel panel-default" style="margin-top: 40px">
-        <div class="panel-heading"><h4><b>Reportes de diagnostico</b></h4></div>
+        <div class="panel-heading"><h4><b>Reportes de ficha medica</b></h4></div>
         <div class="panel-body">
           <div class="container-fluid">
                 <div >
@@ -32,29 +32,10 @@
             {text: 'IMC', style: 'subItem'},
             {text: 'Musculo', style: 'subItem'}
         ],[
-            {text:
-                (function(){
-                    if (altura) { return altura;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (peso) { return peso;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (imc) { return imc;}
-                    return "";
-                })()
-            },{text:
-                (function(){
-                    if (musculo) { return musculo;}
-                    return "";
-                })()
-            }
+            {text: " " + altura},
+            {text: " " + peso},
+            {text: " " + imc},
+            {text: " " + musculo}
         ]
     ]
   }
@@ -68,34 +49,11 @@
             {text: 'Sentadillas', style: 'subItem'},
             {text: 'Salto largo', style: 'subItem'}
         ],[
-            {text:
-                (function(){
-                    if (visceral) { return visceral;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (porcentaje) { return porcentaje;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (flexiones) { return flexiones;}
-                    return "";
-                })()
-            },{text:
-                (function(){
-                    if (sentadillas) { return sentadillas;}
-                    return "";
-                })()
-            },{text:
-                (function(){
-                    if (salto) { return salto;}
-                    return "";
-                })()
-            }
+            {text: " " + visceral},
+            {text: " " + porcentaje},
+            {text: " " + flexiones},
+            {text: " " + sentadillas},
+            {text: " " + salto}
         ]
     ]
   }
@@ -104,39 +62,16 @@
     return [
         [
             {text: 'Abdomen bajo', style: 'subItem'},
-            {text: 'Abdomen bajo', style: 'subItem'},
+            {text: 'Abdomen alto', style: 'subItem'},
             {text: 'Espinales', style: 'subItem'},
             {text: 'Lumbares', style: 'subItem'},
             {text: 'Tren SUperior', style: 'subItem'}
         ],[
-            {text:
-                (function(){
-                    if (bajo) { return bajo;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (alto) { return alto;}
-                    return "";
-                })()
-
-            },{text:
-                (function(){
-                    if (espinales) { return espinales;}
-                    return "";
-                })()
-            },{text:
-                (function(){
-                    if (lumbares) { return lumbares;}
-                    return "";
-                })()
-            },{text:
-                (function(){
-                    if (trenSuperior) { return trenSuperior;}
-                    return "";
-                })()
-            }
+            {text: " " + bajo},
+            {text: " " + alto},
+            {text: " " + espinales},
+            {text: " " + lumbares},
+            {text: " " + trenSuperior}
         ]
     ]
   }
