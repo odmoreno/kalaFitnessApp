@@ -4,9 +4,9 @@ from kalaapp.models import Usuario
 from paciente.models import Paciente
 from personal.models import Personal
 from diagnostico.models import DiagnosticoNutricion, DiagnosticoFisioterapia, Subrutina, PlanNutDiario, Rutina, Dieta
-from fisioterapia.models import Ficha
+from fisioterapia.models import Ficha, Horario
 from directmessages.models import Message
-from nutricion.models import ficha_nutricion
+from nutricion.models import ficha_nutricion, HorarioNut
 
 ## Serializers para los modelos que usaremos en la API
 class UserSerializer(serializers.ModelSerializer):
@@ -68,6 +68,17 @@ class SubrutinaSerializer(serializers.ModelSerializer):
         model = Subrutina
         fields = '__all__'
 
+class RutinaNestedSerializer(serializers.ModelSerializer):
+    subrutina=serializers.SerializerMethodField('obtenerRutinas')
+    def obtenerRutinas(self, rutina):
+        plan = Rutina.objects.filter(subrutina=subrutina)
+        response = SubrutinaSerializer(plan, many=True)
+        return response.data
+
+    class Meta:
+        model = Rutina
+        fields = '__all__'
+
 
 class PlanNutDiarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -94,5 +105,16 @@ class DietasNestedSerializer(serializers.ModelSerializer):
     class Meta:
         model=DiagnosticoNutricion
         fields=('condiciones_previas','dietas')
+
+class HorarioFisSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Horario
+        fields=('personal','fecha','hora','detalle','estado')
+class HorarioNutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HorarioNut
+        fields=('personal','fecha','hora','detalle','estado')
+
+
 
 
