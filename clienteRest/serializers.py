@@ -104,7 +104,7 @@ class DietasNestedSerializer(serializers.ModelSerializer):
         return response.data
     class Meta:
         model=DiagnosticoNutricion
-        fields=('condiciones_previas','dietas')
+        fields=('id','condiciones_previas','dietas')
 
 class HorarioFisSerializer(serializers.ModelSerializer):
     class Meta:
