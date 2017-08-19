@@ -432,9 +432,7 @@ en forma de un JSON*
 @login_required
 def reporteTotal(request, paciente_cedula):
     diagnosticos = DiagnosticoFisioterapia.objects.all()
-    #rutinas = Subrutina.objects.all()
-    #print rutinas
-    su = []
+    subrutinas = []
 
     for d in diagnosticos:
         if d.paciente.usuario.cedula==paciente_cedula and d.estado=='A': #and paciente.usuario.estado=='A':
@@ -445,7 +443,10 @@ def reporteTotal(request, paciente_cedula):
             apellido = d.paciente.usuario.apellido
             genero = d.paciente.usuario.genero
             receta = d.receta
-            subrutinas = su
+
+            for subrutina in d.rutina.subrutina.all():
+                subrutinas.append({"nombre":subrutina.nombre, "detalle":subrutina.detalle, "veces":subrutina.veces, "repeticiones":subrutina.repeticiones, "descanso":subrutina.descanso})
+
             record = {
                 "cedula": cedula,
                 "condiciones_previas":condiciones_previas,
@@ -456,6 +457,7 @@ def reporteTotal(request, paciente_cedula):
                 "receta":receta,
                 "subrutinas": subrutinas
             }
+
             return JsonResponse({"data": record})
 '''
 Funcion: reportes

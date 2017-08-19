@@ -32,46 +32,22 @@
   function body(data){
     var body = [
         [
-            {text: 'Cedula', style: 'subItem'
-            }, {text: 'Nombre', style: 'subItem'
-            }, {text: 'Apellido', style: 'subItem'
-            }, {text: 'Telefono', style: 'subItem'
-          }, {text: 'Rol', style: 'subItem'
-            }
+            {text: 'Cedula', style: 'subItem'},
+            {text: 'Nombre', style: 'subItem'},
+            {text: 'Apellido', style: 'subItem'},
+            {text: 'Telefono', style: 'subItem'},
+            {text: 'Rol', style: 'subItem'}
         ]
     ]
 
     data.forEach(function(obj){
         body.push(
             [
-                {text:
-                    (function(){
-                        if (obj.cedula) { return obj.cedula;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.nombre) { return obj.nombre;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.apellido) { return obj.apellido;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (obj.telefono) { return obj.telefono;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (obj.rol) { return obj.rol;}
-                        return "";
-                    })()
-                }
+                {text: ' ' + obj.cedula},
+                {text: ' ' + obj.nombre},
+                {text: ' ' + obj.apellido},
+                {text: ' ' + obj.telefono},
+                {text: ' ' + obj.rol}
             ]
         );
     });
@@ -154,6 +130,7 @@
 
   $("#generar").click(function(){
     var value = $('#tipo').find(":selected").text();
+    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
     if (value == "Total") {
         $.get("/personal/reporte/total", function(res, status){

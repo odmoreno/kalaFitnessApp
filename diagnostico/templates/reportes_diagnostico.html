@@ -28,38 +28,21 @@
     var body = [
         [
             {text: 'Nombre', style: 'subItem'},
-            {text: 'descripcion', style: 'subItem'},
+            {text: 'Detalle', style: 'subItem'},
+            {text: 'Veces', style: 'subItem'},
             {text: 'Repeticiones', style: 'subItem'},
-            {text: 'Veces por repeticion', style: 'subItem'}
+            {text: 'Descanso', style: 'subItem'}
         ]
     ]
 
     data.forEach(function(obj){
         body.push(
             [
-                {text:
-                    (function(){
-                        if (obj.nombre) { return obj.nombre;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.descripcion) { return obj.descripcion;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.repeticiones) { return obj.repeticiones;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (obj.veces_repeticion) { return obj.veces_repeticion;}
-                        return "";
-                    })()
-                }
+                {text: ' '+ obj.nombre},
+                {text: ' '+ obj.detalle},
+                {text: ' '+ obj.veces},
+                {text: ' '+ obj.repeticiones},
+                {text: ' '+ obj.descanso}
             ]
         );
     });
@@ -68,16 +51,8 @@
 
   function pdf(data, nombre){
     var today = new Date();
-    var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10) {
-        dd='0'+dd
-    }
-    if(mm<10) {
-        mm='0'+mm
-    }
-    today = mm+'/'+dd+'/'+yyyy;
+    today = mm+'/'+ today.getDate() +'/'+ today.getFullYear();
 
     var pdf = {
        content: [
@@ -113,15 +88,15 @@
                        text: data.receta + "\n\n"
                    }
                ]
-           },
+           },"Subrutinas del diagnostico",
            {
                columns : [
                    { width: '*', text: ''},
                    {
                        width: 'auto',
                        table: {
-                           widths: ['*','*','*','*'],
-                           body: body([{veces_repeticion:"asd", nombre:"asda", descripcion:"asdas",repeticiones:"12"}])
+                           widths: ['*','*','*','*','*'],
+                           body: body(data.subrutinas)
                          }
                    },
                    { width: '*', text: ''}
@@ -157,9 +132,8 @@
 
   $("#generar").click(function(){
     var value = $('#cedula').val();
-
+    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
     $.get("/diagnostico/reporte/" + value, function(res){
-      console.log(value, res.data);
       pdf(res.data, "reporte_diagnostico.pdf");
     });
 

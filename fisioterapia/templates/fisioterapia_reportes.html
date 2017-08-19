@@ -177,6 +177,7 @@
 
   $("#generar").click(function(){
     var value = $('#cedula').val();
+    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
     $.get("/fisioterapia/reporte/ficha/" + value, function(res){
       console.log(value, res.data);
