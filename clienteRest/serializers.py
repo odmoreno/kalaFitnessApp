@@ -70,14 +70,15 @@ class SubrutinaSerializer(serializers.ModelSerializer):
 
 class RutinaNestedSerializer(serializers.ModelSerializer):
     subrutina=serializers.SerializerMethodField('obtenerRutinas')
-    def obtenerRutinas(self, rutina):
-        plan = Rutina.objects.filter(subrutina=subrutina)
-        response = SubrutinaSerializer(plan, many=True)
+    def obtenerRutinas(self, diagnosticos):
+        rutinas = []
+        for y in diagnosticos.rutina.subrutina.all():
+            rutinas.append(y)
+        response = SubrutinaSerializer(rutinas, many=True)
         return response.data
-
     class Meta:
-        model = Rutina
-        fields = '__all__'
+        model = DiagnosticoFisioterapia
+        fields = ('id','condiciones_previas','subrutina')
 
 
 class PlanNutDiarioSerializer(serializers.ModelSerializer):

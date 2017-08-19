@@ -123,7 +123,7 @@ class RutinasList(APIView):
         #except:
         #return Response({"mensaje": "No es un paciente"})
 class RutinasNestedList(APIView):
-    def get(self, paciente_us):
+    def get(self, request, paciente_us):
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
         diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente)
         response = RutinaNestedSerializer(diagnosticos, many=True)

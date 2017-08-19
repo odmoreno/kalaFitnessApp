@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^dietas/(?P<paciente_us>[0-9]+)/$', api.DietasNestedList.as_view()),
     url(r'^diagnosticoF/(?P<paciente_us>[0-9]+)/$', api.DiagnosticoFisList.as_view()),
     url(r'^plandieta/(?P<paciente_us>[0-9]+)/$', api.DietasList.as_view()),
-    url(r'^rutinas/(?P<paciente_us>[0-9]+)/$', api.RutinasList.as_view()),
+    url(r'^rutinas/(?P<paciente_us>[0-9]+)/$', api.RutinasNestedList.as_view()),
     url(r'^fichas/fisioterapia/(?P<paciente_us>[0-9]+)/$', api.FichaFisList.as_view()),
     url(r'^usuario/datos/(?P<token>\w+)/$', api.UsuarioDatos.as_view()),
     url(r'^citas/fis/(?P<paciente_us>[0-9]+)/$', api.HorariosFisList.as_view()),
