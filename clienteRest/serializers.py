@@ -96,7 +96,7 @@ class PlanNutDiarioNestedSerializer(serializers.ModelSerializer):
         fields = ('dia','desayuno','almuerzo','cena')
 
 class DietasNestedSerializer(serializers.ModelSerializer):
-    dietas = serializers.SerializerMethodField('obtenerDietas')
+    plan_diario = serializers.SerializerMethodField('obtenerDietas')
 
     def obtenerDietas(self, dieta):
         plan = PlanNutDiario.objects.filter(dieta=dieta.dieta)
@@ -104,7 +104,7 @@ class DietasNestedSerializer(serializers.ModelSerializer):
         return response.data
     class Meta:
         model=DiagnosticoNutricion
-        fields=('id','condiciones_previas','dietas')
+        fields=('id','condiciones_previas','plan_diario')
 
 class HorarioFisSerializer(serializers.ModelSerializer):
     class Meta:
