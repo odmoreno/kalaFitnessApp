@@ -151,7 +151,7 @@ class DietasNestedList(APIView):
 
     def get(self, request, paciente_us):
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente).order_by('-id')
         response = DietasNestedSerializer(diagnosticos, many=True)
         return Response(response.data or None)
 
