@@ -204,7 +204,7 @@ class HorariosFisList(APIView):
         if response.data:
             return Response(response.data)
         else:
-            return Response({"Mensaje":"Cita Guardada!"})
+            return Response({"Mensaje":"No hay horarios Disponibles"})
 
     #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
 
@@ -227,7 +227,10 @@ class HorariosNutList(APIView):
     def get(self, request):
         citasLibres=HorarioNut.objects.filter(estado="1")
         response=HorarioNutSerializer(citasLibres, many=True)
-        return Response(response.data )
+        if response.data:
+            return Response(response.data)
+        else:
+            return Response({"Mensaje":"No hay horarios Disponibles"})
 
     #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
 
