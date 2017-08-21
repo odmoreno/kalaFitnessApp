@@ -80,7 +80,7 @@ class DiagnosticoNutList(APIView):
         #5555555557
         try:
             paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A')
             dieta=[]
             for d in diagnosticos:
                 dieta.append(d)
@@ -98,7 +98,7 @@ class DiagnosticoFisList(APIView):
     def get(self, request, paciente_us=None):
         try:
             paciente =get_object_or_404(Paciente, usuario=request.user)
-            diagnosticos=DiagnosticoFisioterapia.objects.filter(paciente=paciente)
+            diagnosticos=DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
             response=DiagnosticoFisSerializer(diagnosticos, many=True)
             return Response(response.data or None)
 
@@ -111,7 +111,7 @@ class RutinasList(APIView):
     def get(self, request, paciente_us):
         #try:
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente)
+        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
         rutinas=[]
         for x in diagnosticos:
             rut=x.rutina
@@ -125,7 +125,7 @@ class RutinasList(APIView):
 class RutinasNestedList(APIView):
     def get(self, request, paciente_us):
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente)
+        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
         response = RutinaNestedSerializer(diagnosticos, many=True)
         return Response(response.data or None)
 
@@ -135,7 +135,7 @@ class DietasList(APIView):
     def get(self, request, paciente_us):
         try:
             paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A')
             dietas=[]
             for x in diagnosticos:
                 dieta=x.dieta
@@ -151,7 +151,7 @@ class DietasNestedList(APIView):
 
     def get(self, request, paciente_us):
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A')
         response = DietasNestedSerializer(diagnosticos, many=True)
         return Response(response.data or None)
 
