@@ -201,7 +201,10 @@ class HorariosFisList(APIView):
     def get(self, request):
         citasLibres=Horario.objects.filter(estado="1")
         response=HorarioFisSerializer(citasLibres, many=True)
-        return Response(response.data)
+        if response.data:
+            return Response(response.data)
+        else:
+            return Response({"Mensaje":"Cita Guardada!"})
 
     #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
 
@@ -209,22 +212,22 @@ class HorariosFisList(APIView):
         citaID=request.data[u'citaID']
         paciente_us=request.data[u'paciente_us']
 
-        citaASeparar=Horario.objects.filter(pk=citaID)
+        citaASeparar=Horario.objects.get(pk=citaID)
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
         try:
             citaASeparar.paciente=paciente
             citaASeparar.estado="2"
             citaASeparar.save()
             return Response({"Mensaje":"Cita Guardada!"})
-        except E:
-            print E
+        except Exception, E:
+            print str(E)
             return Response({"Mensaje":"Se produjo un error al separa la cita"}, status= 300)
 
 class HorariosNutList(APIView):
     def get(self, request):
         citasLibres=HorarioNut.objects.filter(estado="1")
         response=HorarioNutSerializer(citasLibres, many=True)
-        return Response(response.data)
+        return Response(response.data )
 
     #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
 
