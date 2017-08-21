@@ -36,7 +36,7 @@
                                     {% if fichas %}
                                         {% for ficha in fichas %}
                                             <tr class="">
-                                                <td style="text-align: center;"><a href="{% url 'nutricion:detail' ficha.id %}"><button type="submit" class="btn btn-primary">
+                                                <td style="text-align: center;"><a href="{% url 'nutricion:detail' ficha.id %}"><button type="submit" class="btn btn-default">
                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                     </button></a></td>
                                                 <td><img src="/static/{{ ficha.paciente.usuario.foto }}" class="img-responsive" height="50px" width="50px"/></td>
