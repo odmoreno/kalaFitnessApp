@@ -105,7 +105,8 @@ def PacienteNuevo(request):
         # pacientes = Paciente.objects.all()
         # return render(request, 'paciente/index.html', {'pacientes': pacientes})
         return redirect('paciente:index')
-
+    else:
+        print form._errors
     context = {
         "form": form,
     }

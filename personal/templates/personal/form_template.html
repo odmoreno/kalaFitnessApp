@@ -2,7 +2,7 @@
 {% with form_=form|as_bootstrap %}
     {% for field in form %}
         <div class="form-group">
-             <div class="col-sm-offset-2 col-sm-10">{{ field.errors }}</div> 
+            <span class="text-danger small"> {{ field.errors }} </span>
             {{ field.label_tag }}
             {{ field }}
         </div>
