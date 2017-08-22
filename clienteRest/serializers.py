@@ -36,7 +36,7 @@ class PersonalSerializer(serializers.ModelSerializer):
 class FichaFisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ficha
-        fields = '__all__'
+        fields = ('id', 'creado', 'peso', 'imc', 'musculo', 'grasa_visceral', 'grasa_porcentaje')
 
 class FichaNutSerializer(serializers.ModelSerializer):
     class Meta:
