@@ -133,11 +133,24 @@
   $("#generar").click(function(){
     var value = $('#cedula').val();
     setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
-    $.get("/diagnostico/reporte/" + value, function(res){
-      pdf(res.data, "reporte_diagnostico.pdf");
-    });
 
-  });
+    $.ajax({
+        url: '/diagnostico/reporte/' + value,
+        type: 'GET',
+        success: function(res){
+            console.log(res.data);
+            pdf(res.data, "reporte_diagnostico.pdf");
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+            if(xhr.status==404) {
+                alert("No existen reportes de este paciente");
+            } else {
+                alert("Algo salio mal con el servidor");
+            }
+        }
+    })
+  })
 
 
 </script>

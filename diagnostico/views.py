@@ -14,7 +14,7 @@ import json
 from django.contrib import messages
 from django.db import transaction
 from django.http import HttpResponseForbidden
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError, HttpResponseNotFound
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect, get_object_or_404
@@ -433,34 +433,39 @@ en forma de un JSON*
 '''
 @login_required
 def reporteTotal(request, paciente_cedula):
-    diagnosticos = DiagnosticoFisioterapia.objects.all()
-    subrutinas = []
+    try:
+        diagnosticos = DiagnosticoFisioterapia.objects.all()
+        subrutinas = []
+        for d in diagnosticos:
+            if d.paciente.usuario.cedula==paciente_cedula and d.estado=='A': #and paciente.usuario.estado=='A':
+                cedula = d.paciente.usuario.cedula
+                condiciones_previas = d.condiciones_previas
+                area_afectada = d.area_afectada
+                nombre = d.paciente.usuario.nombre
+                apellido = d.paciente.usuario.apellido
+                genero = d.paciente.usuario.genero
+                receta = d.receta
 
-    for d in diagnosticos:
-        if d.paciente.usuario.cedula==paciente_cedula and d.estado=='A': #and paciente.usuario.estado=='A':
-            cedula = d.paciente.usuario.cedula
-            condiciones_previas = d.condiciones_previas
-            area_afectada = d.area_afectada
-            nombre = d.paciente.usuario.nombre
-            apellido = d.paciente.usuario.apellido
-            genero = d.paciente.usuario.genero
-            receta = d.receta
+                for subrutina in d.rutina.subrutina.all():
+                    subrutinas.append({"nombre":subrutina.nombre, "detalle":subrutina.detalle, "veces":subrutina.veces, "repeticiones":subrutina.repeticiones, "descanso":subrutina.descanso})
 
-            for subrutina in d.rutina.subrutina.all():
-                subrutinas.append({"nombre":subrutina.nombre, "detalle":subrutina.detalle, "veces":subrutina.veces, "repeticiones":subrutina.repeticiones, "descanso":subrutina.descanso})
+                record = {
+                    "cedula": cedula,
+                    "condiciones_previas":condiciones_previas,
+                    "area_afectada":area_afectada,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "receta":receta,
+                    "subrutinas": subrutinas
+                }
 
-            record = {
-                "cedula": cedula,
-                "condiciones_previas":condiciones_previas,
-                "area_afectada":area_afectada,
-                "apellido":apellido,
-                "nombre":nombre,
-                "genero":genero,
-                "receta":receta,
-                "subrutinas": subrutinas
-            }
+                return JsonResponse({"data": record})
+        return HttpResponseNotFound("No existen reportes de este paciente")
+    except Exception as e:
+        print e
+        return HttpResponseServerError("Algo salio mal")
 
-            return JsonResponse({"data": record})
 '''
 Funcion: reportes
 Entradas: requerimiento get http

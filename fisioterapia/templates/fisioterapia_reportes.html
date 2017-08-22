@@ -179,12 +179,23 @@
     var value = $('#cedula').val();
     setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
-    $.get("/fisioterapia/reporte/ficha/" + value, function(res){
-      console.log(value, res.data);
-      pdf(res.data, "reporte_ficha_" + value + ".pdf");
-    });
-
-  });
+    $.ajax({
+        url: '/fisioterapia/reporte/ficha/' + value,
+        type: 'GET',
+        success: function(res){
+            console.log(value, res.data);
+            pdf(res.data, "reporte_ficha_" + value + ".pdf");
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+            if(xhr.status==404) {
+                alert("No existen reportes de este paciente");
+            } else {
+                alert("Algo salio mal con el servidor");
+            }
+        }
+    })
+  })
 
 
 </script>

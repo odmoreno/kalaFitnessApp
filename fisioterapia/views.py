@@ -8,7 +8,7 @@ from paciente.models import Paciente
 from personal.models import Personal
 from fisioterapia.models import Ficha , Horario
 from django.http.response import HttpResponseRedirect, HttpResponse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError, HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
@@ -165,54 +165,59 @@ en forma de un JSON*
 '''
 @login_required
 def reporteFicha(request, paciente_cedula):
-    fichas = Ficha.objects.all()
+    try:
+        fichas = Ficha.objects.all()
 
-    for f in fichas:
-        if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
-            cedula = f.paciente.usuario.cedula
-            nombre = f.paciente.usuario.nombre
-            apellido = f.paciente.usuario.apellido
-            genero = f.paciente.usuario.genero
-            altura = f.altura
-            peso = f.peso
-            imc = f.imc
-            musculo = f.musculo
-            grasa_visceral = f.grasa_visceral
-            grasa_porcentaje = f.grasa_porcentaje
+        for f in fichas:
+            if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
+                cedula = f.paciente.usuario.cedula
+                nombre = f.paciente.usuario.nombre
+                apellido = f.paciente.usuario.apellido
+                genero = f.paciente.usuario.genero
+                altura = f.altura
+                peso = f.peso
+                imc = f.imc
+                musculo = f.musculo
+                grasa_visceral = f.grasa_visceral
+                grasa_porcentaje = f.grasa_porcentaje
 
-            flexiones = f.flexiones
-            sentadillas = f.sentadillas
-            saltoLargo = f.saltoLargo
-            suspension = f.suspension
+                flexiones = f.flexiones
+                sentadillas = f.sentadillas
+                saltoLargo = f.saltoLargo
+                suspension = f.suspension
 
-            abdomen_bajo = f.abdomen_bajo
-            abdomen_alto = f.abdomen_alto
-            espinales = f.espinales
-            lumbares = f.lumbares
-            trenSuperior = f.trenSuperior
+                abdomen_bajo = f.abdomen_bajo
+                abdomen_alto = f.abdomen_alto
+                espinales = f.espinales
+                lumbares = f.lumbares
+                trenSuperior = f.trenSuperior
 
-            record = {
-                "cedula": cedula,
-                "apellido":apellido,
-                "nombre":nombre,
-                "genero":genero,
-                "altura": altura,
-                "peso": peso,
-                "imc": imc,
-                "musculo": musculo,
-                "grasa_visceral": grasa_visceral,
-                "grasa_porcentaje" : grasa_porcentaje,
-                "flexiones" : flexiones,
-                "sentadillas" : sentadillas,
-                "saltoLargo" : saltoLargo,
-                "suspension" : suspension,
-                "abdomen_bajo" :abdomen_bajo,
-                "abdomen_alto" :abdomen_alto,
-                "espinales" :espinales,
-                "lumbares" :lumbares,
-                "trenSuperior" :trenSuperior
-            }
-            return JsonResponse({"data": record})
+                record = {
+                    "cedula": cedula,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "altura": altura,
+                    "peso": peso,
+                    "imc": imc,
+                    "musculo": musculo,
+                    "grasa_visceral": grasa_visceral,
+                    "grasa_porcentaje" : grasa_porcentaje,
+                    "flexiones" : flexiones,
+                    "sentadillas" : sentadillas,
+                    "saltoLargo" : saltoLargo,
+                    "suspension" : suspension,
+                    "abdomen_bajo" :abdomen_bajo,
+                    "abdomen_alto" :abdomen_alto,
+                    "espinales" :espinales,
+                    "lumbares" :lumbares,
+                    "trenSuperior" :trenSuperior
+                }
+                return JsonResponse({"data": record})
+        return HttpResponseNotFound("No existen reportes de este paciente")
+    except Exception as e:
+        print e
+        return HttpResponseServerError("Algo salio mal")
 '''
 Funcion: reportes
 Entradas: requerimiento get http
