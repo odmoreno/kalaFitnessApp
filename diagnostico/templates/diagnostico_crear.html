@@ -42,21 +42,21 @@
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Condiciones previas:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" pattern="[\w\p ]+" placeholder="Descripción de las condiciones previas" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="condicionesprevias" maxlength="1000" pattern=".*\S+.*" placeholder="Descripción de las condiciones previas" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Area afectada:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" pattern="\w+" placeholder="Descripción de la área afectada" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="areaafectada" maxlength="1000" pattern=".*\S+.*" placeholder="Descripción de la área afectada" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Receta:</label>
-                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" pattern="\w+" placeholder="Descripción de la receta" required></textarea>
+                                                <textarea id="textarea" class="form-control" rows="4" name="receta" maxlength="1000" pattern=".*\S+.*" placeholder="Descripción de la receta" required></textarea>
                                             </div>
                                         </div>
 
@@ -203,7 +203,7 @@
                     var textarea = this;
                     var pattern = new RegExp('^' + $(textarea).attr('pattern') + '$');
                     // check each line of text
-                    $.each($(this).val().trim().split("\n"), function () {
+                    $.each($(this).val().split("\n"), function () {
                         // check if the line matches the pattern
                         var hasError = !this.match(pattern);
 

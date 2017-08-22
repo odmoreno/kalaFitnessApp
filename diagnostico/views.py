@@ -52,7 +52,8 @@ def listarDiagnosticos(request):
         rol = sesion.get('rol__tipo', None)
 
         if rol == 'fisioterapista':
-            diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+            diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', paciente__usuario__estado='A',
+                                                                  personal_id=sesion.get('personal__id', 0))\
                 .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
                                                           Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
@@ -61,7 +62,8 @@ def listarDiagnosticos(request):
                 .order_by('-creado')
 
         elif rol == 'nutricionista':
-            diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+            diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', paciente__usuario__estado='A',
+                                                               personal_id=sesion.get('personal__id', 0))\
                 .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
                                                           Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
@@ -108,7 +110,7 @@ def crearDiagnostico(request):
         return redirect('diagnostico:ListarDiagnosticos')
 
     try:
-        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__estado='A',
+        pacientes = Paciente.objects.filter(usuario__estado='A', pacientepersonal__estado='A',
                                             pacientepersonal__personal_id=sesion.get('personal__id', 0))\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
             .annotate(nombre_completo=Concat('usuario__nombre', Value(' '), 'usuario__apellido')) \
