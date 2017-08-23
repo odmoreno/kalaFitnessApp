@@ -13,7 +13,7 @@
                         <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo paciente</b></h4></div>
                     {% endif %}
                     <div class="panel-body">
-                        <form class="form-vertical" method="post">
+                        <form class="form-vertical" action=""  method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% include 'personal/form_template.html' %}
                             <div class="form-group">
