@@ -10,9 +10,11 @@ ACTUALIZADO EN 15/07/2017
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
 from django.contrib import messages
 from django.db import transaction
 from django.http import HttpResponseForbidden
+from django.http import JsonResponse, HttpResponseServerError, HttpResponseNotFound
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.shortcuts import render, redirect, get_object_or_404
@@ -50,15 +52,18 @@ def listarDiagnosticos(request):
         rol = sesion.get('rol__tipo', None)
 
         if rol == 'fisioterapista':
-            diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+            diagnosticos = DiagnosticoFisioterapia.objects.filter(estado='A', paciente__usuario__estado='A',
+                                                                  personal_id=sesion.get('personal__id', 0))\
                 .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
                                                           Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
                 .annotate(paciente_foto=Concat('paciente__usuario__foto', Value('')))\
                 .annotate(cedula=Concat('paciente__usuario__cedula', Value('')))\
                 .order_by('-creado')
+
         elif rol == 'nutricionista':
-            diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', personal_id=sesion.get('personal__id', 0))\
+            diagnosticos = DiagnosticoNutricion.objects.filter(estado='A', paciente__usuario__estado='A',
+                                                               personal_id=sesion.get('personal__id', 0))\
                 .annotate(paciente_nombre_completo=Concat('paciente__usuario__nombre',
                                                           Value(' '), 'paciente__usuario__apellido')) \
                 .annotate(paciente_id=Concat('paciente_id', Value('')))\
@@ -105,7 +110,7 @@ def crearDiagnostico(request):
         return redirect('diagnostico:ListarDiagnosticos')
 
     try:
-        pacientes = Paciente.objects.filter(estado='A', pacientepersonal__estado='A',
+        pacientes = Paciente.objects.filter(usuario__estado='A', pacientepersonal__estado='A',
                                             pacientepersonal__personal_id=sesion.get('personal__id', 0))\
             .values('id', 'usuario__nombre', 'usuario__apellido') \
             .annotate(nombre_completo=Concat('usuario__nombre', Value(' '), 'usuario__apellido')) \
@@ -277,6 +282,7 @@ def editarDiagnostico(request, id=0):
             if rol == 'fisioterapista':
                 template = 'diagnostico_editar.html'
                 diagnostico = DiagnosticoFisioterapia.objects.get(id=id, estado='A')
+
                 subrutinas = Subrutina.objects.filter(rutina=diagnostico.rutina, rutina__estado='A', estado='A')
             elif rol == 'nutricionista':
                 template = 'diagnostico_nut_editar.html'
@@ -388,17 +394,85 @@ Salidas:Template para renderizacion
 '''
 @login_required
 def detalleDiagnostico(request, diagnostico_id):
+    contexto = {}
     rol = None
+    diagnostico = None
+    template = None
+    subrutinas = None
+    planes_diarios = None
     sesion = request.session.get('user_sesion', None)
     if sesion:
         rol = sesion.get('rol__tipo', None)
     if rol == 'fisioterapista':
         template = 'diagnostico_detalle.html'
         diagnostico = get_object_or_404(DiagnosticoFisioterapia, pk=diagnostico_id)
-        return render(request, 'diagnostico/diagnostico_detalle.html', {'diagnostico': diagnostico})
+        subrutinas = Subrutina.objects.filter(rutina=diagnostico.rutina, rutina__estado='A', estado='A')
+        contexto['diagnostico'] = diagnostico
+        contexto['subrutinas'] = subrutinas
+        return render(request, template_name=template, context= contexto )
     elif rol == 'nutricionista':
         template = 'diagnostico_detalleNut.html'
         diagnostico = get_object_or_404(DiagnosticoNutricion, pk=diagnostico_id)
-        return render(request, 'diagnostico/diagnostico_detalleNut.html', {'diagnostico': diagnostico})
-    #usuario = paciente.usuario
+        planes_diarios = PlanNutDiario.objects.filter(estado='A', dieta=diagnostico.dieta).order_by('id')
+        contexto['diagnostico'] = diagnostico
+        contexto['planes_diarios'] = planes_diarios
+        return render(request, template_name=template, context=contexto)
 
+
+
+
+
+
+
+'''
+Funcion: reporteTotal
+Entradas: paciente_cedula, la cedula del paciente
+Salidas: JSON con todos los diagnosticos del paciente
+*Funcion que retorna la informacion de los diagnosticos de un paciente la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteTotal(request, paciente_cedula):
+    try:
+        diagnosticos = DiagnosticoFisioterapia.objects.all()
+        subrutinas = []
+        for d in diagnosticos:
+            if d.paciente.usuario.cedula==paciente_cedula and d.estado=='A': #and paciente.usuario.estado=='A':
+                cedula = d.paciente.usuario.cedula
+                condiciones_previas = d.condiciones_previas
+                area_afectada = d.area_afectada
+                nombre = d.paciente.usuario.nombre
+                apellido = d.paciente.usuario.apellido
+                genero = d.paciente.usuario.genero
+                receta = d.receta
+
+                for subrutina in d.rutina.subrutina.all():
+                    subrutinas.append({"nombre":subrutina.nombre, "detalle":subrutina.detalle, "veces":subrutina.veces, "repeticiones":subrutina.repeticiones, "descanso":subrutina.descanso})
+
+                record = {
+                    "cedula": cedula,
+                    "condiciones_previas":condiciones_previas,
+                    "area_afectada":area_afectada,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "receta":receta,
+                    "subrutinas": subrutinas
+                }
+
+                return JsonResponse({"data": record})
+        return HttpResponseNotFound("No existen reportes de este paciente")
+    except Exception as e:
+        print e
+        return HttpResponseServerError("Algo salio mal")
+
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de diagnosticos
+'''
+@login_required
+def reportes(request):
+    print "aquiiiii"
+    template = 'reportes_diagnostico.html'
+    return render(request, template)

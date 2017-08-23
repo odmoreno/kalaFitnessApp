@@ -8,7 +8,7 @@ from paciente.models import Paciente
 from personal.models import Personal
 from fisioterapia.models import Ficha , Horario
 from django.http.response import HttpResponseRedirect, HttpResponse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError, HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from directmessages.apps import Inbox
 from directmessages.models import Message
@@ -105,6 +105,26 @@ def editar_ficha(request, ficha_id):
     }
     return render(request, template, context)
 
+'''
+Funcion: detalleFichas
+Entradas: requerimiento e Identificador de la ficha a ser visualizada
+Salidas:Template para renderizacion
+*Funcion que recibe el id de una ficha que debe ser visualizada, y muestra su informacion.*
+'''
+
+def detalleFicha(request, ficha_id):
+    contexto = {}
+    ficha = None
+    template = None
+    paciente = None
+    template = 'fisioterapia/ficha-detalle.html'
+    ficha = get_object_or_404(Ficha, pk=ficha_id)
+    form = FichaForm(request.POST or None, instance=ficha)
+    contexto['form'] = form
+    contexto['ficha'] = ficha
+    contexto['paciente'] = ficha.paciente
+    return render(request, template_name=template, context=contexto)
+
 @transaction.atomic
 def establecer_horario (request):
     template= 'fisioterapia/crear-horario.html'
@@ -135,3 +155,75 @@ def eliminar_cita(request, horario_id):
     cita = Horario.objects.get(pk=horario_id)
     cita.delete()
     return HttpResponseRedirect("/fisioterapia/horario/ver/")
+
+'''
+Funcion: reporteTotal
+Entradas: paciente_cedula, la cedula del paciente
+Salidas: JSON con una ficha medica del paciente
+*Funcion que retorna la informacion de las fichas de un paciente de la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporteFicha(request, paciente_cedula):
+    try:
+        fichas = Ficha.objects.all()
+
+        for f in fichas:
+            if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
+                cedula = f.paciente.usuario.cedula
+                nombre = f.paciente.usuario.nombre
+                apellido = f.paciente.usuario.apellido
+                genero = f.paciente.usuario.genero
+                altura = f.altura
+                peso = f.peso
+                imc = f.imc
+                musculo = f.musculo
+                grasa_visceral = f.grasa_visceral
+                grasa_porcentaje = f.grasa_porcentaje
+
+                flexiones = f.flexiones
+                sentadillas = f.sentadillas
+                saltoLargo = f.saltoLargo
+                suspension = f.suspension
+
+                abdomen_bajo = f.abdomen_bajo
+                abdomen_alto = f.abdomen_alto
+                espinales = f.espinales
+                lumbares = f.lumbares
+                trenSuperior = f.trenSuperior
+
+                record = {
+                    "cedula": cedula,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "altura": altura,
+                    "peso": peso,
+                    "imc": imc,
+                    "musculo": musculo,
+                    "grasa_visceral": grasa_visceral,
+                    "grasa_porcentaje" : grasa_porcentaje,
+                    "flexiones" : flexiones,
+                    "sentadillas" : sentadillas,
+                    "saltoLargo" : saltoLargo,
+                    "suspension" : suspension,
+                    "abdomen_bajo" :abdomen_bajo,
+                    "abdomen_alto" :abdomen_alto,
+                    "espinales" :espinales,
+                    "lumbares" :lumbares,
+                    "trenSuperior" :trenSuperior
+                }
+                return JsonResponse({"data": record})
+        return HttpResponseNotFound("No existen reportes de este paciente")
+    except Exception as e:
+        print e
+        return HttpResponseServerError("Algo salio mal")
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de fichas
+'''
+@login_required
+def reportes(request):
+    template = 'fisioterapia_reportes.html'
+    return render(request, template)

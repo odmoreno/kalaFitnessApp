@@ -6,92 +6,126 @@
 <div id="page-wrapper">
     <div class="container-fluid">
     <div class="row">
-    <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <div class="panel panel-default" style="margin-top: 40px">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                         <b><h4>Detalles de {{ paciente.nombre }} {{ paciente.apellido }}</h4></b>
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                         <b><h4>Detalles Diagnostico {{ diagnostico.paciente.usuario.nombre }} {{ diagnostico.paciente.usuario.apellido }}</h4></b>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                         <a class="btn btn-link pull-right" href="{% url 'paciente:index' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Regresar</a>
+                    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                         <a class="btn btn-link pull-right" href="{% url 'diagnostico:ListarDiagnosticos' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</a>
                     </div>
                 </div>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <!-- Info izquierda -->
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                                {% if paciente.foto %}
-                                    <img src="/static/{{ paciente.foto }}" class="img-rounded img-responsive" height="200px">
+                            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                {% if diagnostico.paciente.usuario.foto %}
+                                    <img src="/static/{{ diagnostico.paciente.usuario.foto }}" class="img-rounded img-responsive" height="100px">
                                 {% else %}
-                                    <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive" height="200px">
+                                    <img src="/static/usuario/noimagen.jpg" class="img-rounded img-responsive" height="100px">
                                 {% endif %}
-                                <!--<h4>{{ paciente.id}}</h4>
-                                <h3>{{ paciente.nombre }} {{ paciente.apellido }}</h3>-->
+
                             </div>
+
                         </div>
                     </div>
-                    <!-- Info derecha -->
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
                                 <form class="form-horizontal" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Nombre:</label>
+                                <br>
+                                <label for="name" class ="control-label col-sm-3">Condiciones previas:</label>
                                 <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.nombre }}</p>
+                                    <p class="form-control-static">{{ diagnostico.condiciones_previas }}</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Apellido:</label>
+                                <br>
+                                <label for="name" class ="control-label col-sm-3">Area Afectada:</label>
                                 <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.apellido }}</p>
+                                    <p class="form-control-static">{{ diagnostico.area_afectada }}</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Cedula:</label>
+                                <br>
+                                <label for="name" class ="control-label col-sm-3">Receta:</label>
                                 <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.cedula }}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Email</label>
-                                <div class="col-sm-5">
-                                    <p class="form-control-static">{{ personal.usuario.email }}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Dirección:</label>
-                                <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.direccion }}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Ocupación:</label>
-                                <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.ocupacion }}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Telefono:</label>
-                                <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.telefono }}</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class ="control-label col-sm-3">Edad:</label>
-                                <div class="col-sm-5">
-                                    <p class="form-control-static">{{ paciente.edad }}</p>
+                                    <p class="form-control-static">{{ diagnostico.receta }}</p>
                                 </div>
                             </div>
                         </form>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+
+                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                    <br>
+                                    <label for="name" class ="control-label">Rutinas:</label>
+                                    <input type="hidden" id="cantidadrutinas" name="cantidadrutinas" value="{{ subrutinas|length }}"/>
+                                    <div  class="row">
+                                                        <div class="panel-body" id="accordion-parent">
+                                                            {% if subrutinas %}
+                                                                {% for subrutina in subrutinas %}
+                                                                    <div class="panel-group" id="accordion{{ forloop.counter }}">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title">
+                                                                            <input type="hidden" id="idaccordion" name="idaccordion" value="{{ forloop.counter }}"/>
+                                                                            <a data-toggle="collapse" id="idheading" data-parent="#accordion{{ forloop.counter }}" style="text-decoration: none;" href="#collapse{{ forloop.counter }}">#{{ forloop.counter }}</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse in">
+                                                                        <div class="panel-body">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                                                                    <label class="control-label" for="nombrerutina">Nombre:</label>
+                                                                                    <textarea readonly class="form-control">{{ subrutina.nombre }}</textarea>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                                                                    <label class="control-label" for="descripcionrutina">Descripci&oacute;n:</label>
+                                                                                    <textarea class="form-control" readonly>{{ subrutina.detalle }}</textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row" style="padding-top: 20px">
+                                                                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                    <label class="control-label" for="repeticionesrutina">Repeticiones:</label>
+                                                                                    <textarea readonly class="form-control">{{ subrutina.repeticiones }}</textarea>
+                                                                                </div>
+                                                                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                    <label class="control-label" for="vecesrutina">Veces por repetici&oacute;n:</label>
+                                                                                    <textarea readonly class="form-control">{{ subrutina.veces }}</textarea>
+                                                                                </div>
+                                                                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                    <label class="control-label" for="descansorutina">Descanso entre repetici&oacute;n:</label>
+                                                                                    <textarea readonly class="form-control">{{ subrutina.descanso }}</textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row" style="padding-top: 20px">
+                                                                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                                                                    <label class="control-label" for="videoenlace">Video demostraci&oacute;n:</label>
+                                                                                    <textarea readonly class="form-control">{{ subrutina.link }}</textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Info derecha -->
+
                 </div>
             </div>
         </div>

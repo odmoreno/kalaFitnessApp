@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponseRedirect
-
+from django.http import JsonResponse
 from kalaapp.decorators import rol_required
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
@@ -87,6 +87,26 @@ def editar_ficha(request, ficha_id):
     }
     return render(request, template, context)
 
+'''
+Funcion: detalleFichas
+Entradas: requerimiento e Identificador de la ficha a ser visualizada
+Salidas:Template para renderizacion
+*Funcion que recibe el id de una ficha que debe ser visualizada, y muestra su informacion.*
+'''
+
+def detalleFicha(request, ficha_id):
+    contexto = {}
+    ficha = None
+    template = None
+    paciente = None
+    template = 'nutricion/ficha-detalle.html'
+    ficha = get_object_or_404(ficha_nutricion, pk=ficha_id)
+    form = FichaForm(request.POST or None, instance=ficha)
+    contexto['form'] = form
+    contexto['ficha'] = ficha
+    contexto['paciente'] = ficha.paciente
+    return render(request, template_name=template, context=contexto)
+
 
 @transaction.atomic
 def establecer_horario (request):
@@ -112,6 +132,47 @@ def ver_horarios(request):
         "horarios": horarios,
     }
     return render(request, template, context)
+
+'''
+Funcion: reporteTotal
+Entradas: request
+Salidas: JSON con los datos de todas las facturas
+
+Funcion que permite obtener todas las facturas creadas
+'''
+#@login_required
+def reporteByCedula(request, cedula):
+    fichas = ficha_nutricion.objects.all()
+    pacientes = Paciente.objects.all()
+
+    #records = []
+
+    for paciente in pacientes:
+        if paciente.usuario.cedula == cedula:
+            nombre = paciente.usuario.nombre
+            apellido = paciente.usuario.apellido
+            paciente_id = paciente.usuario.id
+
+            obj = {"nombre": nombre, "apellido": apellido, "id": paciente_id, "fichas": []}
+
+            for ficha in fichas:
+                if ficha.paciente.usuario.id == paciente_id:
+                    proteina = ficha.proteina
+                    grasas = ficha.grasas
+                    carbohidratos =  ficha.carbohidratos
+                    dieta = ficha.dieta
+                    record = {"proteina": proteina, "grasas": grasas, "carbohidratos": carbohidratos, "dieta": dieta}
+                    obj['fichas'].append(record)
+            return JsonResponse(obj)
+'''
+Funcion: reportes
+Entradas: requerimiento get http
+Salidas: Retorna un template de reportes de ficha medica
+'''
+#@login_required
+def reportes(request):
+    template = 'nutricion/reportes.html'
+    return render(request, template)
 
 @transaction.atomic
 def eliminar_cita(request, horario_id):

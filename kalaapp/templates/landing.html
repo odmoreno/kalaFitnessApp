@@ -10,21 +10,23 @@
                     <section id="service" class="section-padding">
                         <div class="container">
                             <div class="row">
+                                <h1 class="ser-title">Sistema Kala Fitness</h1>
+                                <hr class="botm-line">
                                 <div class="col-md-4 col-sm-4">
-                                    <h2 class="ser-title">Nuestros Servicios</h2>
-                                    <hr class="botm-line">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris cillum.</p>
+                                    <h1><small>¿Quiénes somos?</small></h1>
+                                    <p>Somos un modelo diferente de hacer ejercicios. Pensamos en tu salud por que sabemos como funciona realmente cada parte de tu cuerpo. </p>
                                 </div>
                             </div>
+                            {% if request.session.user_sesion.rol__tipo == "administrador" %}
                             <div class="row" style="margin-top: 4em">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="service-info">
                                         <div class="icon">
-                                            <i class="fa fa-stethoscope"></i>
+                                            <i class="fa fa-user-md"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <h4>Pacientes</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <h2>Pacientes</h2>
+                                            <p>Módulo de pacientes, que permite ingresar un nuevo paciente a la base de datos. A su vez, permite listar, editar y eliminar Pacientes de la misma.</p>
                                         </div>
                                     </div>
                                     <div class="service-info">
@@ -32,32 +34,68 @@
                                             <i class="fa fa-ambulance"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <h4>Personal</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <h2>Personal</h2>
+                                            <p>Módulo que maneja al Personal de Kala. En el se permite Agregar, Eliminar y Editar Personal de la base de datos. Tambien, se puede listar al personal y generar reportes.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="service-info">
                                         <div class="icon">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-usd"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <h4>Facturas</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <h2>Facturas</h2>
+                                            <p>Módulo de Facturas. En el se permite Agregar, Eliminar y Listar Facturas de la base de datos. También se puede generar Reportes de estas.</p>
                                         </div>
                                     </div>
                                     <div class="service-info">
                                         <div class="icon">
-                                            <i class="fa fa-medkit"></i>
+                                            <i class="fa fa-paperclip"></i>
                                         </div>
                                         <div class="icon-info">
-                                            <h4>Premium</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <h2>Asignaciones</h2>
+                                            <p>Módulo para la asignación de pacientes a un Personal seleccionado.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% else %}
+                            <div class="row" style="margin-top: 4em">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="service-info">
+                                        <div class="icon">
+                                            <i class="fa fa-stethoscope"></i>
+                                        </div>
+                                        <div class="icon-info">
+                                            <h2>Diagnóstico</h2>
+                                            <p>Módulo para generar, listar y eliminar Diágnosticos de pacientes asigndos a usted.</p>
+                                        </div>
+                                    </div>
+                                    <div class="service-info">
+                                        <div class="icon">
+                                            <i class="fa fa-list-alt"></i>
+                                        </div>
+                                        <div class="icon-info">
+                                            <h2>Fichas</h2>
+                                            <p>Módulo para crear, eliminar, editar y listar Fichas médicas de pacientes asignados a usted</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <div class="service-info">
+                                        <div class="icon">
+                                            <i class="fa fa-table "></i>
+                                        </div>
+                                        <div class="icon-info">
+                                            <h2>Citas</h2>
+                                            <p>Módulo en el que usted puede establecer horarios disponibles para citas con pacientes y clientes del Gimnasio Kala Fitness.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endif %}
                         </div>
                     </section>
                 </div>

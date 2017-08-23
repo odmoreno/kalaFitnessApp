@@ -154,6 +154,7 @@
 
   $("#generar").click(function(){
     var value = $('#tipo').find(":selected").text();
+    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
     if (value == "Total") {
       $.get("/factura/reporte/total", function(res, status){

@@ -80,8 +80,8 @@
                                                             &nbsp;&nbsp;&nbsp;{{ paciente.nombre_completo }}
                                                         </td>
                                                         <td>{{ paciente.usuario__cedula}}</td>
-                                                        <td>{{ paciente.usuario__edad }}</td>
-                                                        <td>{{ paciente.usuario__genero }}</td>
+                                                        <td class="text-center">{{ paciente.usuario__edad }}</td>
+                                                        <td class="text-center">{{ paciente.usuario__genero }}</td>
                                                         <td>
                                                             {% if paciente.foto_p %}
                                                                 <img src="{% static paciente.foto_p %}" class="img-circle" height="50px" width="50px"/>

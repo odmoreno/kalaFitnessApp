@@ -9,14 +9,14 @@ from kalaapp.models import Usuario
 from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from diagnostico.models import DiagnosticoNutricion, DiagnosticoFisioterapia, Subrutina, PlanNutDiario, Rutina, Dieta
-from fisioterapia.models import Ficha
+from fisioterapia.models import Ficha, Horario
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from rest_framework.renderers import JSONRenderer
-from nutricion.models import ficha_nutricion
+from nutricion.models import ficha_nutricion, HorarioNut
 from directmessages.apps import Inbox
 from directmessages.models import Message
-from .serializers import PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer, MessageSerializer
+from .serializers import HorarioFisSerializer, HorarioNutSerializer, RutinaNestedSerializer, DietasNestedSerializer, PacienteSerializer,FichaFisSerializer, FichaNutSerializer, PersonalSerializer, UsuarioSerializer, DiagnosticoNutSerializer, DiagnosticoFisSerializer, RutinaSerializer, SubrutinaSerializer, DietaSerializer, PlanNutDiarioSerializer, MessageSerializer
 # Vistas que definiran la funcionalidad del API REST de cliente
 # Seguir Las Historias de Usuario de Cliente
 # Mi progreso, Mis Mensajes, Enviar Mensajes, Recibir Mensajes, Ver Citas, Separar Citas.
@@ -80,7 +80,7 @@ class DiagnosticoNutList(APIView):
         #5555555557
         try:
             paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A')
             dieta=[]
             for d in diagnosticos:
                 dieta.append(d)
@@ -98,7 +98,7 @@ class DiagnosticoFisList(APIView):
     def get(self, request, paciente_us=None):
         try:
             paciente =get_object_or_404(Paciente, usuario=request.user)
-            diagnosticos=DiagnosticoFisioterapia.objects.filter(paciente=paciente)
+            diagnosticos=DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
             response=DiagnosticoFisSerializer(diagnosticos, many=True)
             return Response(response.data or None)
 
@@ -111,7 +111,7 @@ class RutinasList(APIView):
     def get(self, request, paciente_us):
         #try:
         paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente)
+        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
         rutinas=[]
         for x in diagnosticos:
             rut=x.rutina
@@ -122,13 +122,20 @@ class RutinasList(APIView):
 
         #except:
         #return Response({"mensaje": "No es un paciente"})
+class RutinasNestedList(APIView):
+    def get(self, request, paciente_us):
+        paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
+        diagnosticos = DiagnosticoFisioterapia.objects.filter(paciente=paciente, estado='A')
+        response = RutinaNestedSerializer(diagnosticos, many=True)
+        return Response(response.data or None)
+
 
 class DietasList(APIView):
 
     def get(self, request, paciente_us):
         try:
             paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
-            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente)
+            diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A')
             dietas=[]
             for x in diagnosticos:
                 dieta=x.dieta
@@ -139,6 +146,14 @@ class DietasList(APIView):
             return Response(response.data or None)
         except:
             return Response({"data": "No es un paciente"})
+
+class DietasNestedList(APIView):
+
+    def get(self, request, paciente_us):
+        paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
+        diagnosticos = DiagnosticoNutricion.objects.filter(paciente=paciente, estado='A').order_by('-id')
+        response = DietasNestedSerializer(diagnosticos, many=True)
+        return Response(response.data or None)
 
 class FichaFisList (APIView):
     def get(self, request, paciente_us):
@@ -182,12 +197,55 @@ class MensajesList(APIView):
 
 
 
-class HorariosList(APIView):
+class HorariosFisList(APIView):
     def get(self, request):
-        pass
-    def post(self, request, pacienteID, citaID):
-        pass
+        citasLibres=Horario.objects.filter(estado="1")
+        response=HorarioFisSerializer(citasLibres, many=True)
+        if response.data:
+            return Response(response.data)
+        else:
+            return Response({"Mensaje":"No hay horarios Disponibles"})
 
+    #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
+
+    def post(self, request):
+        citaID=request.data[u'citaID']
+        paciente_us=request.data[u'paciente_us']
+
+        citaASeparar=Horario.objects.get(pk=citaID)
+        paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
+        try:
+            citaASeparar.paciente=paciente
+            citaASeparar.estado="2"
+            citaASeparar.save()
+            return Response({"Mensaje":"Cita Guardada!"})
+        except Exception, E:
+            print str(E)
+            return Response({"Mensaje":"Se produjo un error al separa la cita"}, status= 300)
+
+class HorariosNutList(APIView):
+    def get(self, request):
+        citasLibres=HorarioNut.objects.filter(estado="1")
+        response=HorarioNutSerializer(citasLibres, many=True)
+        if response.data:
+            return Response(response.data)
+        else:
+            return Response({"Mensaje":"No hay horarios Disponibles"})
+
+    #ENVIAR EN POST ID DE LA CITA A SER SEPARADA Y LA CEDULA DEL PACIENTE
+
+    def post(self, request):
+        citaID = request.data[u'citaID']
+        paciente_us = request.data[u'paciente_us']
+        citaASeparar = Horario.objects.filter(pk=citaID)
+        paciente = get_object_or_404(Paciente, usuario__cedula=paciente_us)
+        try:
+            citaASeparar.paciente=paciente
+            citaASeparar.estado="2"
+            citaASeparar.save()
+            return({"Mensaje":"Cita Guardada!"})
+        except:
+            return Response({"Mensaje":"Se produjo un error al separa la cita"}, status= 300)
 
 def autenticar(request):
     mensaje = None

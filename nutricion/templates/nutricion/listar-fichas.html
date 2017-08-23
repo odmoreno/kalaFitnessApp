@@ -36,9 +36,9 @@
                                     {% if fichas %}
                                         {% for ficha in fichas %}
                                             <tr class="">
-                                                <td ><button type="submit" class="btn btn-default">
+                                                <td style="text-align: center;"><a href="{% url 'nutricion:detail' ficha.id %}"><button type="submit" class="btn btn-default">
                                                     <span class="glyphicon glyphicon-eye-open"></span>
-                                                    </button></td>
+                                                    </button></a></td>
                                                 <td><img src="/static/{{ ficha.paciente.usuario.foto }}" class="img-responsive" height="50px" width="50px"/></td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.nombre }}</td>
                                                 <td class="capitalize">{{ ficha.paciente.usuario.apellido }}</td>
@@ -46,12 +46,12 @@
                                                 <td>{{ ficha.proteina }}</td>
                                                 <td>{{ ficha.grasas }}</td>
                                                 <td>{{ ficha.carbohidratos }}</td>
-                                                <td><a href="{% url 'nutricion:editar_ficha' ficha.id %}">
+                                                <td style="text-align: center;"><a href="{% url 'nutricion:editar_ficha' ficha.id %}">
                                                     <button type="submit" class="btn btn-info">
                                                         <p class="fa fa-edit "></p>
                                                     </button>
                                                 </a></td>
-                                                <td><a href="{%  url 'nutricion:eliminar_ficha' ficha.id %}">
+                                                <td style="text-align: center;"><a href="{%  url 'nutricion:eliminar_ficha' ficha.id %}">
                                                     <button type="submit" class="btn btn-danger">
                                                         <span class="glyphicon glyphicon-remove"></span>
                                                     </button>

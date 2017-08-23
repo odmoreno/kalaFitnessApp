@@ -1,0 +1,247 @@
+{%  extends 'blank.html' %}
+{% load staticfiles %}
+{% block title %}Nutrición - Ficha Medica{% endblock %}
+
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default" style="margin-top: 40px">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                     <b><h4>Detalles Ficha {{ ficha.paciente.usuario.nombre }} {{ ficha.paciente.usuario.apellido }}</h4></b>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                     <a class="btn btn-link pull-right" href="{% url 'nutricion:listar_fichas' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#ficha-pills" data-toggle="tab">Frecuencia de Consumo</a>
+                                </li>
+                                <li><a href="#estado-pills" data-toggle="tab">Anamnesis Alimentaria</a>
+                                </li>
+                                <li><a href="#req-pills" data-toggle="tab">Requerimientos</a>
+                                </li>
+                            </ul>
+
+                            <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="ficha-pills">
+                                        <hr>
+                                        <h4>Frecuencia de consumo de alimentos</h4>
+                                        {% csrf_token %}
+
+                                        <div class="row" style="padding-top: 20px">
+                                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                    <div class="form-group">
+
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.lacteos.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.lacteos }}</p>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.vegetales.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.vegetales }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.frutas.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.frutas }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.cho.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.cho }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.carnes.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.carnes }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.comidas_rapidas.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.comidas_rapidas }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.frituras.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.frituras }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.enlatados.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.enlatados }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.gaseosas.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.gaseosas }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.energizantes.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.energizantes }}</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {{ form.message.errors }}
+                                                        {{ field.errors }}
+                                                        {{ form.subject.errors }}
+                                                        {{ form.sender.errors }}
+                                                        <label class="control-label">{{ form.infusiones.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 90px;">{{ ficha.infusiones }}</p>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                     <div class="form-group">
+                                                         <!-- <span class="text-danger small">{{ form.lacteos_input.errors }}</span>-->
+                                                        <label class="control-label">{{ form.lacteos_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.lacteos_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.vegetales_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.vegetales_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.frutas_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.frutas_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.cho_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.cho_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.carnes_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.carnes_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.comidas_rapidas_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.comidas_rapidas_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.frituras_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.frituras_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.enlatados_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.enlatados_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.gaseosas_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.gaseosas_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.energizantes_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.energizantes_input }}</p>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label class="control-label">{{ form.infusiones_input.label_tag}}</label>
+                                                        <p  style="float:right; margin-right: 200px;">{{ ficha.infusiones_input }}</p>
+                                                    </div>
+                                                 </div>
+                                        </div>
+                                    </div>
+                                     <div class="tab-pane fade" id="estado-pills">
+                                         <h4>Anamnesis Alimentaria</h4>
+                                         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta1.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta1 }}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta2.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta2 }}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta3.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta3 }}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta4.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta4 }}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta5.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta5 }}</p>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="control-label">{{ form.pregunta6.label_tag}}</label>
+                                                 <p>{{ ficha.pregunta6 }}</p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                    <div class="tab-pane fade" id="req-pills">
+                                        <h4>Requerimientos</h4>
+                                        <hr>
+                                        <h5>Valor calorico total:</h5>
+                                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                                <div class="form-group">
+                                                     <label class="control-label">{{ form.proteina.label_tag}}</label> %
+                                                    <p>{{ ficha.proteina }}</p> g...cal
+                                                </div>
+                                                <div class="form-group">
+                                                     <label class="control-label">{{ form.grasas.label_tag}}</label> %
+                                                    <p>{{ ficha.grasas }}</p> g...cal
+                                                </div>
+                                                <div class="form-group">
+                                                     <label class="control-label">{{ form.carbohidratos.label_tag}}</label> %
+                                                    <p>{{ ficha.carbohidratos }}</p> g...cal
+                                                </div>
+                                            </div>
+                                        <hr>
+                                        <h5>Tipo de dieta:</h5>
+                                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                            <div class="form-group">
+                                                    <p>{{ ficha.dieta }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

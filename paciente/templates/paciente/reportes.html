@@ -36,42 +36,18 @@
             }, {text: 'Nombre', style: 'subItem'
             }, {text: 'Apellido', style: 'subItem'
             }, {text: 'Telefono', style: 'subItem'
-            }, {text: 'Genero', style: 'subItem'
-            }
+            }, {text: 'Genero', style: 'subItem'}
         ]
     ]
 
     data.forEach(function(paciente){
         body.push(
             [
-                {text:
-                    (function(){
-                        if (paciente.cedula) { return paciente.cedula;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (paciente.nombre) { return paciente.nombre;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (paciente.apellido) { return paciente.apellido;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (paciente.telefono) { return paciente.telefono;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (paciente.genero) { return paciente.genero;}
-                        return "";
-                    })()
-                }
+                {text: " " + paciente.cedula},
+                {text: " " + paciente.nombre},
+                {text: " " + paciente.apellido},
+                {text: " " + paciente.telefono},
+                {text: " " + paciente.genero}
             ]
         );
     });
@@ -155,6 +131,7 @@
 
   $("#generar").click(function(){
     var value = $('#tipo').find(":selected").text();
+    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
     if (value == "Total") {
       $.get("/paciente/reporte/totales", function(data, status){

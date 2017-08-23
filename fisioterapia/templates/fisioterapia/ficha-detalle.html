@@ -1,0 +1,225 @@
+{%  extends 'blank.html' %}
+{% load staticfiles %}
+{% block title %}Fisioterapia - Ficha Medica{% endblock %}
+
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default" style="margin-top: 40px">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                     <b><h4>Detalles Ficha {{ ficha.paciente.usuario.nombre }} {{ ficha.paciente.usuario.apellido }}</h4></b>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                     <a class="btn btn-link pull-right" href="{% url 'fisioterapia:lista_fichas' %}" style="text-decoration: none"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#ficha-pills" data-toggle="tab">Ficha Kala</a>
+                                </li>
+                                <li><a href="#estado-pills" data-toggle="tab">Estado Fisico</a>
+                                </li>
+                            </ul>
+                            <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="ficha-pills">
+                                        <h4>Home Tab</h4>
+                                        <div class="row" style="padding-top: 20px">
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.altura.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.altura }}</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">{{ form.musculo.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.musculo }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.peso.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.peso }}</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.grasa_visceral.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.grasa_visceral }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.imc.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.imc }}</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.message.errors }}
+                                                    {{ field.errors }}
+                                                    {{ form.subject.errors }}
+                                                    {{ form.sender.errors }}
+                                                    <label class="control-label">{{ form.grasa_porcentaje.label_tag}}</label>
+                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.grasa_porcentaje }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding-top: 20px">
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cuello.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.cuello }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.brazo_derecho.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.brazo_derecho }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.antebrazo_izquierdo.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.antebrazo_izquierdo }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.muslo_derecho.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.muslo_derecho }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pantorrilla_izquierda.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.pantorrilla_izquierda }}</p>
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.hombros.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.hombros }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.brazo_izquierdo.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.brazo_izquierdo }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cintura.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.cintura }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.muslo_izquierdo.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.muslo_izquierdo }}</p>
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pecho.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.pecho }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.antebrazo_derecho.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.antebrazo_derecho }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.cadera.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.cadera }}</p>
+                                                 </div>
+                                                 <div class="form-group">
+                                                     <label class="control-label">{{ form.pantorrilla_derecha.label_tag }}</label>
+                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.pantorilla_derecha }}</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="estado-pills">
+                                                                        <h4>Profile Tab</h4>
+                                                                        <div class="row" style="padding-top: 20px">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.flexiones.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.flexiones }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.espinales.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.espinales }}</p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.abdomen_bajo.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.abdomen_bajo }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.abdomen_alto.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.abdomen_alto }}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.saltoLargo.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.saltoLargo }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">{{ form.lumbares.label_tag }}</label>
+                                                                                    <p  style="float:right; margin-right: 90px;">{{ ficha.lumbares }}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="padding-top: 20px">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                                                                                <div class="form-group">
+                                                                                     <label class="control-label">{{ form.sentadillas.label_tag }}</label>
+                                                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.sentadillas }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                     <label class="control-label">{{ form.suspension.label_tag }}</label>
+                                                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.suspension }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    {{ form.message.errors }}
+                                                                                    {{ field.errors }}
+                                                                                    {{ form.subject.errors }}
+                                                                                    {{ form.sender.errors }}
+                                                                                     <label class="control-label">{{ form.trenSuperior.label_tag }}</label>
+                                                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.trenSuperior }}</p>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    {{ form.message.errors }}
+                                                                                    {{ field.errors }}
+                                                                                    {{ form.subject.errors }}
+                                                                                    {{ form.sender.errors }}
+                                                                                     <label class="control-label">{{ form.trenInferior.label_tag }}</label>
+                                                                                     <p  style="float:right; margin-right: 90px;">{{ ficha.trenInferior }}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                </div>
+
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
