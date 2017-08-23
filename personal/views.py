@@ -118,13 +118,14 @@ def editarPersonal(request, personal_id):
         personal.rol = rol
         personal.save()
         personal = form.save()
-        m.add_message(request, m.SUCCESS, 'Personal editado con exito!')
+        me.add_message(request, me.SUCCESS, 'Personal editado con exito!')
         #all_personal = Usuario.objects.filter(estado="A")
         #return render(request, 'personal/index.html', {'all_personal': all_personal})
         return redirect('personal:index')
 
     context = {
         "form": form,
+        "editar": True,
     }
     return render(request, 'personal/form_personal.html', context)
 '''
