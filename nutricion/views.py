@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponseRedirect
 
 from kalaapp.decorators import rol_required
-from paciente.models import Paciente
+from paciente.models import Paciente, PacientePersonal
 from personal.models import Personal
 from .models import ficha_nutricion, HorarioNut
 from .forms import FichaForm, HorariosForm
@@ -23,6 +23,7 @@ def crear_ficha(request):
     form = FichaForm(request.POST or None)
     pacientes = Paciente.objects.all()
     sesion = request.session.get('user_sesion', None)
+    #p = PacientePersonal.objects.filter(personal=sesion.get('personal__id', 0))
     print  sesion
     print sesion.get('personal__id', 0)
     print form._errors

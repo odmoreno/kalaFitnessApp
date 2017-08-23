@@ -66,7 +66,7 @@ class Horario(TimeModel):
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     fecha = models.DateField(auto_now=False)
-    hora = models.TimeField(auto_now=False)
+    hora = models.TimeField(auto_now=False, default= datetime.datetime.utcnow)
     detalle = models.CharField(max_length=200, null=False)
     estado = models.CharField(max_length=200, choices=ESTADO, default='1', null=False)
 
