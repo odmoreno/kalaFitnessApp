@@ -2,9 +2,9 @@
 {% load l10n %}
 {% block title %}Nuevo Paciente{% endblock %}
 {% block content %}
-	<form action="" method="post">
+	<form action="" onsubmit="return validarCedula();" method="post">
 		{% csrf_token %}
-		Cedula:<input type="text" name="cedula" pattern="^[0-9]{10}" title="Numero de cedula invalido" required/>
+		Cedula:<input type="number" class="cedulaValidar" name="cedula" pattern="^[0-9]{10}" title="Numero de cedula invalido" required/>
 		<br/>
 		nombre:<input type="text" name="nombre" required/>
 		<br/>
@@ -31,4 +31,45 @@
         <input type="submit" value="Grabar Paciente" />
 
 	</form>
+	<script>
+		function validarCedula() {  		
+		    var cedula =  $(".cedulaValidar").val();
+			var array = cedula.split('');
+
+		    if ( array.length != 10 || cedula == 0000000000) {
+				alert("Por favor ingrese un numero de cedula valido");
+		        return false;
+		    } else {
+		        var total = 0;
+		        var digito = (array[9]*1);
+
+		        for(var i=0; i < (array.length-1); i++ ){
+		            var mult = 0;
+		            if ( ( i%2 ) !== 0 ) {
+		                total = total + ( array[i] * 1 );
+		            }
+		            else {
+		                mult = array[i] * 2;
+		                if ( mult > 9 )
+		                  total = total + ( mult - 9 );
+		                else
+		                  total = total + mult;
+		            }
+		        }
+
+		        var decena = total / 10;
+		        decena = Math.floor( decena );
+		        decena = ( decena + 1 ) * 10;
+		        var final = ( decena - total );
+
+		        if ( ( final == 10 && digito === 0 ) || ( final == digito ) ) {
+					console.log("cedula valida, segunda validacion");
+		            return true;
+		        } else {
+		            alert("Por favor ingrese un numero de cedula valido");
+					return false;
+		        }
+		    }
+		}	
+	</script>
 {% endblock %}
