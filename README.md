@@ -49,9 +49,4 @@ python manage.py test
 * **Julio Larrea** - *Programador* - [Profile](https://github.com/julio93)
 
 
-## License
 
-*Por Llenar
-
-## Acknowledgments
--Por Llenar-
