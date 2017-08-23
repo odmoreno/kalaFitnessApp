@@ -5,7 +5,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
-             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+             <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
                 <div class="panel panel-default" style="margin-top: 40px">
                     {% if editar %}
                         <div class="panel-heading"><h4><b>Editar Personal</b></h4></div>
@@ -13,7 +13,7 @@
                         <div class="panel-heading"><h4><b>Ingrese los datos de un nuevo personal</b></h4></div>
                     {% endif %}
                     <div class="panel-body">
-                        <form class="form-vertical" action="" method="post" enctype="multipart/form-data">
+                        <form class="form-vertical" action="" onsubmit="return validarCedula();" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% include 'personal/form_template.html' %}
                             <div class="form-group">
@@ -31,6 +31,47 @@
     </div>
 </div>
 <script type="text/javascript">
+
+function validarCedula() {
+		    var cedula =  $("#id_cedula").val();
+			var array = cedula.split('');
+
+		    if ( array.length != 10 || cedula == 0000000000) {
+				alert("Por favor ingrese un numero de cedula valido");
+		        return false;
+		    } else {
+		        var total = 0;
+		        var digito = (array[9]*1);
+
+		        for(var i=0; i < (array.length-1); i++ ){
+		            var mult = 0;
+		            if ( ( i%2 ) !== 0 ) {
+		                total = total + ( array[i] * 1 );
+		            }
+		            else {
+		                mult = array[i] * 2;
+		                if ( mult > 9 )
+		                  total = total + ( mult - 9 );
+		                else
+		                  total = total + mult;
+		            }
+		        }
+
+		        var decena = total / 10;
+		        decena = Math.floor( decena );
+		        decena = ( decena + 1 ) * 10;
+		        var final = ( decena - total );
+
+		        if ( ( final == 10 && digito === 0 ) || ( final == digito ) ) {
+					console.log("cedula valida, segunda validacion");
+		            return true;
+		        } else {
+		            alert("Por favor ingrese un numero de cedula valido");
+					return false;
+		        }
+		    }
+		}
+
     $( "#id_nombre" ).prop('required', true);
     $( "#id_apellido" ).prop('required', true);
     $( "#id_cedula" ).attr("pattern", '^[0-9]{10}').attr('title','Numero de cedula invalido').prop('required', true);

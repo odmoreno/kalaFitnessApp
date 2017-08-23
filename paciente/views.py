@@ -15,7 +15,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib import messages as me
 from kala.views import enviar_password_email, generar_password
 # from paciente.models import paciente
 from kalaapp.models import Rol, Usuario
@@ -102,8 +102,10 @@ def PacienteNuevo(request):
 
         enviar_password_email(user.email, user.username, password)
 
+
         # pacientes = Paciente.objects.all()
         # return render(request, 'paciente/index.html', {'pacientes': pacientes})
+        me.add_message(request, m.SUCCESS, 'Paciente creado con exito!')
         return redirect('paciente:index')
     else:
         print form._errors
@@ -125,6 +127,8 @@ def editarPaciente(request, paciente_id):
     pacientes = get_object_or_404(Paciente, pk=paciente_id)
     paciente=pacientes.usuario
     form = UsuarioEditForm(request.POST or None, instance=paciente)
+    user=paciente.usuario
+    form.fields["email"].initial = user.email
     try:
         user=paciente.usuario
         form.fields["email"].initial = user.email
@@ -136,6 +140,7 @@ def editarPaciente(request, paciente_id):
         user.email = form.cleaned_data['email']
         user.save()
         paciente = form.save()
+        me.add_message(request, me.SUCCESS, 'Paciente editado con exito!')
         return redirect('paciente:index')
 
     context = {

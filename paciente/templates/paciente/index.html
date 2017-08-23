@@ -6,6 +6,20 @@
 
 <div id="page-wrapper">
     <div class="container-fluid">
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    {% if messages %}
+                        <div class="row messages">
+                        {% for message in messages %}
+                            <div {% if message.tags %} class="alert alert-{{ message.tags }} fade in alert-dismissable"{% endif %} style="margin-left:18px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         <div class="panel panel-default" style="margin-top: 40px">
         <div class="panel-heading"><h4><b>Pacientes</b></h4></div>
         <div class="panel-body">
