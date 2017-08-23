@@ -19,6 +19,7 @@ TIPO =(('alta', 'Alta'),
 ESTADO = (('1', 'No tomada'),
           ('2', 'Finalizada'))
 
+
 class Ficha(TimeModel):
     personal = models.ForeignKey(Personal, on_delete=models.DO_NOTHING)
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING)
@@ -66,7 +67,8 @@ class Horario(TimeModel):
     paciente = models.ForeignKey(Paciente, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     fecha = models.DateField(auto_now=False)
-    hora = models.TimeField(auto_now=False, default= datetime.datetime.utcnow)
+    hora = models.TimeField(auto_now=False)
+    duracion = models.PositiveSmallIntegerField(default=10, null=False)
     detalle = models.CharField(max_length=200, null=False)
     estado = models.CharField(max_length=200, choices=ESTADO, default='1', null=False)
 

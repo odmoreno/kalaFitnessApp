@@ -110,11 +110,11 @@ class DietasNestedSerializer(serializers.ModelSerializer):
 class HorarioFisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Horario
-        fields=('personal','fecha','hora','detalle','estado','id')
+        fields=('personal','fecha','hora','duracion','detalle','estado','id')
 class HorarioNutSerializer(serializers.ModelSerializer):
     class Meta:
         model = HorarioNut
-        fields=('personal','fecha','hora','detalle','estado','id')
+        fields=('personal','fecha','hora','duracion', 'detalle','estado','id')
 
 
 

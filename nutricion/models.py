@@ -92,6 +92,7 @@ class HorarioNut(TimeModel):
 
     fecha = models.DateField(auto_now=False)
     hora = models.TimeField(auto_now=False)
+    duracion = models.PositiveSmallIntegerField(default=10, null=False)
     detalle = models.CharField(max_length=200, null=False)
     estado = models.CharField(max_length=200, choices=ESTADO, default='1', null=False)
 

@@ -25,14 +25,12 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authentication import BasicAuthentication
 
 #AUTH
-# http POST http://127.0.0.1:8000/api/api-token-auth/ -- username=carlos password=carlos123
+#
+
 #Devuelve JSON como:
 #{
   #  "token": "valorvalorvalor"
 #}
-
-
-
 
 # A todos los requerimientos agregarles'Authorization: Token valor-del-token'
 

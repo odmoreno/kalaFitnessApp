@@ -21,8 +21,8 @@ class DateTypeInput(forms.DateInput):
 class HorariosForm(ModelForm):
     class Meta:
         model = Horario
-        fields = [ 'fecha', 'hora', 'detalle', 'estado' ]
-        labels = {'fecha':'Fecha', 'hora': 'Hora', 'detalle': 'Detalle', 'estado': 'Estado'}
+        fields = [ 'fecha', 'hora', 'detalle', 'estado', 'duracion' ]
+        labels = {'fecha':'Fecha', 'hora': 'Hora', 'detalle': 'Detalle', 'estado': 'Estado', 'duracion': 'Duracion(Minutos)'}
         widgets = {
             'fecha': DateWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
             'hora': TimeWidget(attrs={'id':"yourdatetimeid", 'class': u'form-control'}, usel10n = True, bootstrap_version=3),
@@ -30,6 +30,9 @@ class HorariosForm(ModelForm):
                 attrs={'class': u'form-control', 'placeholder': u'Ingrese respuesta ...', 'rows': 10, 'cols': 40,
                        'style': 'height: 6em;'}),
             'estado': Select(attrs={'class': u'form-control'}),
+            'duracion': NumberInput(
+                attrs={'class': u'form-control', 'placeholder': u'Minutos', 'min': '1', 'max': '120',
+                       'step': '5'}),
                    }
 
 class FichaForm(ModelForm):

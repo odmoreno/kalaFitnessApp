@@ -132,6 +132,7 @@ def establecer_horario (request):
     sesion = request.session.get('user_sesion', None)
     print form._errors
     if form.is_valid():
+#        lel = lel.replace(minute=form.cleaned_data['hora'].minute + duracion)
         horario = form.save(commit=False)
         personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
         horario.personal = personal

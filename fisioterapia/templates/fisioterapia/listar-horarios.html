@@ -25,6 +25,7 @@
                                         <th>Detalle</th>
                                         <th>Estado</th>
                                         <th>Paciente</th>
+                                        <th>Duracion</th>
                                         <th>Cancelar</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,7 @@
                                                 {% else %}
                                                     No asignado
                                                 {% endif %}</td>
+                                                <td>{{ horario.duracion }} - Minutos</td>
                                                 <td><a href="{% url 'fisioterapia:eliminar_cita' horario.id %}">
                                                     <button type="submit" class="btn btn-danger">
                                                         <span class="glyphicon glyphicon-remove"></span>
