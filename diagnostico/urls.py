@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^guardar$', guardarDiagnostico, name='GuardarDiagnostico'),
     url(r'^reportes/$', views.reportes, name='reportes'),
     url(r'^reporte/(?P<paciente_cedula>[0-9]+)/$', views.reporteTotal),
+    url(r'^reporte/$', views.reporte),
     #url(r'^api/$', views.apiDiagnostico, name="ApiDiagnostico"),
 ]

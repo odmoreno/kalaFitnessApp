@@ -467,6 +467,58 @@ def reporteTotal(request, paciente_cedula):
         return HttpResponseServerError("Algo salio mal")
 
 '''
+Funcion: reporte
+Entradas: Request HTTP GET
+Salidas: JSON con todos los diagnosticos y de todos los pacientes
+*Funcion que retorna la informacion de los diagnosticos de un paciente la base de datos
+en forma de un JSON*
+'''
+@login_required
+def reporte(request):
+    try:
+        diagnosticos = DiagnosticoFisioterapia.objects.all()
+        response = []
+        
+        for d in diagnosticos:
+            #if d.estado=='A':
+            cedula = d.paciente.usuario.cedula
+            nombre = d.paciente.usuario.nombre
+            apellido = d.paciente.usuario.apellido
+            condiciones_previas = d.condiciones_previas
+            area_afectada = d.area_afectada
+            genero = d.paciente.usuario.genero
+            receta = d.receta
+            subrutinas = []
+
+            for subrutina in d.rutina.subrutina.all():
+                subrutinas.append({
+                    "nombre":subrutina.nombre, 
+                    "detalle":subrutina.detalle, 
+                    "veces":subrutina.veces, 
+                    "repeticiones":subrutina.repeticiones, 
+                    "descanso":subrutina.descanso
+                })
+
+            record = {
+                "cedula": cedula,
+                "condiciones_previas":condiciones_previas,
+                "area_afectada":area_afectada,
+                "apellido":apellido,
+                "nombre":nombre,
+                "genero":genero,
+                "receta":receta,
+                "subrutinas": subrutinas
+            }
+            response.append(record)
+
+        return JsonResponse({"data": response})
+        #return HttpResponseNotFound("No existen reportes de este paciente")
+    except Exception as e:
+        print e
+        return HttpResponseServerError("Algo salio mal")
+
+
+'''
 Funcion: reportes
 Entradas: requerimiento get http
 Salidas: Retorna un template de reportes de diagnosticos
