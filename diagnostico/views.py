@@ -509,7 +509,8 @@ def reporte(request):
                     "detalle":subrutina.detalle, 
                     "veces":subrutina.veces, 
                     "repeticiones":subrutina.repeticiones, 
-                    "descanso":subrutina.descanso
+                    "descanso":subrutina.descanso,
+                    "link":subrutina.link
                 })
 
             record = {

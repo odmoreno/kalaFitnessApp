@@ -6,7 +6,7 @@
 <div id="page-wrapper" ng-app="app">
   <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
-        <div class="panel-heading"><h4><b>Reportes de diagnostico</b></h4></div>
+        <div class="panel-heading"><h4><b>Generar reportes por paciente</b></h4></div>
 
         <div class="panel-body">
           <div class="container-fluid">
@@ -20,7 +20,7 @@
                               <th>Apellido</th>
                               <th>Ocupacion</th>
                               <th>Genero</th>
-                              <th>Generar diagnosticos</th>
+                              <th>Generar</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -68,7 +68,7 @@
               })
 
             $scope.generar = (paciente) => {
-                pdf(paciente, "reporte_PDF.pdf");
+                pdf(paciente, "reporte_diagnosticosPDF.pdf");
             }
 
 
@@ -213,27 +213,5 @@
         };
         pdfMake.createPdf(pdf).download(nombre);
     }
-
-      /*$("#generasdasdasdasar").click(function(){
-        var value = $('#cedula').val();
-        setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
-
-        $.ajax({
-            url: '/diagnostico/reporte/' + value,
-            type: 'GET',
-            success: function(res){
-                console.log(res.data);
-                pdf(res.data, "reporte_diagnostico.pdf");
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-                if(xhr.status==404) {
-                    alert("No existen reportes de este paciente");
-                } else {
-                    alert("Algo salio mal con el servidor");
-                }
-            }
-        })
-      })*/
 </script>
 {% endblock %}
