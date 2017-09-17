@@ -91,9 +91,9 @@
                columns : [
                    { width: '*', text: ''},
                    {
-                       width: 'auto',
+                       width: '100%',
                        table: {
-                           widths: ['auto','*','*','auto','auto'],
+                           widths: ['*','*','*','*','*'],
                            body: body(data)
                          }
                    },
@@ -129,24 +129,26 @@
     pdfMake.createPdf(pdf).download(nombre);
   };
 
-  $("#generar").click(function(){
+  $("#generar").click(()=>{
     var value = $('#tipo').find(":selected").text();
-    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
-
+    NProgress.start();
     if (value == "Total") {
-      $.get("/paciente/reporte/totales", function(data, status){
+      $.get("/paciente/reporte/totales", (data, status)=>{
         console.log(data.pacientes);
         pdf(data.pacientes, "reporte_pacientes.pdf", value);
+        NProgress.done();
       });
     } else if (value == 'Hombres') {
-      $.get("/paciente/reporte/hombres", function(data, status){
+      $.get("/paciente/reporte/hombres", (data, status)=>{
         console.log(data.pacientes);
         pdf(data.pacientes, "reporte_pacientesHombres.pdf", value);
+        NProgress.done();
       });
     } else if (value == 'Mujeres') {
-      $.get("/paciente/reporte/mujeres", function(data, status){
+      $.get("/paciente/reporte/mujeres", (data, status)=>{
         console.log(data.pacientes);
         pdf(data.pacientes, "reporte_pacientesMujeres.pdf", value);
+        NProgress.done();
       });
     }
   });

@@ -114,7 +114,7 @@
                columns : [
                    { width: '*', text: ''},
                    {
-                       width: 'auto',
+                       width: '100%',
                        table: {
                            widths: ['*','*','*','*','*'],
                            body: body(data)
@@ -152,17 +152,17 @@
     pdfMake.createPdf(pdf).download(nombre);
   };
 
-  $("#generar").click(function(){
+  $("#generar").click(()=>{
     var value = $('#tipo').find(":selected").text();
-    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
-
+    NProgress.start();
     if (value == "Total") {
-      $.get("/factura/reporte/total", function(res, status){
+      $.get("/factura/reporte/total", (res, status)=>{
         console.log(res.data);
         pdf(res.data, "reporte_facturas.pdf", value);
-      });
+        NProgress.done();
+      })
     }
-  });
+  })
 
 </script>
 {% endblock %}

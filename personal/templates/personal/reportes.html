@@ -91,7 +91,7 @@
                columns : [
                    { width: '*', text: ''},
                    {
-                       width: 'auto',
+                       width: '100%',
                        table: {
                            widths: ['*','*','*','*','*'],
                            body: body(data)
@@ -128,32 +128,35 @@
     pdfMake.createPdf(pdf).download(nombre);
   };
 
-  $("#generar").click(function(){
+  $("#generar").click(()=>{
     var value = $('#tipo').find(":selected").text();
-    setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
-
+    NProgress.start();
     if (value == "Total") {
-        $.get("/personal/reporte/total", function(res, status){
+        $.get("/personal/reporte/total", (res, status)=>{
           console.log(res.data);
           pdf(res.data, "reporte_total.pdf", value);
-        });
+          NProgress.done();
+        })
     } else if (value == 'Rol'){
-        $.get("/personal/reporte/rol", function(res, status){
+        $.get("/personal/reporte/rol", (res, status)=>{
           console.log(res.data);
           pdf(res.data, "reporte_rol.pdf", value);
-        });
+          NProgress.done();
+        })
     } else if (value == 'Hombres') {
-        $.get("/personal/reporte/hombres", function(res, status){
+        $.get("/personal/reporte/hombres", (res, status)=>{
           console.log(res.data);
           pdf(res.data, "reporte_hombres.pdf", value);
-        });
+          NProgress.done();
+        })
     } else if (value == 'Mujeres') {
-        $.get("/personal/reporte/mujeres", function(res, status){
+        $.get("/personal/reporte/mujeres", (res, status)=>{
           console.log(res.data);
           pdf(res.data, "reporte_mujeres.pdf", value);
-        });
+          NProgress.done();
+        })
     }
-  });
+  })
 
 
 </script>
