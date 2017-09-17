@@ -566,6 +566,5 @@ Salidas: Retorna un template de reportes de diagnosticos
 '''
 @login_required
 def reportes(request):
-    print "aquiiiii"
     template = 'reportes_diagnostico.html'
     return render(request, template)

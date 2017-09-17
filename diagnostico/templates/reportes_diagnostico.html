@@ -46,7 +46,6 @@
 <script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script>
-
     angular.module('app', [])
         .config(["$interpolateProvider", function ($interpolateProvider) {
             $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -129,7 +128,7 @@
                     columns : [
                        { width: '*', text: ''},
                        {
-                           width: 'auto',
+                           width: '100%',
                            table: {
                                widths: ['*','*','*','*','*'],
                                body: body(diag.subrutinas)
