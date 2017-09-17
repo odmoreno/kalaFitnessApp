@@ -34,7 +34,6 @@
                           </tbody>
                         </table>
                     </div>
-                    <button id="generar" class="btn btn-default">Generar PDF</button>
                 </div>
           </div>
           
@@ -48,36 +47,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script>
 
-  angular.module('app', [])
-    .config(["$interpolateProvider", function ($interpolateProvider) {
-        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    }])
-    .controller('main', ["$http", "$scope", function($http, $scope){
+    angular.module('app', [])
+        .config(["$interpolateProvider", function ($interpolateProvider) {
+            $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        }])
+        .controller('main', ["$http", "$scope", function($http, $scope){
 
 
-        setTimeout(() => {
-            alert("Cargando usuarios, por favor espere");
-        }, 1)
+            setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
 
-        $http.get("/diagnostico/reporte/").then(function(res){
-            $scope.pacientes = res.data.usuarios;
-            console.log($scope.pacientes);
-        }, function (e){
-            console.log(e);
-            alert("No se ha podido cargar la informacion")
-        })
+            $http.get("/diagnostico/reporte/")
+              .then(function(res){
+                  $scope.pacientes = res.data.usuarios;
+                  console.log($scope.pacientes);
 
-        $scope.generar = (paciente) => {
+              }, function (e){
+                  console.log(e);
+                  alert("No se ha podido cargar la informacion")
 
-        }
+              })
+
+            $scope.generar = (paciente) => {
+                pdf(paciente, "reporte_PDF.pdf");
+            }
 
 
-    }])
+        }])
 
-  $(function() {
-
-      
-      function body(data){
+   
+    function body(data){
         var body = [
             [
                 {text: 'Nombre', style: 'subItem'},
@@ -100,9 +98,53 @@
             );
         });
         return body;
-      }
+    }
 
-      function pdf(data, nombre){
+
+    function diagnostico (diagnosticos) {
+        var data = [];
+        diagnosticos.forEach((diag) => {
+            data.push(
+                {
+                    text: [
+                       {
+                           text: "\nArea afectada: ",
+                           style: 'subItem'
+                       }, {
+                           text: diag.area_afectada + " \n"
+                       },{
+                           text: "Condiciones previas: ",
+                           style: 'subItem'
+                       }, {
+                           text: diag.condiciones_previas + " \n"
+                       },{
+                           text: "Receta: ",
+                           style: 'subItem'
+                       }, {
+                           text: diag.receta + " \n\n"
+                       }
+                    ]
+                },
+                {
+                    columns : [
+                       { width: '*', text: ''},
+                       {
+                           width: 'auto',
+                           table: {
+                               widths: ['*','*','*','*','*'],
+                               body: body(diag.subrutinas)
+                             }
+                       },
+                       { width: '*', text: ''}
+                    ]
+                }
+            );
+        })
+        return data;        
+    }
+
+
+    function pdf(data, nombre){
         var today = new Date();
         var mm = today.getMonth()+1; //January is 0!
         today = mm+'/'+ today.getDate() +'/'+ today.getFullYear();
@@ -111,50 +153,39 @@
            content: [
 
                {  text: "KalaFitness APP", style: 'header' },
-               {  text: "Reporte de diagnostico de paciente\n\n", style: 'subheader' },
+               {  text: "Reporte de diagnostico por paciente\n\n", style: 'subheader' },
                {
                    text: [
                        {
                            text: "Fecha: ",
                            style: 'subItem'
                        }, {
-                           text: today + "\n"
+                           text: today + " \n"
                        },{
                            text: "Nombre: ",
                            style: 'subItem'
                        }, {
-                           text: data.nombre + " " + data.apellido + "\n"
+                           text: data.nombre + " " + data.apellido + " \n"
                        },{
                            text: "Cedula: ",
                            style: 'subItem'
                        }, {
-                           text: data.cedula + "\n"
+                           text: data.cedula + " \n"
                        },{
-                           text: "Area Afectada: ",
+                           text: "Genero: ",
                            style: 'subItem'
                        }, {
-                           text: data.area_afectada + "\n"
+                           text: data.genero + " \n"
                        },{
-                           text: "Receta: ",
+                           text: "Ocupacion: ",
                            style: 'subItem'
                        }, {
-                           text: data.receta + "\n\n"
+                           text: data.ocupacion + " \n\n"
                        }
                    ]
-               },"Subrutinas del diagnostico",
-               {
-                   columns : [
-                       { width: '*', text: ''},
-                       {
-                           width: 'auto',
-                           table: {
-                               widths: ['*','*','*','*','*'],
-                               body: body(data.subrutinas)
-                             }
-                       },
-                       { width: '*', text: ''}
-                   ]
-               }
+                },{text: "Diagnosticos y sus subrutinas\n", style: 
+                    {fontSize: 14, bold: true, alignment: 'center'}
+                },diagnostico(data.diagnosticos)
            ],
            styles: {
                header: {
@@ -181,9 +212,9 @@
            }
         };
         pdfMake.createPdf(pdf).download(nombre);
-      };
+    }
 
-      $("#generasdasdasdasar").click(function(){
+      /*$("#generasdasdasdasar").click(function(){
         var value = $('#cedula').val();
         setTimeout(function() { alert("Generando reporte, por favor espere") }, 1);
 
@@ -203,7 +234,6 @@
                 }
             }
         })
-      })
-  })
+      })*/
 </script>
 {% endblock %}
