@@ -24,7 +24,7 @@
 
             global.generar = (paciente) => {
                 NProgress.start();
-                pdf(paciente, "reporte_diagnosticos_" + paciente.nombre + "-" + paciente.apellido + ".pdf");
+                pdf(paciente);
             }
 
 
@@ -209,7 +209,7 @@
                }
            }
         };
-        pdfMake.createPdf(pdf).download("reporte_DIagnosticos.pdf");
+        pdfMake.createPdf(pdf).download("reporte_diagnosticos_" + data.nombre + "-" + data.apellido + ".pdf");
         NProgress.done();
     }
 </script>

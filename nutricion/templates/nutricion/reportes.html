@@ -24,7 +24,7 @@
 
         fed.generar = (xyz) => {
             console.log(xyz);
-            pdf(xyz, "reporte_FichaMedica_" + xyz.nombre + "-" + xyz.apellido + ".pdf");
+            pdf(xyz);
             NProgress.done();
         }
     }])
@@ -241,7 +241,7 @@
                }
            }
         };
-        pdfMake.createPdf(pdf).download("fichas_Paciente.pdf");
+        pdfMake.createPdf(pdf).download("reporte_FichaMedica_" + paciente.nombre + "-" + paciente.apellido + ".pdf");
     }
 </script>
 {% endblock %}

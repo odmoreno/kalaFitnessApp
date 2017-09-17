@@ -396,9 +396,22 @@ Salidas: JSON con todo el personal
 *Funcion que retorna la informacion del personal registrados en la base de datos
 en forma de un JSON*
 '''
+
+personalCache = []
+
 @login_required
 def reporteTotal(request):
-    personal = Personal.objects.all()
+    global personalCache
+    if len(personalCache) == 0:
+        personal = Personal.objects.all()
+        personalCache = personal
+        print "desde la base"
+    else:
+        personal = personalCache
+        print "desde el cache"
+
+
+    #personal = Personal.objects.all()
     per = []
 
     for p in personal:
@@ -408,7 +421,15 @@ def reporteTotal(request):
             apellido = p.usuario.apellido
             telefono = p.usuario.telefono
             rol = p.usuario.rol.tipo
-            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"rol":rol}
+            genero = p.usuario.genero
+            record = {
+                "cedula":cedula,
+                "nombre":nombre,
+                "apellido":apellido,
+                "telefono":telefono,
+                "rol":rol,
+                "genero":genero
+            }
             per.append(record)
 
     return JsonResponse({"data": per})

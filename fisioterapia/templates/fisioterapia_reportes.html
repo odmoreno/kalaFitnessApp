@@ -24,7 +24,7 @@
 
         fed.generar = (xyz) => {
             console.log(xyz);
-            pdf(xyz, "reporte_Fisioterapia_" + xyz.nombre + "-" + xyz.apellido + ".pdf");
+            pdf(xyz);
         }
     }])
 </script>
@@ -271,7 +271,7 @@
                }
            }
         };
-        pdfMake.createPdf(pdf).download("fichas_Paciente.pdf");
+        pdfMake.createPdf(pdf).download("reporte_Fisioterapia_" + paciente.nombre + "-" + paciente.apellido + ".pdf");
     }
 </script>
 {% endblock %}
