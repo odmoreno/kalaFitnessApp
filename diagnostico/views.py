@@ -474,21 +474,21 @@ Salidas: JSON con todos los diagnosticos y de todos los pacientes
 en forma de un JSON*
 '''
 
-diagnosticosCache = []
+#diagnosticosCache = []
 
 @login_required
 def reporte(request):
-    global diagnosticosCache
+    #global diagnosticosCache
     usuarios = []
 
     try:
-        if len(diagnosticosCache) == 0:
-            diagnosticos = DiagnosticoFisioterapia.objects.all()
-            diagnosticosCache = diagnosticos
-            print "desde la base"
-        else:
-            diagnosticos = diagnosticosCache
-            print "desde el cache"
+        #if len(diagnosticosCache) == 0:
+        diagnosticos = DiagnosticoFisioterapia.objects.all()
+        #    diagnosticosCache = diagnosticos
+        #    print "desde la base"
+        #else:
+        #    diagnosticos = diagnosticosCache
+        #    print "desde el cache"
 
         data = []
         

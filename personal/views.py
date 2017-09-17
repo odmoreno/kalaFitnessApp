@@ -397,18 +397,18 @@ Salidas: JSON con todo el personal
 en forma de un JSON*
 '''
 
-personalCache = []
+#personalCache = []
 
 @login_required
 def reporteTotal(request):
-    global personalCache
-    if len(personalCache) == 0:
-        personal = Personal.objects.all()
-        personalCache = personal
-        print "desde la base"
-    else:
-        personal = personalCache
-        print "desde el cache"
+    #global personalCache
+    #if len(personalCache) == 0:
+    personal = Personal.objects.all()
+    #    personalCache = personal
+    #    print "desde la base"
+    #else:
+    #    personal = personalCache
+    #    print "desde el cache"
 
 
     #personal = Personal.objects.all()

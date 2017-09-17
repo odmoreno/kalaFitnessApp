@@ -187,18 +187,18 @@ Salidas: JSON con todos los pacientes
 *Funcion que retorna la informacion de los pacientes registrados en la base de datos
 en forma de un JSON*
 '''
-pacientesCache = []
+#pacientesCache = []
 
 #@login_required
 def reporteTotales(request):
-    global pacientesCache
-    if len(pacientesCache) == 0:
-        pacientes = Paciente.objects.all()
-        pacientesCache = pacientes
-        print "desde la base"
-    else:
-        pacientes = pacientesCache
-        print "desde el cache"
+    #global pacientesCache
+    #if len(pacientesCache) == 0:
+    pacientes = Paciente.objects.all()
+    #    pacientesCache = pacientes
+    #    print "desde la base"
+    #else:
+    #    pacientes = pacientesCache
+    #    print "desde el cache"
 
     #pacientes = Paciente.objects.all()
     p = []

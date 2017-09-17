@@ -52,14 +52,14 @@ def crear_ficha(request):
     return render(request, template, context)
 
 def listar_fichas(request):
-    global fichasCache
-    if len(fichasCache) == 0:
-        fichas = Ficha.objects.all()
-        fichasCache = fichas
-        print "desde la base"
-    else:
-        fichas = fichasCache
-        print "desde el cache"
+    #global fichasCache
+    #if len(fichasCache) == 0:
+    fichas = Ficha.objects.all()
+    #    fichasCache = fichas
+    #    print "desde la base"
+    #else:
+    #    fichas = fichasCache
+    #    print "desde el cache"
 
     template = "fisioterapia/lista-fichas.html"
     #fichas = Ficha.objects.all()
@@ -173,19 +173,19 @@ Salidas: JSON con una ficha medica del paciente
 en forma de un JSON*
 '''
 
-fichasCache = []
+#fichasCache = []
 
 @login_required
 def reporteFicha(request, paciente_cedula):
-    global fichasCache
+    #global fichasCache
     try:
-        if len(fichasCache) == 0:
-            fichas = Ficha.objects.all()
-            fichasCache = fichas
-            print "desde la base"
-        else:
-            fichas = fichasCache
-            print "desde el cache"
+        #if len(fichasCache) == 0:
+        fichas = Ficha.objects.all()
+        #    fichasCache = fichas
+        #    print "desde la base"
+        #else:
+        #    fichas = fichasCache
+        #    print "desde el cache"
 
         for f in fichas:
             if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
@@ -247,17 +247,17 @@ en forma de un JSON*
 '''
 @login_required
 def reporte(request):
-    global fichasCache
+    #global fichasCache
     pacientes = []
 
     try:
-        if len(fichasCache) == 0:
-            fichas = Ficha.objects.all()
-            fichasCache = fichas
-            print "desde la base"
-        else:
-            fichas = fichasCache
-            print "desde el cache"
+        #if len(fichasCache) == 0:
+        fichas = Ficha.objects.all()
+        #    fichasCache = fichas
+        #    print "desde la base"
+        #else:
+        #    fichas = fichasCache
+        #    print "desde el cache"
 
 
         for fic in fichas:

@@ -13,8 +13,8 @@ from personal.models import Personal
 from .models import ficha_nutricion, HorarioNut
 from .forms import FichaForm, HorariosForm
 
-fichasCache = []
-pacientesCache = []
+#fichasCache = []
+#pacientesCache = []
 
 def index(request):
     template = "nutricion/index.html"
@@ -50,25 +50,25 @@ def crear_ficha(request):
 
 
 def listar_fichas(request):
-    global fichasCache
-    global pacientesCache
+    #global fichasCache
+    #global pacientesCache
 
-    if len(fichasCache) == 0:
-        fichas = ficha_nutricion.objects.all()
-        fichasCache = fichas
-        print "desde la base"
-    else:
-        fichas = fichasCache
-        print "desde el cache"
+    #if len(fichasCache) == 0:
+    fichas = ficha_nutricion.objects.all()
+    #    fichasCache = fichas
+    #    print "desde la base"
+    #else:
+    #    fichas = fichasCache
+    #    print "desde el cache"
 
 
-    if len(pacientesCache) == 0:
-        pacientes = Paciente.objects.all()
-        pacientesCache = pacientes
-        print "desde la base"
-    else:
-        pacientes = pacientesCache
-        print "desde el cache"
+    #if len(pacientesCache) == 0:
+    pacientes = Paciente.objects.all()
+    #    pacientesCache = pacientes
+    #    print "desde la base"
+    #else:
+    #    pacientes = pacientesCache
+    #    print "desde el cache"
 
 
 
@@ -201,17 +201,17 @@ Funcion que permite obtener todas las facturas creadas
 #@login_required
 
 def reporte(request):
-    global fichasCache
+    #global fichasCache
     pacientes = []
 
     try:
-        if len(fichasCache) == 0:
-            fichas = ficha_nutricion.objects.all()
-            fichasCache = fichas
-            print "desde la base"
-        else:
-            fichas = fichasCache
-            print "desde el cache"
+        #if len(fichasCache) == 0:
+        fichas = ficha_nutricion.objects.all()
+        #    fichasCache = fichas
+        #    print "desde la base"
+        #else:
+         #   fichas = fichasCache
+         #   print "desde el cache"
 
         for fic in fichas:
             cedula = fic.paciente.usuario.cedula
