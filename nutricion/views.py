@@ -289,7 +289,9 @@ Salidas: Retorna un template de reportes de ficha medica
 #@login_required
 def reportes(request):
     template = 'nutricion/reportes.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response
 
 @transaction.atomic
 def eliminar_cita(request, horario_id):

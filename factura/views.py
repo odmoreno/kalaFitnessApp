@@ -190,4 +190,6 @@ Salidas: Retorna un template de reportes de facturas
 @login_required
 def reportes(request):
     template = 'reportes.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response

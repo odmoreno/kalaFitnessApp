@@ -366,4 +366,6 @@ Salidas: Retorna un template de reportes de fichas
 @login_required
 def reportes(request):
     template = 'fisioterapia_reportes.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response

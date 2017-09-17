@@ -24,7 +24,7 @@
 
         fed.generar = (xyz) => {
             console.log(xyz);
-            pdf(xyz, "reporte_diagnosticosPDF.pdf");
+            pdf(xyz, "reporte_FichaMedica_" + xyz.nombre + "-" + xyz.apellido + ".pdf");
             NProgress.done();
         }
     }])

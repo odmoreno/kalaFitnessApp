@@ -187,9 +187,20 @@ Salidas: JSON con todos los pacientes
 *Funcion que retorna la informacion de los pacientes registrados en la base de datos
 en forma de un JSON*
 '''
-@login_required
+pacientesCache = []
+
+#@login_required
 def reporteTotales(request):
-    pacientes = Paciente.objects.all()
+    global pacientesCache
+    if len(pacientesCache) == 0:
+        pacientes = Paciente.objects.all()
+        pacientesCache = pacientes
+        print "desde la base"
+    else:
+        pacientes = pacientesCache
+        print "desde el cache"
+
+    #pacientes = Paciente.objects.all()
     p = []
 
     for paciente in pacientes:
@@ -199,7 +210,14 @@ def reporteTotales(request):
             apellido = paciente.usuario.apellido
             telefono = paciente.usuario.telefono
             genero = paciente.usuario.genero
-            record = {"cedula":cedula,"nombre":nombre,"apellido":apellido,"telefono":telefono,"genero":genero}
+            record = {
+                "cedula":cedula,
+                "nombre":nombre,
+                "apellido":apellido,
+                "telefono":telefono,
+                "genero":genero
+            }
+
             p.append(record)
 
     return JsonResponse({"pacientes": p})
@@ -260,4 +278,6 @@ Salidas: Retorna un template de reportes de pacientes
 @login_required
 def reportes(request):
     template = 'paciente/reportes.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response

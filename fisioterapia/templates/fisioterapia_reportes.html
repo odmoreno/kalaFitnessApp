@@ -24,14 +24,14 @@
 
         fed.generar = (xyz) => {
             console.log(xyz);
-            pdf(xyz, "reporte_diagnosticosPDF.pdf");
+            pdf(xyz, "reporte_Fisioterapia_" + xyz.nombre + "-" + xyz.apellido + ".pdf");
         }
     }])
 </script>
 <div id="page-wrapper" ng-app="app">
   <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
-        <div class="panel-heading"><h4><b>Generar reporte de ficha medica por paciente</b></h4></div>
+        <div class="panel-heading"><h4><b>Generar reporte de fisioterapia por paciente</b></h4></div>
 
         <div class="panel-body">
           <div class="container-fluid">

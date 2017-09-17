@@ -499,4 +499,6 @@ Salidas: template de reportes de personal
 @login_required
 def reportes(request):
     template = 'personal/reportes.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response

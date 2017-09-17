@@ -535,25 +535,15 @@ def reporte(request):
                 "ocupacion": d["ocupacion"],
                 "diagnosticos": []
             }
-            print usuarios
-            print usuario
-
             if usuario not in usuarios:
                 usuarios.append(usuario)
-
-        print usuarios
 
         for usuario in usuarios:
              for diagnostico in data:
                 if diagnostico["cedula"]==usuario["cedula"]:
                     usuario["diagnosticos"].append(diagnostico)
 
-        print usuarios
         return JsonResponse({"usuarios": usuarios})
-            
-
-        #return JsonResponse({"data": response})
-        #return HttpResponseNotFound("No existen reportes de este paciente")
     except Exception as e:
         print e
         return HttpResponseServerError("Algo salio mal")
@@ -567,4 +557,6 @@ Salidas: Retorna un template de reportes de diagnosticos
 @login_required
 def reportes(request):
     template = 'reportes_diagnostico.html'
-    return render(request, template)
+    response = render(request, template)
+    response['Cache-Control'] = "private,max-age=600"
+    return response

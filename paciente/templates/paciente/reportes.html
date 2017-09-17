@@ -3,23 +3,77 @@
 {% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
-<div id="page-wrapper">
-  <div class="container-fluid">
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/ndv3/nv.d3.min.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+<script src="{% static 'vendor/ndv3/d3.min.js' %}"></script>
+<script src="{% static 'vendor/ndv3/nv.d3.min.js' %}"></script>
+<script src="{% static 'vendor/ndv3/angular-ndv3.min.js' %}"></script>
+
+<script type="text/javascript">
+    angular.module('app', ['nvd3'])
+        .config(["$interpolateProvider", (xyz) => {
+            xyz.startSymbol('{[{').endSymbol('}]}');
+        }])
+        .controller('main', ["$http", "$scope", ($http, $scope)=>{
+
+            NProgress.start();
+            $http.get("/paciente/reporte/totales/")
+              .then((res) => {
+                  var pacientes = res.data.pacientes;
+                  $scope.data = [{
+                      key: "Masculino",
+                      y: 0
+                  },
+                  {
+                      key: "Femenino",
+                      y: 0
+                  }];
+
+                  pacientes.forEach((paciente)=>{
+                      if (paciente.genero == "M") {
+                          $scope.data[0].y++
+                      } else {
+                          $scope.data[1].y++
+                      }
+                  })
+                  NProgress.done()
+
+              }, (e) => {
+                  NProgress.done()
+                  alert("No se ha podido cargar la informacion")                  
+              })
+
+            $scope.options = {
+                chart: {
+                    type: 'pieChart',
+                    height: 500,
+                    x: function (d) { return d.key; },
+                    y: function (d) { return d.y; },
+                    showLabels: false,
+                    duration: 500,
+                    labelThreshold: 0,
+                    labelSunbeamLayout: true,
+                    legendPosition: "right",
+                    legend: {
+                        margin: {
+                            top: 5,
+                            right: 35,
+                            bottom: 5,
+                            left: 0
+                        }
+                    }
+                }
+            }
+
+        }])
+</script>
+<div id="page-wrapper" ng-app="app">
+  <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
-        <div class="panel-heading"><h4><b>Reporte de pacientes</b></h4></div>
+        <div class="panel-heading"><h4><b>Reporte estadistico de pacientes por genero</b></h4></div>
         <div class="panel-body">
           <div class="container-fluid">
-                <div >
-                    <div class="form-group">
-                      <label >Tipo de reporte:</label>
-                      <select class="form-control" id="tipo">
-                          <option>Total</option>
-                          <option>Hombres</option>
-                          <option>Mujeres</option>
-                      </select>
-                    </div>
-                    <button id="generar" class="btn btn-default">Generar PDF</button>
-                </div>
+              <nvd3 options="options" data="data"></nvd3>
           </div>
         </div>
     </div>
@@ -29,6 +83,7 @@
 <script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
 <script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
 <script>
+/*
   function body(data){
     var body = [
         [
@@ -151,7 +206,7 @@
         NProgress.done();
       });
     }
-  });
+  });*/
 
 </script>
 {% endblock %}

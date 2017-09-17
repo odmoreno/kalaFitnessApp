@@ -24,7 +24,7 @@
 
             global.generar = (paciente) => {
                 NProgress.start();
-                pdf(paciente, "reporte_diagnosticosPDF.pdf");
+                pdf(paciente, "reporte_diagnosticos_" + paciente.nombre + "-" + paciente.apellido + ".pdf");
             }
 
 
@@ -33,7 +33,7 @@
 <div id="page-wrapper" ng-app="app">
   <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
-        <div class="panel-heading"><h4><b>Generar reportes por paciente</b></h4></div>
+        <div class="panel-heading"><h4><b>Generar reportes de diagnostico por paciente</b></h4></div>
 
         <div class="panel-body">
           <div class="container-fluid">
