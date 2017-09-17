@@ -173,66 +173,9 @@ Salidas: JSON con una ficha medica del paciente
 en forma de un JSON*
 '''
 
-#fichasCache = []
-
 @login_required
 def reporteFicha(request, paciente_cedula):
-    #global fichasCache
     try:
-        #if len(fichasCache) == 0:
-        fichas = Ficha.objects.all()
-        #    fichasCache = fichas
-        #    print "desde la base"
-        #else:
-        #    fichas = fichasCache
-        #    print "desde el cache"
-
-        for f in fichas:
-            if f.paciente.usuario.cedula==paciente_cedula: #and paciente.usuario.estado=='A':
-                cedula = f.paciente.usuario.cedula
-                nombre = f.paciente.usuario.nombre
-                apellido = f.paciente.usuario.apellido
-                genero = f.paciente.usuario.genero
-                altura = f.altura
-                peso = f.peso
-                imc = f.imc
-                musculo = f.musculo
-                grasa_visceral = f.grasa_visceral
-                grasa_porcentaje = f.grasa_porcentaje
-
-                flexiones = f.flexiones
-                sentadillas = f.sentadillas
-                saltoLargo = f.saltoLargo
-                suspension = f.suspension
-
-                abdomen_bajo = f.abdomen_bajo
-                abdomen_alto = f.abdomen_alto
-                espinales = f.espinales
-                lumbares = f.lumbares
-                trenSuperior = f.trenSuperior
-
-                record = {
-                    "cedula": cedula,
-                    "apellido":apellido,
-                    "nombre":nombre,
-                    "genero":genero,
-                    "altura": altura,
-                    "peso": peso,
-                    "imc": imc,
-                    "musculo": musculo,
-                    "grasa_visceral": grasa_visceral,
-                    "grasa_porcentaje" : grasa_porcentaje,
-                    "flexiones" : flexiones,
-                    "sentadillas" : sentadillas,
-                    "saltoLargo" : saltoLargo,
-                    "suspension" : suspension,
-                    "abdomen_bajo" :abdomen_bajo,
-                    "abdomen_alto" :abdomen_alto,
-                    "espinales" :espinales,
-                    "lumbares" :lumbares,
-                    "trenSuperior" :trenSuperior
-                }
-                return JsonResponse({"data": record})
         return HttpResponseNotFound("No existen reportes de este paciente")
     except Exception as e:
         print e
@@ -249,6 +192,8 @@ en forma de un JSON*
 def reporte(request):
     #global fichasCache
     pacientes = []
+    sesion = request.session.get('user_sesion', None)
+    personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
 
     try:
         #if len(fichasCache) == 0:
@@ -261,96 +206,98 @@ def reporte(request):
 
 
         for fic in fichas:
-            cedula = fic.paciente.usuario.cedula
-            nombre = fic.paciente.usuario.nombre
-            apellido = fic.paciente.usuario.apellido
-            genero = fic.paciente.usuario.genero
-            ocupacion = fic.paciente.usuario.ocupacion
+            if fic.personal.usuario.cedula == personal.usuario.cedula:
+                cedula = fic.paciente.usuario.cedula
+                nombre = fic.paciente.usuario.nombre
+                apellido = fic.paciente.usuario.apellido
+                genero = fic.paciente.usuario.genero
+                ocupacion = fic.paciente.usuario.ocupacion
 
-            paciente = {
-                "cedula": cedula,
-                "apellido":apellido,
-                "nombre":nombre,
-                "genero":genero,
-                "ocupacion": ocupacion,
-                "data": []
-            }
+                paciente = {
+                    "cedula": cedula,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "ocupacion": ocupacion,
+                    "data": []
+                }
 
-            if paciente not in pacientes:
-                pacientes.append(paciente)
+                if paciente not in pacientes:
+                    pacientes.append(paciente)
 
 
         for f in fichas:
-            altura = f.altura
-            peso = f.peso
-            imc = f.imc
-            musculo = f.musculo
-            grasa_visceral = f.grasa_visceral
-            grasa_porcentaje = f.grasa_porcentaje
-            cuello = f.cuello
-            hombros = f.hombros
-            pecho = f.pecho
-            brazo_derecho = f.brazo_derecho
-            brazo_izquierdo = f.brazo_izquierdo
-            antebrazo_derecho = f.antebrazo_derecho
-            antebrazo_izquierdo = f.antebrazo_izquierdo
-            cintura = f.cintura
-            cadera = f.cadera
-            muslo_derecho = f.muslo_derecho
-            muslo_izquierdo = f.muslo_izquierdo
-            pantorrilla_derecha = f.pantorrilla_derecha
-            pantorrilla_izquierda = f.pantorrilla_izquierda
+            if f.personal.usuario.cedula == personal.usuario.cedula:
+                
+                altura = f.altura
+                peso = f.peso
+                imc = f.imc
+                musculo = f.musculo
+                grasa_visceral = f.grasa_visceral
+                grasa_porcentaje = f.grasa_porcentaje
+                cuello = f.cuello
+                hombros = f.hombros
+                pecho = f.pecho
+                brazo_derecho = f.brazo_derecho
+                brazo_izquierdo = f.brazo_izquierdo
+                antebrazo_derecho = f.antebrazo_derecho
+                antebrazo_izquierdo = f.antebrazo_izquierdo
+                cintura = f.cintura
+                cadera = f.cadera
+                muslo_derecho = f.muslo_derecho
+                muslo_izquierdo = f.muslo_izquierdo
+                pantorrilla_derecha = f.pantorrilla_derecha
+                pantorrilla_izquierda = f.pantorrilla_izquierda
 
+                flexiones = f.flexiones
+                sentadillas = f.sentadillas
+                saltoLargo = f.saltoLargo
+                suspension = f.suspension
+                abdomen_bajo = f.abdomen_bajo
+                abdomen_alto = f.abdomen_alto
+                espinales = f.espinales
+                lumbares = f.lumbares
+                trenSuperior = f.trenSuperior
+                trenInferior = f.trenInferior
 
-            flexiones = f.flexiones
-            sentadillas = f.sentadillas
-            saltoLargo = f.saltoLargo
-            suspension = f.suspension
-            abdomen_bajo = f.abdomen_bajo
-            abdomen_alto = f.abdomen_alto
-            espinales = f.espinales
-            lumbares = f.lumbares
-            trenSuperior = f.trenSuperior
-            trenInferior = f.trenInferior
+                ficha = {
+                    "altura" : altura,
+                    "peso" : peso,
+                    "imc" : imc,
+                    "musculo" : musculo,
+                    "grasa_visceral" : grasa_visceral,
+                    "grasa_porcentaje" : grasa_porcentaje,
+                    "cuello" : cuello,
+                    "hombros" : hombros,
+                    "pecho" : pecho,
+                    "brazo_derecho" : brazo_derecho,
+                    "brazo_izquierdo" : brazo_izquierdo,
+                    "antebrazo_derecho" : antebrazo_derecho,
+                    "antebrazo_izquierdo" : antebrazo_izquierdo,
+                    "cintura" : cintura,
+                    "cadera" : cadera,
+                    "muslo_derecho" : muslo_derecho,
+                    "muslo_izquierdo" : muslo_izquierdo,
+                    "pantorrilla_derecha" : pantorrilla_derecha,
+                    "pantorrilla_izquierda" : pantorrilla_izquierda
+                }
 
-            ficha = {
-                "altura" : altura,
-                "peso" : peso,
-                "imc" : imc,
-                "musculo" : musculo,
-                "grasa_visceral" : grasa_visceral,
-                "grasa_porcentaje" : grasa_porcentaje,
-                "cuello" : cuello,
-                "hombros" : hombros,
-                "pecho" : pecho,
-                "brazo_derecho" : brazo_derecho,
-                "brazo_izquierdo" : brazo_izquierdo,
-                "antebrazo_derecho" : antebrazo_derecho,
-                "antebrazo_izquierdo" : antebrazo_izquierdo,
-                "cintura" : cintura,
-                "cadera" : cadera,
-                "muslo_derecho" : muslo_derecho,
-                "muslo_izquierdo" : muslo_izquierdo,
-                "pantorrilla_derecha" : pantorrilla_derecha,
-                "pantorrilla_izquierda" : pantorrilla_izquierda
-            }
+                estado_fisico = {
+                    "flexiones" : flexiones,
+                    "sentadillas" : sentadillas,
+                    "saltoLargo" : saltoLargo,
+                    "suspension" : suspension,
+                    "abdomen_bajo" : abdomen_bajo,
+                    "abdomen_alto" : abdomen_alto,
+                    "espinales" : espinales,
+                    "lumbares" : lumbares,
+                    "trenSuperior" : trenSuperior,
+                    "trenInferior" : trenInferior
+                }
 
-            estado_fisico = {
-                "flexiones" : flexiones,
-                "sentadillas" : sentadillas,
-                "saltoLargo" : saltoLargo,
-                "suspension" : suspension,
-                "abdomen_bajo" : abdomen_bajo,
-                "abdomen_alto" : abdomen_alto,
-                "espinales" : espinales,
-                "lumbares" : lumbares,
-                "trenSuperior" : trenSuperior,
-                "trenInferior" : trenInferior
-            }
-
-            for paciente in pacientes:
-                if f.paciente.usuario.cedula==paciente["cedula"]:
-                    paciente["data"].append({"ficha":ficha, "estado_fisico":estado_fisico})
+                for paciente in pacientes:
+                    if f.paciente.usuario.cedula==paciente["cedula"]:
+                        paciente["data"].append({"ficha":ficha, "estado_fisico":estado_fisico})
 
         return JsonResponse({"pacientes": pacientes})
     except Exception as e:

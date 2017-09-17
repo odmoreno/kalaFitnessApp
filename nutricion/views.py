@@ -203,6 +203,9 @@ Funcion que permite obtener todas las facturas creadas
 def reporte(request):
     #global fichasCache
     pacientes = []
+    sesion = request.session.get('user_sesion', None)
+    personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
+    
 
     try:
         #if len(fichasCache) == 0:
@@ -214,67 +217,68 @@ def reporte(request):
          #   print "desde el cache"
 
         for fic in fichas:
-            cedula = fic.paciente.usuario.cedula
-            nombre = fic.paciente.usuario.nombre
-            apellido = fic.paciente.usuario.apellido
-            genero = fic.paciente.usuario.genero
-            ocupacion = fic.paciente.usuario.ocupacion
+            if fic.personal.usuario.cedula == personal.usuario.cedula:
+                cedula = fic.paciente.usuario.cedula
+                nombre = fic.paciente.usuario.nombre
+                apellido = fic.paciente.usuario.apellido
+                genero = fic.paciente.usuario.genero
+                ocupacion = fic.paciente.usuario.ocupacion
 
-            paciente = {
-                "cedula": cedula,
-                "apellido":apellido,
-                "nombre":nombre,
-                "genero":genero,
-                "ocupacion": ocupacion,
-                "fichas": []
-            }
+                paciente = {
+                    "cedula": cedula,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "genero":genero,
+                    "ocupacion": ocupacion,
+                    "fichas": []
+                }
 
-            if paciente not in pacientes:
-                pacientes.append(paciente)
+                if paciente not in pacientes:
+                    pacientes.append(paciente)
 
         for ficha in fichas:
+            if ficha.personal.usuario.cedula == personal.usuario.cedula:
+                lacteos = ficha.lacteos_input + " veces, " + ficha.lacteos
+                vegetales = ficha.vegetales_input + " veces, " + ficha.vegetales
+                frutas = ficha.frutas_input + " veces, " + ficha.frutas
+                cho = ficha.cho_input + " veces, " + ficha.cho
+                carnes = ficha.carnes_input + " veces, " + ficha.carnes
+                comidas_rapidas = ficha.comidas_rapidas_input + " veces, " + ficha.comidas_rapidas
+                frituras = ficha.frituras_input + " veces, " + ficha.frituras
+                enlatados = ficha.enlatados_input + " veces, " + ficha.enlatados
+                gaseosas = ficha.gaseosas_input + " veces, " + ficha.gaseosas
+                energizantes = ficha.energizantes_input + " veces, " + ficha.energizantes
+                infusiones = ficha.infusiones_input + " veces, " + ficha.infusiones
 
-            lacteos = ficha.lacteos_input + " veces, " + ficha.lacteos
-            vegetales = ficha.vegetales_input + " veces, " + ficha.vegetales
-            frutas = ficha.frutas_input + " veces, " + ficha.frutas
-            cho = ficha.cho_input + " veces, " + ficha.cho
-            carnes = ficha.carnes_input + " veces, " + ficha.carnes
-            comidas_rapidas = ficha.comidas_rapidas_input + " veces, " + ficha.comidas_rapidas
-            frituras = ficha.frituras_input + " veces, " + ficha.frituras
-            enlatados = ficha.enlatados_input + " veces, " + ficha.enlatados
-            gaseosas = ficha.gaseosas_input + " veces, " + ficha.gaseosas
-            energizantes = ficha.energizantes_input + " veces, " + ficha.energizantes
-            infusiones = ficha.infusiones_input + " veces, " + ficha.infusiones
+                proteina = ficha.proteina
+                grasas = ficha.grasas
+                carbohidratos = ficha.carbohidratos
+                dieta = ficha.dieta
 
-            proteina = ficha.proteina
-            grasas = ficha.grasas
-            carbohidratos = ficha.carbohidratos
-            dieta = ficha.dieta
+                frecuencia_consumo = {
+                    "lacteos" : lacteos,
+                    "vegetales" : vegetales,
+                    "frutas" : frutas,
+                    "cho" : cho,
+                    "carnes" : carnes,
+                    "comidas_rapidas" : comidas_rapidas,
+                    "frituras" : frituras,
+                    "enlatados" : enlatados,
+                    "gaseosas" : gaseosas,
+                    "energizantes" : energizantes,
+                    "infusiones" : infusiones
+                }
 
-            frecuencia_consumo = {
-                "lacteos" : lacteos,
-                "vegetales" : vegetales,
-                "frutas" : frutas,
-                "cho" : cho,
-                "carnes" : carnes,
-                "comidas_rapidas" : comidas_rapidas,
-                "frituras" : frituras,
-                "enlatados" : enlatados,
-                "gaseosas" : gaseosas,
-                "energizantes" : energizantes,
-                "infusiones" : infusiones
-            }
+                requerimientos = {
+                    "proteina" : proteina,
+                    "grasas" : grasas,
+                    "carbohidratos" : carbohidratos,
+                    "dieta" : dieta
+                }
 
-            requerimientos = {
-                "proteina" : proteina,
-                "grasas" : grasas,
-                "carbohidratos" : carbohidratos,
-                "dieta" : dieta
-            }
-
-            for paciente in pacientes:
-                if ficha.paciente.usuario.cedula==paciente["cedula"]:
-                    paciente["fichas"].append({"frecuencia_consumo":frecuencia_consumo, "requerimientos":requerimientos})
+                for paciente in pacientes:
+                    if ficha.paciente.usuario.cedula==paciente["cedula"]:
+                        paciente["fichas"].append({"frecuencia_consumo":frecuencia_consumo, "requerimientos":requerimientos})
             
         return JsonResponse({"pacientes": pacientes})
     except Exception as e:

@@ -480,6 +480,8 @@ en forma de un JSON*
 def reporte(request):
     #global diagnosticosCache
     usuarios = []
+    sesion = request.session.get('user_sesion', None)
+    personal = get_object_or_404(Personal, pk=sesion.get('personal__id', 0))
 
     try:
         #if len(diagnosticosCache) == 0:
@@ -493,38 +495,40 @@ def reporte(request):
         data = []
         
         for d in diagnosticos:
-            cedula = d.paciente.usuario.cedula
-            nombre = d.paciente.usuario.nombre
-            apellido = d.paciente.usuario.apellido
-            ocupacion = d.paciente.usuario.ocupacion
-            condiciones_previas = d.condiciones_previas
-            area_afectada = d.area_afectada
-            genero = d.paciente.usuario.genero
-            receta = d.receta
-            subrutinas = []
+            if d.personal.usuario.cedula == personal.usuario.cedula:
+                cedula = d.paciente.usuario.cedula
+                nombre = d.paciente.usuario.nombre
+                apellido = d.paciente.usuario.apellido
+                ocupacion = d.paciente.usuario.ocupacion
+                condiciones_previas = d.condiciones_previas
+                area_afectada = d.area_afectada
+                genero = d.paciente.usuario.genero
+                receta = d.receta
+                subrutinas = []
 
-            for subrutina in d.rutina.subrutina.all():
-                subrutinas.append({
-                    "nombre":subrutina.nombre, 
-                    "detalle":subrutina.detalle, 
-                    "veces":subrutina.veces, 
-                    "repeticiones":subrutina.repeticiones, 
-                    "descanso":subrutina.descanso,
-                    "link":subrutina.link
-                })
+                for subrutina in d.rutina.subrutina.all():
+                    subrutinas.append({
+                        "nombre":subrutina.nombre, 
+                        "detalle":subrutina.detalle, 
+                        "veces":subrutina.veces, 
+                        "repeticiones":subrutina.repeticiones, 
+                        "descanso":subrutina.descanso,
+                        "link":subrutina.link
+                    })
 
-            record = {
-                "cedula": cedula,
-                "condiciones_previas":condiciones_previas,
-                "area_afectada":area_afectada,
-                "apellido":apellido,
-                "nombre":nombre,
-                "ocupacion":ocupacion,
-                "genero":genero,
-                "receta":receta,
-                "subrutinas": subrutinas
-            }
-            data.append(record)
+                record = {
+                    "cedula": cedula,
+                    "condiciones_previas":condiciones_previas,
+                    "area_afectada":area_afectada,
+                    "apellido":apellido,
+                    "nombre":nombre,
+                    "ocupacion":ocupacion,
+                    "genero":genero,
+                    "receta":receta,
+                    "subrutinas": subrutinas
+                }
+                data.append(record)
+
 
         for d in data:
             usuario = {
