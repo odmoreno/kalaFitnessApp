@@ -3,6 +3,31 @@
 {% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
+<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+<script type="text/javascript">
+  angular.module('app', [])
+    .config(["$interpolateProvider", (fercarvo) => {
+        fercarvo.startSymbol('{[{').endSymbol('}]}');
+    }])
+    .controller('main', ["$http", "$scope", (abc, fed) => {
+        setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
+
+        NProgress.start();
+        abc.get("/fisioterapia/reporte/fichas/")
+          .then( (res)=>{
+              fed.pacientes = res.data.pacientes;
+              console.log(fed.pacientes);
+              NProgress.done();
+
+          }, ()=>{ alert("No se ha podido cargar la informacion") })
+
+        fed.generar = (xyz) => {
+            console.log(xyz);
+            pdf(xyz, "reporte_diagnosticosPDF.pdf");
+        }
+    }])
+</script>
 <div id="page-wrapper" ng-app="app">
   <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
@@ -20,7 +45,7 @@
                               <th>Apellido</th>
                               <th>Ocupacion</th>
                               <th>Genero</th>
-                              <th># Fichas</th>>
+                              <th># Fichas</th>
                               <th>Generar</th>
                             </tr>
                           </thead>
@@ -45,39 +70,7 @@
 </div>
 <script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
 <script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
-<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script>
-    angular.module('app', [])
-        .config(["$interpolateProvider", function ($interpolateProvider) {
-            $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-        }])
-        .controller('main', ["$http", "$scope", function($http, $scope){
-
-
-            setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
-
-            NProgress.start();
-            $http.get("/fisioterapia/reporte/fichas/")
-              .then(function(res){
-                  $scope.pacientes = res.data.pacientes;
-                  console.log($scope.pacientes);
-                  NProgress.done();
-              }, function (e){
-                  console.log(e);
-                  alert("No se ha podido cargar la informacion")
-
-              })
-
-            $scope.generar = (paciente) => {
-                console.log(paciente);
-                pdf(paciente, "reporte_diagnosticosPDF.pdf");
-            }
-
-
-        }])
-
-   
     function ficha (array) {
         var data = [];
         var i=0;
