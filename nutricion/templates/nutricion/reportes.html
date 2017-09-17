@@ -3,7 +3,6 @@
 {% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
-<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script type="text/javascript">
   angular.module('app', [])
@@ -11,8 +10,6 @@
         fercarvo.startSymbol('{[{').endSymbol('}]}');
     }])
     .controller('main', ["$http", "$scope", (abc, fed) => {
-        setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
-
         NProgress.start();
         abc.get("/nutricion/reporte/")
           .then( (res)=>{
@@ -20,11 +17,15 @@
               console.log(fed.pacientes);
               NProgress.done();
 
-          }, ()=>{ alert("No se ha podido cargar la informacion") })
+          }, ()=>{
+            NProgress.done() 
+            alert("No se ha podido cargar la informacion")            
+          })
 
         fed.generar = (xyz) => {
             console.log(xyz);
             pdf(xyz, "reporte_diagnosticosPDF.pdf");
+            NProgress.done();
         }
     }])
 </script>
@@ -77,7 +78,7 @@
         fichas.forEach((d) => {
             i++
             data.push(
-                {text: "Ficha de nutricion #" + i + "\n", style: 
+                {text: "Ficha de nutrición #" + i + "\n", style: 
                     {fontSize: 15, bold: true, alignment: 'center'}
                 },{
                     text: [
@@ -118,13 +119,13 @@
                                       {text: 'Gaseosas.', style: 'subItem'},
                                       {text: 'Energizantes.', style: 'subItem'},
                                       {text: 'Infusiones.', style: 'subItem'},
-                                      {text: ' ', fillColor: 'black'}
+                                      {text: ' ', fillColor: '#e1e1e1'}
                                   ],
                                   [
                                       {text: ' '+ d.frecuencia_consumo.gaseosas},
                                       {text: ' '+ d.frecuencia_consumo.energizantes},
                                       {text: ' '+ d.frecuencia_consumo.infusiones},
-                                      {text: ' ', fillColor: "black"}
+                                      {text: ' ', fillColor: "#e1e1e1"}
                                   ]
                               ]
                           }
@@ -242,187 +243,5 @@
         };
         pdfMake.createPdf(pdf).download("fichas_Paciente.pdf");
     }
-</script>
-<script>
-/*
-  function body(data){
-    var body = [
-        [
-            {text: 'ID', style: 'subItem'
-            }, {text: 'Nombre', style: 'subItem'
-            }, {text: 'Apellido', style: 'subItem'
-            }
-        ]
-    ]
-
-    data.forEach(function(obj){
-        body.push(
-            [
-                {text:
-                    (function(){
-                        if (obj.cedula) { return obj.cedula;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.nombre) { return obj.nombre;}
-                        return "";
-                    })()
-
-                },{text:
-                    (function(){
-                        if (obj.apellido) { return obj.apellido;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (obj.telefono) { return obj.telefono;}
-                        return "";
-                    })()
-                },{text:
-                    (function(){
-                        if (obj.rol) { return obj.rol;}
-                        return "";
-                    })()
-                }
-            ]
-        );
-    });
-    return body;
-  }
-
-  function pdf(paciente, nombre, tipo, cedula){
-    console.log(paciente);
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10) {
-        dd='0'+dd
-    }
-    if(mm<10) {
-        mm='0'+mm
-    }
-    today = mm+'/'+dd+'/'+yyyy;
-
-    var pdf = {
-       content: [
-
-           {  text: "KalaFitness APP", style: 'header' },
-           {  text: "Reporte de ficha medica\n\n", style: 'subheader' },
-           {
-               text: [
-                   {
-                       text: "Fecha: ",
-                       style: 'subItem'
-                   }, {
-                       text: today + "\n"
-                   },{
-                       text: "Tipo: ",
-                       style: 'subItem'
-                   }, {
-                       text: tipo + "\n"
-                   },{
-                       text: "Paciente: ",
-                       style: 'subItem'
-                   }, {
-                       text: cedula + "\n\n"
-                   }
-               ]
-           },'The following table has nothing more than a body array',
-           {
-               columns : [
-                   { width: '*', text: ''},
-                   {
-                       width: 'auto',
-                       table: {
-                           widths: ['*','*','*','*','*'],
-                           body: [
-                              [
-                                 {text: 'ID', style: 'subItem'
-                                 }, {text: 'Nombre', style: 'subItem'
-                                 }, {text: 'Apellido', style: 'subItem'}
-                             ],[
-                                {text: "" + paciente.id, style: 'subItem'},
-                                {text: "" + paciente.nombre, style: 'subItem'},
-                                {text: "" + paciente.apellido, style: 'subItem'}
-                              ]
-                            ]
-                         }
-                   },
-                   { width: '*', text: ''}
-               ]
-           },{text: 'Fichas medicas del paciente', style: 'subheader'},
-           {
-               columns : [
-                   { width: '*', text: ''},
-                   {
-                       width: 'auto',
-                       table: {
-                           widths: ['*','*','*','*','*'],
-                           body: [[
-                              {text: 'Ficha', style: 'subItem' },
-                              {text: 'Proteina', style: 'subItem' },
-                              {text: 'Grasas', style: 'subItem' },
-                              {text: 'Carbohidratos', style: 'subItem' },
-                              {text: 'Dieta', style: 'subItem' }
-                           ],[
-                              {text: "0", style: 'subItem'},
-                              {text: " " + paciente.fichas[0].proteina, style: 'subItem'},
-                              {text: " " + paciente.fichas[0].grasas, style: 'subItem'},
-                              {text: " " + paciente.fichas[0].carbohidratos, style: 'subItem'},
-                              {text: " " + paciente.fichas[0].dieta, style: 'subItem'}
-                           ],[
-                              {text: "1", style: 'subItem'},
-                              {text: " " + paciente.fichas[1].proteina, style: 'subItem'},
-                              {text: " " + paciente.fichas[1].grasas, style: 'subItem'},
-                              {text: " " + paciente.fichas[1].carbohidratos, style: 'subItem'},
-                              {text: " " + paciente.fichas[1].dieta, style: 'subItem'}
-                           ]]
-                         }
-                   },
-                   { width: '*', text: ''},
-               ]
-           }
-       ],
-       styles: {
-           header: {
-               fontSize: 18,
-               bold: true,
-               alignment: 'center',
-               color: 'blue'
-           },
-           subheader: {
-               fontSize: 14,
-               bold: true,
-               alignment: 'center',
-               color: 'blue'
-           },
-           subItem: {
-               bold: true,
-               color: 'blue'
-           },
-           tableHeader: {
-               bold: true,
-               fontSize: 13,
-               color: 'black'
-           }
-       }
-    };
-    pdfMake.createPdf(pdf).download(nombre);
-  };
-
-  $("#generar").click(function(){
-    var value = $('#cedula').val();
-
-    $.get("/nutricion/reporte/" + value, function(res, status){
-      //console.log(res);
-      pdf(res, "reporte_fichas.pdf", "Ficha medica", value);
-    });
-
-  });
-*/
-
 </script>
 {% endblock %}

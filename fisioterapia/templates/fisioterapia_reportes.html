@@ -3,7 +3,6 @@
 {% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
-<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script type="text/javascript">
   angular.module('app', [])
@@ -11,8 +10,6 @@
         fercarvo.startSymbol('{[{').endSymbol('}]}');
     }])
     .controller('main', ["$http", "$scope", (abc, fed) => {
-        setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
-
         NProgress.start();
         abc.get("/fisioterapia/reporte/fichas/")
           .then( (res)=>{
@@ -20,7 +17,10 @@
               console.log(fed.pacientes);
               NProgress.done();
 
-          }, ()=>{ alert("No se ha podido cargar la informacion") })
+          }, ()=>{
+            NProgress.done() 
+            alert("No se ha podido cargar la informacion")
+          })
 
         fed.generar = (xyz) => {
             console.log(xyz);

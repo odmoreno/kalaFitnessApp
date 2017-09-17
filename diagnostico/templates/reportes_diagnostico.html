@@ -3,6 +3,33 @@
 {% load staticfiles %}
 {% block title %}Reportes {% endblock %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('app', [])
+        .config(["$interpolateProvider", (xyz) => {
+            xyz.startSymbol('{[{').endSymbol('}]}');
+        }])
+        .controller('main', ["$http", "$scope", (net, global)=>{
+
+            NProgress.start();
+            net.get("/diagnostico/reporte/")
+              .then((res) => {
+                  global.pacientes = res.data.usuarios;
+                  console.log(global.pacientes);
+                  NProgress.done();
+              }, (e) => {
+                  NProgress.done()
+                  alert("No se ha podido cargar la informacion")                  
+              })
+
+            global.generar = (paciente) => {
+                NProgress.start();
+                pdf(paciente, "reporte_diagnosticosPDF.pdf");
+            }
+
+
+        }])
+</script>
 <div id="page-wrapper" ng-app="app">
   <div class="container-fluid" ng-controller="main">
     <div class="panel panel-default" style="margin-top: 40px">
@@ -20,6 +47,7 @@
                               <th>Apellido</th>
                               <th>Ocupacion</th>
                               <th>Genero</th>
+                              <th># DIag.</th>
                               <th style="text-align: center;">Generar</th>
                             </tr>
                           </thead>
@@ -29,6 +57,7 @@
                               <td>{[{paciente.apellido}]}</td>
                               <td>{[{paciente.ocupacion}]}</td>
                               <td>{[{paciente.genero}]}</td>
+                              <td>{[{paciente.diagnosticos.length}]}</td>
                               <td style="text-align: center;"><button ng-click="generar(paciente)" style="background-color:inherit;border:none;font-size: 17px;"><span class="glyphicon glyphicon-save-file"></span></button></td>
                             </tr>
                           </tbody>
@@ -43,37 +72,7 @@
 </div>
 <script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
 <script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
-<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
-<script>
-    angular.module('app', [])
-        .config(["$interpolateProvider", function ($interpolateProvider) {
-            $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-        }])
-        .controller('main', ["$http", "$scope", function($http, $scope){
-
-
-            setTimeout(() => {alert("Cargando usuarios, por favor espere")}, 1)
-
-            $http.get("/diagnostico/reporte/")
-              .then(function(res){
-                  $scope.pacientes = res.data.usuarios;
-                  console.log($scope.pacientes);
-
-              }, function (e){
-                  console.log(e);
-                  alert("No se ha podido cargar la informacion")
-
-              })
-
-            $scope.generar = (paciente) => {
-                pdf(paciente, "reporte_diagnosticosPDF.pdf");
-            }
-
-
-        }])
-
-   
+<script>   
     function body(data){
         var body = [
             [
@@ -85,7 +84,7 @@
             ]
         ]
 
-        data.forEach(function(obj){
+        data.forEach((obj) => {
             body.push(
                 [
                     {text: ' '+ obj.nombre},
@@ -143,7 +142,7 @@
     }
 
 
-    function pdf(data, nombre){
+    function pdf(data){
         var today = new Date();
         var mm = today.getMonth()+1; //January is 0!
         today = mm+'/'+ today.getDate() +'/'+ today.getFullYear();
@@ -210,7 +209,8 @@
                }
            }
         };
-        pdfMake.createPdf(pdf).download(nombre);
+        pdfMake.createPdf(pdf).download("reporte_DIagnosticos.pdf");
+        NProgress.done();
     }
 </script>
 {% endblock %}
