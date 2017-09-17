@@ -473,17 +473,30 @@ Salidas: JSON con todos los diagnosticos y de todos los pacientes
 *Funcion que retorna la informacion de los diagnosticos de un paciente la base de datos
 en forma de un JSON*
 '''
+
+diagnosticosCache = []
+
 @login_required
 def reporte(request):
+    global diagnosticosCache
+    usuarios = []
+
     try:
-        diagnosticos = DiagnosticoFisioterapia.objects.all()
-        response = []
+        if len(diagnosticosCache) == 0:
+            diagnosticos = DiagnosticoFisioterapia.objects.all()
+            diagnosticosCache = diagnosticos
+            print "desde la base"
+        else:
+            diagnosticos = diagnosticosCache
+            print "desde el cache"
+
+        data = []
         
         for d in diagnosticos:
-            #if d.estado=='A':
             cedula = d.paciente.usuario.cedula
             nombre = d.paciente.usuario.nombre
             apellido = d.paciente.usuario.apellido
+            ocupacion = d.paciente.usuario.ocupacion
             condiciones_previas = d.condiciones_previas
             area_afectada = d.area_afectada
             genero = d.paciente.usuario.genero
@@ -505,13 +518,40 @@ def reporte(request):
                 "area_afectada":area_afectada,
                 "apellido":apellido,
                 "nombre":nombre,
+                "ocupacion":ocupacion,
                 "genero":genero,
                 "receta":receta,
                 "subrutinas": subrutinas
             }
-            response.append(record)
+            data.append(record)
 
-        return JsonResponse({"data": response})
+        for d in data:
+            usuario = {
+                "nombre": d["nombre"],
+                "apellido": d["apellido"],
+                "cedula": d["cedula"],
+                "genero": d["genero"],
+                "ocupacion": d["ocupacion"],
+                "diagnosticos": []
+            }
+            print usuarios
+            print usuario
+
+            if usuario not in usuarios:
+                usuarios.append(usuario)
+
+        print usuarios
+
+        for usuario in usuarios:
+             for diagnostico in data:
+                if diagnostico["cedula"]==usuario["cedula"]:
+                    usuario["diagnosticos"].append(diagnostico)
+
+        print usuarios
+        return JsonResponse({"usuarios": usuarios})
+            
+
+        #return JsonResponse({"data": response})
         #return HttpResponseNotFound("No existen reportes de este paciente")
     except Exception as e:
         print e

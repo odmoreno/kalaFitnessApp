@@ -12,22 +12,24 @@
           <div class="container-fluid">
                 <div >
                     <div class="form-group">
-                      <input placeholder="Filtrar por nombre" class="form-control" id="cedula"></input>
-                      <table class="table table-striped">
+                      <input ng-model="buscar.nombre" class="form-control" placeholder="Filtrar por nombre"></input>
+                      <table style="margin-top: 15px;" class="table table-bordered">
                           <thead>
                             <tr>
                               <th>Nombre</th>
                               <th>Apellido</th>
                               <th>Ocupacion</th>
+                              <th>Genero</th>
                               <th>Generar diagnosticos</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr ng-repeat="paciente in pacientes">
+                            <tr ng-repeat="paciente in pacientes | orderBy:'nombre' | filter:buscar">
                               <td>{[{paciente.nombre}]}</td>
-                              <td>{[{paciente.nombre}]}</td>
-                              <td>{[{paciente.nombre}]}</td>
-                              <td>{[{paciente.nombre}]}</td>
+                              <td>{[{paciente.apellido}]}</td>
+                              <td>{[{paciente.ocupacion}]}</td>
+                              <td>{[{paciente.genero}]}</td>
+                              <td><button ng-click="generar(paciente)" style="background-color:inherit;border:none;"><span class="glyphicon glyphicon-zoom-in"></span></button></td>
                             </tr>
                           </tbody>
                         </table>
@@ -42,25 +44,32 @@
 </div>
 <script src="{% static 'vendor/pdfmake/pdfmake.min.js' %}"></script>
 <script src="{% static 'vendor/pdfmake/vfs_fonts.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 <script>
+
   angular.module('app', [])
     .config(["$interpolateProvider", function ($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     }])
-    .controller('main', ["$http", function($http){
+    .controller('main', ["$http", "$scope", function($http, $scope){
+
+
+        setTimeout(() => {
+            alert("Cargando usuarios, por favor espere");
+        }, 1)
 
         $http.get("/diagnostico/reporte/").then(function(res){
-            console.log("data", res.data);
-
-
-
-
-
+            $scope.pacientes = res.data.usuarios;
+            console.log($scope.pacientes);
         }, function (e){
+            console.log(e);
             alert("No se ha podido cargar la informacion")
         })
+
+        $scope.generar = (paciente) => {
+
+        }
 
 
     }])
